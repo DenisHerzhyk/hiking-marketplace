@@ -1,0 +1,15 @@
+$primary-color: #212b38;
+$secondary-color: #facc15;
+$dark-gray: #484848;
+$light-gray: #838383;
+$primary-border-color: #ededed;
+$primary-gray: rgba(#d9d9d9, 0.29);
+
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --primary-border-color: #{$primary-border-color};
+  --primary-gray: #{$primary-gray};
+  --dark-gray: #{$dark-gray};
+  --light-gray: #{$light-gray};
+}

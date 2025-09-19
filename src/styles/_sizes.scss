@@ -1,0 +1,22 @@
+$y-padding: 10px;
+$desktop-x-padding: 88px;
+$laptop-x-padding: 80px;
+$tablet-x-padding: 60px;
+$mobile-x-padding: 20px;
+
+$mobile: 360px;
+$tablet: 768px;
+$laptop: 1366px;
+$desktop: 1920px;
+
+:root {
+  --y-padding: #{$y-padding};
+  --desktop-x-padding: #{$desktop-x-padding};
+  --laptop-x-padding: #{$laptop-x-padding};
+  --tablet-x-padding: #{$tablet-x-padding};
+  --mobile-x-padding: #{$mobile-x-padding};
+  --mobile: #{$mobile};
+  --tablet: #{$tablet};
+  --laptop: #{$laptop};
+  --desktop: #{$desktop};
+}
