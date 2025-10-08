@@ -5,8 +5,8 @@ import "../../../styles/main.scss";
 
 const Login = () => {
   return (
-    <div className="Login relative h-[calc(100vh-104.4px)] tablet:h-[calc(100vh-123.6px)] flex flex-row flex-wrap justify-center gap-[34px] tablet:gap-[50px] laptop:gap-[261px] items-center px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
-      <div className="content relative z-20 w-[250px] tablet:w-[400px]">
+    <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[34px] mobile:gap-[44px] mobile:py-[70px] laptop:py-[140px] items-center px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
+      <div className="content z-20 w-[250px] tablet:w-[400px]">
         <img
           src={logo}
           alt="logo"
@@ -53,17 +53,12 @@ const Login = () => {
           <span className="text-sm mobile:text-base font-medium underline">
             Sign Up
           </span>
-        </a>
+        </a>  
       </div>
-      <div className="card relative w-screen tablet:w-fit">
-        <img
-          src={card}
-          alt="card"
-          className="rounded-none tablet:rounded-[10px] object-cover w-screen h-[246px] mobile:h-[289px] tablet:w-[750px] tablet:h-[500px] laptop:w-[1000px] laptop:h-[667px]"
-        />
+      <div className="card relative w-screen tablet:w-fit bg-cover bg-center rounded-none tablet:rounded-[10px] tablet:py-[153px] laptop:py-[237px] p-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]" style={{backgroundImage: `url(${card})`}}>
         <div className="absolute inset-0 bg-black opacity-50 -z-10 rounded-none tablet:rounded-[10px]"></div>
-        <div className="card__content absolute top-0 left-0 z-10 flex flex-col h-full justify-center items-center text-center mobile:text-start mobile:items-start p-[20px] mobile:pl-[60px] tablet:pl-[56px]">
-          <h2 className="text-[28px] mobile:text-[32px] tablet:text-[36px] font-extrabold text-white">
+        <div className="card__content relatvie z-10 flex flex-col h-fit justify-center items-center text-center mobile:text-start mobile:items-start ">
+          <h2 className="text-[28px] mobile:leading-snug mobile:text-[30px] tablet:text-[36px] font-extrabold text-white">
             30-60% OFF MID SEASON SALE
             <br />
             FOR MEMBERS
