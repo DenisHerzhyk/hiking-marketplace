@@ -1,9 +1,7 @@
 import React from "react";
 import welcome from "../../../assets/images/welcome.svg";
 import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
-import { IoLogoAppleAr } from "react-icons/io5";
 import trail_v from "../../../assets/videos/trail.mp4";
 import hike_signup from "../../../assets/videos/hike-form.mp4";
 import Card from "../components/card/UI/Card";
@@ -67,7 +65,6 @@ const Home = () => {
           <Card title="DEALS" image={category_deals} />
         </section>
         <section className="catalogs flex flex-col gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
-          {/* FIX */}
           <div className="catalog flex flex-col">
             <div className="flex flex-col ">
               <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">

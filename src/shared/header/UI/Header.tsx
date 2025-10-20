@@ -13,23 +13,41 @@ const Header = () => {
       <header className="header">
         <div className="upper-header text-white bg-black flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
           <section className="logo">
-            <IoLogoAppleAr className="w-[20px] h-[20px]" />
+            <a href="/">
+              <IoLogoAppleAr className="w-[20px] h-[20px]" />
+            </a>
           </section>
           <section className="navigation">
             <nav>
               <ul className="flex flex-row flex-wrap gap-8 font-semibold text-sm">
-                <li className="center__nav-item">HOME</li>
-                <li className="center__nav-item">MENS</li>
-                <li className="center__nav-item">WOMENS</li>
-                <li className="center__nav-item">BOOTS</li>
-                <li className="center__nav-item">DEALS</li>
+                <li className="center__nav-item">
+                  <a href="/">HOME</a>
+                </li>
+                <li className="center__nav-item">
+                  <a href="/category">MENS</a>
+                </li>
+                <li className="center__nav-item">
+                  <a href="/category">WOMENS</a>
+                </li>
+                <li className="center__nav-item">
+                  <a href="/category">BOOTS</a>
+                </li>
+                <li className="center__nav-item">
+                  <a href="/category">DEALS</a>
+                </li>
               </ul>
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
-            <CiLogin className="w-[22px] h-[20px]" />
-            <IoCart className="w-[22px] h-[20px]" />
-            <FaHeart className="w-[22px] h-[20px]" />
+            <a href="/login">
+              <CiLogin className="w-[22px] h-[20px]" />
+            </a>
+            <a href="/cart">
+              <IoCart className="w-[22px] h-[20px]" />
+            </a>
+            <a href="/cart">
+              <FaHeart className="w-[22px] h-[20px]" />
+            </a>
           </section>
         </div>
         <div className="search-section border-b py-3 tablet:py-4 flex justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
