@@ -40,15 +40,15 @@ const Header = () => {
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
-            <a href="/login">
+            <Link to="/login">
               <CiLogin className="w-[22px] h-[20px]" />
-            </a>
-            <a href="/cart">
+            </Link>
+            <Link to="/cart">
               <IoCart className="w-[22px] h-[20px]" />
-            </a>
-            <a href="/cart">
+            </Link>
+            <Link to="/cart">
               <FaHeart className="w-[22px] h-[20px]" />
-            </a>
+            </Link>
           </section>
         </div>
         <div className="search-section border-b py-3 tablet:py-4 flex justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
