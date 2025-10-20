@@ -12,8 +12,8 @@ import "./styles/main.scss";
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -35,8 +35,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/category" element={<Category />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

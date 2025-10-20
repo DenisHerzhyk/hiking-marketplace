@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
@@ -13,27 +14,27 @@ const Header = () => {
       <header className="header">
         <div className="upper-header text-white bg-black flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
           <section className="logo">
-            <a href="/">
+            <Link to="/">
               <IoLogoAppleAr className="w-[20px] h-[20px]" />
-            </a>
+            </Link>
           </section>
           <section className="navigation">
             <nav>
               <ul className="flex flex-row flex-wrap gap-8 font-semibold text-sm">
                 <li className="center__nav-item">
-                  <a href="/">HOME</a>
+                  <Link to="/">HOME</Link>
                 </li>
                 <li className="center__nav-item">
-                  <a href="/category">MENS</a>
+                  <Link to="/category">MENS</Link>
                 </li>
                 <li className="center__nav-item">
-                  <a href="/category">WOMENS</a>
+                  <Link to="/category">WOMENS</Link>
                 </li>
                 <li className="center__nav-item">
-                  <a href="/category">BOOTS</a>
+                  <Link to="/category">BOOTS</Link>
                 </li>
                 <li className="center__nav-item">
-                  <a href="/category">DEALS</a>
+                  <Link to="/category">DEALS</Link>
                 </li>
               </ul>
             </nav>
