@@ -1,10 +1,9 @@
 import React from "react";
-import logo from "../../../assets/images/icons/logo-apple-ar.svg";
-import login_icon from "../../../assets/images/icons/login.svg";
-import cart_icon from "../../../assets/images/icons/cart.svg";
-import heart_icon from "../../../assets/images/icons/heart.svg";
-import search from "../../../assets/images/icons/search.svg";
-
+import { IoLogoAppleAr } from "react-icons/io5";
+import { CiLogin } from "react-icons/ci";
+import { IoCart } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa6";
+import { IoIosSearch } from "react-icons/io";
 import "../../../styles/main.scss";
 
 const Header = () => {
@@ -12,9 +11,9 @@ const Header = () => {
     <>
       {/* TODO: adapt for mobile */}
       <header className="header">
-        <div className="upper-header text-white bg-[var(--primary-color)] flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+        <div className="upper-header text-white bg-black flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
           <section className="logo">
-            <img src={logo} alt="logo" />
+            <IoLogoAppleAr className="w-[20px] h-[20px]" />
           </section>
           <section className="navigation">
             <nav>
@@ -28,9 +27,9 @@ const Header = () => {
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
-            <img src={login_icon} alt="login" />
-            <img src={cart_icon} alt="cart" />
-            <img src={heart_icon} alt="heart" />
+            <CiLogin className="w-[22px] h-[20px]" />
+            <IoCart className="w-[22px] h-[20px]" />
+            <FaHeart className="w-[22px] h-[20px]" />
           </section>
         </div>
         <div className="search-section border-b py-3 tablet:py-4 flex justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
@@ -42,11 +41,7 @@ const Header = () => {
                 placeholder="Search for products..."
                 className="search-section__input text-sm tablet:text-base py-2 tablet:py-3 pl-10 w-full tablet:w-auto tablet:pl-12 tablet:pr-[209px] pr-4 border border-[var(--primary-border-color)] rounded-l-full"
               />
-              <img
-                src={search}
-                alt="search"
-                className="search-section__icon absolute top-1/2 left-3 mobile:left-4 size-[16px] tablet:size-auto transform -translate-y-1/2"
-              />
+              <IoIosSearch className="search-section__icon text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
             </div>
             <button
               type="submit"

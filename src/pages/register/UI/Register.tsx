@@ -1,15 +1,15 @@
 import React from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "../../../assets/images/login-card.png";
+import card from "../../../assets/images/register-card.png";
 import "../../../styles/main.scss";
 
 const Login = () => {
   return (
-    <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] h-[calc[100vh-103.4px]] tablet:h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[68px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
+    <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] h-[calc[100vh-103.4px]] tablet:h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
         <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
-          LOGIN
+          REGISTER
         </h1>
         <form action="/" className="flex flex-col">
           <div className="input-email mt-[8px] mobile:mt-[42px]">
@@ -38,16 +38,29 @@ const Login = () => {
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
+          <div className="input-confirm-password mt-[16px] mobile:mt-[32px]">
+            <label htmlFor="confirm-password" className="uppercase" hidden>
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirm-password"
+              id="confirm-password"
+              required
+              placeholder="CONFIRM PASSWORD"
+              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
+            />
+          </div>
           <button className="text-black uppercase font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px]">
-            Sign in
+            Register
           </button>
         </form>
         <a className="content__register-reference flex flex-row flex-wrap tablet:flex-nowrap gap-[9px] mt-[15px]">
           <span className="text-sm mobile:text-base font-light text-[var(--light-gray)]">
-            Haven't registered yet?
+            Already have an account?
           </span>
           <span className="text-sm mobile:text-base font-medium underline">
-            Sign Up
+            Login
           </span>
         </a>
       </div>

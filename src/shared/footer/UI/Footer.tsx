@@ -1,13 +1,13 @@
 import React from "react";
-import insta_logo from "../../../assets/images/icons/logo-instagram.svg";
-import linkedin_logo from "../../../assets/images/icons/logo-linkedin.svg";
-import gh_logo from "../../../assets/images/icons/logo-github.svg";
-import logo from "../../../assets/images/icons/logo-apple-arr-footer.svg";
-import right_arrow from "../../../assets/images/icons/right-arrow-full.svg";
+import { CiInstagram } from "react-icons/ci";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { IoLogoAppleAr } from "react-icons/io5";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <footer className="footer flex flex-row flex-wrap justify-start tablet:justify-center laptop:justify-between gap-[71px] mobile:gap-[79px] py-[148px] mobile:py-[200px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+    <footer className="footer flex flex-row flex-wrap justify-start tablet:justify-center laptop:justify-between gap-[71px] mobile:gap-[79px] py-[144px] mobile:py-[196px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
       <div className="contact flex flex-col">
         <h1 className="contact-section__title font-bold text-base mobile:text-[20px]">
           CONTACT
@@ -40,23 +40,19 @@ const Footer = () => {
           </h2>
           <div className="social-content__links flex flex-row gap-[18px] mt-[11px] mobile:mt-[16px]">
             <a href="/">
-              <img src={insta_logo} alt="insta" />
+              <CiInstagram className="w-[25px] h-[25px]" />
             </a>
             <a href="/">
-              <img src={linkedin_logo} alt="linkedin" />
+              <FaLinkedin className="w-[25px] h-[25px]" />
             </a>
             <a href="/">
-              <img src={gh_logo} alt="github" />
+              <FaGithub className="w-[25px] h-[25px]" />
             </a>
           </div>
         </div>
       </div>
       <div className="subscribe flex flex-col w-[280px] tablet:w-[394px]">
-        <img
-          src={logo}
-          alt="logo"
-          className="h-[30px] w-[30px] mobile:w-[50px] mobile:h-[50px]"
-        />
+        <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <form action="" className="flex flex-col">
           <label
             htmlFor="email"
@@ -81,11 +77,7 @@ const Footer = () => {
             className="subscribe__button flex flex-row gap-[10px] justify-start mt-[25px] mobile:mt-[35px]"
           >
             <span className="text-sm mobile:text-base">SUBMIT</span>
-            <img
-              src={right_arrow}
-              alt="right-arrow"
-              className="w-[18px] h-[18px] mobile:w-[24px] mobile:h-[24px]"
-            />
+            <IoIosArrowForward className="w-[18px] h-[18px] mobile:w-[24px] mobile:h-[24px]" />
           </button>
         </form>
       </div>

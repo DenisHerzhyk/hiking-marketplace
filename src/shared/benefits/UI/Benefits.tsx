@@ -1,12 +1,12 @@
 import React from "react";
-import ship_icon from "../../../assets/images/icons/ex-ship.svg";
-import disc_icon from "../../../assets/images/icons/ex-disc.svg";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { CiDiscount1 } from "react-icons/ci";
 import "../../../styles/main.scss";
 
 const Benefits = () => {
   return (
     <>
-      <section className="benefits mt-[100px] flex flex-row flex-wrap items-center justify-center laptop:justify-between gap-[61px] py-[67px] bg-[var(--primary-border-color)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+      <section className="benefits mt-[75px] mobile:mt-[100px] flex flex-row flex-wrap items-center justify-center laptop:justify-between gap-[61px] py-[67px] bg-[var(--primary-border-color)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
         <div className="register-member flex flex-col items-center text-center tablet:items-start tablet:text-left">
           <h1 className="benefits__title text-[30px] mobile:text-5xl font-bold">
             FREEDOM BENEFITS
@@ -23,11 +23,9 @@ const Benefits = () => {
         </div>
         <div className="bonuses flex flex-row flex-wrap justify-center tablet:justify-between tablet:flex-nowrap gap-[60px] tablet:gap-[140px] w-full tablet:w-fit">
           <div className="bonuses__item w-[170px] flex flex-col items-center mobile:items-start text-center mobile:text-start">
-            <img
-              src={ship_icon}
-              alt="ship"
-              className="w-[98px] h-[65px] mobile:w-fit mobile:h-fit"
-            />
+            <div className="w-full flex justify-center">
+              <CiDeliveryTruck className="w-[98px] h-[65px] mobile:w-[118px] mobile:h-[79px]" />
+            </div>
             <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
               FREE SHIPPING
             </h2>
@@ -36,11 +34,9 @@ const Benefits = () => {
             </p>
           </div>
           <div className="bonuses__item w-[220px] flex flex-col items-center mobile:items-start text-center mobile:text-start">
-            <img
-              src={disc_icon}
-              alt="disc"
-              className="w-[65px] h-[65px] mobile:w-fit mobile:h-fit"
-            />
+            <div className="w-full flex justify-center">
+              <CiDiscount1 className="w-[65px] h-[65px] mobile:w-[82px] mobile:h-[82px]" />
+            </div>
             <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
               EXCLUSIVE OFFERS
             </h2>
