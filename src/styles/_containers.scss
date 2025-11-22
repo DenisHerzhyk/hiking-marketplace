@@ -1,0 +1,26 @@
+@use "sizes";
+
+$mobile: 360px;
+$tablet: 768px;
+$laptop: 1366px;
+$desktop: 1920px;
+
+.container {
+  padding-left: var(--mobile-x-padding);
+  padding-right: var(--mobile-x-padding);
+
+  @media (min-width: 360px) {
+    padding-left: var(--tablet-x-padding);
+    padding-right: var(--tablet-x-padding);
+  }
+
+  @media (min-width: 768px) {
+    padding-left: var(--laptop-x-padding);
+    padding-right: var(--laptop-x-padding);
+  }
+
+  @media (min-width: 1366px) {
+    padding-left: var(--desktop-x-padding);
+    padding-right: var(--desktop-x-padding);
+  }
+}

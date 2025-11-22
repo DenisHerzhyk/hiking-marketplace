@@ -5,6 +5,7 @@ import { CiLogin } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
+import { IoMenuOutline } from "react-icons/io5";
 import "../../../styles/main.scss";
 
 const Header = () => {
@@ -13,14 +14,17 @@ const Header = () => {
       {/* TODO: adapt for mobile */}
       <header className="header">
         <div className="upper-header text-white bg-black flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
-          <section className="logo">
+          <section className="logo flex flex-row items-center gap-[15px]">
+            <div className="block tablet:hidden">
+              <IoMenuOutline className="w-[20px] h-[20px]" />
+            </div>
             <Link to="/">
               <IoLogoAppleAr className="w-[20px] h-[20px]" />
             </Link>
           </section>
           <section className="navigation">
             <nav>
-              <ul className="flex flex-row flex-wrap gap-8 font-semibold text-sm">
+              <ul className="hidden tablet:flex flex-row flex-wrap gap-8 font-semibold text-sm">
                 <li className="center__nav-item">
                   <Link to="/">HOME</Link>
                 </li>
@@ -40,15 +44,15 @@ const Header = () => {
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
-            <a href="/login">
+            <Link to="/login">
               <CiLogin className="w-[22px] h-[20px]" />
-            </a>
-            <a href="/cart">
+            </Link>
+            <Link to="/cart">
               <IoCart className="w-[22px] h-[20px]" />
-            </a>
-            <a href="/cart">
+            </Link>
+            <Link to="/cart">
               <FaHeart className="w-[22px] h-[20px]" />
-            </a>
+            </Link>
           </section>
         </div>
         <div className="search-section border-b py-3 tablet:py-4 flex justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">

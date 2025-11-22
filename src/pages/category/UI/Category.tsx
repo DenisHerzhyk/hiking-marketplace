@@ -6,7 +6,7 @@ import product_sample from "../../../assets/images/products/1.png";
 const Category = () => {
   return (
     <>
-      <div className="Category px-[var(--mobile-x-padding)] mt-[77px] mobile:mt-[118px]">
+      <div className="Category px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[77px] mobile:mt-[118px]">
         <div className="upper-category flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[10px] mobile:pb-[16px] laptop:pb-[20px] border-b border-[var(--light-gray)]">
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-extrabold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
@@ -31,7 +31,7 @@ const Category = () => {
           </nav>
         </div>
         <div className="content mt-[45px] flex flex-row justify-between gap-[10px] laptop:gap-[25px]">
-          <div className="sidebar hidden tablet:flex w-full max-w-[180px] laptop:max-w-[240px]">
+          <div className="sidebar hidden tablet:flex flex-row flex-grow min-w-[120px] max-w-[240px]">
             <div className="w-full flex flex-col gap-[25px]">
               <div className="w-full">
                 <div className="flex flex-row w-full items-center justify-between">
@@ -293,7 +293,7 @@ const Category = () => {
               </div>
             </div>
           </div>
-          <div className="products grid grid-cols-2 mobile:grid-cols-3 laptop:grid-cols-4 gap-[20px] laptop:gap-[40px]">
+          <div className="products grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-[20px] laptop:gap-[40px] justify-between tablet:justity-center">
             <ProductCard
               img={product_sample}
               title={"Men's Quandary Joggers".toUpperCase()}
