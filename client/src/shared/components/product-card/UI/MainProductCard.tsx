@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCardInterface from "../interface/ProductCardInterface";
 import "../../../../styles/main.scss";
+import { FaP, FaPlus } from "react-icons/fa6";
 
 const MainProductCard = ({ img, title, price }: ProductCardInterface) => {
   return (
@@ -15,6 +16,10 @@ const MainProductCard = ({ img, title, price }: ProductCardInterface) => {
         <div className="content flex flex-col mt-[24px]">
           <h1 className="productcard__title font-medium text-base">{title}</h1>
           <p className="productcard__price text-sm mt-[12px]">${price}</p>
+          <button className="flex flex-row gap-[8px] mt-[15px] items-center py-[6.5px] px-[22.5px] hover:bg-black hover:text-white border border-black rounded-full w-fit">
+            <FaPlus className="w-[15px] h-[15px]" />
+            <span className="text-sm font-semibold">ADD</span>
+          </button>
         </div>
       </div>
     </>

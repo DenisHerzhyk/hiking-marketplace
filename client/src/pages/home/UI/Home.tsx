@@ -12,8 +12,16 @@ import category_boots from "../../../assets/images/category-boots.jpg";
 import category_deals from "../../../assets/images/category-deals.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import product_sample from "../../../assets/images/products/1.png";
+import axios from "axios";
 
 const Home = () => {
+  document.addEventListener("DOMContentLoaded", (e) => {
+    e.preventDefault();
+    axios
+      .get("http://localhost:5000/api/test")
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  });
   return (
     <>
       <div className="home">
