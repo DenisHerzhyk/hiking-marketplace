@@ -2,10 +2,11 @@ import React from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
 import card from "../../../assets/images/login-card.png";
 import "../../../styles/main.scss";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] h-[calc[100vh-103.4px]] tablet:h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[68px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
+    <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh-103.4px]] tablet:min-h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[68px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
         <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
@@ -47,7 +48,7 @@ const Login = () => {
             Haven't registered yet?
           </span>
           <span className="text-sm mobile:text-base font-medium underline">
-            Sign Up
+            <Link to="/register">Sign Up</Link>
           </span>
         </a>
       </div>
@@ -56,7 +57,7 @@ const Login = () => {
         style={{ backgroundImage: `url(${card})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50 -z-10 rounded-none tablet:rounded-[10px]"></div>
-        <div className="card__content relatvie z-10 flex flex-col h-fit justify-center items-center text-center mobile:text-start mobile:items-start ">
+        <div className="card__content relative z-10 flex flex-col h-fit justify-center items-center text-center mobile:text-start mobile:items-start ">
           <h2 className="text-[28px] mobile:leading-snug mobile:text-[30px] tablet:text-[36px] font-extrabold text-white">
             30-60% OFF MID SEASON SALE
             <br />

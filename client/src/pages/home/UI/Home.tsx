@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import welcome from "../../../assets/images/welcome.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
@@ -12,16 +12,8 @@ import category_boots from "../../../assets/images/category-boots.jpg";
 import category_deals from "../../../assets/images/category-deals.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import product_sample from "../../../assets/images/products/1.png";
-import axios from "axios";
 
 const Home = () => {
-  document.addEventListener("DOMContentLoaded", (e) => {
-    e.preventDefault();
-    axios
-      .get("http://localhost:5000/api/test")
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  });
   return (
     <>
       <div className="home">
@@ -196,7 +188,7 @@ const Home = () => {
               placeholder="Search by city, park or trail..."
             />
             <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
-            <button className="bg-black text-white font-bold text-sm mobile:text-[20px] px-[20.7px] mobile:px-[31px]">
+            <button className="bg-black text-white font-bold text-sm mobile:text-[20px] px-[20.7px] mobile:px-[31px] cursor-pointer">
               GO
             </button>
           </div>

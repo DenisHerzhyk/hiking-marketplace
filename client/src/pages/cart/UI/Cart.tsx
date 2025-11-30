@@ -16,7 +16,7 @@ const Cart = () => {
           <div className="w-full flex flex-col gap-[50px]">
             <div className="cart-items flex flex-col gap-[30px] w-full">
               <CartItem
-                img="src/assets/images/products/2.png"
+                img="client/src/assets/images/products/2.png"
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
@@ -26,7 +26,7 @@ const Cart = () => {
                 color="WHITE"
               />
               <CartItem
-                img="src/assets/images/products/2.png"
+                img="client/src/assets/images/products/2.png"
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
@@ -41,7 +41,7 @@ const Cart = () => {
                 SAVE FOR LATER
               </h2>
               <SavedItem
-                img="src/assets/images/products/2.png"
+                img="client/src/assets/images/products/2.png"
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
