@@ -2,6 +2,7 @@ import React from "react";
 import "../../../styles/main.scss";
 import CartItem from "../components/cart_item/UI/CartItem";
 import SavedItem from "../components/saved_item/UI/SavedItem";
+import imgPath from "../../../assets/images/products/2.png";
 
 const Cart = () => {
   return (
@@ -16,7 +17,7 @@ const Cart = () => {
           <div className="w-full flex flex-col gap-[50px]">
             <div className="cart-items flex flex-col gap-[30px] w-full">
               <CartItem
-                img="client/src/assets/images/products/2.png"
+                img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
@@ -26,7 +27,7 @@ const Cart = () => {
                 color="WHITE"
               />
               <CartItem
-                img="client/src/assets/images/products/2.png"
+                img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
@@ -41,7 +42,7 @@ const Cart = () => {
                 SAVE FOR LATER
               </h2>
               <SavedItem
-                img="client/src/assets/images/products/2.png"
+                img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
                 discount={0}
