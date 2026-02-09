@@ -7,11 +7,11 @@ import { FaHeart } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import "../../../styles/main.scss";
+import HeaderInterface from "../interface/HeaderInterface";
 
-const Header = () => {
+const Header = ({ email }: HeaderInterface) => {
   return (
     <>
-      {/* TODO: adapt for mobile */}
       <header className="header">
         <div className="upper-header text-white bg-black flex flex-row flex-wrap justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
           <section className="logo flex flex-row items-center gap-[15px]">
@@ -44,6 +44,7 @@ const Header = () => {
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
+            {email && <p>{email}</p>}
             <Link to="/login">
               <CiLogin className="w-[22px] h-[20px]" />
             </Link>

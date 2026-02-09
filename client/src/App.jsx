@@ -8,15 +8,18 @@ import Category from "./pages/category/UI/Category";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import "./styles/main.scss";
+import { useState } from "react";
 
 function App() {
+  const [email, setEmail] = useState();
+
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <Header email={email} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setEmail={setEmail} />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/product"

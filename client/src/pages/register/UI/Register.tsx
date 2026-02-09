@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
 import card from "../../../assets/images/register-card.png";
 import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
+import IUser from "../interface/RegisterInterface.ts";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState<IUser>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setError("");
+
+    const response = await axios
+      .post("http://localhost:4996/api/user/register", {
+        email: user.email,
+        password: user.password,
+        confirmPassword: user.confirmPassword,
+      })
+      .then((response) => {
+        alert(`User ${user.email} was successfully registered`);
+        navigate("/login");
+      })
+      .catch((err) => {
+        setError(err.response?.data?.message || "Registration failed");
+      });
+  };
+
   return (
     <div className="Register flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh-103.4px]] tablet:min-h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
@@ -12,7 +51,7 @@ const Login = () => {
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
           REGISTER
         </h1>
-        <form action="/" className="flex flex-col">
+        <form onSubmit={handleSubmit} action="/login" className="flex flex-col">
           <div className="input-email mt-[8px] mobile:mt-[42px]">
             <label htmlFor="email" className="uppercase" hidden>
               Email
@@ -23,6 +62,8 @@ const Login = () => {
               id="email"
               required
               placeholder="EMAIL"
+              value={user.email}
+              onChange={handleChange}
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
@@ -36,34 +77,42 @@ const Login = () => {
               id="password"
               required
               placeholder="PASSWORD"
+              value={user.password}
+              onChange={handleChange}
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
           <div className="input-confirm-password mt-[16px] mobile:mt-[32px]">
-            <label htmlFor="confirm-password" className="uppercase" hidden>
+            <label htmlFor="confirmPassword" className="uppercase" hidden>
               Confirm Password
             </label>
             <input
               type="password"
-              name="confirm-password"
-              id="confirm-password"
+              name="confirmPassword"
+              id="confirmPassword"
               required
               placeholder="CONFIRM PASSWORD"
+              value={user.confirmPassword}
+              onChange={handleChange}
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
+          <p className="text-red-500 font-bold">{error}</p>
           <button className="text-black uppercase font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px]">
             Register
           </button>
         </form>
-        <a className="content__register-reference flex flex-row flex-wrap tablet:flex-nowrap gap-[9px] mt-[15px]">
+        <Link
+          to="/login"
+          className="content__register-reference flex flex-row flex-wrap tablet:flex-nowrap gap-[9px] mt-[15px]"
+        >
           <span className="text-sm mobile:text-base font-light text-[var(--light-gray)]">
             Already have an account?
           </span>
           <span className="text-sm mobile:text-base font-medium underline">
-            <Link to="/login">Login</Link>
+            Login
           </span>
-        </a>
+        </Link>
       </div>
       <div
         className="card relative w-screen tablet:w-fit bg-cover bg-center rounded-none tablet:rounded-[10px] tablet:py-[153px] laptop:py-[237px] p-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]"
@@ -91,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
