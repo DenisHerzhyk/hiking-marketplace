@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
 import card from "../../../assets/images/register-card.png";
 import "../../../styles/main.scss";
+import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import IUser from "../interface/RegisterInterface.ts";
 import axios from "axios";
@@ -26,7 +27,6 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setError("");
 
     const response = await axios
@@ -35,7 +35,7 @@ const Register = () => {
         password: user.password,
         confirmPassword: user.confirmPassword,
       })
-      .then((response) => {
+      .then((res) => {
         alert(`User ${user.email} was successfully registered`);
         navigate("/login");
       })
@@ -97,7 +97,11 @@ const Register = () => {
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
-          <p className="text-red-500 font-bold">{error}</p>
+          {error && (
+            <p className="flex flex-row bg-[#fdf3f2] text-red-500 text-sm p-3 mt-5 gap-2 rounded-md">
+              <IoIosCloseCircle className="text-red-500 text-base" /> {error}
+            </p>
+          )}
           <button className="text-black uppercase font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px]">
             Register
           </button>

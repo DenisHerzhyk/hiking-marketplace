@@ -4,12 +4,18 @@ import card from "../../../assets/images/login-card.png";
 import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
 import { ILoginUser, LoginInterface } from "../interface/LoginInterface.ts";
+import { IoIosCloseCircle } from "react-icons/io";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setEmail }: LoginInterface) => {
+  const navigator = useNavigate();
+
   const [user, setUser] = useState<ILoginUser>({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -20,24 +26,22 @@ const Login = ({ setEmail }: LoginInterface) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setEmail("");
 
-    try {
-      console.log("User: ", user);
-      const response = await fetch("http://localhost:4996/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
+    const response = await axios
+      .post("http://localhost:4996/api/user/login", {
+        email: user.email,
+        password: user.password,
+      })
+      .then((res) => {
+        alert(`User ${user.email} was successfully logged in`);
+        setEmail(user.email);
+        navigator("/");
+      })
+      .catch((err) => {
+        setError(err.response?.data?.message || "Login failed");
       });
-
-      const data = response.json();
-      const email = { email: user.email };
-      console.log(email.email);
-      setEmail(user.email);
-    } catch (err) {
-      console.log(`The error happend while login from client: ${err}`);
-    }
   };
   return (
     <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh-103.4px]] tablet:min-h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[68px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
@@ -77,6 +81,11 @@ const Login = ({ setEmail }: LoginInterface) => {
               className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
             />
           </div>
+          {error && (
+            <p className="flex flex-row bg-[#fdf3f2] text-red-500 text-sm p-3 mt-5 gap-2 rounded-md">
+              <IoIosCloseCircle className="text-red-500 text-base" /> {error}
+            </p>
+          )}
           <button className="text-black uppercase font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px]">
             Sign in
           </button>
