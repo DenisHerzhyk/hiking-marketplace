@@ -9,14 +9,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import "./styles/main.scss";
 import { useState } from "react";
+import Profile from "./pages/profile/UI/Profile.tsx";
+import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 
 function App() {
   const [email, setEmail] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState("");
 
+  const checkAuth = async () => {
+    const response = await axios("http://localhost:4996/api/user/profile", {
+      withCredentials: true,
+    })
+      .then((res) => {
+        response.status = 200 ? setIsLoggedIn(true) : setIsLoggedIn(false);
+      })
+      .catch((err) => {
+        setError(err);
+        alert(error);
+        setIsLoggedIn(false);
+      });
+  };
   return (
     <>
       <BrowserRouter>
-        <Header email={email} />
+        <Header email={isLoggedIn && email} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setEmail={setEmail} />} />
@@ -37,6 +54,15 @@ function App() {
           />
           <Route path="/cart" element={<Cart />} />
           <Route path="/category" element={<Category />} />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

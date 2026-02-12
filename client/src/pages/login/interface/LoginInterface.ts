@@ -8,4 +8,5 @@ interface ILoginUser {
 interface LoginInterface {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
 }
+
 export { ILoginUser, LoginInterface };
