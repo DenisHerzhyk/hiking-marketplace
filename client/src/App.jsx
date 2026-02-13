@@ -8,9 +8,10 @@ import Category from "./pages/category/UI/Category";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import "./styles/main.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
+import axios from "axios";
 
 function App() {
   const [email, setEmail] = useState();
@@ -18,9 +19,10 @@ function App() {
   const [error, setError] = useState("");
 
   const checkAuth = async () => {
-    const response = await axios("http://localhost:4996/api/user/profile", {
-      withCredentials: true,
-    })
+    const response = await axios
+      .get("http://localhost:4996/api/user/profile", {
+        withCredentials: true,
+      })
       .then((res) => {
         response.status = 200 ? setIsLoggedIn(true) : setIsLoggedIn(false);
       })
@@ -30,6 +32,13 @@ function App() {
         setIsLoggedIn(false);
       });
   };
+
+  useEffect(() => {
+    if (email) {
+      checkAuth();
+    }
+  }, [email]);
+
   return (
     <>
       <BrowserRouter>
