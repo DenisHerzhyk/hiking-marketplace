@@ -1,5 +1,6 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import { CiDiscount1 } from "react-icons/ci";
 import "../../../styles/main.scss";
 
@@ -11,15 +12,15 @@ const Benefits = () => {
           <h1 className="benefits__title text-[30px] mobile:text-5xl font-bold">
             FREEDOM BENEFITS
           </h1>
-          <p className="benefits__description text-sm mobile:text-[20px] mt-[8px]">
+          <p className="benefits__description text-sm mobile:text-[20px] mt-[8px] text-[var(--purple-color)]">
             The adventure starts here. Join the club and reap the rewards
           </p>
-          <a
-            href="/"
-            className="benefits__button inline-block w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-[var(--secondary-color)]"
+          <Link
+            to="/"
+            className="benefits__button inline-block w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-[var(--secondary-color)] rounded-[8px]"
           >
             SIGN UP
-          </a>
+          </Link>
         </div>
         <div className="bonuses flex flex-row flex-wrap justify-center tablet:justify-between tablet:flex-nowrap gap-[60px] tablet:gap-[140px] w-full tablet:w-fit">
           <div className="bonuses__item w-[170px] flex flex-col items-center mobile:items-start text-center mobile:text-start">
@@ -29,7 +30,7 @@ const Benefits = () => {
             <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
               FREE SHIPPING
             </h2>
-            <p className="bonuses__item__description text-xs mobile:text-base w-fit">
+            <p className="bonuses__item__description text-xs mobile:text-base w-fit text-[var(--purple-color)]">
               Enjoy free shipping on all orders
             </p>
           </div>
@@ -40,7 +41,7 @@ const Benefits = () => {
             <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
               EXCLUSIVE OFFERS
             </h2>
-            <p className="bonuses__item__description text-xs mobile:text-base w-fit">
+            <p className="bonuses__item__description text-xs mobile:text-base w-fit text-[var(--purple-color)]">
               Members-only promos, experiences and offers
             </p>
           </div>

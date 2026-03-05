@@ -66,9 +66,9 @@ const Footer = () => {
             id="email"
             required
             placeholder="Enter Email"
-            className="subscribe__input text-sm mobile:text-base border border-black text-black px-[27px] py-[10px] mt-[18px]"
+            className="subscribe__input text-sm mobile:text-base border-none text-black placeholder-black bg-[var(--primary-border-color)] px-[27px] py-[10px] mt-[18px] rounded-[8px]"
           />
-          <p className="subscribe__description text-[10px] mobile:text-xs font-normal text-[var(--dark-gray)] mobile:leading-5 mt-[17px]">
+          <p className="subscribe__description text-[10px] mobile:text-xs font-normal text-[var(--purple-color)] mobile:leading-5 mt-[17px]">
             BY CLICKING THE SUBMIT BUTTON BELOW, YOU ARE AGREEING TO RECEIVE
             EMAIL MARKETING COMMUNICATIONS FROM THINK3 FROM TIME TO TIME
           </p>

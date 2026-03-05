@@ -6,6 +6,9 @@ $normal-gray: #ececec;
 $primary-border-color: #ededed;
 $primary-gray: rgba(#d9d9d9, 0.29);
 $green-color: #00c70a;
+$purple-color: #3e435d;
+$primary-red: #ff6e42;
+$primary-blue: #4c8aff;
 
 :root {
   --primary-color: #{$primary-color};
@@ -16,4 +19,7 @@ $green-color: #00c70a;
   --light-gray: #{$light-gray};
   --green-color: #{$green-color};
   --normal-gray: #{$normal-gray};
+  --purple-color: #{$purple-color};
+  --primary-blue: #{$primary-blue};
+  --primary-red: #{$primary-red};
 }

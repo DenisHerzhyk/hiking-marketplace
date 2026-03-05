@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
 import card from "../../../assets/images/login-card.png";
 import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
-import { ILoginUser, LoginInterface } from "../interface/LoginInterface.ts";
+import { ILoginUser } from "../interface/LoginInterface.ts";
 import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext.tsx";
 
-const Login = ({ setEmail }: LoginInterface) => {
-  const navigator = useNavigate();
+const Login = () => {
+  const navigate = useNavigate();
+  const ctxt = useContext(AuthContext);
+  if (!ctxt) throw new Error("AuthProvider missing");
+  const { setAuthLogin } = ctxt;
 
   const [user, setUser] = useState<ILoginUser>({
     email: "",
@@ -27,22 +31,33 @@ const Login = ({ setEmail }: LoginInterface) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setEmail("");
 
-    const response = await axios
-      .post("http://localhost:4996/api/user/login", {
-        email: user.email,
-        password: user.password,
-      })
+    await axios
+      .post(
+        "http://localhost:4996/api/user/login",
+        {
+          email: user.email,
+          password: user.password,
+        },
+        { withCredentials: true },
+      )
       .then((res) => {
         alert(`User ${user.email} was successfully logged in`);
-        setEmail(user.email);
-        navigator("/");
+        setAuthLogin(true);
+        navigate("/");
       })
       .catch((err) => {
-        setError(err.response?.data?.message || "Login failed");
+        setAuthLogin(false);
+        if (err.response) {
+          setError(err.response.data.message);
+        } else if (err.request) {
+          setError("Server not responsing");
+        } else {
+          setError(err.message);
+        }
       });
   };
+
   return (
     <div className="Login flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh-103.4px]] tablet:min-h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[68px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import welcome from "../../../assets/images/welcome.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
+import { Link } from "react-router-dom";
 import trail_v from "../../../assets/videos/trail.mp4";
 import hike_signup from "../../../assets/videos/hike-form.mp4";
 import Card from "../components/card/UI/Card";
@@ -43,18 +44,23 @@ const Home = () => {
                 FOR THE MOUNTAINS, THE RAIN
                 <br />& EVERYTHING IN BETWEEN
               </p>
-              <a
-                className="home__button text-black font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-3 px-12 w-fit"
-                href="/"
+              <Link
+                className="home__button text-black font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-3 px-12 w-fit rounded-[8px]"
+                to="/"
               >
                 SHOP NOW
-              </a>
+              </Link>
             </div>
-            <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2">
-              <p className="main-section__shop-stick__content text-[9px] mobile:text-xs">
-                SHOW NOW
-              </p>
-              <IoIosArrowDown />
+            <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2 rounded-tl-[8px] rounded-tr-[8px]">
+              <Link
+                to="/"
+                className="flex flex-col items-center justify-center gap-2"
+              >
+                <p className="main-section__shop-stick__content text-[9px] mobile:text-xs rounded-t-[8px] rounded-r-[8px]">
+                  SHOW MORE
+                </p>
+                <IoIosArrowDown />
+              </Link>
             </div>
           </div>
         </main>
@@ -70,7 +76,7 @@ const Home = () => {
               <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                 HIKING PANTS
               </h1>
-              <p className="text-sm mobile:text-lg">
+              <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
                 BUILT TO HANDLE EVERYTHING
               </p>
             </div>
@@ -107,7 +113,7 @@ const Home = () => {
               <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                 HIKING PANTS
               </h1>
-              <p className="text-sm mobile:text-lg">
+              <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
                 BUILT TO HANDLE EVERYTHING
               </p>
             </div>
@@ -144,7 +150,7 @@ const Home = () => {
               <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                 HIKING PANTS
               </h1>
-              <p className="text-sm mobile:text-lg">
+              <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
                 BUILT TO HANDLE EVERYTHING
               </p>
             </div>

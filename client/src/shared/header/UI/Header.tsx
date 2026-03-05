@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
@@ -7,9 +7,13 @@ import { FaHeart } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import "../../../styles/main.scss";
-import HeaderInterface from "../interface/HeaderInterface";
+import { CgProfile } from "react-icons/cg";
+import { AuthContext } from "../../../pages/login/context/authContext";
 
-const Header = ({ email }: HeaderInterface) => {
+const Header = () => {
+  const ctxt = useContext(AuthContext);
+  if (!ctxt) throw new Error("AuthProvider missing");
+  const { authLogin } = ctxt;
   return (
     <>
       <header className="header">
@@ -44,9 +48,12 @@ const Header = ({ email }: HeaderInterface) => {
             </nav>
           </section>
           <section className="user-account flex flex-row gap-4">
-            {email && <p>{email}</p>}
-            <Link to="/login">
-              <CiLogin className="w-[22px] h-[20px]" />
+            <Link to={authLogin ? "/profile" : "/login"}>
+              {authLogin ? (
+                <CgProfile className="w-[22px] h-[20px]" />
+              ) : (
+                <CiLogin className="w-[22px] h-[20px]" />
+              )}
             </Link>
             <Link to="/cart">
               <IoCart className="w-[22px] h-[20px]" />

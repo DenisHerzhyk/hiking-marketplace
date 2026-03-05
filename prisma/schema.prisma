@@ -6,8 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  // output   = "../generated/prisma"
- }
+}
 
 datasource db {
   provider = "postgresql"
@@ -20,6 +19,3 @@ model User {
   createdAt DateTime @default(now())
 }
 
-
-
-//
