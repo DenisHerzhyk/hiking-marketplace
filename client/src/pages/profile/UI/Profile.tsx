@@ -6,11 +6,23 @@ import { AuthContext } from "../../../pages/login/context/authContext.tsx";
 
 const Profile = () => {
   const ctxt = useContext(AuthContext);
+  if (!ctxt) throw new Error("AuthProvider missing");
 
-  const handleLogout = async (e: React.MouseEvent<HTMLFormElement>) => {
+  const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    await axios.post("http://localhost:4996/api/user/logout").then((res) => {});
+    const { setAuthLogin, setEmail, email } = ctxt;
+    await axios
+      .post("http://localhost:4996/api/user/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(`User ${email} was successfully logged out`);
+        setAuthLogin(false);
+        setEmail("");
+      })
+      .catch((err) => {
+        console.log("Logout error: ", err);
+      });
   };
   return (
     <>
