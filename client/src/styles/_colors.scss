@@ -10,6 +10,8 @@ $purple-color: #3e435d;
 $primary-red: #ff6e42;
 $primary-blue: #4c8aff;
 $primary-bg: #1b365d;
+$moderate-level-cl: #00c8eb;
+$star-rate: #f8d610;
 
 :root {
   --primary-color: #{$primary-color};
@@ -24,4 +26,6 @@ $primary-bg: #1b365d;
   --primary-blue: #{$primary-blue};
   --primary-red: #{$primary-red};
   --primary-bg: #{$primary-bg};
+  --moderate-level-cl: #{$moderate-level-cl};
+  --star-rate: #{$star-rate};
 }

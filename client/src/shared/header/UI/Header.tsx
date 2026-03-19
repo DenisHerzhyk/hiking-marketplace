@@ -20,70 +20,69 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header z-50 w-full relative `}>
+      <header className="header z-50 w-full relative">
         <div
-          className={`fixed top-0 left-0 right-0 ${isHome ? "text-white bg-opacity-0 bg-black absolute" : "text-black bg-white bg-opacity-100 border-b "}`}
+          className={`fixed top-0 left-0 right-0 ${isHome ? "text-white bg-opacity-0 bg-black absolute" : "text-black bg-white bg-opacity-100 border-b r"}`}
         >
-          <div className="upper-header w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
-            <section className="logo flex flex-row items-center gap-[15px]">
-              <div className="block tablet:hidden">
-                <IoMenuOutline className="w-[20px] h-[20px]" />
+          <div className="upper-header gap-5 w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+            <section className="logo flex flex-1 flex-row items-center gap-[15px]">
+              <div className="block laptop:hidden">
+                <IoMenuOutline className="text-2xl" />
               </div>
               <Link to="/">
-                <IoLogoAppleAr className="w-[20px] h-[20px]" />
+                <IoLogoAppleAr className="text-2xl" />
               </Link>
             </section>
-            <section className="navigation">
-              <nav>
-                <ul className="hidden tablet:flex flex-row flex-wrap gap-8 font-semibold text-sm">
-                  <li className="center__nav-item">
-                    <Link to="/">HOME</Link>
-                  </li>
-                  <li className="center__nav-item">
-                    <Link to="/category">MENS</Link>
-                  </li>
-                  <li className="center__nav-item">
-                    <Link to="/category">WOMENS</Link>
-                  </li>
-                  <li className="center__nav-item">
-                    <Link to="/category">BOOTS</Link>
-                  </li>
-                  <li className="center__nav-item">
-                    <Link to="/category">DEALS</Link>
-                  </li>
-                </ul>
-              </nav>
-            </section>
-            <section className="user-account flex flex-row gap-4 items-center">
+            <nav className="navigation flex flex-1 justify-center">
+              <ul className="hidden laptop:flex flex-row flex-wrap gap-6 font-semibold text-base">
+                <li className="center__nav-item">
+                  <Link to="/">HOME</Link>
+                </li>
+                <li className="center__nav-item">
+                  <Link to="/category">MENS</Link>
+                </li>
+                <li className="center__nav-item">
+                  <Link to="/category">WOMENS</Link>
+                </li>
+                <li className="center__nav-item">
+                  <Link to="/category">BOOTS</Link>
+                </li>
+                <li className="center__nav-item">
+                  <Link to="/category">DEALS</Link>
+                </li>
+              </ul>
+            </nav>
+            <section className="user-account flex flex-1 flex-row gap-4 justify-end items-center">
+              <div className="search-bar relative items-center hidden laptop:flex">
+                <input
+                  type="text"
+                  className={`bg-white font-light bg-opacity-0 border-b-[0.5px] ${isHome ? "placeholder:text-white text-white border-white" : "placeholder:text-black text-black border-black"}  focus:outline-none pl-3 py-2 pr-7`}
+                  placeholder="Search"
+                />
+                <IoIosSearch className="absolute right-0 text-2xl" />
+              </div>
+              <div className="flex laptop:hidden">
+                <IoIosSearch className="text-2xl" />
+              </div>
               <Link to={authLogin ? "/profile" : "/login"}>
                 {authLogin ? (
-                  <CgProfile className="w-[22px] h-[20px]" />
+                  <CgProfile className="text-2xl" />
                 ) : (
-                  <p className="text-base border rounded-full px-4 py-1">
-                    Log in
-                  </p>
+                  <div>
+                    <p className="hidden laptop:flex text-base border rounded-full px-4 py-1">
+                      Log in
+                    </p>
+                    <CiLogin className="flex laptop:hidden text-2xl" />
+                  </div>
                 )}
               </Link>
               <Link to="/cart">
-                <IoCart className="w-[22px] h-[20px]" />
+                <IoCart className="text-2xl" />
               </Link>
               <Link to="/cart">
-                <FaHeart className="w-[22px] h-[20px]" />
+                <FaHeart className="text-2xl" />
               </Link>
             </section>
-          </div>
-          <div className="search-section py-3 tablet:py-4 flex justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
-            {/* TODO: for mobile should not be visible */}
-            <form action="/" className="w-full tablet:w-auto flex flex-row">
-              <div className="input-container w-full tablet:w-auto relative">
-                <input
-                  type="text"
-                  placeholder="Search for products..."
-                  className="search-section__input border focus:outline-none focus:ring-0 text-base py-3 pl-10 w-full tablet:w-auto tablet:pl-12 tablet:pr-[209px] pr-4 border-[var(--primary-border-color)] rounded-full"
-                />
-                <IoIosSearch className="search-section__icon text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
-              </div>
-            </form>
           </div>
         </div>
       </header>

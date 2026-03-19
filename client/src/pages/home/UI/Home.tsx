@@ -10,9 +10,12 @@ import category_women from "../../../assets/images/category-women.jpg";
 import category_men from "../../../assets/images/category-men.jpg";
 import category_boots from "../../../assets/images/category-boots.jpg";
 import category_deals from "../../../assets/images/category-deals.jpg";
+import temp_hike_card from "../../../assets/images/temp-hike-suggestion/1.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { IoIosArrowForward } from "react-icons/io";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
+import { IoArrowForwardOutline } from "react-icons/io5";
+import HikingCard from "../components/card/UI/HikingCard";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
@@ -196,6 +199,9 @@ const Home = () => {
             />
             <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
           </div>
+          <Link to="/" className="text-white text-lg underline mt-5">
+            Explore nearby trails
+          </Link>
           <video
             src={hike_signup}
             autoPlay
@@ -205,6 +211,45 @@ const Home = () => {
             className="inset-0 absolute h-full w-screen object-cover -z-20"
           />
           <div className="absolute inset-0 bg-black opacity-20 -z-10"></div>
+        </section>
+        <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[20px]">
+          <h2 className="text-[30px] mobile:text-[32px] font-semibold text-center">
+            Local favorites near Berlin
+          </h2>
+          <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px]">
+            <HikingCard
+              img={temp_hike_card}
+              title="Snow lake trail"
+              level="moderate"
+              length={5.4}
+              rate={4.5}
+            />
+            <HikingCard
+              img={temp_hike_card}
+              title="Snow lake trail"
+              level="moderate"
+              length={5.4}
+              rate={4.5}
+            />
+            <HikingCard
+              img={temp_hike_card}
+              title="Snow lake trail"
+              level="moderate"
+              length={5.4}
+              rate={4.5}
+            />
+            <HikingCard
+              img={temp_hike_card}
+              title="Snow lake trail"
+              level="moderate"
+              length={5.4}
+              rate={4.5}
+            />
+            <div className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center">
+              <h2 className="text-[22px]">Show more</h2>
+              <IoArrowForwardOutline className="text-[22px]" />
+            </div>
+          </div>
         </section>
         <Benefits />
       </div>
