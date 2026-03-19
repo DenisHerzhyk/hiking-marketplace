@@ -1,5 +1,5 @@
 $primary-color: #000000;
-$secondary-color: #facc15;
+$secondary-color: #f57c00;
 $dark-gray: #484848;
 $light-gray: #838383;
 $normal-gray: #ececec;
@@ -9,6 +9,7 @@ $green-color: #00c70a;
 $purple-color: #3e435d;
 $primary-red: #ff6e42;
 $primary-blue: #4c8aff;
+$primary-bg: #1b365d;
 
 :root {
   --primary-color: #{$primary-color};
@@ -22,4 +23,5 @@ $primary-blue: #4c8aff;
   --purple-color: #{$purple-color};
   --primary-blue: #{$primary-blue};
   --primary-red: #{$primary-red};
+  --primary-bg: #{$primary-bg};
 }

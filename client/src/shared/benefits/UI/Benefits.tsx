@@ -17,7 +17,7 @@ const Benefits = () => {
           </p>
           <Link
             to="/"
-            className="benefits__button inline-block w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-[var(--secondary-color)] rounded-[8px]"
+            className="benefits__button inline-block text-white w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-black rounded-[8px]"
           >
             SIGN UP
           </Link>
@@ -27,7 +27,7 @@ const Benefits = () => {
             <div className="w-full flex justify-center">
               <CiDeliveryTruck className="w-[98px] h-[65px] mobile:w-[118px] mobile:h-[79px]" />
             </div>
-            <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
+            <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px] underline decoration-[var(--primary-bg)]">
               FREE SHIPPING
             </h2>
             <p className="bonuses__item__description text-xs mobile:text-base w-fit text-[var(--purple-color)]">
@@ -38,7 +38,7 @@ const Benefits = () => {
             <div className="w-full flex justify-center">
               <CiDiscount1 className="w-[65px] h-[65px] mobile:w-[82px] mobile:h-[82px]" />
             </div>
-            <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px]">
+            <h2 className="bonuses__item__title text-[18px] mobile:text-[22px] tablet:text-2xl font-semibold mt-[12px] underline decoration-[var(--primary-bg)]">
               EXCLUSIVE OFFERS
             </h2>
             <p className="bonuses__item__description text-xs mobile:text-base w-fit text-[var(--purple-color)]">

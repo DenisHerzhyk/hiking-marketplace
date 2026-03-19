@@ -1,0 +1,357 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Men's Torrentshell 3L Rain Jacket",
+      "price": 179,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/1_1.webp",
+        "/client/src/assets/images/tops/1_2.webp",
+        "/client/src/assets/images/tops/1_3.webp",
+        "/client/src/assets/images/tops/1_4.jpg",
+        "/client/src/assets/images/tops/1_5.webp"
+      ],
+
+      "description": "Waterproof and breathable 3‑layer H2No® Performance Standard shell designed for all‑day rain protection."
+    },
+    {
+      "id": 2,
+      "title": "Men's Nano‑Air® Light Hybrid Hoody",
+      "price": 279,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/2_1.jpg",
+        "/client/src/assets/images/tops/2_2.jpg",
+        "/client/src/assets/images/tops/2_3.jpg",
+        "/client/src/assets/images/tops/2_4.jpg",
+        "/client/src/assets/images/tops/2_5.jpg"
+      ],
+      "description": "Lightweight hybrid jacket combining warmth and breathability for active hiking."
+    },
+    {
+      "id": 3,
+      "title": "Men's Down Sweater Hoody",
+      "price": 349,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/3_1.jpg",
+        "/client/src/assets/images/tops/3_2.jpg",
+        "/client/src/assets/images/tops/3_3.jpg",
+        "/client/src/assets/images/tops/3_4.jpg",
+        "/client/src/assets/images/tops/3_5.jpg"
+      ],
+      "description": "Warm and packable down jacket ideal for cold weather hiking and layering."
+    },
+    {
+      "id": 4,
+      "title": "Men's Better Sweater® Fleece Jacket",
+      "price": 159,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "sweater",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/4_1.jpg",
+        "/client/src/assets/images/tops/4_2.jpg",
+        "/client/src/assets/images/tops/4_3.jpg",
+        "/client/src/assets/images/tops/4_4.jpg",
+        "/client/src/assets/images/tops/4_5.jpg"
+      ],
+      "description": "Classic mid‑layer fleece sweater with sweater‑knit face and warm fleece interior."
+    },
+    {
+      "id": 5,
+      "title": "Men's R1® Air Full‑Zip Hoody",
+      "price": 129,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/5_1.jpg",
+        "/client/src/assets/images/tops/5_2.jpg",
+        "/client/src/assets/images/tops/5_3.jpg",
+        "/client/src/assets/images/tops/5_4.jpg",
+        "/client/src/assets/images/tops/5_5.jpg"
+      ],
+      "description": "Technical fleece hoodie with breathability and stretch for active hiking."
+    },
+    {
+      "id": 6,
+      "title": "Men's Capilene® Cool Daily Hoody",
+      "price": 65,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/6_1.jpg",
+        "/client/src/assets/images/tops/6_2.jpg",
+        "/client/src/assets/images/tops/6_3.jpg",
+        "/client/src/assets/images/tops/6_4.jpg",
+        "/client/src/assets/images/tops/6_5.jpg"
+      ],
+      "description": "Lightweight breathable hoody built for moisture wicking and everyday trail use."
+    },
+    {
+      "id": 7,
+      "title": "Men's Hooded Better Sweater® 1/4 Zip",
+      "price": 149,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "sweater",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/7_1.jpg",
+        "/client/src/assets/images/tops/7_2.jpg",
+        "/client/src/assets/images/tops/7_3.jpg",
+        "/client/src/assets/images/tops/7_4.jpg",
+        "/client/src/assets/images/tops/7_5.jpg"
+      ],
+      "description": "Warm fleece mid-layer with hood for extra cozy hiking comfort."
+    },
+    {
+      "id": 8,
+      "title": "Men's Quandary Pants",
+      "price": 120,
+      "sizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/8_1.jpg",
+        "/client/src/assets/images/tops/8_2.jpg",
+        "/client/src/assets/images/tops/8_3.jpg",
+        "/client/src/assets/images/tops/8_4.jpg",
+        "/client/src/assets/images/tops/8_5.jpg"
+      ],
+      "description": "Lightweight stretch hiking pants with DWR finish and UPF protection."
+    },
+    {
+      "id": 9,
+      "title": "Men’s Quandary Convertible Pants",
+      "price": 130,
+      "sizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/9_1.jpg",
+        "/client/src/assets/images/tops/9_2.jpg",
+        "/client/src/assets/images/tops/9_3.jpg",
+        "/client/src/assets/images/tops/9_4.jpg",
+        "/client/src/assets/images/tops/9_5.jpg"
+      ],
+      "description": "Versatile zip-off pants that turn into shorts for changing trail conditions."
+    },
+    {
+      "id": 10,
+      "title": "Men's Torrentshell 3L Rain Pants",
+      "price": 159,
+      "sizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/10_1.jpg",
+        "/client/src/assets/images/tops/10_2.jpg",
+        "/client/src/assets/images/tops/10_3.jpg",
+        "/client/src/assets/images/tops/10_4.jpg",
+        "/client/src/assets/images/tops/10_5.jpg"
+      ],
+      "description": "Waterproof rain pants designed to keep you dry in wet hiking weather."
+    },
+    {
+      "id": 11,
+      "title": "Men's Capilene® Midweight Zip-Neck",
+      "price": 89,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/11_1.jpg",
+        "/client/src/assets/images/tops/11_2.jpg",
+        "/client/src/assets/images/tops/11_3.jpg",
+        "/client/src/assets/images/tops/11_4.jpg",
+        "/client/src/assets/images/tops/11_5.jpg"
+      ],
+      "description": "Moisture-wicking midweight top built for cool weather comfort."
+    },
+    {
+      "id": 12,
+      "title": "Men's Nano-Air® Light Jacket",
+      "price": 249,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/12_1.jpg",
+        "/client/src/assets/images/tops/12_2.jpg",
+        "/client/src/assets/images/tops/12_3.jpg",
+        "/client/src/assets/images/tops/12_4.jpg",
+        "/client/src/assets/images/tops/12_5.jpg"
+      ],
+      "description": "Breathable insulated jacket that mixes air permeability with warmth."
+    },
+    {
+      "id": 13,
+      "title": "Men’s Down Sweater Vest",
+      "price": 249,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/13_1.jpg",
+        "/client/src/assets/images/tops/13_2.jpg",
+        "/client/src/assets/images/tops/13_3.jpg",
+        "/client/src/assets/images/tops/13_4.jpg",
+        "/client/src/assets/images/tops/13_5.jpg"
+      ],
+      "description": "Insulated down vest great for layering over base or mid layers."
+    },
+    {
+      "id": 14,
+      "title": "Men's R1® Air Crew",
+      "price": 99,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "sweater",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/14_1.jpg",
+        "/client/src/assets/images/tops/14_2.jpg",
+        "/client/src/assets/images/tops/14_3.jpg",
+        "/client/src/assets/images/tops/14_4.jpg",
+        "/client/src/assets/images/tops/14_5.jpg"
+      ],
+      "description": "Light fleece crew neck for breathable warmth on trails."
+    },
+    {
+      "id": 15,
+      "title": "Men’s Capilene® Cool Daily Graphic Hoody",
+      "price": 75,
+      "sizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/15_1.jpg",
+        "/client/src/assets/images/tops/15_2.jpg",
+        "/client/src/assets/images/tops/15_3.jpg",
+        "/client/src/assets/images/tops/15_4.jpg",
+        "/client/src/assets/images/tops/15_5.jpg"
+      ],
+      "description": "Lightweight graphic hoody perfect for hiking and casual outdoor use."
+    },
+    {
+      "id": 16,
+      "title": "Men's Terravia Trail Pants",
+      "price": 139,
+      "sizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/16_1.jpg",
+        "/client/src/assets/images/tops/16_2.jpg",
+        "/client/src/assets/images/tops/16_3.jpg",
+        "/client/src/assets/images/tops/16_4.jpg",
+        "/client/src/assets/images/tops/16_5.jpg"
+      ],
+      "description": "Lightweight stretch hiking pants built for long, active days on the trail."
+    },
+    {
+      "id": 17,
+      "title": "Men's Granite Crest Rain Pants",
+      "price": 199,
+      "sizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/tops/17_1.jpg",
+        "/client/src/assets/images/tops/17_2.jpg",
+        "/client/src/assets/images/tops/17_3.jpg",
+        "/client/src/assets/images/tops/17_4.jpg",
+        "/client/src/assets/images/tops/17_5.jpg"
+      ],
+      "description": "Waterproof shell pants designed for wet and extreme hiking conditions."
+    },
+    {
+      "id": 18,
+      "title": "Forra Wading Boots",
+      "price": 299,
+      "sizes": ["8", "9", "10", "11", "12"],
+      "category": "shoes",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/shoes/18_1.jpg",
+        "/client/src/assets/images/shoes/18_2.jpg",
+        "/client/src/assets/images/shoes/18_3.jpg",
+        "/client/src/assets/images/shoes/18_4.jpg",
+        "/client/src/assets/images/shoes/18_5.jpg"
+      ],
+      "description": "Lightweight wading boots with Vibram sole, designed for traction, durability and fast drying."
+    },
+    {
+      "id": 19,
+      "title": "River Salt Wading Boots II",
+      "price": 349,
+      "sizes": ["8", "9", "10", "11", "12"],
+      "category": "shoes",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/shoes/19_1.jpg",
+        "/client/src/assets/images/shoes/19_2.jpg",
+        "/client/src/assets/images/shoes/19_3.jpg",
+        "/client/src/assets/images/shoes/19_4.jpg",
+        "/client/src/assets/images/shoes/19_5.jpg"
+      ],
+      "description": "Durable wading boots with Vibram Megagrip soles built for both freshwater and saltwater environments."
+    },
+    {
+      "id": 20,
+      "title": "Foot Tractor Wading Boots (Aluminum Bar)",
+      "price": 399,
+      "sizes": ["8", "9", "10", "11", "12"],
+      "category": "shoes",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/shoes/20_1.jpg",
+        "/client/src/assets/images/shoes/20_2.jpg",
+        "/client/src/assets/images/shoes/20_3.jpg",
+        "/client/src/assets/images/shoes/20_4.jpg",
+        "/client/src/assets/images/shoes/20_5.jpg"
+      ],
+      "description": "Heavy-duty wading boots with aluminum bar soles for maximum grip on slippery river rocks."
+    },
+    {
+      "id": 21,
+      "title": "River Salt Wading Boots",
+      "price": 319,
+      "sizes": ["8", "9", "10", "11", "12"],
+      "category": "shoes",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/shoes/21_1.jpg",
+        "/client/src/assets/images/shoes/21_2.jpg",
+        "/client/src/assets/images/shoes/21_3.jpg",
+        "/client/src/assets/images/shoes/21_4.jpg",
+        "/client/src/assets/images/shoes/21_5.jpg"
+      ],
+      "description": "Lightweight leather wading boots designed for durability and performance in wet environments."
+    },
+    {
+      "id": 22,
+      "title": "Foot Tractor Wading Boots (Sticky Rubber Sole)",
+      "price": 399,
+      "sizes": ["8", "9", "10", "11", "12"],
+      "category": "shoes",
+      "gender": "men",
+      "product_images": [
+        "/client/src/assets/images/shoes/22_1.jpg",
+        "/client/src/assets/images/shoes/22_2.jpg",
+        "/client/src/assets/images/shoes/22_3.jpg",
+        "/client/src/assets/images/shoes/22_4.jpg",
+        "/client/src/assets/images/shoes/22_5.jpg"
+      ],
+      "description": "Heavy-duty wading boots with Vibram Idrogrip rubber sole, designed for maximum traction, durability and stability on wet and rocky terrain."
+    }
+  ]
+}

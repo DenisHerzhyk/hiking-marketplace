@@ -102,7 +102,7 @@ const Register = () => {
               <IoIosCloseCircle className="text-red-500 text-base" /> {error}
             </p>
           )}
-          <button className="text-black uppercase font-bold text-base mobile:text-xl bg-[var(--secondary-color)] py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px]">
+          <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] rounded-[8px]">
             Register
           </button>
         </form>
@@ -118,11 +118,12 @@ const Register = () => {
           </span>
         </Link>
       </div>
-      <div
-        className="card relative w-screen tablet:w-fit bg-cover bg-center rounded-none tablet:rounded-[10px] tablet:py-[153px] laptop:py-[237px] p-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]"
-        style={{ backgroundImage: `url(${card})` }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50 -z-10 rounded-none tablet:rounded-[10px]"></div>
+      <div className="card relative w-screen tablet:w-fit rounded-[8px] tablet:py-[153px] laptop:py-[237px] p-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]">
+        <div
+          className="absolute inset-0 -z-10 w-full h-full bg-cover rounded-[8px]"
+          style={{ backgroundImage: `url(${card})` }}
+        ></div>
+        <div className="absolute inset-0 bg-black opacity-20 -z-9 rounded-[8px]"></div>
         <div className="card__content relative z-10 flex flex-col h-fit justify-center items-center text-center mobile:text-start mobile:items-start ">
           <h2 className="text-[28px] mobile:leading-snug mobile:text-[30px] tablet:text-[36px] font-extrabold text-white">
             30-60% OFF MID SEASON SALE
@@ -134,7 +135,7 @@ const Register = () => {
           </p>
           <a
             href="/"
-            className="card__button font-bold text-base mobile:text-[20px] inline-block mt-[15px] mobile:mt-[18px] py-2 px-[38px] mobile:py-3 mobile:px-12 w-fit text-white bg-black rounded-full"
+            className="card__button font-bold text-base mobile:text-[20px] inline-block mt-[15px] mobile:mt-[18px] py-2 px-[38px] mobile:py-3 mobile:px-12 w-fit text-black bg-white rounded-full"
           >
             SHOP SALE
           </a>

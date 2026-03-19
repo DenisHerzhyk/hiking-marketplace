@@ -27,13 +27,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         console.log("Auth Cont finished");
       })
       .catch((err) => {
+        setAuthLogin(false);
         console.log("AUTH ERR: ", err);
         if (cancelled) return;
-        setAuthLogin(false);
       })
       .finally(() => {
-        if (cancelled) return;
         setLoading(false);
+        if (cancelled) return;
       });
   };
 

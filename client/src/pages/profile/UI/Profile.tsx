@@ -1,29 +1,38 @@
 import avatar from "../../../assets/images/avatar.webp";
 import email_logo from "../../../assets/images/email.svg";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
 
 const Profile = () => {
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
 
+  const { setAuthLogin, setEmail, email } = ctxt;
+  const navigate = useNavigate();
+
   const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const { setAuthLogin, setEmail, email } = ctxt;
     await axios
-      .post("http://localhost:4996/api/user/logout", {
-        withCredentials: true,
-      })
+      .post(
+        "http://localhost:4996/api/user/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      )
       .then((res) => {
         console.log(`User ${email} was successfully logged out`);
         setAuthLogin(false);
         setEmail("");
+        navigate("/login");
       })
       .catch((err) => {
         console.log("Logout error: ", err);
       });
   };
+
   return (
     <>
       <div className="Profile flex flex-col mx-auto max-w-[1282px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[96px]">
