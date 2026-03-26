@@ -17,7 +17,7 @@ const Benefits = () => {
           </p>
           <Link
             to="/"
-            className="benefits__button inline-block text-white w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-black rounded-[8px]"
+            className="benefits__button inline-block text-white w-fit text-sm mobile:text-[20px] font-bold mt-[20px] px-[42px] py-[8px] mobile:px-[60px] mobile:py-[15px] bg-black border shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
           >
             SIGN UP
           </Link>

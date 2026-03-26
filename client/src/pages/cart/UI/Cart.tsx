@@ -2,7 +2,6 @@ import React from "react";
 import "../../../styles/main.scss";
 import CartItem from "../components/cart_item/UI/CartItem";
 import SavedItem from "../components/saved_item/UI/SavedItem";
-import imgPath from "../../../assets/images/products/2.png";
 
 const Cart = () => {
   return (
@@ -16,7 +15,7 @@ const Cart = () => {
         <section className="content flex flex-col tablet:flex-row gap-[69px] mobile:gap-[113px] tablet:gap-[20px] w-full tablet:w-auto justify-normal tablet:justify-between mt-[35px] mobile:mt-[50px]">
           <div className="w-full flex flex-col gap-[50px]">
             <div className="cart-items flex flex-col gap-[30px] w-full">
-              <CartItem
+              {/* <CartItem
                 img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
@@ -35,13 +34,13 @@ const Cart = () => {
                 category="WOMENS"
                 size="S"
                 color="WHITE"
-              />
+              /> */}
             </div>
             <div className="wishlist-content">
               <h2 className="text-base pb-[8px] w-full border-b border-[var(--light-gray)] mb-[35px] mobile:mb -[50px]">
                 SAVE FOR LATER
               </h2>
-              <SavedItem
+              {/* <SavedItem
                 img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
@@ -50,7 +49,7 @@ const Cart = () => {
                 category="WOMENS"
                 size="S"
                 color="WHITE"
-              />
+              /> */}
             </div>
           </div>
           <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-[var(--normal-gray)] w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px]">

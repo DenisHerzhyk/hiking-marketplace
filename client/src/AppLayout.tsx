@@ -17,11 +17,16 @@ const AppLayout = () => {
   const isHome = location.pathname === "/";
   const isLoginOrRegister =
     location.pathname === "/login" || location.pathname === "/register";
+  const isCategory =
+    location.pathname === "/category/men" ||
+    "/category/women" ||
+    "/category/boots" ||
+    "/category/deals";
   return (
     <>
       <Header />
-      {isLoginOrRegister ? (
-        <div className="mt-[100px]" />
+      {isLoginOrRegister || isCategory ? (
+        <div className="mt-[0px]" />
       ) : (
         !isHome && <div className="mt-[250px]" />
       )}
@@ -47,7 +52,7 @@ const AppLayout = () => {
           }
         />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/category" element={<Category />} />
+        <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>

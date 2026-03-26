@@ -31,9 +31,7 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        <main
-          className={`main h-[calc[100vh]] tablet:h-[calc(100vh)] overflow-hidden relative`}
-        >
+        <main className={`main h-[calc(100vh)] overflow-hidden relative`}>
           <div className={`${isHome ? "pt-100px" : ""}`}>
             <div className="content text-white w-full">
               <video
@@ -61,7 +59,7 @@ const Home = () => {
                   <br />& EVERYTHING IN BETWEEN
                 </p>
                 <Link
-                  className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit rounded-full"
+                  className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit border shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
                   to="/"
                 >
                   SHOP NOW
@@ -89,7 +87,7 @@ const Home = () => {
         </section>
         <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
           <div className="catalog flex flex-col justify-center">
-            <div className="flex flex-row items-center flex-wrap gap-6">
+            <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
                 <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                   HIKING TOPS
@@ -99,10 +97,13 @@ const Home = () => {
                 </p>
               </div>
               <div>
-                <button className="bg-white px-4 py-2 text-base border border-gray-500 rounded-full flex flex-row gap-1 items-center">
+                <Link
+                  to="/"
+                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                >
                   Find more tops
                   <IoIosArrowForward className="text-xl" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
@@ -123,7 +124,7 @@ const Home = () => {
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
-            <div className="flex flex-row items-center flex-wrap gap-6">
+            <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
                 <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                   HIKING PANTS
@@ -133,10 +134,13 @@ const Home = () => {
                 </p>
               </div>
               <div>
-                <button className="bg-white px-4 py-2 text-base border border-gray-500 rounded-full flex flex-row gap-1 items-center">
+                <Link
+                  to="/"
+                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                >
                   Find more pants
                   <IoIosArrowForward className="text-xl" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto justify-between flex-nowrap items-start mt-[21px] gap-[26.6px] laptop:gap-[61px]">
@@ -155,7 +159,7 @@ const Home = () => {
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
-            <div className="flex flex-row items-center flex-wrap gap-6">
+            <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
                 <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
                   HIKING BOOTS
@@ -165,10 +169,13 @@ const Home = () => {
                 </p>
               </div>
               <div>
-                <button className="bg-white px-4 py-2 text-base border border-gray-500 rounded-full flex flex-row gap-1 items-center">
+                <Link
+                  to="/"
+                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                >
                   Find more boots
                   <IoIosArrowForward className="text-xl" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto justify-between flex-nowrap items-start mt-[21px] gap-[26.6px] laptop:gap-[61px]">

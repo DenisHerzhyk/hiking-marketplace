@@ -39,16 +39,16 @@ const Header = () => {
                   <Link to="/">HOME</Link>
                 </li>
                 <li className="center__nav-item">
-                  <Link to="/category">MENS</Link>
+                  <Link to="/category/men">MENS</Link>
                 </li>
                 <li className="center__nav-item">
-                  <Link to="/category">WOMENS</Link>
+                  <Link to="/category/women">WOMENS</Link>
                 </li>
                 <li className="center__nav-item">
-                  <Link to="/category">BOOTS</Link>
+                  <Link to="/category/shoes">SHOES</Link>
                 </li>
                 <li className="center__nav-item">
-                  <Link to="/category">DEALS</Link>
+                  <Link to="/category/deals">DEALS</Link>
                 </li>
               </ul>
             </nav>
@@ -56,7 +56,7 @@ const Header = () => {
               <div className="search-bar relative items-center hidden laptop:flex">
                 <input
                   type="text"
-                  className={`bg-white font-light bg-opacity-0 border-b-[0.5px] ${isHome ? "placeholder:text-white text-white border-white" : "placeholder:text-black text-black border-black"}  focus:outline-none pl-3 py-2 pr-7`}
+                  className={`bg-white font-light bg-opacity-0 border-b-[0.5px] ${isHome ? "placeholder:text-white text-white border-white" : "placeholder:text-black text-black border-black"} focus:outline-none pl-3 py-2 pr-7`}
                   placeholder="Search"
                 />
                 <IoIosSearch className="absolute right-0 text-2xl" />

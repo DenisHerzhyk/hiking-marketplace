@@ -45,7 +45,7 @@ const Register = () => {
   };
 
   return (
-    <div className="Register flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh-103.4px]] tablet:min-h-[calc(100vh-122.6px)] overflow-hidden relative items-center py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
+    <div className="Register flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh]] tablet:min-h-[calc(100vh)] overflow-hidden relative items-center py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
         <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
@@ -102,7 +102,7 @@ const Register = () => {
               <IoIosCloseCircle className="text-red-500 text-base" /> {error}
             </p>
           )}
-          <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] rounded-[8px]">
+          <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] border border-black shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
             Register
           </button>
         </form>
