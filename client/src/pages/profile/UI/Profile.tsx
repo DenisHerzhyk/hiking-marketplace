@@ -1,5 +1,5 @@
-import avatar from "../../../assets/images/avatar.webp";
-import email_logo from "../../../assets/images/email.svg";
+import avatar from "/images/avatar.webp";
+import email_logo from "/images/email.svg";
 import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "../../../assets/images/login-card.png";
+import card from "/images/login-card.png";
 import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
 import { ILoginUser } from "../interface/LoginInterface.ts";

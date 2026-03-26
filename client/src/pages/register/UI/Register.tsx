@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "../../../assets/images/register-card.png";
+import card from "/images/register-card.png";
 import "../../../styles/main.scss";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";

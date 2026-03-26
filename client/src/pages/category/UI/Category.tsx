@@ -4,9 +4,9 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
-import w_img from "../../../assets/images/categories/w.jpeg";
-import m_img from "../../../assets/images/categories/m.jpeg";
-import s_img from "../../../assets/images/categories/s.jpeg";
+import w_img from "/images/categories/w.jpeg";
+import m_img from "/images/categories/m.jpeg";
+import s_img from "/images/categories/s.jpeg";
 type Section = "product" | "sizes" | "price" | "shoes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Category = () => {
   });
 
   useEffect(() => {
-    fetch("/products-all.json")
+    fetch("/json/products-all.json")
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
   });

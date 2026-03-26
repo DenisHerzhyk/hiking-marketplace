@@ -6,11 +6,11 @@ import trail_v from "../../../assets/videos/trail.mp4";
 import hike_signup from "../../../assets/videos/hike-form.mp4";
 import Card from "../components/card/UI/Card";
 import Benefits from "../../../shared/benefits/UI/Benefits";
-import category_women from "../../../assets/images/category-women.jpg";
-import category_men from "../../../assets/images/category-men.jpg";
-import category_boots from "../../../assets/images/category-boots.jpg";
-import category_deals from "../../../assets/images/category-deals.jpg";
-import temp_hike_card from "../../../assets/images/temp-hike-suggestion/1.jpg";
+import category_women from "/images/category-women.jpg";
+import category_men from "/images/category-men.jpg";
+import category_boots from "/images/category-boots.jpg";
+import category_deals from "/images/category-deals.jpg";
+import temp_hike_card from "/images/temp-hike-suggestion/1.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { IoIosArrowForward } from "react-icons/io";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
@@ -23,7 +23,7 @@ const Home = () => {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    fetch("/products-all.json")
+    fetch("/json/products-all.json")
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
   }, []);
