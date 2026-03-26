@@ -23,7 +23,7 @@ const Home = () => {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    fetch("/client/src/assets/api/json/products-all.json")
+    fetch("/products-all.json")
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
   }, []);
