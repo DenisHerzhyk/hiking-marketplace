@@ -21,13 +21,15 @@ const MainProductCard = ({ id, img, title, price }: ProductCardInterface) => {
           </p>
         </div>
         <div className="content flex flex-col mt-[24px]">
-          <h1 className="productcard__title font-medium text-base inline-block max-w-[250px] overflow-hidden truncate">
+          <h1 className="productcard__title font-medium text-sm inline-block max-w-[250px] overflow-hidden truncate">
             {title}
           </h1>
-          <p className="productcard__price text-sm mt-[12px]">${price}</p>
-          <button className="absolute z-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-all duration-300 ease-out opacity-0 group-hover:opacity-100 flex flex-row gap-[8px] items-center py-[6.5px] px-[22.5px] shadow-md bg-white text-black rounded-full">
-            <FaPlus className="w-[15px] h-[15px]" />
-            <span className="text-sm font-medium text-nowrap">ADD TO CART</span>
+          <p className="productcard__price font-medium text-sm mt-[5px]">
+            ${price}
+          </p>
+          <button className="mt-[10px] flex flex-row w-fit gap-[3px] items-center py-[6px] px-[18px] border border-black bg-white hover:bg-black text-black hover:text-white transition-all duration-300 ease-out rounded-full">
+            <FaPlus className="text-sm" />
+            <span className="text-sm text-nowrap">Add</span>
           </button>
         </div>
       </div>

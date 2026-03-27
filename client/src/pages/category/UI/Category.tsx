@@ -97,7 +97,7 @@ const Category = () => {
               {type?.toUpperCase()} CLOTHING
             </h1>
             <p className="font-light mobile:text-base text-[var(--light-gray)]">
-              ({products.length} results)
+              ({filteredProducts.length} results)
             </p>
           </div>
           <nav className="category-nav flex items-center">

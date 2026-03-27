@@ -1,0 +1,16 @@
+{
+  "mainCategories": [
+    {
+      "title": "MEN'S",
+      "image": "/images//main-categories/m_1.jpeg"
+    },
+    {
+      "title": "WOMEN'S",
+      "image": "/images/main-categories/w_3.jpg"
+    },
+    {
+      "title": "SHOES",
+      "image": "/images/main-categories/s.png"
+    }
+  ]
+}

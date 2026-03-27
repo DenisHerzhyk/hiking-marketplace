@@ -64,7 +64,7 @@ const Register = () => {
               placeholder="EMAIL"
               value={user.email}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
+              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
             />
           </div>
           <div className="input-password mt-[16px] mobile:mt-[32px]">
@@ -79,7 +79,7 @@ const Register = () => {
               placeholder="PASSWORD"
               value={user.password}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
+              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
             />
           </div>
           <div className="input-confirm-password mt-[16px] mobile:mt-[32px]">
@@ -94,7 +94,7 @@ const Register = () => {
               placeholder="CONFIRM PASSWORD"
               value={user.confirmPassword}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full"
+              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
             />
           </div>
           {error && (

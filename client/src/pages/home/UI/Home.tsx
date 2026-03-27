@@ -6,19 +6,17 @@ import trail_v from "../../../assets/videos/trail.mp4";
 import hike_signup from "../../../assets/videos/hike-form.mp4";
 import Card from "../components/card/UI/Card";
 import Benefits from "../../../shared/benefits/UI/Benefits";
-import category_women from "/images/category-women.jpg";
-import category_men from "/images/category-men.jpg";
-import category_boots from "/images/category-boots.jpg";
-import category_deals from "/images/category-deals.jpg";
 import temp_hike_card from "/images/temp-hike-suggestion/1.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { IoIosArrowForward } from "react-icons/io";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import HikingCard from "../components/card/UI/HikingCard";
+import CardInterface from "../components/card/interface/CardInterface";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
+  const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -26,6 +24,10 @@ const Home = () => {
     fetch("/json/products-all.json")
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
+
+    fetch("/json/main-categories.json")
+      .then((res) => res.json())
+      .then((data) => setMainCategories(data.mainCategories));
   }, []);
 
   return (
@@ -80,10 +82,9 @@ const Home = () => {
           </div>
         </main>
         <section className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px]">
-          <Card title="MEN'S" image={category_men} />
-          <Card title="WOMEN'S" image={category_women} />
-          <Card title="BOOTS" image={category_boots} />
-          <Card title="DEALS" image={category_deals} />
+          {mainCategories.map((item) => (
+            <Card title={item.title} image={item.image} />
+          ))}
         </section>
         <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
           <div className="catalog flex flex-col justify-center">
@@ -98,8 +99,8 @@ const Home = () => {
               </div>
               <div>
                 <Link
-                  to="/"
-                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  to="/category/men"
+                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
                 >
                   Find more tops
                   <IoIosArrowForward className="text-xl" />
@@ -135,8 +136,8 @@ const Home = () => {
               </div>
               <div>
                 <Link
-                  to="/"
-                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  to="/category/men"
+                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
                 >
                   Find more pants
                   <IoIosArrowForward className="text-xl" />
@@ -170,8 +171,8 @@ const Home = () => {
               </div>
               <div>
                 <Link
-                  to="/"
-                  className="benefits__button text-black w-fit flex flex-row items-center px-4 py-2 gap-2 text-lg bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  to="/category/shoes"
+                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
                 >
                   Find more boots
                   <IoIosArrowForward className="text-xl" />

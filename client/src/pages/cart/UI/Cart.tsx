@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../styles/main.scss";
 import CartItem from "../components/cart_item/UI/CartItem";
 import SavedItem from "../components/saved_item/UI/SavedItem";
+import { useLocation } from "react-router-dom";
+import imgPath from "/images/tops/1_2.webp";
 
 const Cart = () => {
   return (
     <>
       <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[77px] mobile:mt-[118px]">
         <section className="upper-shopping w-full">
-          <h1 className="border-b border-[var(--light-gray)] font-extrabold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[8px] laptop:pb-[12px]">
+          <h1
+            className="border-b border-[var(--light-gray)] font-extrabold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[8px] laptop:pb-[12px]"
+            id="cart"
+          >
             SHOPPING CART
           </h1>
         </section>
         <section className="content flex flex-col tablet:flex-row gap-[69px] mobile:gap-[113px] tablet:gap-[20px] w-full tablet:w-auto justify-normal tablet:justify-between mt-[35px] mobile:mt-[50px]">
           <div className="w-full flex flex-col gap-[50px]">
             <div className="cart-items flex flex-col gap-[30px] w-full">
-              {/* <CartItem
+              <CartItem
                 img={imgPath}
                 title="Women's Canyonite Flannel Shirt"
                 price={139.0}
@@ -34,10 +39,73 @@ const Cart = () => {
                 category="WOMENS"
                 size="S"
                 color="WHITE"
-              /> */}
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
+              <CartItem
+                img={imgPath}
+                title="Women's Canyonite Flannel Shirt"
+                price={139.0}
+                discount={0}
+                inStock={true}
+                category="WOMENS"
+                size="S"
+                color="WHITE"
+              />
             </div>
             <div className="wishlist-content">
-              <h2 className="text-base pb-[8px] w-full border-b border-[var(--light-gray)] mb-[35px] mobile:mb -[50px]">
+              <h2
+                className="text-base pb-[8px] w-full border-b border-[var(--light-gray)] mb-[35px] mobile:mb -[50px]"
+                id="favorite"
+              >
                 SAVE FOR LATER
               </h2>
               {/* <SavedItem

@@ -11,6 +11,7 @@ import ProductPage from "./pages/product_page/UI/ProductPage";
 import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
+import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -31,6 +32,8 @@ const AppLayout = () => {
         !isHome && <div className="mt-[250px]" />
       )}
       {}
+      <ScrollHash />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<GuestRoute />}>
@@ -41,7 +44,7 @@ const AppLayout = () => {
           path="/product"
           element={
             <ProductPage
-              img="src/assets/images/products/2.png"
+              img="/images/tops/1_1.webp"
               category="WOMENS"
               type="shirt"
               title="Women's Canyonite Flannel Shirt"

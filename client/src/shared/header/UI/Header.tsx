@@ -26,10 +26,10 @@ const Header = () => {
         >
           <div className="upper-header gap-5 w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
             <section className="logo flex flex-1 flex-row items-center gap-[15px]">
-              <div className="block laptop:hidden">
+              <div className="block laptop:hidden focus:outline-none">
                 <IoMenuOutline className="text-2xl" />
               </div>
-              <Link to="/">
+              <Link to="/" className="focus:outline-none">
                 <IoLogoAppleAr className="text-2xl" />
               </Link>
             </section>
@@ -76,10 +76,10 @@ const Header = () => {
                   </div>
                 )}
               </Link>
-              <Link to="/cart">
+              <Link to="/cart#cart">
                 <IoCart className="text-2xl" />
               </Link>
-              <Link to="/cart">
+              <Link to="/cart#favorite">
                 <FaHeart className="text-2xl" />
               </Link>
             </section>

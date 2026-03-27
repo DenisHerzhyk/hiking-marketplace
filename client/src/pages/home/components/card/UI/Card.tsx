@@ -17,7 +17,7 @@ const Card = ({ title, image }: CardInterface) => {
           <h1 className="card__title text-[24px] text-white font-semibold absolute top-1/2 left-5">
             {title}
           </h1>
-          <button className="card__button absolute bottom-4 laptop:bottom-10 left-5 text-base w-fit text-white bg-opacity-0 border-2 border-white py-1 px-6 rounded-full font-medium">
+          <button className="card__button absolute bottom-4 laptop:bottom-10 left-5 text-base w-fit text-white hover:text-black transition-all duration-300 ease-out bg-opacity-0 border-2 hover:bg-white border-white py-1 px-6 rounded-full font-medium">
             SHOP
           </button>
         </div>
