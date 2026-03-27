@@ -47,17 +47,17 @@ const Home = () => {
             />
             <div className="absolute inset-0 bg-black opacity-30 -z-10"></div>
             <div className="main__content absolute top-1/2 -translate-y-1/2 z-10 flex flex-col px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
-              <h1 className="home__title font-extrabold text-5xl leading-tight text-left max-w-full break-words tablet:text-6xl mobile:text-5xl">
+              <h1 className="home__title font-extrabold text-2xl leading-tight text-left max-w-full break-words mobile:text-4xl tablet:text-6xl">
                 30–60% OFF
                 <br />
                 MID SEASON SALE
                 <br />
                 FOR MEMBERS
               </h1>
-              <p className="home__description-mini text-base mobile:text-xl font-bold mt-6">
+              <p className="home__description-mini text-sm mobile:text-lg font-bold mt-6">
                 EMRACE THE ELEMENTS
               </p>
-              <p className="home__description text-xs mobile:text-base mt-4 leading-5 font-medium mb-6">
+              <p className="home__description text-[10px] mobile:text-base mt-4 leading-5 font-medium mb-6">
                 FOR THE MOUNTAINS, THE RAIN
                 <br />& EVERYTHING IN BETWEEN
               </p>
