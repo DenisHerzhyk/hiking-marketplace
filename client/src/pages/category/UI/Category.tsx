@@ -135,43 +135,51 @@ const Category = () => {
         <div className="content mt-[45px] flex flex-row justify-center laptop:justify-between gap-[10px] laptop:gap-[40px]">
           <div className="sidebar hidden laptop:flex flex-col flex-grow min-w-[160px] max-w-[160px] w-full">
             <div className="w-full flex flex-col gap-[25px]">
-              <div className="w-full">
-                <div className="flex flex-row w-full justify-between">
-                  <p className="font-medium laptop:text-base text-nowrap">
-                    SHOES{" "}
-                  </p>
+              {category === "shoes" ? (
+                <div className="w-full">
+                  <div className="flex flex-row w-full justify-between">
+                    <p className="font-medium laptop:text-base text-nowrap">
+                      SHOES{" "}
+                    </p>
+                    <div
+                      onClick={() => toggleSection("shoes")}
+                      className="cursor-pointer text-black"
+                    >
+                      {openSections.shoes ? (
+                        <IoIosArrowDown />
+                      ) : (
+                        <IoIosArrowUp />
+                      )}
+                    </div>
+                  </div>
                   <div
-                    onClick={() => toggleSection("shoes")}
-                    className="cursor-pointer text-black"
+                    className={`${openSections.shoes ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
                   >
-                    {openSections.shoes ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                    <div className="flex flex-row items-center gap-[10px]">
+                      <input
+                        type="radio"
+                        name="hoodie"
+                        id="hoodie"
+                        value="hoodie"
+                        className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
+                      />
+                      <p className="text-xs laptop:text-sm">For Men</p>
+                    </div>
+                    <div className="flex flex-row items-center gap-[10px]">
+                      <input
+                        type="radio"
+                        name="hoodie"
+                        id="hoodie"
+                        value="hoodie"
+                        className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
+                      />
+                      <p className="text-xs laptop:text-sm">For Women</p>
+                    </div>
                   </div>
                 </div>
-                <div
-                  className={`${openSections.shoes ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
-                >
-                  <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">For Men</p>
-                  </div>
-                  <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">For Women</p>
-                  </div>
-                </div>
-              </div>
+              ) : (
+                <div className="hidden"></div>
+              )}
 
               <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
                 <div className="flex flex-row w-full justify-between">
@@ -384,6 +392,7 @@ const Category = () => {
             ) : (
               <h1>No items available for this category</h1>
             )}
+            <p></p>
           </div>
         </div>
       </div>

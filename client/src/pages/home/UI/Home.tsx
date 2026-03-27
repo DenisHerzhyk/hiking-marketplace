@@ -144,7 +144,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto justify-between flex-nowrap items-start mt-[21px] gap-[26.6px] laptop:gap-[61px]">
+            <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
               {products
                 .filter((item) => item.category === "pants")
                 .slice(0, 5)
@@ -179,7 +179,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto justify-between flex-nowrap items-start mt-[21px] gap-[26.6px] laptop:gap-[61px]">
+            <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
               {products
                 .filter((item) => item.category === "shoes")
                 .slice(0, 5)
