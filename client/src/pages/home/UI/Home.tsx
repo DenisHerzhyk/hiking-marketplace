@@ -33,51 +33,51 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        <main className={`main h-[calc(100vh)] overflow-hidden relative`}>
-          <div className={`${isHome ? "pt-100px" : ""}`}>
-            <div className="content text-white w-full">
-              <video
-                src={trail_v}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="inset-0 relative h-screen w-screen object-cover -z-20 bg-black"
-              />
-              <div className="absolute inset-0 bg-black opacity-40 -z-10"></div>
-              <div className="main__content absolute top-[calc(50%-103.4px)] flex flex-col px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
-                <h1 className="home__title font-extrabold text-5xl leading-tight text-left max-w-full break-words tablet:text-6xl mobile:text-5xl">
-                  30–60% OFF
-                  <br />
-                  MID SEASON SALE
-                  <br />
-                  FOR MEMBERS
-                </h1>
-                <p className="home__description-mini text-base mobile:text-xl font-bold mt-6">
-                  EMRACE THE ELEMENTS
+        <main
+          className={`main h-[100dvh] overflow-hidden relative flex items-center`}
+        >
+          <div className="content relative text-white w-full h-full flex items-center">
+            <video
+              src={trail_v}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="inset-0 relative h-full w-full object-cover -z-20"
+            />
+            <div className="absolute inset-0 bg-black opacity-30 -z-10"></div>
+            <div className="main__content absolute top-1/2 -translate-y-1/2 z-10 flex flex-col px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+              <h1 className="home__title font-extrabold text-5xl leading-tight text-left max-w-full break-words tablet:text-6xl mobile:text-5xl">
+                30–60% OFF
+                <br />
+                MID SEASON SALE
+                <br />
+                FOR MEMBERS
+              </h1>
+              <p className="home__description-mini text-base mobile:text-xl font-bold mt-6">
+                EMRACE THE ELEMENTS
+              </p>
+              <p className="home__description text-xs mobile:text-base mt-4 leading-5 font-medium mb-6">
+                FOR THE MOUNTAINS, THE RAIN
+                <br />& EVERYTHING IN BETWEEN
+              </p>
+              <Link
+                className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit border shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                to="/"
+              >
+                SHOP NOW
+              </Link>
+            </div>
+            <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2 rounded-tl-[8px] rounded-tr-[8px]">
+              <Link
+                to="/"
+                className="flex flex-col items-center justify-center gap-2 text-white"
+              >
+                <p className="main-section__shop-stick__content text-[9px] mobile:text-xs rounded-t-[8px] rounded-r-[8px]">
+                  SHOW MORE
                 </p>
-                <p className="home__description text-xs mobile:text-base mt-4 leading-5 font-medium mb-6">
-                  FOR THE MOUNTAINS, THE RAIN
-                  <br />& EVERYTHING IN BETWEEN
-                </p>
-                <Link
-                  className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit border shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
-                  to="/"
-                >
-                  SHOP NOW
-                </Link>
-              </div>
-              <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2 rounded-tl-[8px] rounded-tr-[8px]">
-                <Link
-                  to="/"
-                  className="flex flex-col items-center justify-center gap-2 text-white"
-                >
-                  <p className="main-section__shop-stick__content text-[9px] mobile:text-xs rounded-t-[8px] rounded-r-[8px]">
-                    SHOW MORE
-                  </p>
-                  <IoIosArrowDown />
-                </Link>
-              </div>
+                <IoIosArrowDown />
+              </Link>
             </div>
           </div>
         </main>

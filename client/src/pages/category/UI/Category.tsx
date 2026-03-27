@@ -57,7 +57,7 @@ const Category = () => {
     <>
       <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
         {category !== "deals" ? (
-          <div className="main-category flex justify-center items-center h-[calc[100vh]] tablet:h-[calc(100vh)] relative">
+          <div className="main-category flex justify-center items-center h-[100dvh] relative">
             <img
               src={
                 category === "men"
@@ -69,7 +69,7 @@ const Category = () => {
                       : ""
               }
               alt="img"
-              className="rounded-md h-[700px] w-full object-cover object-center"
+              className="rounded-md h-[600px] w-full object-cover object-center"
             />
             <div className="absolute top-1/2 -translate-y-1/2 left-10">
               <h2 className="text-wrap font-semibold text-2xl tablet:text-4xl laptop:text-6xl text-white mb-[40px]">
