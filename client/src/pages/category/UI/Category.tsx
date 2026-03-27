@@ -146,9 +146,9 @@ const Category = () => {
                       className="cursor-pointer text-black"
                     >
                       {openSections.shoes ? (
-                        <IoIosArrowDown />
+                        <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                       ) : (
-                        <IoIosArrowUp />
+                        <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                       )}
                     </div>
                   </div>
@@ -191,9 +191,9 @@ const Category = () => {
                     className="cursor-pointer text-black"
                   >
                     {openSections.product ? (
-                      <IoIosArrowDown />
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     ) : (
-                      <IoIosArrowUp />
+                      <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     )}
                   </div>
                 </div>
@@ -249,7 +249,11 @@ const Category = () => {
                     onClick={() => toggleSection("sizes")}
                     className="cursor-pointer text-black"
                   >
-                    {openSections.sizes ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                    {openSections.sizes ? (
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                    ) : (
+                      <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                    )}
                   </div>
                 </div>
                 <div
@@ -325,10 +329,10 @@ const Category = () => {
                     onClick={() => toggleSection("price")}
                   >
                     {openSections.price ? (
-                      <IoIosArrowDown />
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     ) : (
-                      <IoIosArrowUp />
-                    )}{" "}
+                      <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                    )}
                   </div>
                 </div>
                 <div
