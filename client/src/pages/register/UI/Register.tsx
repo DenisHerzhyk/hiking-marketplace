@@ -131,12 +131,12 @@ const Register = () => {
           <p className="text-sm mobile:text-base font-medium text-white mt-[2px] mobile:mt-[4px]">
             CHECK FOR DISCOUNTS
           </p>
-          <a
-            href="/"
+          <Link
+            to="/category/deals"
             className="card__button font-bold text-base mobile:text-[20px] inline-block mt-[15px] mobile:mt-[18px] py-2 px-[38px] mobile:py-3 mobile:px-12 w-fit text-black bg-white"
           >
             SHOP SALE
-          </a>
+          </Link>
         </div>
       </div>
     </div>

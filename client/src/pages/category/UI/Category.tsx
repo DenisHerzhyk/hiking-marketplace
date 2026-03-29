@@ -124,10 +124,14 @@ const Category = () => {
           </div>
         )}
 
-        <div className="categories mt-[100px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[10px] mobile:pb-[16px] laptop:pb-[20px] border-b border-[var(--light-gray)]">
+        <div className="categories mt-[100px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]">
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
-              {type?.toUpperCase()} CLOTHING
+              {category === "deals"
+                ? "deals"
+                : category === "shoes"
+                  ? "shoes"
+                  : `${category}'s clothing`}
             </h1>
             <p className="font-light mobile:text-base text-[var(--light-gray)]">
               ({filteredProducts.length} results)

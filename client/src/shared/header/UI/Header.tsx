@@ -76,7 +76,7 @@ const Header = () => {
                   </div>
                 )}
               </Link>
-              <Link to="/cart#cart">
+              <Link to="/cart">
                 <IoCart className="text-2xl" />
               </Link>
               <Link to="/cart#favorite">
