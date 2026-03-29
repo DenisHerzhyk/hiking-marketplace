@@ -7,6 +7,7 @@ import { ProductInterface } from "../../../shared/components/product-card/interf
 import w_img from "/images/categories/w.jpeg";
 import m_img from "/images/categories/m.jpeg";
 import s_img from "/images/categories/s.jpeg";
+import sales_img from "/images/categories/sales.png";
 type Section = "product" | "sizes" | "price" | "shoes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -86,8 +87,40 @@ const Category = () => {
             </div>
           </div>
         ) : (
-          <div>
-            <h1>Change</h1>
+          <div className="main-category relative w-full flex flex-col gap-2 items-center h-[100dvh]">
+            <div className="flex flex-col w-full gap-10 items-center h-full justify-center overflow-hidden">
+              <h1 className="text-start w-full font-medium text-3xl">
+                Special Prices
+              </h1>
+
+              <div className="flex flex-row flex-wrap laptop:flex-nowrap gap-3 items-center">
+                <Link to="/" className="relative cursor-pointer w-full">
+                  <img
+                    src={sales_img}
+                    alt="img"
+                    className="rounded-md w-full flex-1 min-w-0 h-[200px] laptop:h-[400px] object-cover object-center"
+                  />
+                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                    <h2 className="text-wrap font-semibold text-2xl text-white">
+                      Men
+                    </h2>
+                  </div>
+                </Link>
+
+                <Link to="/" className="relative cursor-pointer  w-full">
+                  <img
+                    src={sales_img}
+                    alt="img"
+                    className="rounded-md w-full flex-1 min-w-0 h-[200px] laptop:h-[400px] object-cover object-center"
+                  />
+                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                    <h2 className="text-wrap font-semibold text-2xl text-white">
+                      Women
+                    </h2>
+                  </div>
+                </Link>
+              </div>
+            </div>
           </div>
         )}
 
@@ -382,19 +415,23 @@ const Category = () => {
               </div>
             </div>
           </div>
-          <div className="products flex-1 w-full grid auto-cols-auto gap-10 [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
+          <div className="products flex-1 w-full ">
             {filteredProducts.length > 0 ? (
-              filteredProducts.map((item) => (
-                <MainProductCard
-                  key={item.id}
-                  id={item.id}
-                  img={item.product_images[0]}
-                  title={item.title.toUpperCase()}
-                  price={item.price}
-                />
-              ))
+              <div className="grid auto-cols-auto gap-10 [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
+                {filteredProducts.map((item) => (
+                  <MainProductCard
+                    key={item.id}
+                    id={item.id}
+                    img={item.product_images[0]}
+                    title={item.title.toUpperCase()}
+                    price={item.price}
+                  />
+                ))}
+              </div>
             ) : (
-              <h1>No items available for this category</h1>
+              <h1 className="text-center">
+                No items available for this category
+              </h1>
             )}
             <p></p>
           </div>
