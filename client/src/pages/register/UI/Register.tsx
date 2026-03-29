@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "/images/register-card.png";
+import card from "/images/auth/register.jpeg";
 import "../../../styles/main.scss";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -45,7 +45,7 @@ const Register = () => {
   };
 
   return (
-    <div className="Register flex flex-row flex-wrap justify-center tablet:justify-between gap-[70px] mobile:gap-[44px] min-h-[calc[100vh]] tablet:min-h-[calc(100vh)] overflow-hidden relative items-center py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
+    <div className="Register flex flex-row flex-wrap justify-center gap-[100px] laptop:gap-[300px] mt-[100px] items-center overflow-hidden relative py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
         <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
@@ -118,24 +118,22 @@ const Register = () => {
           </span>
         </Link>
       </div>
-      <div className="card relative w-screen tablet:w-fit rounded-[8px] tablet:py-[153px] laptop:py-[237px] p-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]">
+      <div className="card relative flex justify-center w-screen overflow-hidden laptop:w-fit laptop:py-[237px] py-[80px] px-[20px] mobile:px-[60px] tablet:px-[54px] laptop:px-[52px]">
         <div
-          className="absolute inset-0 -z-10 w-full h-full bg-cover rounded-[8px]"
+          className="absolute inset-0 -z-10 w-full h-full bg-cover rounded-none laptop:rounded-[8px]"
           style={{ backgroundImage: `url(${card})` }}
         ></div>
-        <div className="absolute inset-0 bg-black opacity-20 -z-9 rounded-[8px]"></div>
-        <div className="card__content relative z-10 flex flex-col h-fit justify-center items-center text-center mobile:text-start mobile:items-start ">
-          <h2 className="text-[28px] mobile:leading-snug mobile:text-[30px] tablet:text-[36px] font-extrabold text-white">
-            30-60% OFF MID SEASON SALE
-            <br />
-            FOR MEMBERS
+        <div className="absolute inset-0 bg-black opacity-50 -z-9 rounded-none laptop:rounded-[8px]"></div>
+        <div className="card__content relative z-10 flex flex-col h-fit justify-center items-center mobile:text-start ">
+          <h2 className="text-[28px] mobile:leading-snug mobile:text-[30px] tablet:text-[36px] font-bold text-white">
+            Save up to 20%
           </h2>
           <p className="text-sm mobile:text-base font-medium text-white mt-[2px] mobile:mt-[4px]">
             CHECK FOR DISCOUNTS
           </p>
           <a
             href="/"
-            className="card__button font-bold text-base mobile:text-[20px] inline-block mt-[15px] mobile:mt-[18px] py-2 px-[38px] mobile:py-3 mobile:px-12 w-fit text-black bg-white rounded-full"
+            className="card__button font-bold text-base mobile:text-[20px] inline-block mt-[15px] mobile:mt-[18px] py-2 px-[38px] mobile:py-3 mobile:px-12 w-fit text-black bg-white"
           >
             SHOP SALE
           </a>
