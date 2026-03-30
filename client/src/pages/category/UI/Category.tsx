@@ -4,6 +4,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
+import { IoMdArrowDown } from "react-icons/io";
 import w_img from "/images/categories/w.jpeg";
 import m_img from "/images/categories/m.jpeg";
 import s_img from "/images/categories/s.jpeg";
@@ -79,10 +80,11 @@ const Category = () => {
                 to match your pace
               </h2>
               <Link
-                className="home__button text-black font-bold text-base tablet:text-xl bg-white py-3 px-12 w-fit border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
-                to="/"
+                className="home__button flex gap-2 items-center text-black font-bold text-base tablet:text-xl bg-white py-3 px-12 w-fit border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                to={`/category/${category}#shop`}
               >
-                SHOP NOW
+                <span>SHOP NOW</span>
+                <IoMdArrowDown className="text-2xl" />
               </Link>
             </div>
           </div>
@@ -124,7 +126,10 @@ const Category = () => {
           </div>
         )}
 
-        <div className="categories mt-[100px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]">
+        <div
+          id="shop"
+          className="categories mt-[100px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
+        >
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
               {category === "deals"

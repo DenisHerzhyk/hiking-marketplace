@@ -2,15 +2,18 @@
   "mainCategories": [
     {
       "title": "MEN'S",
-      "image": "/images//main-categories/m_1.jpeg"
+      "image": "/images//main-categories/m_1.jpeg",
+      "link": "/category/men"
     },
     {
       "title": "WOMEN'S",
-      "image": "/images/main-categories/w_3.jpg"
+      "image": "/images/main-categories/w_3.jpg",
+      "link": "/category/women"
     },
     {
       "title": "SHOES",
-      "image": "/images/main-categories/s.png"
+      "image": "/images/main-categories/s.png",
+      "link": "/category/shoes"
     }
   ]
 }

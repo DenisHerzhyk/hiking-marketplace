@@ -1,7 +1,8 @@
 import React from "react";
 import CardInterface from "../interface/CardInterface";
+import { Link } from "react-router-dom";
 
-const Card = ({ title, image }: CardInterface) => {
+const Card = ({ title, image, link }: CardInterface) => {
   return (
     <>
       <div className="card relative flex-shrink-0 w-full tablet:w-full laptop:w-[300px] tablet:flex-shrink tablet:flex-1">
@@ -17,9 +18,12 @@ const Card = ({ title, image }: CardInterface) => {
           <h1 className="card__title text-[24px] text-white font-semibold absolute top-1/2 left-5">
             {title}
           </h1>
-          <button className="card__button absolute bottom-4 laptop:bottom-10 left-5 text-base w-fit text-white hover:text-black transition-all duration-300 ease-out bg-opacity-0 border-2 hover:bg-white border-white py-1 px-6 rounded-full font-medium">
+          <Link
+            to={link}
+            className="card__button absolute bottom-4 laptop:bottom-10 left-5 text-base w-fit text-white hover:text-black transition-all duration-300 ease-out bg-opacity-0 border-2 hover:bg-white border-white py-1 px-6 rounded-full font-medium"
+          >
             SHOP
-          </button>
+          </Link>
         </div>
       </div>
     </>

@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import "../../../styles/main.scss";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../pages/login/context/authContext";
 
 const Header = () => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
   const { authLogin } = ctxt;
@@ -18,16 +20,64 @@ const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
+  const openMenu = () => {
+    const menu = document.getElementById("menu");
+
+    setIsOpenMenu(!isOpenMenu);
+  };
+
   return (
     <>
       <header className="header z-50 w-full relative">
         <div
-          className={`fixed top-0 left-0 right-0 ${isHome ? "text-white bg-opacity-0 bg-black absolute" : "text-black bg-white bg-opacity-100 border-b r"}`}
+          className={`fixed top-0 left-0 right-0 ${!isHome || isOpenMenu ? "text-black bg-white bg-opacity-100 border-b border-gray" : "text-white bg-opacity-0 bg-black absolute"} ${isOpenMenu && "laptop:text-white laptop:bg-opacity-0 laptop:bg-black laptop:absolute laptop:border-none"}`}
         >
           <div className="upper-header gap-5 w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
             <section className="logo flex flex-1 flex-row items-center gap-[15px]">
               <div className="block laptop:hidden focus:outline-none">
-                <IoMenuOutline className="text-2xl" />
+                <IoMenuOutline className="text-2xl" onClick={openMenu} />
+                <nav
+                  className={`navigation ${isOpenMenu ? "flex flex-1" : "hidden"} justify-center z-10 menu fixed top-[55px] laptop:top-[71.5px] w-full left-0 bg-white`}
+                  id="menu"
+                >
+                  <ul className="flex flex-col flex-wrap font-semibold text-lg w-full">
+                    <Link
+                      to="/"
+                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
+                    >
+                      HOME
+                      <IoIosArrowForward />
+                    </Link>
+                    <Link
+                      to="/category/men"
+                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
+                    >
+                      MENS
+                      <IoIosArrowForward />
+                    </Link>
+                    <Link
+                      to="/category/women"
+                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
+                    >
+                      WOMENS
+                      <IoIosArrowForward />
+                    </Link>
+                    <Link
+                      to="/category/shoes"
+                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
+                    >
+                      SHOES
+                      <IoIosArrowForward />
+                    </Link>
+                    <Link
+                      to="/category/deals"
+                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
+                    >
+                      DEALS
+                      <IoIosArrowForward />
+                    </Link>
+                  </ul>
+                </nav>
               </div>
               <Link to="/" className="focus:outline-none">
                 <IoLogoAppleAr className="text-2xl" />

@@ -63,14 +63,14 @@ const Home = () => {
               </p>
               <Link
                 className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit border shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
-                to="/"
+                to="/category/men"
               >
                 SHOP NOW
               </Link>
             </div>
             <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2 rounded-tl-[8px] rounded-tr-[8px]">
               <Link
-                to="/"
+                to="#showmore"
                 className="flex flex-col items-center justify-center gap-2 text-white"
               >
                 <p className="main-section__shop-stick__content text-[9px] mobile:text-xs rounded-t-[8px] rounded-r-[8px]">
@@ -81,9 +81,17 @@ const Home = () => {
             </div>
           </div>
         </main>
-        <section className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px]">
+        <section
+          id="showmore"
+          className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px]"
+        >
           {mainCategories.map((item) => (
-            <Card title={item.title} image={item.image} />
+            <Card
+              key={item.image}
+              title={item.title}
+              image={item.image}
+              link={item.link}
+            />
           ))}
         </section>
         <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
