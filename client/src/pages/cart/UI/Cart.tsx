@@ -1,11 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/main.scss";
 import CartItem from "../components/cart_item/UI/CartItem";
 import SavedItem from "../components/saved_item/UI/SavedItem";
 import { useLocation } from "react-router-dom";
-import imgPath from "/images/tops/1_2.webp";
+import axios from "axios";
+import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
+
+const imgPath =
+  "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
 
 const Cart = () => {
+  const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4996/api/cart", { withCredentials: true })
+      .then((res) => {
+        setCartItems(res.data.data);
+        console.log("List", res.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <>
       <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[200px]">
@@ -17,16 +35,18 @@ const Cart = () => {
         <section className="content flex flex-col mt-[40px] tablet:flex-row gap-[40px] w-full tablet:w-auto justify-normal tablet:justify-between">
           <div className="w-full flex flex-col gap-[50px]">
             <div className="cart-items flex flex-col gap-[100px] w-full">
-              <CartItem
-                img={imgPath}
-                title="Women's Canyonite Flannel Shirt"
-                price={139.0}
-                discount={0}
-                inStock={true}
-                category="WOMENS"
-                size="S"
-                color="WHITE"
-              />
+              {cartItems.map((item) => (
+                <CartItem
+                  key={item.id}
+                  id={item.id}
+                  cartId={item.cartId}
+                  productId={item.productId}
+                  product={item.product}
+                  quantity={item.quantity}
+                  size={item.size}
+                  color={item.color}
+                />
+              ))}
             </div>
             <div className="wishlist-content">
               <h2

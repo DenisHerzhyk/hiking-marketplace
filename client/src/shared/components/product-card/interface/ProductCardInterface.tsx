@@ -3,6 +3,7 @@ interface ProductCardInterface {
   img: string;
   title: string;
   price: number;
+  size: string;
 }
 
 export default ProductCardInterface;

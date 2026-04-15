@@ -1,10 +1,11 @@
+import { ProductInterface } from "../../../../../shared/components/product-card/interface/ProductInterface";
+
 interface CartItemInterface {
-  img: string;
-  title: string;
-  price: number;
-  discount: number;
-  inStock: boolean;
-  category: string;
+  id: number;
+  cartId: number;
+  productId: number;
+  product: ProductInterface;
+  quantity: number;
   size: string;
   color: string;
 }

@@ -7,7 +7,6 @@ import Cart from "./pages/cart/UI/Cart";
 import Category from "./pages/category/UI/Category";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
-
 import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
@@ -16,13 +15,16 @@ import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 const AppLayout = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
+
   const isLoginOrRegister =
     location.pathname === "/login" || location.pathname === "/register";
+
   const isCategory =
     location.pathname === "/category/men" ||
     "/category/women" ||
     "/category/boots" ||
     "/category/deals";
+
   return (
     <>
       <Header />

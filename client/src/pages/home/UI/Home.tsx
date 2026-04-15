@@ -2,28 +2,37 @@ import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
-import trail_v from "../../../assets/videos/trail.mp4";
-import hike_signup from "../../../assets/videos/hike-form.mp4";
 import Card from "../components/card/UI/Card";
 import Benefits from "../../../shared/benefits/UI/Benefits";
-import temp_hike_card from "/images/temp-hike-suggestion/1.jpg";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { IoIosArrowForward } from "react-icons/io";
 import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import HikingCard from "../components/card/UI/HikingCard";
 import CardInterface from "../components/card/interface/CardInterface";
+import { Cloudinary } from "@cloudinary/url-gen";
+import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
+import axios from "axios";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
+  const trail_v =
+    "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
+  const hiking_signup_v =
+    "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video.mp4";
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "dlrft9pjb",
+    },
+  });
 
   useEffect(() => {
-    fetch("/json/products-all.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+    axios("http://localhost:4996/api/products").then((res) =>
+      setProducts(res.data.data),
+    );
 
     fetch("/json/main-categories.json")
       .then((res) => res.json())
@@ -39,6 +48,7 @@ const Home = () => {
           <div className="content relative text-white w-full h-full flex items-center">
             <video
               src={trail_v}
+              preload="none"
               autoPlay
               loop
               muted
@@ -125,9 +135,14 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.product_images[0]}
+                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
+                    size={
+                      item.availableSizes[
+                        Math.floor(Math.random() * item.availableSizes.length)
+                      ]
+                    }
                   />
                 ))}
             </div>
@@ -160,9 +175,14 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.product_images[0]}
+                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
+                    size={
+                      item.availableSizes[
+                        Math.floor(Math.random() * item.availableSizes.length)
+                      ]
+                    }
                   />
                 ))}
             </div>
@@ -195,9 +215,14 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.product_images[0]}
+                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
+                    size={
+                      item.availableSizes[
+                        Math.floor(Math.random() * item.availableSizes.length)
+                      ]
+                    }
                   />
                 ))}
             </div>
@@ -219,7 +244,8 @@ const Home = () => {
             Explore nearby trails
           </Link>
           <video
-            src={hike_signup}
+            src={hiking_signup_v}
+            preload="none"
             autoPlay
             loop
             muted

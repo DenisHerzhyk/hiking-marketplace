@@ -2,9 +2,10 @@ export interface ProductInterface {
   id: number;
   title: string;
   price: number;
-  sizes: string[];
+  availableSizes: string[];
   category: string;
   gender: string;
-  product_images: string[];
+  productImages: string[];
   description: string;
+  inStock: boolean;
 }

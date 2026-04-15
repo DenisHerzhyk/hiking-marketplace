@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "/images/auth/login.jpg";
 import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
 import { ILoginUser } from "../interface/LoginInterface.ts";
@@ -10,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext.tsx";
 
 const Login = () => {
+  const card = "https://res.cloudinary.com/dlrft9pjb/image/upload/auth.jpg";
   const navigate = useNavigate();
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");

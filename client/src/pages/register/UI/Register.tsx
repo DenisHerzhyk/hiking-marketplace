@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import card from "/images/auth/register.jpeg";
 import "../../../styles/main.scss";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -9,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const card = "https://res.cloudinary.com/dlrft9pjb/image/upload/auth-2.jpg";
   const navigate = useNavigate();
 
   const [user, setUser] = useState<IUser>({

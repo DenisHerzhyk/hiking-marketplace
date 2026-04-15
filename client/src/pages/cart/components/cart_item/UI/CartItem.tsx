@@ -5,12 +5,11 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
 const CartItem: React.FC<CartItemInterface> = ({
-  img,
-  title,
-  price,
-  discount,
-  inStock,
-  category,
+  id,
+  cartId,
+  productId,
+  product,
+  quantity,
   size,
   color,
 }) => {
@@ -20,7 +19,7 @@ const CartItem: React.FC<CartItemInterface> = ({
         <div className="nav-menu flex flex-col gap-[10px] w-[150px]">
           <img
             className="cartitem__image object-cover object-center w-full flex-1 rounded-[2px]"
-            src={img}
+            src={product.productImages[0]}
             alt="img"
           />
           <div className="product-amount flex flex-row font-medium text-sm h-[35px] w-full">
@@ -39,18 +38,18 @@ const CartItem: React.FC<CartItemInterface> = ({
           <div className="cartitem__content flex flex-col w-full">
             <div className="flex flex-row flex-wrap w-full justify-between items-start">
               <h2 className="font-medium break-words text-base">
-                {title.toUpperCase()}
+                {product.title.toUpperCase()}
               </h2>
               {/* Design discounts */}
-              <p className="text-lg">${price.toFixed(2)}</p>
+              <p className="text-lg">${product.price.toFixed(2)}</p>
             </div>
             <p
-              className={`font-light ${inStock ? "text-green-800" : "text-red-800"} text-[10px] mobile:text-xs mb-[10px]`}
+              className={`font-light ${product.inStock ? "text-green-800" : "text-red-800"} text-[10px] mobile:text-xs mb-[10px]`}
             >
-              {inStock ? "IN STOCK" : "OUT OF STOCK"}
+              {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
             </p>
             <p className="text-xs mobile:text-[13px]">
-              {category}/{size}/{color}
+              {product.category.toUpperCase()}/{size}/{color.toUpperCase()}
             </p>
           </div>
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
