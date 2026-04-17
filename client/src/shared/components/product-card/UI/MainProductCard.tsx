@@ -28,13 +28,26 @@ const MainProductCard = ({
       .then((res) => console.log("Item was added. Check the cart"))
       .catch((err) => console.error(err));
   };
+  const handleWishlistAdd = async () => {
+    await axios
+      .post(
+        `http://localhost:4996/api/wishlist/add/${id}`,
+        {
+          size: size,
+          color: "green",
+        },
+        { withCredentials: true },
+      )
+      .then((res) => console.log("Item was added. Check the wishlist"))
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div
-        className="MainProductCard relative flex-shrink-0 w-[250px] laptop:flex-shrink laptop:flex-1 laptop:w-auto"
+        className="MainProductCard relative flex-shrink-0 min-w-[270px] laptop:flex-shrink laptop:flex-1 laptop:w-auto"
         key={id}
       >
-        <div className="productcard__image group relative w-full h-[240px] tablet:h-[350px]">
+        <div className="productcard__image group relative w-full h-[280px] tablet:h-[350px]">
           <img
             className="w-full h-full object-center object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
             src={img}
@@ -43,10 +56,13 @@ const MainProductCard = ({
           <p className="font-medium text-white bg-black text-xs px-[21.5px] py-[5.5px] rounded-[8px] absolute top-2 left-2">
             NEW
           </p>
-          <div className="absolute top-2 right-2 z-10 text-3xl group/save cursor-pointer">
+          <button
+            className="absolute top-2 right-2 z-10 text-3xl group/save cursor-pointer"
+            onClick={handleWishlistAdd}
+          >
             <VscHeart className="transition-opacity duration-300 ease-in opacity-100 group-hover:opacity-0" />
             <VscHeartFilled className="absolute top-0 right-0 transition-opacity duration-300 ease-in opacity-0 group-hover:opacity-100" />
-          </div>
+          </button>
         </div>
         <div className="content flex flex-col mt-[24px]">
           <h1 className="productcard__title font-medium text-sm inline-block max-w-[250px] overflow-hidden truncate">

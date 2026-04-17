@@ -18,6 +18,7 @@ model User {
   password String
   createdAt DateTime @default(now())
   cart Cart?
+  wishlist Wishlist?
 }
 
 model Cart {
@@ -40,6 +41,25 @@ model CartItem {
   color String
 }
 
+model Wishlist {
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  items WishlistItem[]
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model WishlistItem {
+  id Int @id @default(autoincrement())
+  wishlistId Int
+  wishList Wishlist @relation(fields: [wishlistId], references: [id])
+  productId Int
+  product Product @relation(fields: [productId], references: [id])
+  size String
+  color String
+}
+
 model Product {
   id Int @id @default(autoincrement())
   title String
@@ -51,4 +71,5 @@ model Product {
   description String
   inStock Boolean
   cartItems CartItem[]
+  wishlistItems WishlistItem[]
 }

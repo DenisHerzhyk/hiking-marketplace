@@ -1,23 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../../styles/main.scss";
-import CartItem from "../components/cart_item/UI/CartItem";
-import SavedItem from "../components/saved_item/UI/SavedItem";
-import { useLocation } from "react-router-dom";
+import CartItem from "../components/cart_item/UI/CartItem.tsx";
+import WishlistItem from "../components/saved_item/UI/SavedItem.tsx";
 import axios from "axios";
 import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
+import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
+import { AuthContext } from "../../login/context/authContext.tsx";
 
 const imgPath =
   "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
+  const [wishListItems, setWishListItems] = useState<WishlistItemInterface[]>(
+    [],
+  );
+  const ctxt = useContext(AuthContext);
+  if (!ctxt) throw new Error("AuthProvider missing");
+  const { authLogin } = ctxt;
 
   useEffect(() => {
     axios
       .get("http://localhost:4996/api/cart", { withCredentials: true })
       .then((res) => {
         setCartItems(res.data.data);
-        console.log("List", res.data.data);
+        console.log("cart: ", res.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    axios
+      .get("http://localhost:4996/api/wishlist", { withCredentials: true })
+      .then((res) => {
+        setWishListItems(res.data.data);
+        console.log("wishlist: ", res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -34,20 +51,29 @@ const Cart = () => {
         </section>
         <section className="content flex flex-col mt-[40px] tablet:flex-row gap-[40px] w-full tablet:w-auto justify-normal tablet:justify-between">
           <div className="w-full flex flex-col gap-[50px]">
-            <div className="cart-items flex flex-col gap-[100px] w-full">
-              {cartItems.map((item) => (
-                <CartItem
-                  key={item.id}
-                  id={item.id}
-                  cartId={item.cartId}
-                  productId={item.productId}
-                  product={item.product}
-                  quantity={item.quantity}
-                  size={item.size}
-                  color={item.color}
-                />
-              ))}
-            </div>
+            {authLogin && cartItems.length > 0 ? (
+              <div className="cart-items flex flex-col gap-[50px] w-full">
+                {cartItems.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    id={item.id}
+                    cartId={item.cartId}
+                    productId={item.productId}
+                    product={item.product}
+                    quantity={item.quantity}
+                    size={item.size}
+                    color={item.color}
+                  />
+                ))}
+              </div>
+            ) : !authLogin ? (
+              <p>
+                You are not authorized. Please login first and apply products to
+                the cart
+              </p>
+            ) : (
+              <p>Your cart is empty. Please add the products to the cart</p>
+            )}
             <div className="wishlist-content">
               <h2
                 className="border-b border-[var(--normal-gray)] mb-[40px] leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[15px]"
@@ -55,16 +81,23 @@ const Cart = () => {
               >
                 Wishlist{" "}
               </h2>
-              <SavedItem
-                img={imgPath}
-                title="Women's Canyonite Flannel Shirt"
-                price={139.0}
-                discount={0}
-                inStock={true}
-                category="WOMENS"
-                size="S"
-                color="WHITE"
-              />
+              {authLogin && wishListItems.length > 0 ? (
+                <div className="saved-items flex flex-col gap-[50px] w-full">
+                  {wishListItems.map((item) => (
+                    <WishlistItem
+                      key={item.id}
+                      id={item.id}
+                      wishlistId={item.wishlistId}
+                      productId={item.productId}
+                      product={item.product}
+                      size={item.size}
+                      color={item.color}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>Your wishlist is empty</p>
+              )}
             </div>
           </div>
           <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-[var(--normal-gray)] w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">

@@ -1,5 +1,5 @@
 import React from "react";
-import CartItemInterface from "../interface/CartItemInterface";
+import CartItemInterface from "../interface/CartItemInterface.ts";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";

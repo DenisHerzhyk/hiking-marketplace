@@ -42,10 +42,10 @@ const Header = () => {
                 >
                   <ul className="flex flex-col flex-wrap font-semibold text-lg w-full">
                     <Link
-                      to="/"
+                      to="/category/all"
                       className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray justify-left"
                     >
-                      HOME
+                      NEW
                       <IoIosArrowForward />
                     </Link>
                     <Link
@@ -86,7 +86,7 @@ const Header = () => {
             <nav className="navigation flex flex-1 justify-center">
               <ul className="hidden laptop:flex flex-row flex-wrap gap-6 font-semibold text-base">
                 <li className="center__nav-item">
-                  <Link to="/">HOME</Link>
+                  <Link to="/category/all">NEW</Link>
                 </li>
                 <li className="center__nav-item">
                   <Link to="/category/men">MENS</Link>

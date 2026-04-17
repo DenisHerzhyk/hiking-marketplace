@@ -14,13 +14,15 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 import axios from "axios";
 
+const trail_v =
+  "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
+const hiking_signup_v =
+  "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video.mp4";
+
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
-  const trail_v =
-    "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
-  const hiking_signup_v =
-    "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video.mp4";
+
   const location = useLocation();
   const isHome = location.pathname === "/";
   const cld = new Cloudinary({
@@ -125,7 +127,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
+            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
               {products
                 .filter((item) =>
                   ["jacket", "sweater", "hoodie"].includes(item.category),
@@ -167,7 +169,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
+            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
               {products
                 .filter((item) => item.category === "pants")
                 .slice(0, 5)
@@ -207,7 +209,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[15px]">
+            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
               {products
                 .filter((item) => item.category === "shoes")
                 .slice(0, 5)

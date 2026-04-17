@@ -27,7 +27,8 @@ const Category = () => {
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-4.jpg";
   const s_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-2.jpg";
-
+  const all_video =
+    "https://res.cloudinary.com/dlrft9pjb/video/upload/category_all.mp4";
   const sales_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-3.png";
   useEffect(() => {
@@ -41,7 +42,13 @@ const Category = () => {
   };
   ("");
 
-  const validateCategory: CategoryType[] = ["men", "women", "shoes", "deals"];
+  const validateCategory: CategoryType[] = [
+    "all",
+    "men",
+    "women",
+    "shoes",
+    "deals",
+  ];
   const category = validateCategory.includes(type as CategoryType)
     ? (type as CategoryType)
     : null;
@@ -58,28 +65,43 @@ const Category = () => {
   }
 
   const filteredProducts =
-    category === "men" || category === "women"
-      ? products.filter((item) => item.gender === category)
-      : products.filter((item) => item.category === category);
+    category === "all"
+      ? products
+      : category === "men" || category === "women"
+        ? products.filter((item) => item.gender === category)
+        : products.filter((item) => item.category === category);
 
   return (
     <>
       <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
         {category !== "deals" ? (
           <div className="main-category flex justify-center items-center h-[100dvh] relative">
-            <img
-              src={
-                category === "men"
-                  ? m_img
-                  : category === "women"
-                    ? w_img
-                    : category === "shoes"
-                      ? s_img
-                      : ""
-              }
-              alt="img"
-              className="rounded-md h-[600px] w-full object-cover object-center"
-            />
+            {category !== "all" ? (
+              <img
+                src={
+                  category === "men"
+                    ? m_img
+                    : category === "women"
+                      ? w_img
+                      : category === "shoes"
+                        ? s_img
+                        : ""
+                }
+                alt="img"
+                className="rounded-sm h-[700px] w-full object-cover object-center"
+              />
+            ) : (
+              <video
+                src={all_video}
+                preload="none"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="rounded-sm h-[700px] w-full object-cover object-top brightness-90"
+              />
+            )}
+
             <div className="absolute top-1/2 -translate-y-1/2 left-10">
               <h2 className="text-wrap font-semibold text-2xl tablet:text-4xl laptop:text-6xl text-white mb-[40px]">
                 Hiking gear made
@@ -146,10 +168,12 @@ const Category = () => {
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
               {category === "deals"
-                ? "deals"
+                ? "DEALS"
                 : category === "shoes"
-                  ? "shoes"
-                  : `${category}'s clothing`}
+                  ? "Shoes"
+                  : category === "all"
+                    ? "New"
+                    : `${category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()} Clothing`}
             </h1>
             <p className="font-light mobile:text-base text-[var(--light-gray)]">
               ({filteredProducts.length} results)
@@ -163,6 +187,7 @@ const Category = () => {
               >
                 ALL
               </Link>
+              <p>/</p>
               <Link
                 className={category === "men" ? "font-bold" : ""}
                 to="/category/men"
@@ -443,9 +468,9 @@ const Category = () => {
               </div>
             </div>
           </div>
-          <div className="products flex-1 w-full ">
+          <div className="products flex-1 w-full">
             {filteredProducts.length > 0 ? (
-              <div className="grid auto-cols-auto gap-10 [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
+              <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fit,minmax(270px,1fr))] justify-items-center">
                 {filteredProducts.map((item) => (
                   <MainProductCard
                     key={item.id}
