@@ -15,7 +15,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
 }) => {
   const handleSavedRemove = async () => {
     await axios
-      .delete(`http://localhost:4996/api/cart/remove/${productId}`, {
+      .delete(`http://localhost:4996/api/wishlist/remove/${productId}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -57,10 +57,12 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
               {product.category.toUpperCase()}/{size}/{color.toUpperCase()}
             </p>
           </div>
-          <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
-            <p className="text-sm leading-none">MOVE TO CART</p>
-            <GoMoveToTop className="w-[14px] h-[14px]" />
-          </div>
+          <button
+            className="flex flex-row text-gray-400 items-end justify-end text-base mt-[20px] gap-[8px] h-full focus:outline-none underline"
+            onClick={handleSavedRemove}
+          >
+            <p>Remove</p>
+          </button>
         </div>
       </div>
     </>

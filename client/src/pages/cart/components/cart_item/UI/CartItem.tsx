@@ -30,26 +30,29 @@ const CartItem: React.FC<CartItemInterface> = ({
   return (
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
-        <div className="nav-menu flex flex-col gap-[10px] w-[150px]">
+        <div className="nav-menu flex flex-col gap-[10px]">
           <img
-            className="cartitem__image object-cover object-center w-full flex-1 rounded-[2px]"
+            className="cartitem__image object-cover object-center w-[150px] flex-1 rounded-[2px]"
             src={product.productImages[0]}
             alt="img"
           />
-          <div className="product-amount flex flex-row font-medium text-sm h-[35px] w-full">
-            <button
-              onClick={handleDelete}
-              className="flex justify-center items-center border-2 border-[var(--normal-gray)] h-full  w-full"
+          <form className="product-amount flex flex-row font-medium text-sm border-b border-black w-auto self-start">
+            <select
+              name="sizes"
+              id="sizes"
+              className="focus:outline-none pr-4 pl-2 py-2"
             >
-              <FaRegTrashAlt />
-            </button>
-            <div className="flex justify-center items-center border-t-2 border-b-2 border-[var(--normal-gray)] h-full w-full">
-              1
-            </div>
-            <div className="flex justify-center items-center border-2 border-[var(--normal-gray)] h-full w-full">
-              <FaPlus />
-            </div>
-          </div>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </form>
         </div>
         <div className="flex flex-col w-full justify-between">
           <div className="cartitem__content flex flex-col w-full">
@@ -72,6 +75,10 @@ const CartItem: React.FC<CartItemInterface> = ({
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
             <p className="text-sm leading-none">SAVE FOR LATER</p>
             <FaRegHeart className="w-[14px] h-[14px]" />
+            <FaRegTrashAlt
+              className="w-[14px] h-[14px] cursor-pointer"
+              onClick={handleDelete}
+            />
           </div>
         </div>
       </div>

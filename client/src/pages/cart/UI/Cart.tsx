@@ -44,6 +44,12 @@ const Cart = () => {
     console.log("current cartItems:", cartItems);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
+
+  const handleWishlistItemDelete = (id: Number) => {
+    console.log("handleDelete called with id:", id);
+    console.log("current wishlistItem:", wishListItems);
+    setWishListItems((prev) => prev.filter((item) => item.id !== id));
+  };
   return (
     <>
       <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[200px]">
@@ -96,6 +102,7 @@ const Cart = () => {
                       product={item.product}
                       size={item.size}
                       color={item.color}
+                      onDelete={handleWishlistItemDelete}
                     />
                   ))}
                 </div>
