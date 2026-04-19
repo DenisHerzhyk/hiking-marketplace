@@ -8,6 +8,7 @@ interface CartItemInterface {
   quantity: number;
   size: string;
   color: string;
+  onDelete: (id: Number) => void;
 }
 
 export default CartItemInterface;

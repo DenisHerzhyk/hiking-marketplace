@@ -7,6 +7,7 @@ interface WishlistItemInterface {
   product: ProductInterface;
   size: string;
   color: string;
+  onDelete: (id: Number) => void;
 }
 
 export default WishlistItemInterface;

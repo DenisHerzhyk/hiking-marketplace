@@ -24,7 +24,6 @@ const Cart = () => {
       .get("http://localhost:4996/api/cart", { withCredentials: true })
       .then((res) => {
         setCartItems(res.data.data);
-        console.log("cart: ", res.data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -34,13 +33,17 @@ const Cart = () => {
       .get("http://localhost:4996/api/wishlist", { withCredentials: true })
       .then((res) => {
         setWishListItems(res.data.data);
-        console.log("wishlist: ", res.data.data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
+  const handleItemDelete = (id: Number) => {
+    console.log("handleDelete called with id:", id);
+    console.log("current cartItems:", cartItems);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
   return (
     <>
       <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[200px]">
@@ -63,6 +66,7 @@ const Cart = () => {
                     quantity={item.quantity}
                     size={item.size}
                     color={item.color}
+                    onDelete={handleItemDelete}
                   />
                 ))}
               </div>
