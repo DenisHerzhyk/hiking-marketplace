@@ -2,8 +2,7 @@ import React from "react";
 import CartItemInterface from "../interface/CartItemInterface.ts";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
-import axios from "axios";
+import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
 
 const CartItem: React.FC<CartItemInterface> = ({
   id,
@@ -15,18 +14,6 @@ const CartItem: React.FC<CartItemInterface> = ({
   color,
   onDelete,
 }) => {
-  const handleDelete = async () => {
-    await axios
-      .delete(`http://localhost:4996/api/cart/remove/${productId}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        onDelete(id);
-      })
-      .catch((err) =>
-        console.error("Error. Item was not deleted: ", err.message),
-      );
-  };
   return (
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
@@ -73,11 +60,14 @@ const CartItem: React.FC<CartItemInterface> = ({
             </p>
           </div>
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
-            <p className="text-sm leading-none">SAVE FOR LATER</p>
-            <FaRegHeart className="w-[14px] h-[14px]" />
+            <button className="flex flex-row gap-[8px] focus:outline-none">
+              <p className="text-sm leading-none">SAVE FOR LATER</p>
+              <FaRegHeart className="w-[14px] h-[14px]" />
+            </button>
+
             <FaRegTrashAlt
               className="w-[14px] h-[14px] cursor-pointer"
-              onClick={handleDelete}
+              onClick={() => handleCartItemDelete(productId, id, onDelete)}
             />
           </div>
         </div>

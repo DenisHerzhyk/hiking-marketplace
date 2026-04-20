@@ -1,11 +1,10 @@
 import React from "react";
 import ProductCardInterface from "../interface/ProductCardInterface";
-import "../../../../styles/main.scss";
 import { VscHeart } from "react-icons/vsc";
 import { VscHeartFilled } from "react-icons/vsc";
 import { FaP, FaPlus } from "react-icons/fa6";
-import axios from "axios";
-import { quality } from "@cloudinary/url-gen/actions/delivery";
+import { handleCartItemAdd } from "../../../../pages/cart/components/cart_item/handlers/handleCartItemAdd.js";
+import { handleWishlistAdd } from "../../../../pages/cart/components/saved_item/handlers/handleWishlistAdd.js";
 
 const MainProductCard = ({
   id,
@@ -14,33 +13,6 @@ const MainProductCard = ({
   price,
   size,
 }: ProductCardInterface) => {
-  const handleCartAdd = async () => {
-    await axios
-      .post(
-        `http://localhost:4996/api/cart/add/${id}`,
-        {
-          quantity: 1,
-          size: size,
-          color: "green",
-        },
-        { withCredentials: true },
-      )
-      .then((res) => console.log("Item was added. Check the cart"))
-      .catch((err) => console.error(err));
-  };
-  const handleWishlistAdd = async () => {
-    await axios
-      .post(
-        `http://localhost:4996/api/wishlist/add/${id}`,
-        {
-          size: size,
-          color: "green",
-        },
-        { withCredentials: true },
-      )
-      .then((res) => console.log("Item was added. Check the wishlist"))
-      .catch((err) => console.log(err));
-  };
   return (
     <>
       <div
@@ -58,7 +30,9 @@ const MainProductCard = ({
           </p>
           <button
             className="absolute top-2 right-2 z-10 text-3xl group/save cursor-pointer"
-            onClick={handleWishlistAdd}
+            onClick={() => {
+              handleWishlistAdd(id, size);
+            }}
           >
             <VscHeart className="transition-opacity duration-300 ease-in opacity-100 group-hover:opacity-0" />
             <VscHeartFilled className="absolute top-0 right-0 transition-opacity duration-300 ease-in opacity-0 group-hover:opacity-100" />
@@ -73,7 +47,9 @@ const MainProductCard = ({
           </p>
           <button
             className="mt-[10px] flex flex-row w-fit gap-[3px] items-center py-[6px] px-[18px] border border-black bg-white hover:bg-black text-black hover:text-white transition-all duration-300 ease-out rounded-full"
-            onClick={handleCartAdd}
+            onClick={() => {
+              handleCartItemAdd(id, size);
+            }}
           >
             <FaPlus className="text-sm" />
             <span className="text-sm text-nowrap">Add</span>

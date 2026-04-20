@@ -479,9 +479,13 @@ const Category = () => {
                     title={item.title.toUpperCase()}
                     price={item.price}
                     size={
-                      item.availableSizes[
-                        Math.floor(Math.random() * item.availableSizes.length)
-                      ]
+                      item.availableSizes?.length > 0
+                        ? item.availableSizes[
+                            Math.floor(
+                              Math.random() * item.availableSizes.length,
+                            )
+                          ]
+                        : "M"
                     }
                   />
                 ))}

@@ -2,7 +2,8 @@ import React from "react";
 import WishlistItemInterface from "../interface/SavedItemInterface";
 import { GoMoveToTop } from "react-icons/go";
 import { FaRegTrashAlt } from "react-icons/fa";
-import axios from "axios";
+import { handleWishlistRemove } from "../handlers/handleWishlistRemove.ts";
+import { handleMoveToCart } from "../handlers/handleMoveToCart.ts";
 
 const WishlistItem: React.FC<WishlistItemInterface> = ({
   id,
@@ -12,32 +13,23 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
   size,
   color,
   onDelete,
+  onCartAdd,
 }) => {
-  const handleSavedRemove = async () => {
-    await axios
-      .delete(`http://localhost:4996/api/wishlist/remove/${productId}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        onDelete(id);
-      })
-      .catch((err) =>
-        console.error("Error. Item was not deleted: ", err.message),
-      );
-  };
   return (
     <>
       <div className="SavedItem flex flex-row gap-[30px] items-stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
-        <div className="nav-menu flex flex-col gap-[10px] w-[150px] relative group">
+        <div className="nav-menu flex flex-col gap-[20px] min-w-[100px] w-[150px] relative">
           <img
             className="cartitem__image object-cover object-center w-full flex-1 rounded-[2px]"
             src={product.productImages[0]}
             alt="img"
           />
-          <FaRegTrashAlt
-            onClick={handleSavedRemove}
-            className="absolute z-10 text-[45px] opacity-0 group-hover:opacity-100 transition delay-75 duration-200 ease-in text-red-500 bg-white border border-gray rounded-sm p-3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          />
+          <button
+            onClick={() => handleMoveToCart(productId, id, onDelete, onCartAdd)}
+            className="w-full min-w-[90px] border border-black hover:text-white hover:bg-black transition-all duration-300 ease-in-out rounded-full py-4 text-sm tablet:text-[15px] whitespace-nowrap"
+          >
+            Add to Cart
+          </button>
         </div>
         <div className="flex flex-col w-full justify-between">
           <div className="cartitem__content flex flex-col w-full">
@@ -59,7 +51,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
           </div>
           <button
             className="flex flex-row text-gray-400 items-end justify-end text-base mt-[20px] gap-[8px] h-full focus:outline-none underline"
-            onClick={handleSavedRemove}
+            onClick={() => handleWishlistRemove(productId, id, onDelete)}
           >
             <p>Remove</p>
           </button>

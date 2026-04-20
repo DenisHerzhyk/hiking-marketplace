@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../../styles/main.scss";
 import CartItem from "../components/cart_item/UI/CartItem.tsx";
 import WishlistItem from "../components/saved_item/UI/SavedItem.tsx";
 import axios from "axios";
@@ -39,16 +38,20 @@ const Cart = () => {
       });
   }, []);
 
-  const handleItemDelete = (id: Number) => {
+  const handleItemDelete = (id: number) => {
     console.log("handleDelete called with id:", id);
     console.log("current cartItems:", cartItems);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleWishlistItemDelete = (id: Number) => {
+  const handleWishlistItemDelete = (id: number) => {
     console.log("handleDelete called with id:", id);
     console.log("current wishlistItem:", wishListItems);
     setWishListItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleCartAdd = (item: CartItemInterface) => {
+    setCartItems((prev) => [...prev, item]);
   };
   return (
     <>
@@ -84,14 +87,15 @@ const Cart = () => {
             ) : (
               <p>Your cart is empty. Please add the products to the cart</p>
             )}
-            <div className="wishlist-content">
-              <h2
-                className="border-b border-[var(--normal-gray)] mb-[40px] leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[15px]"
-                id="favorite"
-              >
-                Wishlist{" "}
-              </h2>
-              {authLogin && wishListItems.length > 0 ? (
+            {authLogin && wishListItems.length > 0 && (
+              <div className="wishlist-content">
+                <h2
+                  className="border-b border-[var(--normal-gray)] mb-[40px] leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[15px]"
+                  id="favorite"
+                >
+                  Wishlist{" "}
+                </h2>
+
                 <div className="saved-items flex flex-col gap-[50px] w-full">
                   {wishListItems.map((item) => (
                     <WishlistItem
@@ -103,13 +107,12 @@ const Cart = () => {
                       size={item.size}
                       color={item.color}
                       onDelete={handleWishlistItemDelete}
+                      onCartAdd={handleCartAdd}
                     />
                   ))}
                 </div>
-              ) : (
-                <p>Your wishlist is empty</p>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-[var(--normal-gray)] w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
             <h3 className="font-medium text-sm mobile:text-base mb-[17px]">
