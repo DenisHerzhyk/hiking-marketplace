@@ -3,6 +3,8 @@ import CartItemInterface from "../interface/CartItemInterface.ts";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
+import { handleWishlistAdd } from "../../saved_item/handlers/handleWishlistAdd.ts";
+import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
 
 const CartItem: React.FC<CartItemInterface> = ({
   id,
@@ -13,6 +15,7 @@ const CartItem: React.FC<CartItemInterface> = ({
   size,
   color,
   onDelete,
+  onWishlistAdd,
 }) => {
   return (
     <>
@@ -60,7 +63,12 @@ const CartItem: React.FC<CartItemInterface> = ({
             </p>
           </div>
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
-            <button className="flex flex-row gap-[8px] focus:outline-none">
+            <button
+              onClick={() =>
+                handleMoveToWishlist(productId, id, onDelete, onWishlistAdd)
+              }
+              className="flex flex-row gap-[8px] focus:outline-none"
+            >
               <p className="text-sm leading-none">SAVE FOR LATER</p>
               <FaRegHeart className="w-[14px] h-[14px]" />
             </button>

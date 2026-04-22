@@ -53,6 +53,10 @@ const Cart = () => {
   const handleCartAdd = (item: CartItemInterface) => {
     setCartItems((prev) => [...prev, item]);
   };
+
+  const handleWishlistAdd = (item: WishlistItemInterface) => {
+    setWishListItems((prev) => [...prev, item]);
+  };
   return (
     <>
       <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[200px]">
@@ -76,6 +80,7 @@ const Cart = () => {
                     size={item.size}
                     color={item.color}
                     onDelete={handleItemDelete}
+                    onWishlistAdd={handleWishlistAdd}
                   />
                 ))}
               </div>
