@@ -7,7 +7,6 @@ import { FaHeart } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
-import "../../../styles/main.scss";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../pages/login/context/authContext";
 

@@ -1,6 +1,5 @@
-import React, { createContext, useContext } from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import IProtected from "../interface/ProtectedInterface.ts";
+import React, { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
 
 const ProtectedRoute = () => {

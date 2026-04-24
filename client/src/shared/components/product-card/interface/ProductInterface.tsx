@@ -5,6 +5,11 @@ export interface ProductInterface {
   availableSizes: string[];
   category: string;
   gender: string;
+  fit: string;
+  sizeGuide:
+    | { modelHeightCm: number; modelHeightFeet: string; modelWears: string }
+    | undefined;
+  details: { label: string; value: string }[] | undefined;
   productImages: string[];
   description: string;
   inStock: boolean;

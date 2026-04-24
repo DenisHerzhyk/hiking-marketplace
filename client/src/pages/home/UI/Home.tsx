@@ -32,9 +32,12 @@ const Home = () => {
   });
 
   useEffect(() => {
-    axios("http://localhost:4996/api/products").then((res) =>
-      setProducts(res.data.data),
-    );
+    axios
+      .get("http://localhost:4996/api/products")
+      .then((res) => setProducts(res.data.data))
+      .catch((err) => {
+        console.error(err);
+      });
 
     fetch("/json/main-categories.json")
       .then((res) => res.json())
@@ -137,14 +140,17 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
-                    size={
-                      item.availableSizes[
-                        Math.floor(Math.random() * item.availableSizes.length)
-                      ]
-                    }
+                    availableSizes={item.availableSizes}
+                    category={item.category}
+                    gender={item.gender}
+                    fit={item.fit}
+                    sizeGuide={item.sizeGuide}
+                    details={item.details}
+                    productImages={item.productImages}
+                    description={item.description}
+                    inStock={item.inStock}
                   />
                 ))}
             </div>
@@ -177,14 +183,17 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
-                    size={
-                      item.availableSizes[
-                        Math.floor(Math.random() * item.availableSizes.length)
-                      ]
-                    }
+                    availableSizes={item.availableSizes}
+                    category={item.category}
+                    gender={item.gender}
+                    fit={item.fit}
+                    sizeGuide={item.sizeGuide}
+                    details={item.details}
+                    productImages={item.productImages}
+                    description={item.description}
+                    inStock={item.inStock}
                   />
                 ))}
             </div>
@@ -217,18 +226,17 @@ const Home = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
-                    size={
-                      item.availableSizes?.length > 0
-                        ? item.availableSizes[
-                            Math.floor(
-                              Math.random() * item.availableSizes.length,
-                            )
-                          ]
-                        : "M"
-                    }
+                    availableSizes={item.availableSizes}
+                    category={item.category}
+                    gender={item.gender}
+                    fit={item.fit}
+                    sizeGuide={item.sizeGuide}
+                    details={item.details}
+                    productImages={item.productImages}
+                    description={item.description}
+                    inStock={item.inStock}
                   />
                 ))}
             </div>
@@ -294,7 +302,7 @@ const Home = () => {
               rate={4.5}
             />
             <div className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center">
-              <h2 className="text-[22px]">Show more</h2>
+              <h2 className="xt-[22px]">Show more</h2>
               <IoArrowForwardOutline className="text-[22px]" />
             </div>
           </div>

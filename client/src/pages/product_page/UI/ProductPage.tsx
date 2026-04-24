@@ -1,157 +1,324 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Benefits from "../../../shared/benefits/UI/Benefits";
-import ProductPageInterface from "../interface/ProductPageInterface";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
-import "../../../styles/main.scss";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import ProductCardInterface from "../../../shared/components/product-card/interface/ProductCardInterface";
+import { Link } from "react-router-dom";
+import { handleWishlistAdd } from "../../cart/components/saved_item/handlers/handleWishlistAdd";
+import { handleCartItemAdd } from "../../cart/components/cart_item/handlers/handleCartItemAdd";
 
-const ProductPage: React.FC<ProductPageInterface> = ({
-  img,
-  category,
-  type,
-  title,
-  price,
-  availabe_sizes,
-  description,
-}) => {
+type Section = "description" | "details" | "sizeGuide" | "delivery_return";
+
+const ProductPage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState<ProductCardInterface>();
+  const [openSections, setOpenSections] = useState<Record<Section, boolean>>({
+    description: true,
+    details: false,
+    sizeGuide: false,
+    delivery_return: false,
+  });
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4996/api/products/${id}`)
+      .then((res) => {
+        const data = res.data.data;
+        setProduct({
+          ...data,
+          details:
+            typeof data.details === "string"
+              ? JSON.parse(data.details)
+              : data.details,
+          sizeGuide:
+            typeof data.sizeGuide === "string"
+              ? JSON.parse(data.sizeGuide)
+              : data.sizeGuide,
+        });
+      })
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  const toggleSection = (section: Section) => {
+    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
   return (
     <>
-      <div className="product-page flex flex-col px-[var(--mobile-x-padding)]">
-        <section className="product-main flex items-center justify-center py-[calc[100vh-103.4px]] tablet:h-[calc(100vh-122.6px)]">
-          <div className="flex flex-col justify-center tablet:flex-row gap-[22px] mobile:gap-[30px] laptop:gap-[150.2px]">
-            <img
-              src={img}
-              alt="img"
-              className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[600px] laptop:h-[600px] object-cover"
-            />
-            <div className="product-content flex flex-col flex-wrap">
-              <nav className="category-nav">
-                <ul className="flex flex-row gap-[5px] font-light text-xs mb-[9px] mobile:mb-[11px]">
-                  <li>ALL</li>
+      <div
+        className="product-page flex flex-col 
+   px-[20px] 
+  mobile:px-[60px] 
+  tablet:px-[80px] 
+  laptop:px-[200px]"
+      >
+        {" "}
+        <section className="product-main relative w-full mt-[100px] tablet:mt-[150px]">
+          <div className="flex flex-col tablet:flex-row gap-[40px] w-full">
+            <div className="grid grid-cols-1 laptop:grid-cols-2 gap-[10px] tablet:w-[60%]">
+              {product?.productImages.map((img, i) => (
+                <div
+                  key={i}
+                  className={`overflow-hidden ${i !== 1 ? "hidden tablet:block" : ""}`}
+                >
+                  <img
+                    key={i}
+                    src={img}
+                    alt="img"
+                    className="w-full h-full tablet:h-full laptop:h-[400px] object-cover transition-transform duration-500 ease-in-out hover:scale-105 cursor-zoom-in"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="product-content flex flex-col w-full tablet:w-[40%] tablet:sticky tablet:top-[120px] tablet:self-start">
+              <nav className="category-nav flex items-center mb-[16px]">
+                <ul className="flex flex-row gap-[5px] font-light text-xs text-gray-600">
+                  <Link
+                    className={product?.gender === "men" ? "font-bold" : ""}
+                    to="/category/men"
+                  >
+                    MENS
+                  </Link>
                   <p>/</p>
-                  <li>MENS</li>
+                  <Link
+                    className={product?.gender === "women" ? "font-bold" : ""}
+                    to="/category/women"
+                  >
+                    WOMEN
+                  </Link>
                   <p>/</p>
-                  <li className="font-bold">WOMENS</li>
-                  <p>/</p>
-                  <li>BOOTS</li>
-                  <p>/</p>
-                  <li>DEALS</li>
+                  <Link
+                    className={product?.category === "shoes" ? "font-bold" : ""}
+                    to="/category/shoes"
+                  >
+                    SHOES
+                  </Link>
                 </ul>
               </nav>
-              <div className="flex flex-col mobile:flex-row tablet:flex-col mobile:justify-between tablet:justify-start">
-                <h1 className="product-content__title text-wrap text-base mobile:text-lg tablet:text-[24px] font-semibold mb-[10px] mobile:mb-0 tablet:mb-[18px]">
-                  {title.toUpperCase()}
-                </h1>
-                <p className="product-page__pric text-base mb-[15px] mobile:[25px] tablet:mb-[35px]">
-                  ${price}
-                </p>
-              </div>
+
+              <h1 className="text-xl mobile:text-2xl tablet:text-[28px] font-semibold mb-[8px]">
+                {product?.title.toUpperCase()}
+              </h1>
+              <p className="text-xl mb-[24px]">${product?.price}</p>
 
               <div className="sizes">
-                <h2 className="sizes__title text-sm mb-[11px] mobile:mb-[10px]">
-                  SIZE
-                </h2>
-                <form action="">
-                  <div className="size-blocks flex flex-row justify-between w-[150px] mobile:w-[190px] tablet:w-[230px] mb-[24px] tablet:mb-[45px]">
-                    {availabe_sizes.map((item) => (
-                      <p className="font-medium text-sm border border-black mobile:text-base flex items-center justify-center w-[30px] h-[30px] mobile:w-[40px] mobile:h-[40px]">
-                        {item}
-                      </p>
+                <h2 className="text-sm mb-[11px] text-gray-500">SIZE</h2>
+                <div className="size-blocks grid grid-cols-4 gap-2 mb-[24px]">
+                  {product?.availableSizes.map((item) => (
+                    <button
+                      key={item}
+                      className="font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center h-[44px] transition-colors duration-200"
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+                <div className="colors mb-[50px]">
+                  <h2 className="text-sm mb-[11px] text-gray-500">
+                    COLOR
+                    <br />
+                    <span className="text-black font-medium">Black</span>
+                  </h2>
+                  <div className="flex flex-row flex-wrap gap-2">
+                    {[
+                      "#1a1a1a",
+                      "#8B6914",
+                      "#1a2b4a",
+                      "#9ca3af",
+                      "#2d5a27",
+                      "#c0392b",
+                    ].map((color) => (
+                      <button
+                        key={color}
+                        style={{ backgroundColor: color }}
+                        className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+                      />
                     ))}
                   </div>
-                  <button className="product-page__button-buy font-semibold mobile:text-lg w-full h-[40px] mobile:h-[50px] mobile:w-[190px] tablet:w-[230px] bg-[var(--secondary-color)] mb-[10px] mobile:mb-[20px]">
-                    ADD TO CART
-                  </button>
-                </form>
-                <section className="buttons-section">
-                  <button className="product-page__button-size-guide text-sm border border-black w-full h-[30px] mobile:h-[40px] mobile:w-[190px] tablet:w-[230px] mb-[9px]">
-                    SIZE GUIDE
-                  </button>
-                  <p className="text-[8px] mobile:text-[10px] text-center mobile:text-justify">
-                    FAST AND SECURE GLOBAL SHIPPING
+                </div>
+
+                <button
+                  onClick={() =>
+                    product?.id &&
+                    handleCartItemAdd(product.id, product.availableSizes[0])
+                  }
+                  className="text-white uppercase bg-black w-full text-sm mobile:text-[18px] font-semibold px-[20px] py-[8px] mobile:px-[30px] mobile:py-[17px] mb-[10px] hover:bg-gray-800 transition-colors duration-200"
+                >
+                  Add to cart
+                </button>
+                <button
+                  onClick={() => {
+                    product?.id &&
+                      handleWishlistAdd(product.id, product?.availableSizes[0]);
+                  }}
+                  className="text-sm border uppercase border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Save to favorite{" "}
+                </button>
+                <button className="text-sm border border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200">
+                  SIZE GUIDE
+                </button>
+
+                <p className="text-[10px] text-center text-gray-500">
+                  FAST AND SECURE GLOBAL SHIPPING
+                </p>
+              </div>
+              <div className="w-full max-w-full mt-[100px] tablet:max-w-[440px]">
+                <div className="description flex flex-col py-[9px] border-b border-black">
+                  <div className="flex flex-row justify-between mb-[7px] items-center pr-[14px]">
+                    <h3 className="text-xs mobile:text-sm">DESCRIPTION</h3>
+                    <div
+                      onClick={() => toggleSection("description")}
+                      className="cursor-pointer"
+                    >
+                      {openSections.description ? (
+                        <FaMinus className="w-[10px] transition-all ease-out" />
+                      ) : (
+                        <FaPlus className="w-[10px] transition-all ease-out" />
+                      )}
+                    </div>
+                  </div>
+                  <p
+                    className={`text-[10px] mobile:text-xs ${openSections.description ? "flex" : "hidden"} uppercase break-words tracking-wider`}
+                  >
+                    {product?.description}
                   </p>
-                </section>
+                </div>
+                <div className="details flex flex-col py-[9px] border-b border-black">
+                  <div className="flex flex-row justify-between items-center pr-[14px]">
+                    <h3 className="text-xs mobile:text-sm">DETAILS</h3>
+                    <div
+                      onClick={() => toggleSection("details")}
+                      className="cursor-pointer"
+                    >
+                      {openSections.details ? (
+                        <FaMinus className="w-[10px]" />
+                      ) : (
+                        <FaPlus className="w-[10px]" />
+                      )}
+                    </div>
+                  </div>
+                  <ul
+                    className={`text-[10px] mobile:text-xs ${openSections.details ? "flex flex-col gap-[6px]" : "hidden"} uppercase break-words tracking-wider mt-[8px]`}
+                  >
+                    {(
+                      product?.details as { label: string; value: string }[]
+                    )?.map((detail) => (
+                      <li
+                        key={detail.label}
+                        className="flex flex-row gap-[6px]"
+                      >
+                        <span className="font-medium">{detail.label}:</span>
+                        <span className="text-gray-500">{detail.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="size_fit flex flex-col py-[9px] border-b border-black">
+                  <div className="flex flex-row justify-between items-center pr-[14px]">
+                    <h3 className="text-xs mobile:text-sm">SIZE & FIT</h3>
+                    <div
+                      onClick={() => toggleSection("sizeGuide")}
+                      className="cursor-pointer"
+                    >
+                      {openSections.sizeGuide ? (
+                        <FaMinus className="w-[10px]" />
+                      ) : (
+                        <FaPlus className="w-[10px]" />
+                      )}
+                    </div>
+                  </div>
+                  <ul
+                    className={`text-[10px] mobile:text-xs ${openSections.sizeGuide ? "flex" : "hidden"} uppercase break-words tracking-wider`}
+                  >
+                    <div className="flex flex-col gap-[6px] text-[10px] mobile:text-xs mt-[8px]">
+                      <p>
+                        <span className="font-medium">Model Height:</span>{" "}
+                        <span className="text-gray-500">
+                          {product?.sizeGuide?.modelHeightFeet} (
+                          {product?.sizeGuide?.modelHeightCm}cm)
+                        </span>
+                      </p>
+                      <p>
+                        <span className="font-medium">Model Wears:</span>{" "}
+                        <span className="text-gray-500">
+                          Size {product?.sizeGuide?.modelWears}
+                        </span>
+                      </p>
+                    </div>
+                  </ul>
+                </div>
+                <div className="delivery_return flex flex-col py-[9px] border-b border-black">
+                  <div className="flex flex-row justify-between items-center pr-[14px]">
+                    <button
+                      onClick={() => toggleSection("delivery_return")}
+                      className="text-xs mobile:text-sm"
+                    >
+                      DELIVERY & RETURN
+                    </button>
+                    {openSections.delivery_return && (
+                      <div
+                        className="fixed inset-0 bg-black/50 z-40"
+                        onClick={() => toggleSection("delivery_return")}
+                      />
+                    )}
+                    <div
+                      className={`${openSections.delivery_return ? "flex flex-col opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity duration-300 ease-in-out z-50 gap-[30px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md
+  w-[95%] max-w-[600px] 
+  p-[20px] mobile:p-[30px] tablet:p-[40px]
+  max-h-[85vh] overflow-y-auto`}
+                    >
+                      <button
+                        onClick={() => toggleSection("delivery_return")}
+                        className="self-end text-gray-400 hover:text-black text-xl leading-none"
+                      >
+                        ✕
+                      </button>
+                      <div>
+                        <h3 className="font-semibold text-sm mobile:text-base mb-2">
+                          Free Ground Shipping on Orders over $99*
+                        </h3>
+                        <p className="text-xs mobile:text-sm text-gray-600">
+                          We do our best to process and ship orders within 1-2
+                          business days. Please keep in mind that we get
+                          backlogged during sales or the holiday season and it
+                          could take longer. If you have any questions about
+                          your order, please contact our friendly Customer
+                          Service team.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-sm mobile:text-base mb-2">
+                          Returns & Exchanges
+                        </h3>
+                        <p className="text-xs mobile:text-sm text-gray-600">
+                          We accept both current season and sale items for
+                          return or exchange. We do not set a time limit on
+                          returns, though we ask that returns for fit or color
+                          be made in a timely manner and that items be kept in
+                          new condition with tags attached.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-sm mobile:text-base mb-2">
+                          We Guarantee Everything We Make
+                        </h3>
+                        <p className="text-xs mobile:text-sm text-gray-600">
+                          If you are not satisfied with one of our products at
+                          the time you receive it, or if one of our products
+                          does not perform to your satisfaction, our Ironclad
+                          Guarantee allows you to return it for a replacement or
+                          refund at no charge.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
-        <section className="product-parameters flex flex-col justify-center gap-[10px]">
-          <section className="grid grid-cols-1 tablet:grid-cols-2 justify-items-center tablet:justify-items-start gap-[50px] tablet:gap-[18px] laptop:gap-0 w-full mobile:w-auto max-w-[450px] tablet:max-w-[918px] laptop:max-w-[1188px] mx-auto">
-            <div className="w-full max-w-full tablet:max-w-[440px]">
-              <div className="description flex flex-col py-[9px] border-b border-black">
-                <div className="flex flex-row justify-between mb-[7px] items-center pr-[14px]">
-                  <h3 className="text-xs mobile:text-sm">DESCRIPTION</h3>
-                  <FaMinus className="w-[8px]" />
-                </div>
-                <p className="text-[10px] mobile:text-xs uppercase break-words tracking-wider">
-                  Eleven years after its initial introduction, we reintroduce
-                  our classic Low Top in the shape of the Low Top Bianco. The
-                  Low Top Bianco features perforated side panels, new eye stays
-                  with white eyelets and the signature padded heel. A premium
-                  classic reinvented, the Low Top Bianco still has the
-                  recognizable elongated tongue and upper while standing on our
-                  striking Fundament Bicolor outsole.
-                </p>
-              </div>
-              <div className="details flex flex-col py-[9px] border-b border-black">
-                <div className="flex flex-row justify-between items-center pr-[14px]">
-                  <h3 className="text-xs mobile:text-sm">DETAILS</h3>
-                  <FaPlus className="w-[8px] h-[8px]" />
-                </div>
-              </div>
-              <div className="size_fit flex flex-col py-[9px] border-b border-black">
-                <div className="flex flex-row justify-between items-center pr-[14px]">
-                  <h3 className="text-xs mobile:text-sm">SIZE & FIT</h3>
-                  <FaPlus className="w-[8px] h-[8px]" />
-                </div>
-              </div>
-              <div className="delivery_return flex flex-col py-[9px] border-b border-black">
-                <div className="flex flex-row justify-between items-center pr-[14px]">
-                  <h3 className="text-xs mobile:text-sm">DELIVERY & RETURN</h3>
-                  <FaPlus className="w-[8px] h-[8px]" />
-                </div>
-              </div>
-            </div>
-            <div className="photo-1 flex justify-center max-w-[320px] mobile:max-w-[450px] laptop:max-w-[600px]">
-              <img
-                src={img}
-                alt="img"
-                className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[600px] laptop:h-[600px] object-cover"
-              />
-            </div>
-          </section>
-          <section className="grid grid-cols-1 tablet:grid-cols-2 justify-items-center tablet:justify-items-start gap-[10px] tablet:gap-[18px] laptop:gap-0 w-full mobile:w-auto max-w-[450px] tablet:max-w-[918px] laptop:max-w-[1188px] mx-auto">
-            <div className="photo-2 flex justify-center max-w-[320px] mobile:max-w-[450px] laptop:max-w-[578px]">
-              <img
-                src={img}
-                alt="img"
-                className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[578px] laptop:h-[600px] object-cover"
-              />
-            </div>
-            <div className="photo-3 flex justify-center max-w-[320px] mobile:max-w-[450px] laptop:max-w-[600px]">
-              <img
-                src={img}
-                alt="img"
-                className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[600px] laptop:h-[600px] object-cover"
-              />
-            </div>
-          </section>
-          <section className="grid grid-cols-1 tablet:grid-cols-2 justify-items-center tablet:justify-items-start gap-[10px] tablet:gap-[18px] laptop:gap-0 w-full mobile:w-auto max-w-[450px] tablet:max-w-[918px] laptop:max-w-[1188px] mx-auto">
-            <div className="photo-2 flex justify-center max-w-[320px] mobile:max-w-[450px] laptop:max-w-[578px]">
-              <img
-                src={img}
-                alt="img"
-                className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[578px] laptop:h-[600px] object-cover"
-              />
-            </div>
-            <div className="photo-3 flex justify-center max-w-[320px] mobile:max-w-[450px] laptop:max-w-[600px]">
-              <img
-                src={img}
-                alt="img"
-                className="w-[320px] h-[320px] mobile:w-[450px] mobile:h-[450px] laptop:w-[600px] laptop:h-[600px] object-cover"
-              />
-            </div>
-          </section>
         </section>
       </div>
       <Benefits />

@@ -475,18 +475,17 @@ const Category = () => {
                   <MainProductCard
                     key={item.id}
                     id={item.id}
-                    img={item.productImages[0]}
                     title={item.title.toUpperCase()}
                     price={item.price}
-                    size={
-                      item.availableSizes?.length > 0
-                        ? item.availableSizes[
-                            Math.floor(
-                              Math.random() * item.availableSizes.length,
-                            )
-                          ]
-                        : "M"
-                    }
+                    availableSizes={item.availableSizes}
+                    category={item.category}
+                    gender={item.gender}
+                    fit={item.fit}
+                    sizeGuide={item.sizeGuide}
+                    details={item.details}
+                    productImages={item.productImages}
+                    description={item.description}
+                    inStock={item.inStock}
                   />
                 ))}
               </div>

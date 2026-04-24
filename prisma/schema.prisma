@@ -67,6 +67,9 @@ model Product {
   availableSizes String[]
   category String
   gender String
+  fit String
+  sizeGuide Json
+  details Json
   productImages String[]
   description String
   inStock Boolean

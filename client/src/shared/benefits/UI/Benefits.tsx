@@ -2,7 +2,6 @@ import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { CiDiscount1 } from "react-icons/ci";
-import "../../../styles/main.scss";
 
 const Benefits = () => {
   return (

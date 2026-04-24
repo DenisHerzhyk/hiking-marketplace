@@ -1,9 +1,18 @@
 interface ProductCardInterface {
   id: number;
-  img: string;
   title: string;
   price: number;
-  size: string;
+  availableSizes: string[];
+  category: string;
+  gender: string;
+  fit: string;
+  sizeGuide:
+    | { modelHeightCm: number; modelHeightFeet: string; modelWears: string }
+    | undefined;
+  details: { label: string; value: string }[] | undefined;
+  productImages: string[];
+  description: string;
+  inStock: boolean;
 }
 
 export default ProductCardInterface;

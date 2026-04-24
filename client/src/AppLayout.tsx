@@ -42,20 +42,7 @@ const AppLayout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
-        <Route
-          path="/product"
-          element={
-            <ProductPage
-              img="/images/tops/1_1.webp"
-              category="WOMENS"
-              type="shirt"
-              title="Women's Canyonite Flannel Shirt"
-              price={139}
-              availabe_sizes={["S", "M", "L", "XL"]}
-              description="Eleven years after its initial introduction, we reintroduce our classic Low Top in the shape of the Low Top Bianco. The Low Top Bianco features perforated side panels, new eye stays with white eyelets and the signature padded heel. A premium classic reinvented, the Low Top Bianco still has the recognizable elongated tongue and upper while standing on our striking Fundament Bicolor outsole."
-            />
-          }
-        />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
