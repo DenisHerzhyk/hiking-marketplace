@@ -11,6 +11,7 @@ import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
+import { Toaster } from "react-hot-toast";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const AppLayout = () => {
 
   return (
     <>
+      <Toaster position="bottom-right" />
       <Header />
       {isLoginOrRegister || isCategory ? (
         <div className="mt-[0px]" />

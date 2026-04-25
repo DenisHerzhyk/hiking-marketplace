@@ -8,12 +8,15 @@ import ProductCardInterface from "../../../shared/components/product-card/interf
 import { Link } from "react-router-dom";
 import { handleWishlistAdd } from "../../cart/components/saved_item/handlers/handleWishlistAdd";
 import { handleCartItemAdd } from "../../cart/components/cart_item/handlers/handleCartItemAdd";
+import toast from "react-hot-toast";
 
 type Section = "description" | "details" | "sizeGuide" | "delivery_return";
 
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<ProductCardInterface>();
+  const [selSize, setSelSize] = useState<string | null>(null);
+  const [selColor, setSelColor] = useState<string | null>(null);
   const [openSections, setOpenSections] = useState<Record<Section, boolean>>({
     description: true,
     details: false,
@@ -39,6 +42,38 @@ const ProductPage = () => {
       })
       .catch((err) => console.error(err));
   }, [id]);
+
+  const handleAddToCart = () => {
+    if (!selColor) {
+      toast.error("Please select a color");
+      return;
+    }
+
+    if (!selSize) {
+      toast.error("Please select a size");
+      return;
+    }
+    if (!product?.id) return;
+
+    handleCartItemAdd(product.id, selSize);
+    toast.success("Item added to cart!");
+  };
+
+  const handleAddToWishlist = () => {
+    if (!selColor) {
+      toast.error("Please select a color");
+      return;
+    }
+
+    if (!selSize) {
+      toast.error("Please select a size");
+      return;
+    }
+    if (!product?.id) return;
+
+    handleWishlistAdd(product.id, selSize);
+    toast.success("Item added to wishlist");
+  };
 
   const toggleSection = (section: Section) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
@@ -107,7 +142,8 @@ const ProductPage = () => {
                   {product?.availableSizes.map((item) => (
                     <button
                       key={item}
-                      className="font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center h-[44px] transition-colors duration-200"
+                      onClick={() => setSelSize(item)}
+                      className={`font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center h-[44px] transition-colors duration-200 ${selSize === item ? "bg-black text-white" : "bg-gray-200 hover:bg-gray-300"}`}
                     >
                       {item}
                     </button>
@@ -120,37 +156,25 @@ const ProductPage = () => {
                     <span className="text-black font-medium">Black</span>
                   </h2>
                   <div className="flex flex-row flex-wrap gap-2">
-                    {[
-                      "#1a1a1a",
-                      "#8B6914",
-                      "#1a2b4a",
-                      "#9ca3af",
-                      "#2d5a27",
-                      "#c0392b",
-                    ].map((color) => (
+                    {["#1a1a1a", "#8B6914", "#1a2b4a"].map((color) => (
                       <button
                         key={color}
                         style={{ backgroundColor: color }}
                         className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+                        onClick={() => setSelColor(color)}
                       />
                     ))}
                   </div>
                 </div>
 
                 <button
-                  onClick={() =>
-                    product?.id &&
-                    handleCartItemAdd(product.id, product.availableSizes[0])
-                  }
+                  onClick={() => handleAddToCart()}
                   className="text-white uppercase bg-black w-full text-sm mobile:text-[18px] font-semibold px-[20px] py-[8px] mobile:px-[30px] mobile:py-[17px] mb-[10px] hover:bg-gray-800 transition-colors duration-200"
                 >
                   Add to cart
                 </button>
                 <button
-                  onClick={() => {
-                    product?.id &&
-                      handleWishlistAdd(product.id, product?.availableSizes[0]);
-                  }}
+                  onClick={() => handleAddToWishlist()}
                   className="text-sm border uppercase border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200"
                 >
                   Save to favorite{" "}

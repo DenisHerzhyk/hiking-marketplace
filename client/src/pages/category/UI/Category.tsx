@@ -73,7 +73,7 @@ const Category = () => {
 
   return (
     <>
-      <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+      <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] ">
         {category !== "deals" ? (
           <div className="main-category flex justify-center items-center h-[100dvh] relative">
             {category !== "all" ? (
@@ -88,7 +88,7 @@ const Category = () => {
                         : ""
                 }
                 alt="img"
-                className="rounded-sm h-[700px] w-full object-cover object-center"
+                className="rounded-sm max-h-[700px] h-full py-[70px] tablet:py-[0px] w-full object-cover object-center"
               />
             ) : (
               <video
@@ -98,7 +98,7 @@ const Category = () => {
                 loop
                 muted
                 playsInline
-                className="rounded-sm h-[700px] w-full object-cover object-top brightness-90"
+                className="rounded-sm max-h-[700px] h-full py-[70px] tablet:py-[0px] w-full object-cover object-top brightness-90"
               />
             )}
 
@@ -163,7 +163,7 @@ const Category = () => {
 
         <div
           id="shop"
-          className="categories mt-[100px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
+          className="categories mt-[20px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
         >
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">

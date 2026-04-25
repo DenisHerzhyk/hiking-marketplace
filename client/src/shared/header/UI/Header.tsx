@@ -31,7 +31,7 @@ const Header = () => {
         <div
           className={`fixed top-0 left-0 right-0 ${!isHome || isOpenMenu ? "text-black bg-white bg-opacity-100 border-b border-gray" : "text-white bg-opacity-0 bg-black absolute"} ${isOpenMenu && "laptop:text-white laptop:bg-opacity-0 laptop:bg-black laptop:absolute laptop:border-none"}`}
         >
-          <div className="upper-header gap-5 w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+          <div className="upper-header gap-2 w-full flex flex-row flex-wrap items-center justify-between py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
             <section className="logo flex flex-1 flex-row items-center gap-[15px]">
               <div className="block laptop:hidden focus:outline-none">
                 <IoMenuOutline className="text-2xl" onClick={openMenu} />
