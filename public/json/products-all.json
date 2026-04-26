@@ -8,6 +8,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
+      "color": "#4F5D3E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -44,6 +45,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -80,6 +82,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -116,6 +119,7 @@
       "category": "sweater",
       "gender": "men",
       "fit": "Standard",
+      "color": "#6B5344",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -149,6 +153,7 @@
       "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
+      "color": "#A2A79E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -182,6 +187,7 @@
       "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
+      "color": "#6B9EB5",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -218,6 +224,7 @@
       "category": "sweater",
       "gender": "men",
       "fit": "Standard",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -251,6 +258,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
+      "color": "#3E5441",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -278,12 +286,13 @@
     },
     {
       "id": 9,
-      "title": "Men’s Quandary Convertible Pants",
+      "title": "Men's Quandary Convertible Pants",
       "price": 130,
       "availableSizes": ["30", "32", "34", "36"],
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
+      "color": "#3E5441",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -317,6 +326,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -350,6 +360,7 @@
       "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -383,6 +394,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -410,12 +422,13 @@
     },
     {
       "id": 13,
-      "title": "Men’s Down Sweater Vest",
+      "title": "Men's Down Sweater Vest",
       "price": 249,
       "availableSizes": ["S", "M", "L", "XL"],
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
+      "color": "#5A7D7A",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -449,6 +462,7 @@
       "category": "sweater",
       "gender": "men",
       "fit": "Standard",
+      "color": "#8B5E3C",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -476,12 +490,13 @@
     },
     {
       "id": 15,
-      "title": "Men’s Capilene® Cool Daily Graphic Hoody",
+      "title": "Men's Capilene® Cool Daily Graphic Hoody",
       "price": 75,
       "availableSizes": ["S", "M", "L", "XL"],
       "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
+      "color": "#F2F2F2",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -515,6 +530,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
+      "color": "#8B5E3C",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -548,6 +564,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -581,6 +598,7 @@
       "category": "shoes",
       "gender": "men",
       "fit": "Standard",
+      "color": "#7A7A7A",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -614,6 +632,7 @@
       "category": "shoes",
       "gender": "men",
       "fit": "Standard",
+      "color": "#A9A9A9",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -647,6 +666,7 @@
       "category": "shoes",
       "gender": "men",
       "fit": "Standard",
+      "color": "#6B6B6B",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -677,6 +697,7 @@
       "category": "shoes",
       "gender": "men",
       "fit": "Standard",
+      "color": "#D3D3D3",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -710,6 +731,7 @@
       "category": "shoes",
       "gender": "men",
       "fit": "Standard",
+      "color": "#6B6B6B",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",

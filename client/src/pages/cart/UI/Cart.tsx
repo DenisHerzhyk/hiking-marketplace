@@ -14,6 +14,12 @@ const Cart = () => {
   const [wishListItems, setWishListItems] = useState<WishlistItemInterface[]>(
     [],
   );
+
+  const subtotal = Number(
+    cartItems.reduce((sum, a) => sum + a.product.price, 0).toFixed(2),
+  );
+  const shipping = subtotal < 99 ? 9 : 0;
+  const orderTotal = (subtotal + shipping).toFixed(2);
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
   const { authLogin } = ctxt;
@@ -119,41 +125,47 @@ const Cart = () => {
               </div>
             )}
           </div>
-          <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-[var(--normal-gray)] w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
-            <h3 className="font-medium text-sm mobile:text-base mb-[17px]">
+          <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-gray-100 w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
+            <h3 className="font-semibold text-sm mobile:text-lg mb-[17px]">
               ORDER SUMMARY
             </h3>
             <div className="flex flex-col gap-[8px] w-full mb-[26px]">
               <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
-                <p className="font-medium text-sm tablet:text-base break-words">
-                  SUBTOTAL(1 ITEM)
+                <p className="font-semibold text-sm tablet:text-base break-words">
+                  SUBTOTAL({cartItems.length} ITEM)
                 </p>
-                <p className="text-sm tablet:text-base">$220.00</p>
+                <p className="text-sm tablet:text-base">
+                  ${subtotal.toFixed(2)}
+                </p>
               </div>
+              <ul className="flex flex-col gap-[5px]">
+                {cartItems.map((item) => (
+                  <li className=" text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full">
+                    <p>{item.product.title}</p>
+                    <p>${item.product.price.toFixed(2)}</p>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full"></div>
               <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
-                <p className="text-sm tablet:text-base break-words">
-                  ESTIMATED SHIPPING
+                <p className="font-semibold text-sm tablet:text-base break-words">
+                  SHIPPING{" "}
+                  <span className="font-light text-gray-600">
+                    (FREE OVER 99$)
+                  </span>
                 </p>
-                <p className="text-sm tablet:text-base">$9.00</p>
-              </div>
-              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
-                <p className="text-sm tablet:text-base break-words">
-                  FREE SHIPPING(OVER 99$)
+                <p className="text-sm tablet:text-base">
+                  ${shipping.toFixed(2)}
                 </p>
-                <p className="text-sm tablet:text-base">$0.00</p>
-              </div>
-              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
-                <p className="text-sm tablet:text-base break-words">
-                  ESITMATED TAX
-                </p>
-                <p className="text-sm tablet:text-base">$0.00</p>
               </div>
             </div>
             <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full mb-[36px]">
-              <p className="font-medium text-sm tablet:text-base mb-[17px]">
+              <p className="font-semibold text-sm tablet:text-base mb-[17px]">
                 ORDER TOTAL
               </p>
-              <p className="font-medium text-sm tablet:text-base">$229.00</p>
+              <p className="font-medium text-sm tablet:text-base">
+                ${orderTotal}
+              </p>
             </div>
             <button className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
               CHECKOUT

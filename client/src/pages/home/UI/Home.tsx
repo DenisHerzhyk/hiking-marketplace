@@ -146,6 +146,7 @@ const Home = () => {
                     category={item.category}
                     gender={item.gender}
                     fit={item.fit}
+                    color={item.color}
                     sizeGuide={item.sizeGuide}
                     details={item.details}
                     productImages={item.productImages}
@@ -189,6 +190,7 @@ const Home = () => {
                     category={item.category}
                     gender={item.gender}
                     fit={item.fit}
+                    color={item.color}
                     sizeGuide={item.sizeGuide}
                     details={item.details}
                     productImages={item.productImages}
@@ -232,6 +234,7 @@ const Home = () => {
                     category={item.category}
                     gender={item.gender}
                     fit={item.fit}
+                    color={item.color}
                     sizeGuide={item.sizeGuide}
                     details={item.details}
                     productImages={item.productImages}

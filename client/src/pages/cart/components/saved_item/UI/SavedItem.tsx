@@ -4,6 +4,7 @@ import { GoMoveToTop } from "react-icons/go";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { handleWishlistRemove } from "../handlers/handleWishlistRemove.ts";
 import { handleMoveToCart } from "../handlers/handleMoveToCart.ts";
+import { colorNames } from "../../cart_item/components/color.ts";
 
 const WishlistItem: React.FC<WishlistItemInterface> = ({
   id,
@@ -46,7 +47,8 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
               {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
             </p>
             <p className="text-xs mobile:text-[13px]">
-              {product.category.toUpperCase()}/{size}/{color.toUpperCase()}
+              {product.category.toUpperCase()}/{size}/
+              {colorNames[color].toUpperCase()}
             </p>
           </div>
           <button

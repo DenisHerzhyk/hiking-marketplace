@@ -1,12 +1,16 @@
 import axios from "axios";
 
-export const handleWishlistAdd = async (id: number, size: string) => {
+export const handleWishlistAdd = async (
+  id: number,
+  size: string,
+  color: string,
+) => {
   await axios
     .post(
       `http://localhost:4996/api/wishlist/add/${id}`,
       {
         size: size,
-        color: "green",
+        color: color,
       },
       { withCredentials: true },
     )

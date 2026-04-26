@@ -8,7 +8,10 @@ import ProductCardInterface from "../../../shared/components/product-card/interf
 import { Link } from "react-router-dom";
 import { handleWishlistAdd } from "../../cart/components/saved_item/handlers/handleWishlistAdd";
 import { handleCartItemAdd } from "../../cart/components/cart_item/handlers/handleCartItemAdd";
+import { colorNames } from "../../cart/components/cart_item/components/color.ts";
+
 import toast from "react-hot-toast";
+import { color } from "@cloudinary/url-gen/qualifiers/background";
 
 type Section = "description" | "details" | "sizeGuide" | "delivery_return";
 
@@ -17,6 +20,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<ProductCardInterface>();
   const [selSize, setSelSize] = useState<string | null>(null);
   const [selColor, setSelColor] = useState<string | null>(null);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [openSections, setOpenSections] = useState<Record<Section, boolean>>({
     description: true,
     details: false,
@@ -55,7 +59,7 @@ const ProductPage = () => {
     }
     if (!product?.id) return;
 
-    handleCartItemAdd(product.id, selSize);
+    handleCartItemAdd(product.id, selSize, selColor);
     toast.success("Item added to cart!");
   };
 
@@ -71,7 +75,7 @@ const ProductPage = () => {
     }
     if (!product?.id) return;
 
-    handleWishlistAdd(product.id, selSize);
+    handleWishlistAdd(product.id, selSize, selColor);
     toast.success("Item added to wishlist");
   };
 
@@ -153,17 +157,19 @@ const ProductPage = () => {
                   <h2 className="text-sm mb-[11px] text-gray-500">
                     COLOR
                     <br />
-                    <span className="text-black font-medium">Black</span>
+                    <span className="text-black font-medium">
+                      {product?.color && colorNames[product?.color]}
+                    </span>
                   </h2>
                   <div className="flex flex-row flex-wrap gap-2">
-                    {["#1a1a1a", "#8B6914", "#1a2b4a"].map((color) => (
-                      <button
-                        key={color}
-                        style={{ backgroundColor: color }}
-                        className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
-                        onClick={() => setSelColor(color)}
-                      />
-                    ))}
+                    <button
+                      key={product?.color}
+                      style={{ backgroundColor: product?.color }}
+                      className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+                      onClick={() =>
+                        product?.color && setSelColor(product?.color)
+                      }
+                    />
                   </div>
                 </div>
 
@@ -179,9 +185,178 @@ const ProductPage = () => {
                 >
                   Save to favorite{" "}
                 </button>
-                <button className="text-sm border border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200">
+                <button
+                  onClick={() => setShowSizeGuide(true)}
+                  className="text-sm border border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200"
+                >
                   SIZE GUIDE
                 </button>
+                {showSizeGuide && (
+                  <div
+                    className="fixed inset-0 bg-black/50 z-40"
+                    onClick={() => setShowSizeGuide(false)}
+                  />
+                )}
+                <div
+                  className={`${showSizeGuide ? "flex flex-col opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity duration-300 ease-in-out z-50 gap-[24px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md
+  w-[95%] max-w-[700px] 
+  p-[20px] mobile:p-[30px] tablet:p-[40px]
+  max-h-[85vh] overflow-y-auto`}
+                >
+                  <div className="flex flex-row justify-between items-center">
+                    <h2 className="font-semibold text-base mobile:text-lg">
+                      SIZE GUIDE
+                    </h2>
+                    <button
+                      onClick={() => setShowSizeGuide(false)}
+                      className="text-gray-400 hover:text-black text-xl leading-none"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  {/* clothing sizes */}
+                  {product?.category !== "shoes" && (
+                    <div>
+                      <h3 className="font-semibold text-sm mb-[12px] uppercase tracking-wider">
+                        Clothing
+                      </h3>
+                      <table className="w-full text-xs mobile:text-sm border-collapse">
+                        <thead>
+                          <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-3 py-2 text-left">
+                              Size
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              Chest (in)
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              Waist (in)
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              Hip (in)
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            {
+                              size: "XS",
+                              chest: "32–34",
+                              waist: "26–28",
+                              hip: "35–37",
+                            },
+                            {
+                              size: "S",
+                              chest: "35–37",
+                              waist: "29–31",
+                              hip: "38–40",
+                            },
+                            {
+                              size: "M",
+                              chest: "38–40",
+                              waist: "32–34",
+                              hip: "41–43",
+                            },
+                            {
+                              size: "L",
+                              chest: "41–43",
+                              waist: "35–37",
+                              hip: "44–46",
+                            },
+                            {
+                              size: "XL",
+                              chest: "44–46",
+                              waist: "38–40",
+                              hip: "47–49",
+                            },
+                            {
+                              size: "XXL",
+                              chest: "47–49",
+                              waist: "41–43",
+                              hip: "50–52",
+                            },
+                          ].map((row) => (
+                            <tr key={row.size} className="hover:bg-gray-50">
+                              <td className="border border-gray-300 px-3 py-2 font-medium">
+                                {row.size}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.chest}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.waist}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.hip}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  {/* shoes sizes */}
+                  {product?.category === "shoes" && (
+                    <div>
+                      <h3 className="font-semibold text-sm mb-[12px] uppercase tracking-wider">
+                        Footwear
+                      </h3>
+                      <table className="w-full text-xs mobile:text-sm border-collapse">
+                        <thead>
+                          <tr className="bg-gray-100">
+                            <th className="border border-gray-300 px-3 py-2 text-left">
+                              US
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              EU
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              UK
+                            </th>
+                            <th className="border border-gray-300 px-3 py-2">
+                              CM
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            { us: "7", eu: "40", uk: "6", cm: "25" },
+                            { us: "8", eu: "41", uk: "7", cm: "26" },
+                            { us: "9", eu: "42", uk: "8", cm: "27" },
+                            { us: "10", eu: "43", uk: "9", cm: "28" },
+                            { us: "11", eu: "44", uk: "10", cm: "29" },
+                            { us: "12", eu: "45", uk: "11", cm: "30" },
+                          ].map((row) => (
+                            <tr key={row.us} className="hover:bg-gray-50">
+                              <td className="border border-gray-300 px-3 py-2 font-medium">
+                                {row.us}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.eu}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.uk}
+                              </td>
+                              <td className="border border-gray-300 px-3 py-2 text-center">
+                                {row.cm}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  <div className="border-t border-gray-200 pt-[16px]">
+                    <p className="text-xs text-gray-500">
+                      Model is {product?.sizeGuide?.modelHeightFeet} (
+                      {product?.sizeGuide?.modelHeightCm}cm) and wears size{" "}
+                      {product?.sizeGuide?.modelWears}.
+                    </p>
+                  </div>
+                </div>
 
                 <p className="text-[10px] text-center text-gray-500">
                   FAST AND SECURE GLOBAL SHIPPING

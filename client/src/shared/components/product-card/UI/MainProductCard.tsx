@@ -7,6 +7,7 @@ import { handleCartItemAdd } from "../../../../pages/cart/components/cart_item/h
 import { handleWishlistAdd } from "../../../../pages/cart/components/saved_item/handlers/handleWishlistAdd.js";
 import { Link, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { colorNames } from "../../../../pages/cart/components/cart_item/components/color.js";
 
 const MainProductCard = ({
   id,
@@ -16,6 +17,7 @@ const MainProductCard = ({
   category,
   gender,
   fit,
+  color,
   sizeGuide,
   details,
   productImages,
@@ -37,7 +39,7 @@ const MainProductCard = ({
       return;
     }
 
-    handleCartItemAdd(id, selSize);
+    handleCartItemAdd(id, selSize, selColor);
     toast.success("Item added to cart!");
   };
 
@@ -52,7 +54,7 @@ const MainProductCard = ({
       return;
     }
 
-    handleWishlistAdd(id, selSize);
+    handleWishlistAdd(id, selSize, selColor);
     toast.success("Item added to wishlist");
   };
 
@@ -113,14 +115,13 @@ const MainProductCard = ({
       </div>
       <div className="content flex flex-col mt-[15px]">
         <div className="flex flex-row flex-wrap gap-2">
-          {["#1a1a1a", "#8B6914", "#1a2b4a"].map((color) => (
-            <button
-              key={color}
-              style={{ backgroundColor: color }}
-              className="w-[25px] h-[25px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
-              onClick={() => handleColorSelect(color)}
-            />
-          ))}
+          <button
+            title={colorNames[color] ?? color}
+            key={color}
+            style={{ backgroundColor: color }}
+            className="w-[25px] h-[25px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+            onClick={() => handleColorSelect(color)}
+          />
         </div>
         <h1 className="productcard__title font-medium text-sm inline-block max-w-[250px] overflow-hidden truncate mt-[20px]">
           {title}

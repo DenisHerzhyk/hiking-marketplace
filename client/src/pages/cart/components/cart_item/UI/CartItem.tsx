@@ -5,6 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
 import { handleWishlistAdd } from "../../saved_item/handlers/handleWishlistAdd.ts";
 import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
+import { colorNames } from "../components/color.ts";
 
 const CartItem: React.FC<CartItemInterface> = ({
   id,
@@ -17,6 +18,7 @@ const CartItem: React.FC<CartItemInterface> = ({
   onDelete,
   onWishlistAdd,
 }) => {
+  console.log(color);
   return (
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
@@ -59,7 +61,8 @@ const CartItem: React.FC<CartItemInterface> = ({
               {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
             </p>
             <p className="text-xs mobile:text-[13px]">
-              {product.category.toUpperCase()}/{size}/{color.toUpperCase()}
+              {product.category.toUpperCase()}/{size}/
+              {colorNames[color].toUpperCase() ?? color}
             </p>
           </div>
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">

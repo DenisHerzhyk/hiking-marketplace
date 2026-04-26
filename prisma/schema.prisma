@@ -68,6 +68,7 @@ model Product {
   category String
   gender String
   fit String
+  color String
   sizeGuide Json
   details Json
   productImages String[]

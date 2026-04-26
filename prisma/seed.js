@@ -9,6 +9,7 @@ const main = async () => {
     category: product.category,
     gender: product.gender,
     fit: product.fit,
+    color: product.color,
     sizeGuide: product.sizeGuide,
     details: product.details,
     productImages: product.productImages,

@@ -6,6 +6,7 @@ interface ProductCardInterface {
   category: string;
   gender: string;
   fit: string;
+  color: string;
   sizeGuide:
     | { modelHeightCm: number; modelHeightFeet: string; modelWears: string }
     | undefined;
