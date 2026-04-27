@@ -5,6 +5,7 @@ import Login from "./pages/login/UI/Login";
 import Register from "./pages/register/UI/Register";
 import Cart from "./pages/cart/UI/Cart";
 import Category from "./pages/category/UI/Category";
+import Orders from "./pages/order/UI/Orders.tsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import Profile from "./pages/profile/UI/Profile.tsx";
@@ -48,6 +49,10 @@ const AppLayout = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>

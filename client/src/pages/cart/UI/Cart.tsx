@@ -5,7 +5,7 @@ import axios from "axios";
 import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
-
+import { Link } from "react-router-dom";
 const imgPath =
   "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
 
@@ -170,6 +170,13 @@ const Cart = () => {
             <button className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
               CHECKOUT
             </button>
+
+            <Link
+              to="/orders"
+              className="text-sm text-center text-gray-500 hover:text-black transition-colors duration-200 underline mt-[12px]"
+            >
+              View my orders
+            </Link>
           </section>
         </section>
       </div>
