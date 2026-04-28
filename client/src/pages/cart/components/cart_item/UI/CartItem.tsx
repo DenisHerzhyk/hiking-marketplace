@@ -18,7 +18,6 @@ const CartItem: React.FC<CartItemInterface> = ({
   onDelete,
   onWishlistAdd,
 }) => {
-  console.log(color);
   return (
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">

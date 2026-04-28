@@ -13,19 +13,21 @@ import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 import { Toaster } from "react-hot-toast";
+import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  const isLoginOrRegister =
-    location.pathname === "/login" || location.pathname === "/register";
+  const isLoginOrRegister = ["/login", "/register"].includes(location.pathname);
 
-  const isCategory =
-    location.pathname === "/category/men" ||
-    "/category/women" ||
-    "/category/boots" ||
-    "/category/deals";
+  const isCategory = [
+    "/category/all",
+    "/category/men",
+    "/category/women",
+    "/category/boots",
+    "/category/deals",
+  ].includes(location.pathname);
 
   return (
     <>
@@ -49,11 +51,9 @@ const AppLayout = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-        <Route element={<ProtectedRoute />}>
           <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<CheckoutWrapper />} />
         </Route>
       </Routes>
       <Footer />

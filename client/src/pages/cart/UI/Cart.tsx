@@ -5,16 +5,18 @@ import axios from "axios";
 import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
-import { Link } from "react-router-dom";
-const imgPath =
-  "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
   const [wishListItems, setWishListItems] = useState<WishlistItemInterface[]>(
     [],
   );
+  const navigate = useNavigate();
 
+  const imgPath =
+    "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
   const subtotal = Number(
     cartItems.reduce((sum, a) => sum + a.product.price, 0).toFixed(2),
   );
@@ -167,10 +169,14 @@ const Cart = () => {
                 ${orderTotal}
               </p>
             </div>
-            <button className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
+            <button
+              onClick={() =>
+                handleCheckoutRequest(navigate, Number(orderTotal))
+              }
+              className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
+            >
               CHECKOUT
             </button>
-
             <Link
               to="/orders"
               className="text-sm text-center text-gray-500 hover:text-black transition-colors duration-200 underline mt-[12px]"

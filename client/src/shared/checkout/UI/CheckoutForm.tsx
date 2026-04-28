@@ -1,23 +1,44 @@
-import { useCheckout, PaymentElement } from "@stripe/react-stripe-js/checkout";
-import { FormEvent } from "react";
+import {
+  useElements,
+  useStripe,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
-  const checkoutState = useCheckout();
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (checkoutState.type === "loading") {
-      return <div>Loading...</div>;
-    } else if (checkoutState.type === "error") {
-      return <div>Error: {checkoutState.error.message}</div>;
+
+    if (!stripe || !elements) {
+      return;
     }
+
+    await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: "http://localhost:5173/",
+      },
+    });
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <PaymentElement />
-        <button>Submit</button>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 max-w-[600px] mx-auto"
+      >
+        <div className="flex flex-col gap-4 p-4 border border-gray-300 rounded-lg shadow-sm">
+          <PaymentElement />
+          <button className="w-full bg-gray-200 hover:bg-gray-300 active:bg-gray-400 text-black text-lg font-medium py-4 px-4 rounded-md transition-colors">
+            Submit
+          </button>
+        </div>
       </form>
     </>
   );
 };
+
+export default CheckoutForm;
