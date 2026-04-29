@@ -13,6 +13,7 @@ const Cart = () => {
   const [wishListItems, setWishListItems] = useState<WishlistItemInterface[]>(
     [],
   );
+  const [userId, setUserId] = useState(Number);
   const navigate = useNavigate();
 
   const imgPath =
@@ -31,6 +32,7 @@ const Cart = () => {
       .get("http://localhost:4996/api/cart", { withCredentials: true })
       .then((res) => {
         setCartItems(res.data.data);
+        setUserId(res.data.userId);
       })
       .catch((err) => {
         console.error(err);
@@ -40,6 +42,7 @@ const Cart = () => {
       .get("http://localhost:4996/api/wishlist", { withCredentials: true })
       .then((res) => {
         setWishListItems(res.data.data);
+        setUserId(res.data.userId);
       })
       .catch((err) => {
         console.error(err);
@@ -171,7 +174,12 @@ const Cart = () => {
             </div>
             <button
               onClick={() =>
-                handleCheckoutRequest(navigate, Number(orderTotal))
+                handleCheckoutRequest(
+                  navigate,
+                  Number(orderTotal),
+                  cartItems,
+                  userId,
+                )
               }
               className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
             >

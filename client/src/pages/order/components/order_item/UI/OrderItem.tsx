@@ -14,11 +14,9 @@ const OrderItem = ({ order }: { order: (typeof mockOrders)[0] }) => {
 
   return (
     <div className="flex flex-row gap-[30px] items-stretch min-h-[150px] max-w-full tablet:max-w-[800px]">
-      {/* left color bar */}
       <div className="w-[4px] rounded-full bg-black self-stretch" />
 
       <div className="flex flex-col w-full gap-[10px]">
-        {/* top row */}
         <div className="flex flex-row flex-wrap w-full justify-between items-start">
           <div>
             <h2 className="font-medium text-base">{order.id}</h2>
