@@ -7,7 +7,6 @@ export const handleCheckoutRequest = async (
   navigate: NavigateFunction,
   orderTotal: number,
   cartItems: CartItemInterface[],
-  userId: Number,
 ) => {
   if (orderTotal <= 9) {
     toast.error("Cart is empty, please add items");
@@ -17,7 +16,7 @@ export const handleCheckoutRequest = async (
   const res = await axios
     .post(
       `http://localhost:4996/api/checkout/add`,
-      { total: orderTotal, items: cartItems, userId: userId },
+      { total: orderTotal, items: cartItems },
       { withCredentials: true },
     )
     .then((res) => {
