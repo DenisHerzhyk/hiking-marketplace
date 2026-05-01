@@ -16,8 +16,6 @@ const Cart = () => {
   const [userId, setUserId] = useState(Number);
   const navigate = useNavigate();
 
-  const imgPath =
-    "https://res.cloudinary.com/dlrft9pjb/image/upload/v1774980169/hiking_tops-4.jpg";
   const subtotal = Number(
     cartItems.reduce((sum, a) => sum + a.product.price, 0).toFixed(2),
   );
@@ -145,7 +143,10 @@ const Cart = () => {
               </div>
               <ul className="flex flex-col gap-[5px]">
                 {cartItems.map((item) => (
-                  <li className=" text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full">
+                  <li
+                    key={item.id}
+                    className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full"
+                  >
                     <p>{item.product.title}</p>
                     <p>${item.product.price.toFixed(2)}</p>
                   </li>

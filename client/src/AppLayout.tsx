@@ -6,7 +6,7 @@ import Register from "./pages/register/UI/Register";
 import Cart from "./pages/cart/UI/Cart";
 import Category from "./pages/category/UI/Category";
 import Orders from "./pages/order/UI/Orders.tsx";
-import ShowOrder from "./shared/showOrder/UI/ShowOrder.tsx";
+import ShowOrder from "./pages/order/components/show_order/UI/ShowOrder.tsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import Profile from "./pages/profile/UI/Profile.tsx";
@@ -53,9 +53,9 @@ const AppLayout = () => {
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/orders" element={<Orders />} />
+          <Route path="/order" element={<ShowOrder />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/checkout" element={<CheckoutWrapper />} />
-          <Route path="/order" element={<ShowOrder />} />
         </Route>
       </Routes>
       <Footer />

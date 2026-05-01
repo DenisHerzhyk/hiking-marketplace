@@ -13,7 +13,7 @@ export const handleCheckoutRequest = async (
     return;
   }
 
-  const res = await axios
+  await axios
     .post(
       `http://localhost:4996/api/checkout/add`,
       { total: orderTotal, items: cartItems },
@@ -21,8 +21,7 @@ export const handleCheckoutRequest = async (
     )
     .then((res) => {
       navigate("/checkout", { state: { clientSecret: res.data.clientSecret } });
+      toast.success("Checkout in process!");
     })
     .catch((err) => console.error(err));
-
-  toast.success("Checkout in process!");
 };

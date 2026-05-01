@@ -1,24 +1,33 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import ShowOrderInterface from "../../interface/ShowOrderInterface";
+import { colorNames } from "../../../../cart/components/cart_item/components/color";
 
 const ShowOrder = () => {
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState<ShowOrderInterface | null>(null);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paymentIntentId = params.get("payment_intent");
 
+    console.log(paymentIntentId);
     if (paymentIntentId) {
       axios
         .post(
-          "/api/orders/confirm",
+          "http://localhost:4996/api/orders/confirm",
           { paymentIntentId },
           { withCredentials: true },
         )
-        .then((res) => setOrder(res.data.order));
+        .then((res) => {
+          console.log(res.data.order);
+          setOrder(res.data.order);
+        })
+        .catch((err) => console.error("Problem with payment confirmation"));
     }
   }, []);
 
-  if (!order) return <p>Loading...</p>;
+  if (!order) return <p>Loading</p>;
   return (
     <>
       <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">
@@ -47,13 +56,17 @@ const ShowOrder = () => {
               key={item.id}
               className="flex items-center gap-3 px-5 py-4 border-b border-gray-100 last:border-none"
             >
-              <div className="w-13 h-13 rounded-lg bg-gray-100 flex-shrink-0 w-[52px] h-[52px]" />
+              <img
+                className="w-13 h-13 rounded-lg bg-gray-100 flex-shrink-0 w-[52px] h-[52px]"
+                src={item.product.productImages[0]}
+              />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">
                   {item.product.title}
                 </p>
                 <p className="text-xs text-gray-400">
-                  Size {item.size} · {item.color} · Qty {item.quantity}
+                  Size {item.size} · {colorNames[item.color]} · Qty{" "}
+                  {item.quantity}
                 </p>
               </div>
               <span className="font-mono text-sm font-medium">
@@ -65,13 +78,7 @@ const ShowOrder = () => {
           <div className="px-5 pb-4 pt-2 flex flex-col gap-1">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Subtotal</span>
-              <span className="font-mono">
-                ${(order.total - shipping).toFixed(2)}
-              </span>
-            </div>
-            <div className="flex justify-between text-sm text-gray-500">
-              <span>Shipping</span>
-              <span className="font-mono">${shipping.toFixed(2)}</span>
+              <span className="font-mono">${order.total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm font-semibold border-t border-gray-200 mt-2 pt-3">
               <span>Order total</span>

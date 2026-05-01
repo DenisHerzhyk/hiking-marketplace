@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import "../../../styles/main.scss";
 import { Link } from "react-router-dom";
 import { ILoginUser } from "../interface/LoginInterface.ts";
 import { IoIosCloseCircle } from "react-icons/io";
