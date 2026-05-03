@@ -7,7 +7,7 @@ import Cart from "./pages/cart/UI/Cart";
 import Category from "./pages/category/UI/Category";
 import Orders from "./pages/order/UI/Orders.tsx";
 import ShowOrder from "./pages/order/components/show_order/UI/ShowOrder.tsx";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, matchPath } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
@@ -21,12 +21,13 @@ const AppLayout = () => {
   const isHome = location.pathname === "/";
 
   const isLoginOrRegister = ["/login", "/register"].includes(location.pathname);
+  const isProduct = !!matchPath("/product/:id", location.pathname);
 
   const isCategory = [
     "/category/all",
     "/category/men",
     "/category/women",
-    "/category/boots",
+    "/category/shoes",
     "/category/deals",
   ].includes(location.pathname);
 
@@ -34,7 +35,7 @@ const AppLayout = () => {
     <>
       <Toaster position="bottom-right" />
       <Header />
-      {isLoginOrRegister || isCategory ? (
+      {isLoginOrRegister || isCategory || isProduct ? (
         <div className="mt-[0px]" />
       ) : (
         !isHome && <div className="mt-[250px]" />

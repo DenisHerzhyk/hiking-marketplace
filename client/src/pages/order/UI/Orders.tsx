@@ -7,13 +7,19 @@ const Orders = () => {
   const [orders, setOrders] = useState<ShowOrderInterface[] | null>(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/orders", { withCredentials: true })
-      .then((res) => {
-        console.log(res.data.orders);
-        setOrders(res.data.orders);
-      })
-      .catch((err) => console.error(err));
+    const fetchOrders = () => {
+      axios
+        .get("http://localhost:4996/api/orders", { withCredentials: true })
+        .then((res) => {
+          console.log(res.data.orders);
+          setOrders(res.data.orders);
+        })
+        .catch((err) => console.error(err));
+    };
+
+    fetchOrders();
+    const interval = setInterval(fetchOrders, 30 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -37,7 +43,11 @@ const Orders = () => {
                     total={order.total}
                     status={order.status}
                     paymentId={order.paymentId}
-                    createdAt={order.createdAt}
+                    createdAt={
+                      order.createdAt.split("T")[0] +
+                      " " +
+                      order.createdAt.split("T")[1].split(".")[0]
+                    }
                     items={order.items}
                   />
                 ))}

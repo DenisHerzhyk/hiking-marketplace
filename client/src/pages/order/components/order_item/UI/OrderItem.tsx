@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { colorNames } from "../../../../cart/components/cart_item/components/color.ts";
 import ShowOrderInterface from "../../interface/ShowOrderInterface.ts";
+import { GrStatusCriticalSmall } from "react-icons/gr";
 
 const statusStyles: Record<string, string> = {
-  Delivered: "bg-green-100 text-green-800",
-  "In Transit": "bg-blue-100 text-blue-800",
-  Processing: "bg-yellow-100 text-yellow-800",
-  Cancelled: "bg-red-100 text-red-800",
+  Processing: "text-orange-800",
+  Packing: "text-brown-800",
+  "In Transit": "text-blue-800",
+  Delivering: "text-pink-800",
+  Delivered: "text-green-800",
+  Cancelled: "text-red-800",
 };
 
 const OrderItem = ({
@@ -28,23 +31,22 @@ const OrderItem = ({
         <div className="flex flex-row flex-wrap w-full justify-between items-start">
           <div>
             <h2 className="font-medium text-base">Order #{id}</h2>
-            <p
-              className={`text-[10px] mobile:text-xs font-light mt-[2px] px-2 py-[2px] rounded-full w-fit}`}
+            <div
+              className={`text-base ${statusStyles[status]} w-fit font-light mt-[2px] pl-[2px] py-[2px] rounded-full flex flex-row items-center gap-1`}
             >
-              {status}
-            </p>
+              <GrStatusCriticalSmall></GrStatusCriticalSmall>
+              <p>{status}</p>
+            </div>
           </div>
           <p className="text-lg">${total.toFixed(2)}</p>
         </div>
 
         <p className="text-xs mobile:text-[13px] text-gray-500">{createdAt}</p>
 
-        {/* items preview */}
         <p className="text-xs text-gray-400">
           {items.map((i) => i.product.title).join(", ")}
         </p>
 
-        {/* expanded details */}
         {expanded && (
           <div className="flex flex-col gap-[10px] mt-[5px] border-t border-gray-200 pt-[10px]">
             {items.map((item, i) => (
