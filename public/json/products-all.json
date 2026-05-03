@@ -3,6 +3,7 @@
     {
       "id": 1,
       "title": "Men's Torrentshell 3L Rain Jacket",
+      "discount": 20,
       "price": 179,
       "availableSizes": ["S", "M", "L", "XL"],
       "category": "jacket",
@@ -182,6 +183,7 @@
     {
       "id": 6,
       "title": "Men's Capilene® Cool Daily Hoody",
+      "discount": 10,
       "price": 65,
       "availableSizes": ["S", "M", "L", "XL"],
       "category": "hoodie",
@@ -253,6 +255,7 @@
     {
       "id": 8,
       "title": "Men's Quandary Pants",
+      "discount": 20,
       "price": 120,
       "availableSizes": ["30", "32", "34", "36"],
       "category": "pants",
@@ -287,6 +290,7 @@
     {
       "id": 9,
       "title": "Men's Quandary Convertible Pants",
+      "discount": 5,
       "price": 130,
       "availableSizes": ["30", "32", "34", "36"],
       "category": "pants",
@@ -661,6 +665,7 @@
     {
       "id": 20,
       "title": "Foot Tractor Wading Boots (Aluminum Bar)",
+      "discount": 10,
       "price": 399,
       "availableSizes": ["8", "9", "10", "11", "12"],
       "category": "shoes",
@@ -726,6 +731,7 @@
     {
       "id": 22,
       "title": "Foot Tractor Wading Boots (Sticky Rubber Sole)",
+      "discount": 50,
       "price": 399,
       "availableSizes": ["8", "9", "10", "11", "12"],
       "category": "shoes",

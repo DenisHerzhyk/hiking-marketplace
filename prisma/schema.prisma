@@ -65,6 +65,7 @@ model Product {
   id Int @id @default(autoincrement())
   orderItems OrderItem[]
   title String
+  discount Int?
   price Float
   availableSizes String[]
   category String

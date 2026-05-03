@@ -3,7 +3,7 @@ import ProductCard from "../../../shared/components/product-card/UI/ProductCard"
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
-import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
+import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface";
 import { IoMdArrowDown } from "react-icons/io";
 type Section = "product" | "sizes" | "price" | "shoes";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -476,6 +476,7 @@ const Category = () => {
                     key={item.id}
                     id={item.id}
                     title={item.title.toUpperCase()}
+                    discount={item.discount}
                     price={item.price}
                     availableSizes={item.availableSizes}
                     category={item.category}

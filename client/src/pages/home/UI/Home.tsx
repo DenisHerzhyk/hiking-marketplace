@@ -6,7 +6,7 @@ import Card from "../components/card/UI/Card";
 import Benefits from "../../../shared/benefits/UI/Benefits";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import { IoIosArrowForward } from "react-icons/io";
-import { ProductInterface } from "../../../shared/components/product-card/interface/ProductInterface";
+import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface.js";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import HikingCard from "../components/card/UI/HikingCard";
 import CardInterface from "../components/card/interface/CardInterface";
@@ -141,6 +141,7 @@ const Home = () => {
                     key={item.id}
                     id={item.id}
                     title={item.title.toUpperCase()}
+                    discount={item.discount}
                     price={item.price}
                     availableSizes={item.availableSizes}
                     category={item.category}
@@ -185,6 +186,7 @@ const Home = () => {
                     key={item.id}
                     id={item.id}
                     title={item.title.toUpperCase()}
+                    discount={item.discount}
                     price={item.price}
                     availableSizes={item.availableSizes}
                     category={item.category}
@@ -229,6 +231,7 @@ const Home = () => {
                     key={item.id}
                     id={item.id}
                     title={item.title.toUpperCase()}
+                    discount={item.discount}
                     price={item.price}
                     availableSizes={item.availableSizes}
                     category={item.category}

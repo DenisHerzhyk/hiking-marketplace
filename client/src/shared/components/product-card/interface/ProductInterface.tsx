@@ -1,6 +1,7 @@
-export interface ProductInterface {
+interface ProductInterface {
   id: number;
   title: string;
+  discount?: number;
   price: number;
   availableSizes: string[];
   category: string;
@@ -15,3 +16,5 @@ export interface ProductInterface {
   description: string;
   inStock: boolean;
 }
+
+export default ProductInterface;

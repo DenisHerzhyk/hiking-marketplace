@@ -4,6 +4,7 @@ import data from "../public/json/products-all.json" with { type: "json" };
 const main = async () => {
   const products = data.products.map((product) => ({
     title: product.title,
+    discount: product.discount,
     price: product.price,
     availableSizes: product.availableSizes,
     category: product.category,

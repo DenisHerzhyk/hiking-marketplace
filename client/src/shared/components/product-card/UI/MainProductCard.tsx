@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import ProductCardInterface from "../interface/ProductCardInterface";
+import ProductInterface from "../interface/ProductInterface.js";
 import { VscHeart } from "react-icons/vsc";
 import { VscHeartFilled } from "react-icons/vsc";
 import { FaP, FaPlus } from "react-icons/fa6";
 import { handleCartItemAdd } from "../../../../pages/cart/components/cart_item/handlers/handleCartItemAdd.js";
 import { handleWishlistAdd } from "../../../../pages/cart/components/saved_item/handlers/handleWishlistAdd.js";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { colorNames } from "../../../../pages/cart/components/cart_item/components/color.js";
 
 const MainProductCard = ({
   id,
   title,
+  discount,
   price,
   availableSizes,
   category,
@@ -23,7 +24,7 @@ const MainProductCard = ({
   productImages,
   description,
   inStock,
-}: ProductCardInterface) => {
+}: ProductInterface) => {
   const [openSection, setOpenSection] = useState(false);
   const [selColor, setSelColor] = useState<string | null>(null);
   const [selSize, setSelSize] = useState<string | null>(null);
@@ -66,10 +67,6 @@ const MainProductCard = ({
   const handleSizeSelect = (size: string) => {
     setSelSize(size);
     setOpenSection(true);
-  };
-
-  const toggleAddToCart = () => {
-    setOpenSection(!openSection);
   };
   return (
     <div
@@ -123,12 +120,22 @@ const MainProductCard = ({
             onClick={() => handleColorSelect(color)}
           />
         </div>
-        <h1 className="productcard__title font-medium text-sm inline-block max-w-[250px] overflow-hidden truncate mt-[20px]">
+        <h1 className="productcard__title font-medium text-base inline-block max-w-[250px] overflow-hidden truncate mt-[20px]">
           {title}
         </h1>
-        <p className="productcard__price font-medium text-sm mt-[5px]">
-          ${price}
-        </p>
+        <div
+          className={`productcard__price font-medium text-base mt-[5px] ${discount && "flex flex-row gap-2"}`}
+        >
+          <span className={`${discount && "line-through text-gray-600"}`}>
+            ${price}
+          </span>
+
+          {discount && (
+            <span className="text-red-700 no-de">
+              ${(price - (price * discount) / 100).toFixed(0)}
+            </span>
+          )}
+        </div>
         <button
           className="mt-[10px] flex flex-row w-fit gap-[3px] items-center py-[6px] px-[18px] border border-black bg-white hover:bg-black text-black hover:text-white transition-all duration-300 ease-out rounded-full"
           onClick={() => handleAddToCart()}
