@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../../../shared/components/product-card/UI/ProductCard";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
@@ -20,6 +19,7 @@ const Category = () => {
     price: true,
     shoes: true,
   });
+  const [dealGender, setDealGender] = useState<"men" | "women" | null>(null);
 
   const m_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category.jpg";
@@ -31,6 +31,7 @@ const Category = () => {
     "https://res.cloudinary.com/dlrft9pjb/video/upload/category_all.mp4";
   const sales_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-3.png";
+
   useEffect(() => {
     axios.get("http://localhost:4996/api/products").then((res) => {
       setProducts(res.data.data);
@@ -69,8 +70,23 @@ const Category = () => {
       ? products
       : category === "men" || category === "women"
         ? products.filter((item) => item.gender === category)
-        : products.filter((item) => item.category === category);
+        : category === "deals"
+          ? products.filter(
+              (item) =>
+                item.discount &&
+                (dealGender ? item.gender === dealGender : true),
+            )
+          : products.filter((item) => item.category === category);
 
+  const handleMenDealsFiltering = () => {
+    setDealGender("men");
+    document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleWomenDealsFiltering = () => {
+    setDealGender("women");
+    document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <>
       <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] ">
@@ -125,8 +141,8 @@ const Category = () => {
               </h1>
 
               <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible gap-3 items-center">
-                <Link
-                  to="/"
+                <button
+                  onClick={handleMenDealsFiltering}
                   className="relative cursor-pointer w-full min-w-[300px]"
                 >
                   <img
@@ -139,10 +155,10 @@ const Category = () => {
                       Men
                     </h2>
                   </div>
-                </Link>
+                </button>
 
-                <Link
-                  to="/"
+                <button
+                  onClick={handleWomenDealsFiltering}
                   className="relative cursor-pointer w-full min-w-[300px]"
                 >
                   <img
@@ -155,7 +171,7 @@ const Category = () => {
                       Women
                     </h2>
                   </div>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
