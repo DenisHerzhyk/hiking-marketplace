@@ -70,7 +70,13 @@ const ShowOrder = () => {
                 </p>
               </div>
               <span className="font-mono text-sm font-medium">
-                ${item.product.price.toFixed(2)}
+                $
+                {item.product.discount
+                  ? (
+                      item.product.price *
+                      (1 - item.product.discount / 100)
+                    ).toFixed(2)
+                  : item.product.price.toFixed(2)}
               </span>
             </div>
           ))}

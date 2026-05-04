@@ -52,7 +52,22 @@ const CartItem: React.FC<CartItemInterface> = ({
                 {product.title.toUpperCase()}
               </h2>
               {/* Design discounts */}
-              <p className="text-lg">${product.price.toFixed(2)}</p>
+              <div className={`text-lg`}>
+                <p
+                  className={`${product?.discount && "line-through text-gray-600"}`}
+                >
+                  ${product.price.toFixed(2)}
+                </p>
+                {product?.discount && (
+                  <span className="text-red-700">
+                    $
+                    {(
+                      product.price -
+                      (product.price * product.discount) / 100
+                    ).toFixed(2)}
+                  </span>
+                )}
+              </div>
             </div>
             <p
               className={`font-light ${product.inStock ? "text-green-800" : "text-red-800"} text-[10px] mobile:text-xs mb-[10px]`}

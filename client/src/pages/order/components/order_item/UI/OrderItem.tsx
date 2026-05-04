@@ -60,15 +60,18 @@ const OrderItem = ({
                     {item.size} / {colorNames[item.color] ?? item.color}
                   </p>
                 </div>
-                <p className="text-sm">${item.product.price.toFixed(2)}</p>
+                <p className="text-sm">
+                  $
+                  {item.product.discount
+                    ? (
+                        item.product.price *
+                        (1 - item.product.discount / 100)
+                      ).toFixed(2)
+                    : item.product.price.toFixed(2)}
+                </p>
               </div>
             ))}
-            <div className="flex flex-col gap-[4px] border-t border-gray-100 pt-[8px]">
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-
+            <div className="border-t border-gray-100 pt-[8px]">
               <div className="flex justify-between text-sm font-semibold mt-1">
                 <span>Total</span>
                 <span>${total.toFixed(2)}</span>

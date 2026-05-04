@@ -4,20 +4,18 @@ import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import ProductCardInterface from "../../../shared/components/product-card/interface/ProductCardInterface";
+import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface.ts";
 import { Link } from "react-router-dom";
 import { handleWishlistAdd } from "../../cart/components/saved_item/handlers/handleWishlistAdd";
 import { handleCartItemAdd } from "../../cart/components/cart_item/handlers/handleCartItemAdd";
 import { colorNames } from "../../cart/components/cart_item/components/color.ts";
-
 import toast from "react-hot-toast";
-import { color } from "@cloudinary/url-gen/qualifiers/background";
 
 type Section = "description" | "details" | "sizeGuide" | "delivery_return";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState<ProductCardInterface>();
+  const [product, setProduct] = useState<ProductInterface>();
   const [selSize, setSelSize] = useState<string | null>(null);
   const [selColor, setSelColor] = useState<string | null>(null);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
@@ -138,8 +136,24 @@ const ProductPage = () => {
               <h1 className="text-xl mobile:text-2xl tablet:text-[28px] font-semibold mb-[8px]">
                 {product?.title.toUpperCase()}
               </h1>
-              <p className="text-xl mb-[24px]">${product?.price}</p>
-
+              <div
+                className={`text-xl mb-[24px] ${product?.discount && "flex flex-row gap-2"}`}
+              >
+                <p
+                  className={`${product?.discount && "line-through text-gray-600"}`}
+                >
+                  ${product?.price}
+                </p>
+                {product?.discount && (
+                  <span className="text-red-700 no-de">
+                    $
+                    {(
+                      product.price -
+                      (product.price * product.discount) / 100
+                    ).toFixed(0)}
+                  </span>
+                )}
+              </div>
               <div className="sizes">
                 <h2 className="text-sm mb-[11px] text-gray-500">SIZE</h2>
                 <div className="size-blocks grid grid-cols-4 gap-2 mb-[24px]">

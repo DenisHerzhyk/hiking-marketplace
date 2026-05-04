@@ -17,7 +17,14 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const subtotal = Number(
-    cartItems.reduce((sum, a) => sum + a.product.price, 0).toFixed(2),
+    cartItems
+      .reduce((sum, a) => {
+        const price = a.product.discount
+          ? a.product.price * (1 - a.product.discount / 100)
+          : a.product.price;
+        return sum + price;
+      }, 0)
+      .toFixed(2),
   );
   const shipping = subtotal < 99 ? 9 : 0;
   const orderTotal = (subtotal + shipping).toFixed(2);
@@ -148,7 +155,15 @@ const Cart = () => {
                     className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full"
                   >
                     <p>{item.product.title}</p>
-                    <p>${item.product.price.toFixed(2)}</p>
+                    <p>
+                      $
+                      {item.product.discount
+                        ? (
+                            item.product.price *
+                            (1 - item.product.discount / 100)
+                          ).toFixed(2)
+                        : item.product.price.toFixed(2)}
+                    </p>
                   </li>
                 ))}
               </ul>
