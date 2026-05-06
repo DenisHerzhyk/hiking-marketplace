@@ -142,11 +142,11 @@ const ProductPage = () => {
                 <p
                   className={`${product?.discount && "line-through text-gray-600"}`}
                 >
-                  ${product?.price}
+                  € {product?.price}
                 </p>
                 {product?.discount && (
-                  <span className="text-red-700 no-de">
-                    $
+                  <span className="text-red-700">
+                    €
                     {(
                       product.price -
                       (product.price * product.discount) / 100

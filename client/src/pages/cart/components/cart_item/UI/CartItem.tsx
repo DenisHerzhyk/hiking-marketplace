@@ -56,11 +56,11 @@ const CartItem: React.FC<CartItemInterface> = ({
                 <p
                   className={`${product?.discount && "line-through text-gray-600"}`}
                 >
-                  ${product.price.toFixed(2)}
+                  €{product.price.toFixed(2)}
                 </p>
                 {product?.discount && (
                   <span className="text-red-700">
-                    $
+                    €
                     {(
                       product.price -
                       (product.price * product.discount) / 100

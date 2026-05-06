@@ -20,6 +20,9 @@ const Category = () => {
     shoes: true,
   });
   const [dealGender, setDealGender] = useState<"men" | "women" | null>(null);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
 
   const m_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category.jpg";
@@ -65,8 +68,26 @@ const Category = () => {
     );
   }
 
-  const filteredProducts =
-    category === "all"
+  const filteredProducts = (() => {
+    if (selectedType)
+      return products.filter((item) => item.category === selectedType);
+    if (selectedSize)
+      return products.filter((item) =>
+        item.availableSizes.includes(selectedSize),
+      );
+    if (selectedPrice) {
+      return products.filter((item) => {
+        const price = item.discount
+          ? item.price * (1 - item.discount / 100)
+          : item.price;
+        if (selectedPrice === "under50") return price < 50;
+        if (selectedPrice === "50to100") return price >= 50 && price <= 100;
+        if (selectedPrice === "100to200") return price >= 100 && price <= 200;
+        if (selectedPrice === "over200") return price > 200;
+        return true;
+      });
+    }
+    return category === "all"
       ? products
       : category === "men" || category === "women"
         ? products.filter((item) => item.gender === category)
@@ -77,6 +98,7 @@ const Category = () => {
                 (dealGender ? item.gender === dealGender : true),
             )
           : products.filter((item) => item.category === category);
+  })();
 
   const handleMenDealsFiltering = () => {
     setDealGender("men");
@@ -303,44 +325,56 @@ const Category = () => {
                   className={`${openSections.product ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
                 >
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Hoodie</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productType"
+                        value="hoodie"
+                        className="peer hidden"
+                        onChange={() => setSelectedType("hoodie")}
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Hoodie
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Pants</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productType"
+                        value="pants"
+                        onChange={() => setSelectedType("pants")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Pants
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Jackets</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productType"
+                        value="jackets"
+                        onChange={() => setSelectedType("jacket")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Jackets
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Sweaters</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productType"
+                        value="sweaters"
+                        onChange={() => setSelectedType("sweater")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Sweaters
+                    </label>
                   </div>
                 </div>
               </div>
@@ -361,65 +395,83 @@ const Category = () => {
                 <div
                   className={`${openSections.sizes ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
                 >
-                  <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">XS</p>
+                  <div>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="XS"
+                        onChange={() => setSelectedSize("XS")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      XS
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">S</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="S"
+                        onChange={() => setSelectedSize("S")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      S
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">M</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="M"
+                        onChange={() => setSelectedSize("M")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      M
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">L</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="L"
+                        onChange={() => setSelectedSize("L")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      L
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">XL</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="XL"
+                        onChange={() => setSelectedSize("XL")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      XL
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">XXL</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productSize"
+                        value="XXL"
+                        onChange={() => setSelectedSize("XXL")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      XXL
+                    </label>
                   </div>
                 </div>
               </div>
@@ -441,44 +493,56 @@ const Category = () => {
                   className={`${openSections.price ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
                 >
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Under 50$</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productPrice"
+                        value="under50"
+                        onChange={() => setSelectedPrice("under50")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Under 50€
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">50$ - 100$</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productPrice"
+                        value="50to100"
+                        onChange={() => setSelectedPrice("50to100")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      50€ - 100€
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">100$ - 200$</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productPrice"
+                        value="100to200"
+                        onChange={() => setSelectedPrice("100to200")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      100€ - 200€
+                    </label>
                   </div>
                   <div className="flex flex-row items-center gap-[10px]">
-                    <input
-                      type="radio"
-                      name="hoodie"
-                      id="hoodie"
-                      value="hoodie"
-                      className="appearance-none w-[15px] h-[15px] border border-black rounded-sm cursor-pointer"
-                    />
-                    <p className="text-xs laptop:text-sm">Over 200$</p>
+                    <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
+                      <input
+                        type="radio"
+                        name="productPrice"
+                        value="over200"
+                        onChange={() => setSelectedPrice("over200")}
+                        className="peer hidden"
+                      />
+                      <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                      Over 200€
+                    </label>
                   </div>
                 </div>
               </div>

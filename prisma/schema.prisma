@@ -68,6 +68,7 @@ model Product {
   discount Int?
   price Float
   availableSizes String[]
+  availableStock Int
   category String
   gender String
   fit String

@@ -127,12 +127,12 @@ const MainProductCard = ({
           className={`productcard__price font-medium text-base mt-[5px] ${discount && "flex flex-row gap-2"}`}
         >
           <span className={`${discount && "line-through text-gray-600"}`}>
-            ${price}
+            €{price}
           </span>
 
           {discount && (
             <span className="text-red-700 no-de">
-              ${(price - (price * discount) / 100).toFixed(0)}
+              €{(price - (price * discount) / 100).toFixed(0)}
             </span>
           )}
         </div>
