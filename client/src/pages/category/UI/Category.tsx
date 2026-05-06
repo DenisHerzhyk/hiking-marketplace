@@ -20,8 +20,8 @@ const Category = () => {
     shoes: true,
   });
   const [dealGender, setDealGender] = useState<"men" | "women" | null>(null);
-  const [selectedType, setSelectedType] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
 
   const m_img =
@@ -69,14 +69,22 @@ const Category = () => {
   }
 
   const filteredProducts = (() => {
-    if (selectedType)
-      return products.filter((item) => item.category === selectedType);
-    if (selectedSize)
-      return products.filter((item) =>
-        item.availableSizes.includes(selectedSize),
+    let filtered = products;
+
+    if (selectedTypes.length > 0)
+      filtered = filtered.filter((item) =>
+        selectedTypes.includes(item.category),
       );
+    if (selectedSizes)
+      filtered = filtered.filter(
+        (item) =>
+          (filtered = filtered.filter((item) =>
+            item.availableSizes.some((size) => selectedSizes.includes(size)),
+          )),
+      );
+
     if (selectedPrice) {
-      return products.filter((item) => {
+      filtered = filtered.filter((item) => {
         const price = item.discount
           ? item.price * (1 - item.discount / 100)
           : item.price;
@@ -87,18 +95,32 @@ const Category = () => {
         return true;
       });
     }
-    return category === "all"
-      ? products
-      : category === "men" || category === "women"
-        ? products.filter((item) => item.gender === category)
-        : category === "deals"
-          ? products.filter(
-              (item) =>
-                item.discount &&
-                (dealGender ? item.gender === dealGender : true),
-            )
-          : products.filter((item) => item.category === category);
+    if (category === "all") {
+      return filtered;
+    }
+    if (category === "men" || category === "women") {
+      return filtered.filter((item) => item.gender === category);
+    }
+    if (category === "deals") {
+      return filtered.filter(
+        (item) =>
+          item.discount && (dealGender ? item.gender === dealGender : true),
+      );
+    }
+    if (category === "shoes") {
+      return filtered.filter((item) => item.category === category);
+    }
+
+    return filtered;
   })();
+
+  const handleTypeChange = (category: string) => {
+    setSelectedTypes((prev) =>
+      prev.includes(category)
+        ? prev.filter((s) => s !== category)
+        : [...prev, category],
+    );
+  };
 
   const handleMenDealsFiltering = () => {
     setDealGender("men");
@@ -327,11 +349,12 @@ const Category = () => {
                   <div className="flex flex-row items-center gap-[10px]">
                     <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
                       <input
-                        type="radio"
+                        type="checkbox"
                         name="productType"
                         value="hoodie"
+                        checked={selectedTypes.includes("hoodie")}
                         className="peer hidden"
-                        onChange={() => setSelectedType("hoodie")}
+                        onChange={() => handleTypeChange("hoodie")}
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
                       Hoodie
@@ -340,10 +363,11 @@ const Category = () => {
                   <div className="flex flex-row items-center gap-[10px]">
                     <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
                       <input
-                        type="radio"
+                        type="checkbox"
                         name="productType"
                         value="pants"
-                        onChange={() => setSelectedType("pants")}
+                        checked={selectedTypes.includes("pants")}
+                        onChange={() => handleTypeChange("pants")}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -353,11 +377,12 @@ const Category = () => {
                   <div className="flex flex-row items-center gap-[10px]">
                     <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
                       <input
-                        type="radio"
+                        type="checkbox"
                         name="productType"
                         value="jackets"
-                        onChange={() => setSelectedType("jacket")}
+                        checked={selectedTypes.includes("jacket")}
                         className="peer hidden"
+                        onChange={() => handleTypeChange("jacket")}
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
                       Jackets
@@ -366,11 +391,12 @@ const Category = () => {
                   <div className="flex flex-row items-center gap-[10px]">
                     <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
                       <input
-                        type="radio"
+                        type="checkbox"
                         name="productType"
                         value="sweaters"
-                        onChange={() => setSelectedType("sweater")}
+                        checked={selectedTypes.includes("sweater")}
                         className="peer hidden"
+                        onChange={() => handleTypeChange("sweater")}
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
                       Sweaters
@@ -401,7 +427,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="XS"
-                        onChange={() => setSelectedSize("XS")}
+                        onChange={() => setSelectedSizes(["XS"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -414,7 +440,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="S"
-                        onChange={() => setSelectedSize("S")}
+                        onChange={() => setSelectedSizes(["S"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -427,7 +453,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="M"
-                        onChange={() => setSelectedSize("M")}
+                        onChange={() => setSelectedSizes(["M"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -440,7 +466,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="L"
-                        onChange={() => setSelectedSize("L")}
+                        onChange={() => setSelectedSizes(["L"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -453,7 +479,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="XL"
-                        onChange={() => setSelectedSize("XL")}
+                        onChange={() => setSelectedSizes(["XL"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
@@ -466,7 +492,7 @@ const Category = () => {
                         type="radio"
                         name="productSize"
                         value="XXL"
-                        onChange={() => setSelectedSize("XXL")}
+                        onChange={() => setSelectedSizes(["XXL"])}
                         className="peer hidden"
                       />
                       <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />

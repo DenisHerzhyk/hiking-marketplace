@@ -2,17 +2,17 @@
   "mainCategories": [
     {
       "title": "MEN'S",
-      "image": "/images//main-categories/m_1.jpeg",
+      "image": "https://res.cloudinary.com/dlrft9pjb/image/upload/main-categories.jpg",
       "link": "/category/men"
     },
     {
       "title": "WOMEN'S",
-      "image": "/images/main-categories/w_3.jpg",
+      "image": "https://res.cloudinary.com/dlrft9pjb/image/upload/main-categories-3.jpg",
       "link": "/category/women"
     },
     {
       "title": "SHOES",
-      "image": "/images/main-categories/s.png",
+      "image": "https://res.cloudinary.com/dlrft9pjb/image/upload/main-categories-2.jpg",
       "link": "/category/shoes"
     }
   ]
