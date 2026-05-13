@@ -20,6 +20,28 @@ model User {
   cart Cart?
   wishlist Wishlist?
   order Order[]
+  country String?
+  gender String?
+  language String?
+  additionalEmails String[]
+  addresses DeliveryAddress[]
+}
+
+model DeliveryAddress {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  firstName String
+  lastName String
+  phone String
+  address1 String
+  address2 String
+  city String
+  postalCode String
+  country String
+  isDefault Boolean @default(false)
+  createdAt DateTime @default(now())
+  orders Order[]
 }
 
 model Cart {
@@ -68,7 +90,7 @@ model Product {
   discount Int?
   price Float
   availableSizes String[]
-  availableStock Int
+  availableStock Int @default(20)
   category String
   gender String
   fit String
@@ -82,7 +104,6 @@ model Product {
   wishlistItems WishlistItem[]
 } 
 
-
 model Order {
   id Int @id @default(autoincrement())
   userId Int
@@ -93,6 +114,8 @@ model Order {
   paymentId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deliveryAddressId Int?
+  deliveryAddress DeliveryAddress? @relation(fields: [deliveryAddressId], references: [id])
 }
 
 model OrderItem {

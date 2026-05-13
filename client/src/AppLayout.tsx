@@ -38,7 +38,7 @@ const AppLayout = () => {
       {isLoginOrRegister || isCategory || isProduct ? (
         <div className="mt-[0px]" />
       ) : (
-        !isHome && <div className="mt-[250px]" />
+        !isHome && <div className="mt-[200px]" />
       )}
       {}
       <ScrollHash />

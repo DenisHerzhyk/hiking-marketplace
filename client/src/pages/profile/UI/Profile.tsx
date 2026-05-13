@@ -1,9 +1,15 @@
 import avatar from "/images/avatar.webp";
-import email_logo from "/images/email.svg";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
+
+const FORM_FIELDS = [
+  { label: "Full Name", name: "fullName", placeholder: "Your full name" },
+  { label: "Country", name: "country", placeholder: "Your country" },
+  { label: "Gender", name: "gender", placeholder: "Your gender" },
+  { label: "Language", name: "language", placeholder: "Preferred language" },
+];
 
 const Profile = () => {
   const ctxt = useContext(AuthContext);
@@ -18,145 +24,112 @@ const Profile = () => {
       .post(
         "http://localhost:4996/api/user/logout",
         {},
-        {
-          withCredentials: true,
-        },
+        { withCredentials: true },
       )
-      .then((res) => {
-        console.log(`User ${email} was successfully logged out`);
+      .then(() => {
         setAuthLogin(false);
         setEmail("");
         navigate("/login");
       })
-      .catch((err) => {
-        console.log("Logout error: ", err);
-      });
+      .catch((err) => console.error("Logout error:", err));
   };
 
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "short",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <>
-      <div className="Profile flex flex-col mx-auto max-w-[1282px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[96px]">
-        <div>
-          <div className="welcome">
-            <h1 className="text-[var(--purple-color)] font-medium text-2xl">
-              Welcome, hhhh
-            </h1>
-            <p className="font-light text-base mt-[13px] text-[#ADA7A7]">
-              Tue, 07 June 2022
-            </p>
-          </div>
-          <div className="profile-container mt-[33px]">
-            <div className="h-[60px] bg-gradient-to-r from-[#b9d4f2] to-[#fdf6e3] rounded-tl-[8px] rounded-tr-[8px]"></div>
-            <div className="content py-[31px] px-[20px] mobile:px-[32px] mobile:py-[30px]">
-              <div className="upper__content flex flex-wrap justify-between gap-[20px] mb-[31px]">
-                <div className="flex flex-row flex-wrap gap-[23px] items-center">
-                  <img
-                    src={avatar}
-                    alt="avatar"
-                    className="w-[70px] h-[70px] mobile:w-[100px] mobile:h-[100px] rounded-full object-cover"
-                  />
-                  <div className="flex flex-col">
-                    <h2 className="font-medium text-[18px] mobile:text-[20px]">
-                      Alexa Rawler
-                    </h2>
-                    <p className="text-[var(--light-gray)] text-sm mobile:text-base">
-                      alexarawles@gmail.com
-                    </p>
-                  </div>
-                </div>
-                <div className="buttons flex flex-row items-center gap-[20px]">
-                  <button
-                    onClick={handleLogout}
-                    className="font-bold text-sm mobile:text-base bg-[var(--primary-red)] rounded-[8px] px-[13.5px] py-[6px] mobile:px-[17px] mobile:py-[8px] text-white"
-                  >
-                    Logout
-                  </button>
-                  <button className="font-bold text-sm mobile:text-base bg-[var(--primary-blue)] rounded-[8px] px-[15px] py-[6px] mobile:px-[20px] mobile:py-[8px] text-white">
-                    Edit
-                  </button>
-                </div>
-              </div>
-              <form
-                action="/"
-                className="grid grid-cols-1 tablet:grid-cols-2 gap-[22px] mobile:gap-[27px] tablet:gap-[34px]"
-              >
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-base font-normal text-[var(--purple-color)]"
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your First Name"
-                    className="bg-[var(--primary-gray)] text-base w-full py-[10.5px] px-[22px] mobile:py-[14px] rounded-[8px] mt-[13px]"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-base font-normal text-[var(--purple-color)]"
-                  >
-                    Country
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your First Name"
-                    className="bg-[var(--primary-gray)] text-base w-full py-[10.5px] px-[22px] mobile:py-[14px] rounded-[8px] mt-[13px]"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-base font-normal text-[var(--purple-color)]"
-                  >
-                    Gender
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your First Name"
-                    className="bg-[var(--primary-gray)] text-base w-full py-[10.5px] px-[22px] mobile:py-[14px] rounded-[8px] mt-[13px]"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor=""
-                    className="text-base font-normal text-[var(--purple-color)]"
-                  >
-                    Language
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your First Name"
-                    className="bg-[var(--primary-gray)] text-base w-full py-[10.5px] px-[22px] mobile:py-[14px] rounded-[8px] mt-[13px]"
-                  />
-                </div>
-              </form>
-              <div className="email-panel mt-[33px]">
-                <h2 className="font-medium text-lg">My email Address</h2>
-                <div className="flex flex-row flex-wrap items-center gap-[21px] mt-[19px]">
-                  <img src={email_logo} alt="email_logo" />
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-base">alexarawles@gmail.com</p>
-                    <p className="text-base text-[var(--light-gray)]">
-                      1 month ago
-                    </p>
-                  </div>
-                </div>
-                <button className="text-base px-[24.5px] py-[10px] text-[var(--primary-blue)] bg-blue-100/50 rounded-[8px] mt-[32px]">
-                  +Add Email Address
-                </button>
+    <div className="Profile flex flex-col mx-auto max-w-[900px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] pb-[80px]">
+      <div className="mb-[32px]">
+        <h1 className="font-semibold text-2xl mobile:text-3xl tracking-tight">
+          Welcome back, {email?.split("@")[0] ?? "there"}
+        </h1>
+        <p className="text-sm text-gray-400 mt-[6px] tracking-wide">{today}</p>
+      </div>
+
+      <div className="border border-gray-200 rounded-[4px] overflow-hidden">
+        <div className="h-[56px] bg-gradient-to-r from-gray-100 to-gray-200" />
+        <div className="py-[28px] px-[20px] mobile:px-[32px]">
+          <div className="flex flex-wrap justify-between items-start gap-[20px] mb-[36px]">
+            <div className="flex flex-row flex-wrap gap-[20px] items-center">
+              <img
+                src={avatar}
+                alt="avatar"
+                className="w-[70px] h-[70px] mobile:w-[90px] mobile:h-[90px] rounded-full object-cover border border-gray-200"
+              />
+              <div className="flex flex-col gap-[4px]">
+                <h2 className="font-semibold text-[18px] mobile:text-[20px] tracking-tight">
+                  Alexa Rawler
+                </h2>
+                <p className="text-gray-400 text-sm">{email}</p>
               </div>
             </div>
+
+            <div className="flex flex-row items-center gap-[10px]">
+              <button
+                onClick={handleLogout}
+                className="text-sm font-medium border border-black px-[14px] py-[7px] hover:bg-black hover:text-white transition-colors duration-200"
+              >
+                Log out
+              </button>
+              <button className="text-sm font-medium bg-black text-white px-[14px] py-[7px] hover:opacity-70 transition-opacity duration-200">
+                Edit profile
+              </button>
+            </div>
           </div>
+          <div className="border-t border-gray-100 mb-[32px]" />
+
+          <h3 className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase mb-[20px]">
+            Personal details
+          </h3>
+          <form
+            className="grid grid-cols-1 tablet:grid-cols-2 gap-[20px] mobile:gap-[24px]"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            {FORM_FIELDS.map(({ label, name, placeholder }) => (
+              <div key={name} className="flex flex-col gap-[8px]">
+                <label
+                  htmlFor={name}
+                  className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
+                >
+                  {label}
+                </label>
+                <input
+                  type="text"
+                  id={name}
+                  name={name}
+                  placeholder={placeholder}
+                  className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                />
+              </div>
+            ))}
+          </form>
+
+          {/* Divider */}
+          <div className="border-t border-gray-100 mt-[36px] mb-[28px]" />
+
+          {/* Email section */}
+          <h3 className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase mb-[20px]">
+            Email addresses
+          </h3>
+          <div className="flex flex-row flex-wrap items-center gap-[16px]">
+            <div className="w-[38px] h-[38px] rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-base">
+              @
+            </div>
+            <div className="flex flex-col gap-[3px]">
+              <p className="text-sm font-medium">{email}</p>
+              <p className="text-xs text-gray-400">Added 1 month ago</p>
+            </div>
+          </div>
+          <button className="mt-[24px] text-sm font-medium border border-gray-300 px-[16px] py-[8px] hover:border-black transition-colors duration-200">
+            + Add email address
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
