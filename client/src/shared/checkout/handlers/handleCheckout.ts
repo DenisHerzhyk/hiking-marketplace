@@ -20,8 +20,9 @@ export const handleCheckoutRequest = async (
       { withCredentials: true },
     )
     .then((res) => {
-      navigate("/checkout", { state: { clientSecret: res.data.clientSecret } });
-      toast.success("Checkout in process!");
+      // navigate("/checkout", { state: { clientSecret: res.data.clientSecret } });
+      navigate("/deliveryInfo");
+      toast.loading("Delivery Information");
     })
     .catch((err) => console.error(err));
 };

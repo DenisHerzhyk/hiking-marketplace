@@ -9,6 +9,7 @@ import Orders from "./pages/order/UI/Orders.tsx";
 import ShowOrder from "./pages/order/components/show_order/UI/ShowOrder.tsx";
 import { Routes, Route, useLocation, matchPath } from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
+import DeliveryInfo from "./pages/delivery_info/UI/DeliveryInfo.tsx";
 import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
@@ -53,6 +54,7 @@ const AppLayout = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
+          <Route path="/deliveryInfo" element={<DeliveryInfo />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/order" element={<ShowOrder />} />
           <Route path="/profile" element={<Profile />} />

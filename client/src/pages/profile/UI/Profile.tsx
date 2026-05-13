@@ -108,10 +108,8 @@ const Profile = () => {
             ))}
           </form>
 
-          {/* Divider */}
           <div className="border-t border-gray-100 mt-[36px] mb-[28px]" />
 
-          {/* Email section */}
           <h3 className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase mb-[20px]">
             Email addresses
           </h3>

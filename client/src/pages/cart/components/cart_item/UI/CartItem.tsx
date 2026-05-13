@@ -51,7 +51,6 @@ const CartItem: React.FC<CartItemInterface> = ({
               <h2 className="font-medium break-words text-base">
                 {product.title.toUpperCase()}
               </h2>
-              {/* Design discounts */}
               <div className={`text-lg`}>
                 <p
                   className={`${product?.discount && "line-through text-gray-600"}`}

@@ -228,8 +228,6 @@ const ProductPage = () => {
                       ✕
                     </button>
                   </div>
-
-                  {/* clothing sizes */}
                   {product?.category !== "shoes" && (
                     <div>
                       <h3 className="font-semibold text-sm mb-[12px] uppercase tracking-wider">
@@ -310,8 +308,6 @@ const ProductPage = () => {
                       </table>
                     </div>
                   )}
-
-                  {/* shoes sizes */}
                   {product?.category === "shoes" && (
                     <div>
                       <h3 className="font-semibold text-sm mb-[12px] uppercase tracking-wider">

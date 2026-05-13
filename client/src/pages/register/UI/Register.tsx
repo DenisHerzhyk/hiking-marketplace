@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import "../../../styles/main.scss";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import IUser from "../interface/RegisterInterface.ts";
@@ -30,7 +29,7 @@ const Register = () => {
     setError("");
 
     const response = await axios
-      .post("http://localhost:4996/api/user/register", {
+      .post("http://localhost:4996/api/user/registe", {
         email: user.email,
         password: user.password,
         confirmPassword: user.confirmPassword,
