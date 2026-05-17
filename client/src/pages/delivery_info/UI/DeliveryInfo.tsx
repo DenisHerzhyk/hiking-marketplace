@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { CheckoutSteps } from "../../../shared/checkout_steps/CheckoutSteps.tsx";
+import CartItemInterface from "../../cart/components/cart_item/interface/CartItemInterface.tsx";
+import axios from "axios";
+import { colorNames } from "../../cart/components/cart_item/components/color.ts";
+import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
 
 const COUNTRIES = [
   "Bulgaria",
@@ -19,7 +24,18 @@ const COUNTRIES = [
 
 const DeliveryInfo = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+  const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
+  const [form, setForm] = useState<{
+    firstName: string;
+    lastName: string;
+    phone: string;
+    address1: string;
+    address2: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    saveAddress: boolean;
+  }>({
     firstName: "",
     lastName: "",
     phone: "",
@@ -30,6 +46,30 @@ const DeliveryInfo = () => {
     country: "",
     saveAddress: false,
   });
+
+  const subtotal = Number(
+    cartItems
+      .reduce((sum, a) => {
+        const price = a.product.discount
+          ? a.product.price * (1 - a.product.discount / 100)
+          : a.product.price;
+        return sum + price;
+      }, 0)
+      .toFixed(2),
+  );
+  const shipping = subtotal < 99 ? 9 : 0;
+  const orderTotal = (subtotal + shipping).toFixed(2);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4996/api/cart", { withCredentials: true })
+      .then((res) => {
+        setCartItems(res.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -42,41 +82,10 @@ const DeliveryInfo = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: save delivery info, then go to payment
-    navigate("/checkout/payment");
-  };
-
   return (
-    <div className="DeliveryInfo min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
-      {/* Progress bar */}
-      <div className="flex items-center gap-0 mb-[40px] mobile:mb-[56px] mt-[32px]">
-        {["Delivery", "Payment", "Confirmation"].map((step, i) => (
-          <div key={step} className="flex items-center">
-            <div className="flex flex-col items-center gap-[6px]">
-              <div
-                className={`w-[28px] h-[28px] rounded-full flex items-center justify-center text-[11px] font-semibold border ${i === 0 ? "bg-black text-white border-black" : "text-gray-300 border-gray-200"}`}
-              >
-                {i + 1}
-              </div>
-              <span
-                className={`text-[10px] tracking-widest uppercase ${i === 0 ? "text-black font-medium" : "text-gray-300"}`}
-              >
-                {step}
-              </span>
-            </div>
-            {i < 2 && (
-              <div
-                className={`w-[60px] mobile:w-[100px] h-[1px] mb-[20px] mx-[6px] ${i === 0 ? "bg-gray-300" : "bg-gray-200"}`}
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
+    <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
+      <CheckoutSteps />
       <div className="flex flex-col laptop:flex-row gap-[40px] laptop:gap-[80px] max-w-[1100px]">
-        {/* Form */}
         <div className="flex-1">
           <h1 className="font-semibold text-xl mobile:text-2xl tracking-tight mb-[8px]">
             Delivery Information
@@ -85,8 +94,18 @@ const DeliveryInfo = () => {
             Enter the address where you'd like your order delivered.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-[24px]">
-            {/* Name row */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleCheckoutRequest(
+                navigate,
+                Number(orderTotal),
+                cartItems,
+                form,
+              );
+            }}
+            className="flex flex-col gap-[24px]"
+          >
             <div className="grid grid-cols-1 mobile:grid-cols-2 gap-[20px]">
               {[
                 { label: "First Name", name: "firstName", placeholder: "John" },
@@ -109,7 +128,6 @@ const DeliveryInfo = () => {
               ))}
             </div>
 
-            {/* Phone */}
             <div className="flex flex-col gap-[8px]">
               <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
                 Phone <span className="text-black">*</span>
@@ -125,7 +143,6 @@ const DeliveryInfo = () => {
               />
             </div>
 
-            {/* Address 1 */}
             <div className="flex flex-col gap-[8px]">
               <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
                 Address <span className="text-black">*</span>
@@ -141,7 +158,6 @@ const DeliveryInfo = () => {
               />
             </div>
 
-            {/* Address 2 */}
             <div className="flex flex-col gap-[8px]">
               <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
                 Apartment, floor{" "}
@@ -159,7 +175,6 @@ const DeliveryInfo = () => {
               />
             </div>
 
-            {/* City + Postal */}
             <div className="grid grid-cols-1 mobile:grid-cols-2 gap-[20px]">
               {[
                 { label: "City", name: "city", placeholder: "Sofia" },
@@ -185,8 +200,6 @@ const DeliveryInfo = () => {
                 </div>
               ))}
             </div>
-
-            {/* Country */}
             <div className="flex flex-col gap-[8px]">
               <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
                 Country <span className="text-black">*</span>
@@ -208,8 +221,6 @@ const DeliveryInfo = () => {
                 ))}
               </select>
             </div>
-
-            {/* Save address */}
             <label className="flex items-center gap-[10px] cursor-pointer mt-[4px]">
               <input
                 type="checkbox"
@@ -223,8 +234,6 @@ const DeliveryInfo = () => {
                 Save this address for future orders
               </span>
             </label>
-
-            {/* Actions */}
             <div className="flex flex-row items-center justify-between mt-[12px] pt-[24px] border-t border-gray-100">
               <Link
                 to="/cart"
@@ -242,31 +251,44 @@ const DeliveryInfo = () => {
             </div>
           </form>
         </div>
-
-        {/* Order summary sidebar */}
         <div className="hidden laptop:flex flex-col w-[320px] flex-shrink-0">
           <h2 className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase mb-[20px]">
             Order Summary
           </h2>
           <div className="border border-gray-200 p-[20px] flex flex-col gap-[16px]">
-            {/* placeholder items — replace with real cart data */}
-            {[1, 2].map((i) => (
-              <div key={i} className="flex flex-row gap-[12px] items-center">
-                <div className="w-[52px] h-[64px] bg-gray-100 flex-shrink-0" />
+            {cartItems.map((item) => (
+              <div
+                key={item.product.title}
+                className="flex flex-row gap-[12px] items-center"
+              >
+                <img
+                  src={item.product.productImages[0]}
+                  className="w-[52px] h-[64px] bg-gray-100 flex-shrink-0 object-cover"
+                />
                 <div className="flex flex-col gap-[4px] flex-1 min-w-0">
                   <p className="text-[12px] font-semibold uppercase truncate">
-                    Product name
+                    {item.product.title}
                   </p>
-                  <p className="text-[11px] text-gray-400">Size M · Black</p>
+                  <p className="text-[11px] text-gray-400">
+                    Size {item.product.size} · {colorNames[item.product.color]}
+                  </p>
                 </div>
-                <p className="text-[13px] font-semibold">€89.00</p>
+                <p className="text-[13px] font-semibold">
+                  €
+                  {item.product.discount
+                    ? (
+                        item.product.price *
+                        (1 - item.product.discount / 100)
+                      ).toFixed(2)
+                    : item.product.price.toFixed(2)}
+                </p>
               </div>
             ))}
             <div className="border-t border-gray-100 pt-[16px] flex justify-between items-center">
               <p className="text-[11px] tracking-widest uppercase text-gray-400">
                 Total
               </p>
-              <p className="text-base font-semibold">€178.00</p>
+              <p className="text-base font-semibold">€{orderTotal}</p>
             </div>
           </div>
         </div>

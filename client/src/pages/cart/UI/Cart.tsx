@@ -156,7 +156,7 @@ const Cart = () => {
                   >
                     <p>{item.product.title}</p>
                     <p>
-                      $
+                      €
                       {item.product.discount
                         ? (
                             item.product.price *
@@ -189,9 +189,7 @@ const Cart = () => {
               </p>
             </div>
             <button
-              onClick={() =>
-                handleCheckoutRequest(navigate, Number(orderTotal), cartItems)
-              }
+              onClick={() => navigate("/deliveryInfo")}
               className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
             >
               CHECKOUT

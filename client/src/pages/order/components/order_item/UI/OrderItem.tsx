@@ -20,6 +20,8 @@ const OrderItem = ({
   paymentId,
   createdAt,
   items,
+  deliveryAddress,
+  deliveryAddressId,
 }: ShowOrderInterface) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -45,6 +47,21 @@ const OrderItem = ({
 
         <p className="text-xs text-gray-400">
           {items.map((i) => i.product.title).join(", ")}
+        </p>
+        <p className="text-sm text-black">
+          Contact Details
+          <br />
+          {deliveryAddress?.firstName} {deliveryAddress?.lastName} -{" "}
+          {deliveryAddress?.phone}
+        </p>
+        <p className="text-sm text-black">
+          Address
+          <br />
+          {deliveryAddress?.address1}{" "}
+          <span className="ml-2">
+            {deliveryAddress?.address2} - {deliveryAddress?.city},{" "}
+            {deliveryAddress?.country}, {deliveryAddress?.postalCode}
+          </span>
         </p>
 
         {expanded && (

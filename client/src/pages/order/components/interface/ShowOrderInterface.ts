@@ -5,8 +5,21 @@ interface ShowOrderInterface {
   userId: number;
   total: number;
   status: string;
-  paymentId: number;
+  paymentId: string;
   createdAt: string;
+  deliveryAddressId: number | null;
+  deliveryAddress: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    address1: string;
+    address2: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    isDefault: boolean;
+  } | null;
   items: CartItemInterface[];
 }
 

@@ -20,7 +20,6 @@ const ShowOrder = () => {
           { withCredentials: true },
         )
         .then((res) => {
-          console.log(res.data.order);
           setOrder(res.data.order);
         })
         .catch((err) => console.error("Problem with payment confirmation"));
@@ -42,8 +41,6 @@ const ShowOrder = () => {
         <h1 className="text-2xl font-semibold mb-8">
           Your order is on the way
         </h1>
-
-        {/* Items */}
         <div className="border border-gray-200 rounded-xl overflow-hidden mb-4">
           <div className="flex justify-between items-center px-5 py-3 border-b border-gray-200">
             <span className="text-xs font-medium text-gray-400 tracking-wide">
@@ -93,14 +90,17 @@ const ShowOrder = () => {
           </div>
         </div>
 
-        {/* Info */}
         <div className="flex flex-col mobile:flex-row gap-3 mb-4">
           <div className="flex-1 border border-gray-200 rounded-xl p-5">
             <p className="text-[11px] text-gray-400 tracking-widest font-medium mb-2">
               STATUS
             </p>
             <p className="text-sm capitalize">{order.status}</p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-sm font-medium text-black mt-2">
+              Address:
+              <br /> {order.deliveryAddress?.address1}
+            </p>
+            <p className="text-xs text-gray-400 mt-2">
               {new Date(order.createdAt).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",

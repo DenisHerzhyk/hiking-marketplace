@@ -49,6 +49,8 @@ const Orders = () => {
                       order.createdAt.split("T")[1].split(".")[0]
                     }
                     items={order.items}
+                    deliveryAddress={order.deliveryAddress}
+                    deliveryAddressId={order.deliveryAddressId}
                   />
                 ))}
             </div>
@@ -57,7 +59,6 @@ const Orders = () => {
           )}
         </div>
 
-        {/* summary sidebar */}
         {orders && orders.length > 0 && (
           <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-gray-100 w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
             <h3 className="font-semibold text-sm mobile:text-lg mb-[17px]">
@@ -90,9 +91,6 @@ const Orders = () => {
                 </p>
               </div>
             </div>
-            {/* <button className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
-              SHOP MORE
-            </button> */}
           </section>
         )}
       </section>
