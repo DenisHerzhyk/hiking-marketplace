@@ -45,6 +45,12 @@ const Category = () => {
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-3.png";
 
   useEffect(() => {
+    setSelectedTypes([]);
+    setSelectedSizes([]);
+    setSelectedPrice(null);
+    setSelectedGender(null);
+  }, [type]);
+  useEffect(() => {
     axios.get("http://localhost:4996/api/products").then((res) => {
       setProducts(res.data.data);
     });
@@ -126,7 +132,11 @@ const Category = () => {
   const visibleSizes =
     category === "shoes"
       ? sizesByCategory.shoes
-      : ["XS", "S", "M", "L", "XL", "30", "32", "34", "36"];
+      : category === "deals"
+        ? ["XS", "S", "M", "L", "XL", "30", "32", "34", "36"].concat(
+            sizesByCategory.shoes,
+          )
+        : ["XS", "S", "M", "L", "XL", "30", "32", "34", "36"];
 
   const handleTypeChange = (category: string) => {
     setSelectedTypes((prev) =>
