@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProductInterface from "../interface/ProductInterface.js";
 import { VscHeart } from "react-icons/vsc";
 import { VscHeartFilled } from "react-icons/vsc";
-import { FaP, FaPlus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 import { handleCartItemAdd } from "../../../../pages/cart/components/cart_item/handlers/handleCartItemAdd.js";
 import { handleWishlistAdd } from "../../../../pages/cart/components/saved_item/handlers/handleWishlistAdd.js";
 import { Link } from "react-router-dom";
@@ -74,7 +74,6 @@ const MainProductCard = ({
       key={id}
       onMouseLeave={() => setOpenSection(false)}
     >
-      {/* <div className="fixed inset-0 bg-black/20 z-40"></div> */}
       <div className="productcard__image group relative w-full h-[280px] tablet:h-[350px]">
         <Link to={`/product/${id}`}>
           <div className="overflow-hidden rounded-md h-full">

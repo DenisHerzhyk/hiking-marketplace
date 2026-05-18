@@ -1,6 +1,4 @@
-import React from "react";
-import ProductCardInterface from "../interface/ProductCardInterface";
-import "../../../../styles/main.scss";
+import ProductCardInterface from "../../../../pages/home/components/product-card/ProductCardInterface";
 
 const ProductCard = ({ img, title, price }: ProductCardInterface) => {
   return (

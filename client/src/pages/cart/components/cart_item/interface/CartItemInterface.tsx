@@ -1,4 +1,4 @@
-import { ProductInterface } from "../../../../../shared/components/product-card/interface/ProductInterface";
+import ProductInterface from "../../../../../shared/components/product-card/interface/ProductInterface";
 import WishlistItemInterface from "../../saved_item/interface/SavedItemInterface";
 
 interface CartItemInterface {
@@ -7,6 +7,7 @@ interface CartItemInterface {
   productId: number;
   product: ProductInterface;
   quantity: number;
+  onQuantityChange: (quantity: number) => void;
   size: string;
   color: string;
   onDelete: (id: number) => void;

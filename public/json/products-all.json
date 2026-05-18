@@ -10,6 +10,7 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#4F5D3E",
+      "quantity": 30,
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -47,6 +48,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#2C4C5E",
+      "quantity": 5,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -84,6 +87,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#C4522C",
+      "quantity": 22,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -121,6 +126,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#6B5344",
+      "quantity": 40,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -155,6 +162,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#A2A79E",
+      "quantity": 1,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -190,6 +199,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#6B9EB5",
+      "quantity": 10,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -227,6 +238,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#C4522C",
+      "quantity": 23,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -262,6 +275,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#3E5441",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -297,6 +312,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#3E5441",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -331,6 +348,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#000000",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -365,6 +384,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#000000",
+      "quantity": 10,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -399,6 +420,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#267C7A",
+      "quantity": 23,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -433,6 +456,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#5A7D7A",
+      "quantity": 5,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -467,6 +492,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#8B5E3C",
+      "quantity": 12,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -501,6 +528,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#F2F2F2",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -535,6 +564,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#8B5E3C",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -569,6 +600,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#000000",
+      "quantity": 15,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -603,6 +636,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#7A7A7A",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -637,6 +672,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#A9A9A9",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -672,6 +709,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#6B6B6B",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -703,6 +742,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#D3D3D3",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -738,6 +779,8 @@
       "gender": "men",
       "fit": "Standard",
       "color": "#6B6B6B",
+      "quantity": 30,
+
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",

@@ -3,21 +3,32 @@ import CartItemInterface from "../interface/CartItemInterface.ts";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
-import { handleWishlistAdd } from "../../saved_item/handlers/handleWishlistAdd.ts";
 import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
 import { colorNames } from "../components/color.ts";
-
+import axios from "axios";
 const CartItem: React.FC<CartItemInterface> = ({
   id,
   cartId,
   productId,
   product,
   quantity,
+  onQuantityChange,
   size,
   color,
   onDelete,
   onWishlistAdd,
 }) => {
+  const handleCartItemUpdateReq = async (newQuantity: number) => {
+    await axios
+      .post(
+        `http://localhost:4996/api/cart/update/${id}`,
+        { quantity: newQuantity },
+        {
+          withCredentials: true,
+        },
+      )
+      .catch((err) => console.error(err));
+  };
   return (
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
@@ -32,6 +43,11 @@ const CartItem: React.FC<CartItemInterface> = ({
               name="sizes"
               id="sizes"
               className="focus:outline-none pr-4 pl-2 py-2"
+              value={quantity}
+              onChange={(e) => {
+                onQuantityChange(Number(e.target.value));
+                handleCartItemUpdateReq(Number(e.target.value));
+              }}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -55,14 +71,15 @@ const CartItem: React.FC<CartItemInterface> = ({
                 <p
                   className={`${product?.discount && "line-through text-gray-600"}`}
                 >
-                  €{product.price.toFixed(2)}
+                  €{(product.price * quantity).toFixed(2)}
                 </p>
                 {product?.discount && (
                   <span className="text-red-700">
                     €
                     {(
-                      product.price -
-                      (product.price * product.discount) / 100
+                      (product.price -
+                        (product.price * product.discount) / 100) *
+                      quantity
                     ).toFixed(2)}
                   </span>
                 )}

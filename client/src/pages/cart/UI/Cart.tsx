@@ -6,7 +6,6 @@ import CartItemInterface from "../components/cart_item/interface/CartItemInterfa
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
-import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
@@ -20,8 +19,8 @@ const Cart = () => {
     cartItems
       .reduce((sum, a) => {
         const price = a.product.discount
-          ? a.product.price * (1 - a.product.discount / 100)
-          : a.product.price;
+          ? a.product.price * (1 - a.product.discount / 100) * a.quantity
+          : a.product.price * a.quantity;
         return sum + price;
       }, 0)
       .toFixed(2),
@@ -55,21 +54,21 @@ const Cart = () => {
   }, []);
 
   const handleItemDelete = (id: number) => {
-    console.log("handleDelete called with id:", id);
-    console.log("current cartItems:", cartItems);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
-
+  const handleQuantityChange = (id: number, quantity: number) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: quantity } : item,
+      ),
+    );
+  };
   const handleWishlistItemDelete = (id: number) => {
-    console.log("handleDelete called with id:", id);
-    console.log("current wishlistItem:", wishListItems);
     setWishListItems((prev) => prev.filter((item) => item.id !== id));
   };
-
   const handleCartAdd = (item: CartItemInterface) => {
     setCartItems((prev) => [...prev, item]);
   };
-
   const handleWishlistAdd = (item: WishlistItemInterface) => {
     setWishListItems((prev) => [...prev, item]);
   };
@@ -93,6 +92,9 @@ const Cart = () => {
                     productId={item.productId}
                     product={item.product}
                     quantity={item.quantity}
+                    onQuantityChange={(val) =>
+                      handleQuantityChange(item.id, val)
+                    }
                     size={item.size}
                     color={item.color}
                     onDelete={handleItemDelete}
@@ -145,7 +147,7 @@ const Cart = () => {
                   SUBTOTAL({cartItems.length} ITEM)
                 </p>
                 <p className="text-sm tablet:text-base">
-                  ${subtotal.toFixed(2)}
+                  €{subtotal.toFixed(2)}
                 </p>
               </div>
               <ul className="flex flex-col gap-[5px]">
@@ -154,13 +156,16 @@ const Cart = () => {
                     key={item.id}
                     className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full"
                   >
-                    <p>{item.product.title}</p>
+                    <p>
+                      {item.product.title} x{item.quantity}
+                    </p>
                     <p>
                       €
                       {item.product.discount
                         ? (
                             item.product.price *
-                            (1 - item.product.discount / 100)
+                            (1 - item.product.discount / 100) *
+                            item.quantity
                           ).toFixed(2)
                         : item.product.price.toFixed(2)}
                     </p>
@@ -172,11 +177,11 @@ const Cart = () => {
                 <p className="font-semibold text-sm tablet:text-base break-words">
                   SHIPPING{" "}
                   <span className="font-light text-gray-600">
-                    (FREE OVER 99$)
+                    (FREE OVER 99€)
                   </span>
                 </p>
                 <p className="text-sm tablet:text-base">
-                  ${shipping.toFixed(2)}
+                  €{shipping.toFixed(2)}
                 </p>
               </div>
             </div>
@@ -185,7 +190,7 @@ const Cart = () => {
                 ORDER TOTAL
               </p>
               <p className="font-medium text-sm tablet:text-base">
-                ${orderTotal}
+                €{orderTotal}
               </p>
             </div>
             <button
