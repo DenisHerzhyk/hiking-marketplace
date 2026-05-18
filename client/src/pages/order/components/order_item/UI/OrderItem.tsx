@@ -49,13 +49,13 @@ const OrderItem = ({
           {items.map((i) => i.product.title).join(", ")}
         </p>
         <p className="text-sm text-black">
-          Contact Details
+          <span className="font-bold">Contact Details</span>
           <br />
-          {deliveryAddress?.firstName} {deliveryAddress?.lastName} -{" "}
-          {deliveryAddress?.phone}
+          {deliveryAddress?.firstName} {deliveryAddress?.lastName} (
+          {deliveryAddress?.phone})
         </p>
         <p className="text-sm text-black">
-          Address
+          <span className="font-bold">Delivery Address</span>
           <br />
           {deliveryAddress?.address1}{" "}
           <span className="ml-2">
@@ -76,15 +76,17 @@ const OrderItem = ({
                   <p className="text-xs text-gray-400">
                     {item.size} / {colorNames[item.color] ?? item.color}
                   </p>
+                  <p className="text-xs text-gray-400">Qty {item.quantity}</p>
                 </div>
                 <p className="text-sm">
                   $
                   {item.product.discount
                     ? (
                         item.product.price *
-                        (1 - item.product.discount / 100)
+                        (1 - item.product.discount / 100) *
+                        item.quantity
                       ).toFixed(2)
-                    : item.product.price.toFixed(2)}
+                    : (item.product.price * item.quantity).toFixed(2)}
                 </p>
               </div>
             ))}
