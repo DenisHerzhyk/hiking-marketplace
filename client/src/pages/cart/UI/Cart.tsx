@@ -167,7 +167,7 @@ const Cart = () => {
                             (1 - item.product.discount / 100) *
                             item.quantity
                           ).toFixed(2)
-                        : item.product.price.toFixed(2)}
+                        : (item.product.price * item.quantity).toFixed(2)}
                     </p>
                   </li>
                 ))}

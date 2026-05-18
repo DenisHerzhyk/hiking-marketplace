@@ -51,8 +51,8 @@ const DeliveryInfo = () => {
     cartItems
       .reduce((sum, a) => {
         const price = a.product.discount
-          ? a.product.price * (1 - a.product.discount / 100)
-          : a.product.price;
+          ? a.product.price * (1 - a.product.discount / 100) * a.quantity
+          : a.product.price * a.quantity;
         return sum + price;
       }, 0)
       .toFixed(2),
@@ -270,17 +270,23 @@ const DeliveryInfo = () => {
                     {item.product.title}
                   </p>
                   <p className="text-[11px] text-gray-400">
-                    Size {item.product.size} · {colorNames[item.product.color]}
+                    Size {item.size} · {colorNames[item.product.color]}
                   </p>
+                  {item.quantity > 1 && (
+                    <p className="text-[11px] text-gray-400">
+                      Qty {item.quantity}
+                    </p>
+                  )}
                 </div>
                 <p className="text-[13px] font-semibold">
                   €
                   {item.product.discount
                     ? (
                         item.product.price *
-                        (1 - item.product.discount / 100)
+                        (1 - item.product.discount / 100) *
+                        item.quantity
                       ).toFixed(2)
-                    : item.product.price.toFixed(2)}
+                    : (item.product.price * item.quantity).toFixed(2)}
                 </p>
               </div>
             ))}

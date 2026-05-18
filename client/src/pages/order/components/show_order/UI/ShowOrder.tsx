@@ -71,9 +71,10 @@ const ShowOrder = () => {
                 {item.product.discount
                   ? (
                       item.product.price *
-                      (1 - item.product.discount / 100)
+                      (1 - item.product.discount / 100) *
+                      item.quantity
                     ).toFixed(2)
-                  : item.product.price.toFixed(2)}
+                  : (item.product.price * item.quantity).toFixed(2)}
               </span>
             </div>
           ))}
