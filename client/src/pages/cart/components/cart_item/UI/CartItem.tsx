@@ -6,6 +6,8 @@ import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
 import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
 import { colorNames } from "../components/color.ts";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 const CartItem: React.FC<CartItemInterface> = ({
   id,
   cartId,
@@ -33,11 +35,13 @@ const CartItem: React.FC<CartItemInterface> = ({
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
         <div className="nav-menu flex flex-col gap-[10px]">
-          <img
-            className="cartitem__image object-cover object-center w-[150px] flex-1 rounded-[2px]"
-            src={product.productImages[0]}
-            alt="img"
-          />
+          <Link to={`/product/${id}`}>
+            <img
+              className="cartitem__image object-cover object-center w-[150px] flex-1 rounded-[2px]"
+              src={product.productImages[0]}
+              alt="img"
+            />
+          </Link>
           <form className="product-amount flex flex-row font-medium text-sm border-b border-black w-auto self-start">
             <select
               name="sizes"
@@ -65,7 +69,7 @@ const CartItem: React.FC<CartItemInterface> = ({
           <div className="cartitem__content flex flex-col w-full">
             <div className="flex flex-row flex-wrap w-full justify-between items-start">
               <h2 className="font-medium break-words text-base">
-                {product.title.toUpperCase()}
+                <Link to={`/product/${id}`}>{product.title.toUpperCase()}</Link>
               </h2>
               <div className={`text-lg`}>
                 <p
