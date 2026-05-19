@@ -153,6 +153,7 @@ const Home = () => {
                     productImages={item.productImages}
                     description={item.description}
                     inStock={item.inStock}
+                    stock={item.stock}
                   />
                 ))}
             </div>
@@ -198,6 +199,7 @@ const Home = () => {
                     productImages={item.productImages}
                     description={item.description}
                     inStock={item.inStock}
+                    stock={item.stock}
                   />
                 ))}
             </div>
@@ -243,6 +245,7 @@ const Home = () => {
                     productImages={item.productImages}
                     description={item.description}
                     inStock={item.inStock}
+                    stock={item.stock}
                   />
                 ))}
             </div>

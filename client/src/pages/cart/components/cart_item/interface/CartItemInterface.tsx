@@ -6,6 +6,7 @@ interface CartItemInterface {
   cartId: number;
   productId: number;
   product: ProductInterface;
+  stock: Record<string, number>;
   quantity: number;
   onQuantityChange: (quantity: number) => void;
   size: string;

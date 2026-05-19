@@ -15,6 +15,7 @@ interface ProductInterface {
   productImages: string[];
   description: string;
   inStock: boolean;
+  stock: Record<string, number>;
 }
 
 export default ProductInterface;

@@ -1,10 +1,12 @@
 import { prisma } from "../server/config/db.js";
-import data from "../public/json/products-all.json" with { type: "json" };
+import menData from "../public/json/products/men/products-men.json" with { type: "json" };
+import womenData from "../public/json/products/women/products-women.json" with { type: "json" };
 
 const main = async () => {
-  const products = data.products.map((product) => ({
+  const productsMen = menData.products.map((product) => ({
+    id: product.id,
     title: product.title,
-    discount: product.discount,
+    discount: product.discount ?? null,
     price: product.price,
     availableSizes: product.availableSizes,
     category: product.category,
@@ -16,9 +18,28 @@ const main = async () => {
     productImages: product.productImages,
     description: product.description,
     inStock: product.inStock,
+    stock: product.stock,
   }));
 
-  await prisma.product.createMany({ data: products });
+  const productsWomen = womenData.products.map((product) => ({
+    id: product.id,
+    title: product.title,
+    discount: product.discount ?? null,
+    price: product.price,
+    availableSizes: product.availableSizes,
+    category: product.category,
+    gender: product.gender,
+    fit: product.fit,
+    color: product.color,
+    sizeGuide: product.sizeGuide,
+    details: product.details,
+    productImages: product.productImages,
+    description: product.description,
+    inStock: product.inStock,
+    stock: product.stock,
+  }));
+
+  await prisma.product.createMany({ data: [...productsMen, ...productsWomen] });
   console.log(`Seeded ${products.length} products`);
 };
 

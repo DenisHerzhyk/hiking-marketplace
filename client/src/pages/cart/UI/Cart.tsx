@@ -91,6 +91,7 @@ const Cart = () => {
                     cartId={item.cartId}
                     productId={item.productId}
                     product={item.product}
+                    stock={item.stock}
                     quantity={item.quantity}
                     onQuantityChange={(val) =>
                       handleQuantityChange(item.id, val)
