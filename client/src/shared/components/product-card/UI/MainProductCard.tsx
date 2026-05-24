@@ -24,6 +24,7 @@ const MainProductCard = ({
   productImages,
   description,
   inStock,
+  stock,
 }: ProductInterface) => {
   const [openSection, setOpenSection] = useState(false);
   const [selColor, setSelColor] = useState<string | null>(null);
@@ -34,12 +35,10 @@ const MainProductCard = ({
       toast.error("Please select a color");
       return;
     }
-
     if (!selSize) {
       toast.error("Please select a size");
       return;
     }
-
     handleCartItemAdd(id, selSize, selColor);
     toast.success("Item added to cart!");
   };
@@ -49,12 +48,10 @@ const MainProductCard = ({
       toast.error("Please select a color");
       return;
     }
-
     if (!selSize) {
       toast.error("Please select a size");
       return;
     }
-
     handleWishlistAdd(id, selSize, selColor);
     toast.success("Item added to wishlist");
   };
@@ -63,7 +60,6 @@ const MainProductCard = ({
     setSelColor(color);
     setOpenSection(true);
   };
-
   const handleSizeSelect = (size: string) => {
     setSelSize(size);
     setOpenSection(true);
@@ -94,10 +90,16 @@ const MainProductCard = ({
             <li
               key={size}
               className={`py-3 flex-1 text-center px-auto rounded-lg cursor-pointer transition-all duration-200 ease-in
-    ${selSize === size ? "bg-black text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+    ${selSize === size ? "bg-black text-white" : "bg-gray-100 hover:bg-gray-300"}`}
               onClick={() => handleSizeSelect(size)}
             >
               {size}
+              <br />
+              {stock[size] <= 5 && (
+                <span className="text-[10px] text-red-700">
+                  {stock[size]} left
+                </span>
+              )}
             </li>
           ))}
         </ul>

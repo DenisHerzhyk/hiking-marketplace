@@ -35,10 +35,10 @@
       "productImages": [
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-2.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-3.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-4.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-5.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-2.webp"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-2.webp"
       ],
       "description": "Waterproof and breathable 3-layer H2No® Performance Standard shell designed for all-day rain protection.",
       "inStock": true,
@@ -57,7 +57,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -105,7 +105,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#A2A79E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -154,7 +154,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#7BA8B5",
+      "color": "#F2F2F2",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -279,12 +279,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-6.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-7.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-8.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-9.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-10.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-7.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Comfortable everyday pants made from recycled materials for trail and casual use.",
       "inStock": true,
@@ -304,7 +304,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#6B9EB5",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -329,12 +329,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-86.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-87.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-88.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-89.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-90.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-87.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-7.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-8.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-9.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-10.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.webp"
       ],
       "description": "UPF 50+ sun hoody with moisture-wicking fabric for hot weather hiking.",
       "inStock": true,
@@ -355,7 +355,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#6B5344",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -380,12 +380,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-11.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-12.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-13.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-14.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-15.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-12.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Lightweight stretch trail pants designed for long active days in the mountains.",
       "inStock": true,
@@ -405,7 +405,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -430,12 +430,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-19.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-20.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-21.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-22.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-23.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-20.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Packable insulated vest with PrimaLoft® fill for lightweight core warmth.",
       "inStock": true,
@@ -479,12 +479,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-24.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-25.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-26.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-27.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-28.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-25.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Warm textured fleece hoody ideal for layering on cool hiking days.",
       "inStock": true,
@@ -503,7 +503,7 @@
       "category": "sweater",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#8B5E3C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -528,12 +528,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-101.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-102.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-103.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-104.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-105.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-102.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Textured fleece crewneck sweater for cozy warmth on and off the trail.",
       "inStock": true,
@@ -578,12 +578,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-16.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-17.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-18.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-19.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-17.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-18.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Form-fitting trail tights with stretch fabric for active hiking and trail running.",
       "inStock": true,
@@ -627,12 +627,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-43.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-44.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-46.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-47.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-48.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Graphic moisture-wicking shirt with Fitz Roy Nimbus print for trail and everyday wear.",
       "inStock": true,
@@ -653,7 +653,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#2C4C5E",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -678,12 +678,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-21.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-22.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-23.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-24.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-25.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-22.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "High-performance trail tights designed for peak hiking and technical terrain.",
       "inStock": true,
@@ -702,7 +702,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#000000",
+      "color": "#A2A79E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -727,12 +727,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-96.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-97.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-98.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-99.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-100.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-97.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Ultralight fleece hoody with technical warmth for active hiking and climbing.",
       "inStock": true,
@@ -752,7 +752,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -777,12 +777,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-29.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-30.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-31.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-32.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-33.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-30.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Warm and durable down parka built for serious cold-weather hiking and outdoor use.",
       "inStock": true,
@@ -803,7 +803,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#6B5344",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -828,12 +828,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-34.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-35.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-36.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-37.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-38.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-35.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Soft Micro D fleece shirt jacket for warmth and style on the trail.",
       "inStock": true,
@@ -853,7 +853,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B9A6E",
+      "color": "#5A7D7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -878,12 +878,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-26.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-27.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-28.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-29.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-30.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-27.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Versatile everyday outdoor pants made from stretch recycled polyester.",
       "inStock": true,
@@ -903,7 +903,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#C4522C",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -928,12 +928,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-39.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-40.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-41.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-42.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-43.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-40.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Versatile lightweight jacket built for changing mountain weather conditions.",
       "inStock": true,
@@ -979,12 +979,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-44.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-46.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-47.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-48.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Waterproof rain jacket with H2No® shell built for stormy hiking conditions.",
       "inStock": true,
@@ -1004,7 +1004,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#000000",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1029,12 +1029,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-31.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-32.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-33.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-34.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-35.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-32.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
       "inStock": true,
@@ -1055,7 +1055,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1080,12 +1080,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-49.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-50.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-51.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-52.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-48.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-53.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Highly packable insulated jacket with PrimaLoft® Gold fill for cold weather hiking.",
       "inStock": true,
@@ -1105,7 +1105,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#6B5344",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1130,12 +1130,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-54.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-55.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-55.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
       ],
       "description": "Classic mid-layer fleece jacket with sweater-knit face and warm fleece interior.",
       "inStock": true,
@@ -1153,7 +1153,7 @@
       "price": 369,
       "availableSizes": ["6", "9", "10"],
       "category": "shoes",
-      "gender": "women",
+      "gender": "men",
       "fit": "Standard",
       "color": "#7A6550",
       "sizeGuide": {
@@ -1180,12 +1180,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-1.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-2.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-3.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-4.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-5.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "Rugged full-grain leather work boots built for demanding terrain and durability.",
       "inStock": true,
@@ -1204,7 +1204,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#4F5D3E",
+      "color": "#3E5441",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1229,12 +1229,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-61.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-62.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-58.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "3-in-1 parka combining a waterproof shell and removable insulated liner for cold wet conditions.",
       "inStock": true,
@@ -1279,12 +1279,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-63.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-64.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-65.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-66.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-67.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-64.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "Lightweight insulated hoody with PrimaLoft® fill for packable warmth on the trail.",
       "inStock": true,
@@ -1303,7 +1303,7 @@
       "category": "sweater",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B9A6E",
+      "color": "#8B5E3C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1328,12 +1328,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-68.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-69.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-70.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-71.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-72.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-69.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "Packable sweater-knit fleece vest for core warmth without bulk.",
       "inStock": true,
@@ -1353,7 +1353,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1378,12 +1378,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-73.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-74.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-75.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-73.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-74.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-75.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "Heritage wool-blend jacket with a relaxed fit and natural warmth.",
       "inStock": true,
@@ -1428,12 +1428,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-76.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-77.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-78.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-79.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-80.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-77.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "UPF 50+ lightweight sun shirt designed for long hot days on the trail.",
       "inStock": true,
@@ -1451,7 +1451,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#7BA8B5",
+      "color": "#F2F2F2",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1476,12 +1476,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-81.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-82.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-83.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-84.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-82.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-85.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
       ],
       "description": "Everyday moisture-wicking shirt built for warm weather hiking and outdoor activity.",
       "inStock": true,

@@ -13,6 +13,7 @@ const CartItem: React.FC<CartItemInterface> = ({
   cartId,
   productId,
   product,
+  stock,
   quantity,
   onQuantityChange,
   size,
@@ -66,6 +67,7 @@ const CartItem: React.FC<CartItemInterface> = ({
           </form>
         </div>
         <div className="flex flex-col w-full justify-between">
+          “
           <div className="cartitem__content flex flex-col w-full">
             <div className="flex flex-row flex-wrap w-full justify-between items-start">
               <h2 className="font-medium break-words text-base">
@@ -96,7 +98,7 @@ const CartItem: React.FC<CartItemInterface> = ({
             </p>
             <p className="text-xs mobile:text-[13px]">
               {product.category.toUpperCase()}/{size}/
-              {colorNames[color].toUpperCase() ?? color}
+              {colorNames[color] ?? color}
             </p>
           </div>
           <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">

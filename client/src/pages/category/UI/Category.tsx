@@ -50,6 +50,7 @@ const Category = () => {
     setSelectedPrice(null);
     setSelectedGender(null);
   }, [type]);
+
   useEffect(() => {
     axios.get("http://localhost:4996/api/products").then((res) => {
       setProducts(res.data.data);
@@ -165,7 +166,7 @@ const Category = () => {
     <>
       <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] ">
         {category !== "deals" ? (
-          <div className="main-category flex justify-center items-center h-[100dvh] relative">
+          <div className="main-category flex justify-center relative">
             {category !== "all" ? (
               <img
                 src={
@@ -253,7 +254,7 @@ const Category = () => {
 
         <div
           id="shop"
-          className="categories mt-[20px] tablet:mt-[20px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
+          className="categories mt-[50px] tablet:mt-[100px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
         >
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
@@ -289,7 +290,7 @@ const Category = () => {
                 className={category === "women" ? "font-bold" : ""}
                 to="/category/women"
               >
-                WOMEN
+                WOMENS
               </Link>
               <p>/</p>
               <Link
@@ -507,6 +508,7 @@ const Category = () => {
                     productImages={item.productImages}
                     description={item.description}
                     inStock={item.inStock}
+                    stock={item.stock}
                   />
                 ))}
               </div>

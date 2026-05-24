@@ -40,7 +40,7 @@ const main = async () => {
   }));
 
   await prisma.product.createMany({ data: [...productsMen, ...productsWomen] });
-  console.log(`Seeded ${products.length} products`);
+  console.log(`Seeded ${productMen.length + productsWomen} products`);
 };
 
 main()

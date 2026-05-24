@@ -24,22 +24,14 @@ const AppLayout = () => {
   const isLoginOrRegister = ["/login", "/register"].includes(location.pathname);
   const isProduct = !!matchPath("/product/:id", location.pathname);
 
-  const isCategory = [
-    "/category/all",
-    "/category/men",
-    "/category/women",
-    "/category/shoes",
-    "/category/deals",
-  ].includes(location.pathname);
-
   return (
     <>
       <Toaster position="bottom-right" />
       <Header />
-      {isLoginOrRegister || isCategory || isProduct ? (
+      {isLoginOrRegister || isProduct ? (
         <div className="mt-[0px]" />
       ) : (
-        !isHome && <div className="mt-[200px]" />
+        !isHome && <div className="mt-[100px] tablet:mt-[200px]" />
       )}
       {}
       <ScrollHash />

@@ -1,10 +1,11 @@
-import { ProductInterface } from "../../../../../shared/components/product-card/interface/ProductInterface";
+import ProductInterface from "../../../../../shared/components/product-card/interface/ProductInterface";
 import CartItemInterface from "../../cart_item/interface/CartItemInterface";
 
 interface WishlistItemInterface {
   id: number;
   wishlistId: number;
   productId: number;
+  stock: Record<string, string>;
   product: ProductInterface;
   size: string;
   color: string;

@@ -2,206 +2,8 @@
   "products": [
     {
       "id": 1,
-      "title": "Men's Torrentshell 3L Rain Jacket",
-      "price": 179,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#4F5D3E",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "100% Polyester / 3-layer waterproof shell"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "True to size for an easy, comfortable fit."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
-      ],
-      "description": "Waterproof and breathable 3-layer H2No® Performance Standard shell designed for all-day rain protection.",
-      "inStock": true,
-      "discount": 10,
-      "stock": {
-        "S": 3,
-        "M": 3,
-        "L": 3,
-        "XL": 2
-      }
-    },
-    {
-      "id": 2,
-      "title": "Men's Nano-Air® Light Hybrid Hoody",
-      "price": 279,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#2C4C5E",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "Synthetic insulation / breathable stretch fabric"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Designed for active movement with balanced warmth."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-7.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-8.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-9.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-10.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.jpg"
-      ],
-      "description": "Lightweight hybrid jacket combining warmth and breathability for active hiking.",
-      "inStock": true,
-      "stock": {
-        "S": 10,
-        "M": 10,
-        "L": 10,
-        "XL": 9
-      }
-    },
-    {
-      "id": 3,
-      "title": "Men's Down Sweater Hoody",
-      "price": 349,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#C4522C",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "Recycled polyester shell / down insulation"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Warm, packable fit ideal for layering."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-11.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-12.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-13.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-14.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-15.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-11.jpg"
-      ],
-      "description": "Warm and packable down jacket ideal for cold weather hiking and layering.",
-      "inStock": true,
-      "stock": {
-        "S": 3,
-        "M": 3,
-        "L": 2,
-        "XL": 2
-      }
-    },
-    {
-      "id": 4,
-      "title": "Men's Better Sweater® Fleece Jacket",
-      "price": 159,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "sweater",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#6B5344",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "100% Polyester fleece"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Comfortable mid-layer for everyday warmth."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-16.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-17.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-18.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-19.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-20.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-16.jpg"
-      ],
-      "description": "Classic mid-layer fleece sweater with sweater-knit face and warm fleece interior.",
-      "inStock": true,
-      "discount": 10,
-      "stock": {
-        "S": 11,
-        "M": 11,
-        "L": 10,
-        "XL": 10
-      }
-    },
-    {
-      "id": 5,
-      "title": "Men's R1® Air Full-Zip Hoody",
-      "price": 129,
+      "title": "Men's Back Step Shirt",
+      "price": 85,
       "availableSizes": ["S", "M", "L", "XL"],
       "category": "hoodie",
       "gender": "men",
@@ -215,7 +17,7 @@
       "details": [
         {
           "label": "Fabric",
-          "value": "Breathable technical fleece"
+          "value": "Lightweight stretch woven"
         },
         {
           "label": "Sizes",
@@ -227,57 +29,7 @@
         },
         {
           "label": "Fit Description",
-          "value": "Lightweight and stretchy for active use."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-21.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-22.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-23.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-24.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-25.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-21.jpg"
-      ],
-      "description": "Technical fleece hoodie with breathability and stretch for active hiking.",
-      "inStock": true,
-      "discount": 25,
-      "stock": {
-        "S": 8,
-        "M": 8,
-        "L": 8,
-        "XL": 8
-      }
-    },
-    {
-      "id": 6,
-      "title": "Men's Capilene® Cool Daily Hoody",
-      "price": 65,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "hoodie",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#6B9EB5",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "Lightweight moisture-wicking polyester"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Designed for comfort in warm conditions."
+          "value": "Relaxed woven shirt fit for casual outdoor use."
         }
       ],
       "productImages": [
@@ -288,13 +40,256 @@
         "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-30.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-26.jpg"
       ],
-      "description": "Lightweight breathable hoody built for moisture wicking and everyday trail use.",
+      "description": "Lightweight woven shirt built for casual outdoor and trail use.",
       "inStock": true,
       "stock": {
-        "S": 2,
-        "M": 2,
-        "L": 2,
-        "XL": 1
+        "S": 7,
+        "M": 7,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 2,
+      "title": "Men's Outdoor Everyday Rain Jacket",
+      "price": 259,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#D4C4A8",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "3-layer waterproof H2No® shell"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Waterproof standard fit for rainy trail conditions."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-21.jpg"
+      ],
+      "description": "Waterproof H2No® rain jacket designed for wet hiking conditions.",
+      "inStock": true,
+      "stock": {
+        "S": 5,
+        "M": 5,
+        "L": 4,
+        "XL": 4
+      }
+    },
+    {
+      "id": 3,
+      "title": "Men's Textured Fleece Jacket",
+      "price": 165,
+      "availableSizes": ["S", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#1B4D4D",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Textured polyester fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Textured mid-layer fleece for active warmth."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-16.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-17.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-18.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-19.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-20.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-16.jpg"
+      ],
+      "description": "Textured mid-layer fleece jacket built for active warmth on the trail.",
+      "inStock": true,
+      "stock": {
+        "S": 5,
+        "L": 5,
+        "XL": 4
+      }
+    },
+    {
+      "id": 4,
+      "title": "Men's Retro Pile Fleece Jacket",
+      "price": 149,
+      "availableSizes": ["S", "M", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#E8DCC8",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester retro pile fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Warm retro pile fleece with a relaxed fit."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-11.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-12.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-13.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-14.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-15.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-12.jpg"
+      ],
+      "description": "Warm and stylish retro pile fleece jacket for cool weather hiking.",
+      "inStock": true,
+      "stock": {
+        "S": 8,
+        "M": 7,
+        "XL": 7
+      }
+    },
+    {
+      "id": 5,
+      "title": "Men's Capilene® Cool Ultra Shirt",
+      "price": 59,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#1B4D4D",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight UPF 50+ polyester"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Lightweight UPF fit for sunny trail days."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-7.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-8.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-9.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-10.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.jpg"
+      ],
+      "description": "UPF 50+ lightweight shirt designed for long hot days on the trail.",
+      "inStock": true,
+      "discount": 20,
+      "stock": {
+        "S": 7,
+        "M": 7,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 6,
+      "title": "Men's Lightweight Synchilla® Snap-T® Fleece Pullover",
+      "price": 149,
+      "availableSizes": ["S", "M", "L"],
+      "category": "sweater",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#000000",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester Synchilla® fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Cozy snap-front pullover with a relaxed mid-layer fit."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.jpg"
+      ],
+      "description": "Classic Synchilla® snap-front fleece pullover for cozy everyday warmth.",
+      "inStock": true,
+      "discount": 15,
+      "stock": {
+        "S": 11,
+        "M": 11,
+        "L": 10
       }
     },
     {
@@ -354,7 +349,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
-      "color": "#3E5441",
+      "color": "#8B9A6E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -404,7 +399,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
-      "color": "#3E5441",
+      "color": "#8B9A6E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -552,7 +547,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
-      "color": "#267C7A",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -601,7 +596,7 @@
       "category": "jacket",
       "gender": "men",
       "fit": "Standard",
-      "color": "#5A7D7A",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -650,7 +645,7 @@
       "category": "sweater",
       "gender": "men",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#8B7355",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -697,7 +692,7 @@
       "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#D4C4A8",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -746,7 +741,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#8B7355",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -1091,7 +1086,7 @@
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#6B5344",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -1116,12 +1111,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-4.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-5.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-2.jpg"
       ],
       "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
       "inStock": true,
@@ -1134,257 +1129,13 @@
     },
     {
       "id": 24,
-      "title": "Men's Lightweight Synchilla® Snap-T® Fleece Pullover",
-      "price": 149,
-      "availableSizes": ["S", "M", "L"],
-      "category": "sweater",
+      "title": "Men's Capilene® Cool Sun Hoody",
+      "price": 89,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
       "gender": "men",
       "fit": "Standard",
       "color": "#C4522C",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "100% Polyester Synchilla® fleece"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Cozy snap-front pullover with a relaxed mid-layer fit."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
-      ],
-      "description": "Classic Synchilla® snap-front fleece pullover for cozy everyday warmth.",
-      "inStock": true,
-      "discount": 15,
-      "stock": {
-        "S": 11,
-        "M": 11,
-        "L": 10
-      }
-    },
-    {
-      "id": 25,
-      "title": "Men's Capilene® Cool Ultra Shirt",
-      "price": 59,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "hoodie",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#F2F2F2",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "Lightweight UPF 50+ polyester"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Lightweight UPF fit for sunny trail days."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
-      ],
-      "description": "UPF 50+ lightweight shirt designed for long hot days on the trail.",
-      "inStock": true,
-      "discount": 20,
-      "stock": {
-        "S": 7,
-        "M": 7,
-        "L": 6,
-        "XL": 6
-      }
-    },
-    {
-      "id": 26,
-      "title": "Men's Retro Pile Fleece Jacket",
-      "price": 149,
-      "availableSizes": ["S", "M", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#3E5441",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "100% Polyester retro pile fleece"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Warm retro pile fleece with a relaxed fit."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
-      ],
-      "description": "Warm and stylish retro pile fleece jacket for cool weather hiking.",
-      "inStock": true,
-      "stock": {
-        "S": 8,
-        "M": 7,
-        "XL": 7
-      }
-    },
-    {
-      "id": 27,
-      "title": "Men's Textured Fleece Jacket",
-      "price": 165,
-      "availableSizes": ["S", "L", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#6B5344",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "Textured polyester fleece"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Textured mid-layer fleece for active warmth."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
-      ],
-      "description": "Textured mid-layer fleece jacket built for active warmth on the trail.",
-      "inStock": true,
-      "stock": {
-        "S": 5,
-        "L": 5,
-        "XL": 4
-      }
-    },
-    {
-      "id": 28,
-      "title": "Men's Outdoor Everyday Rain Jacket",
-      "price": 259,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "jacket",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#4F5D3E",
-      "sizeGuide": {
-        "modelHeightCm": 177,
-        "modelHeightFeet": "5'9\"",
-        "modelWears": "S"
-      },
-      "details": [
-        {
-          "label": "Fabric",
-          "value": "3-layer waterproof H2No® shell"
-        },
-        {
-          "label": "Sizes",
-          "value": "S–XL"
-        },
-        {
-          "label": "Fit",
-          "value": "Standard fit"
-        },
-        {
-          "label": "Fit Description",
-          "value": "Waterproof standard fit for rainy trail conditions."
-        }
-      ],
-      "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
-      ],
-      "description": "Waterproof H2No® rain jacket designed for wet hiking conditions.",
-      "inStock": true,
-      "stock": {
-        "S": 5,
-        "M": 5,
-        "L": 4,
-        "XL": 4
-      }
-    },
-    {
-      "id": 29,
-      "title": "Men's Back Step Shirt",
-      "price": 85,
-      "availableSizes": ["S", "M", "L", "XL"],
-      "category": "hoodie",
-      "gender": "men",
-      "fit": "Standard",
-      "color": "#A2A79E",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -1409,12 +1160,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-4.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-5.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-2.jpg"
       ],
       "description": "Lightweight woven shirt built for casual outdoor and trail use.",
       "inStock": true,
@@ -1426,14 +1177,14 @@
       }
     },
     {
-      "id": 30,
-      "title": "Men's Baggies™ Shorts - 5",
-      "price": 75,
+      "id": 25,
+      "title": "Men's Terrebonne Joggers",
+      "price": 99,
       "availableSizes": ["30", "32", "34", "36"],
       "category": "pants",
       "gender": "men",
       "fit": "Standard",
-      "color": "#C4522C",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 177,
         "modelHeightFeet": "5'9\"",
@@ -1458,12 +1209,257 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-57.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-58.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-59.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-60.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-56.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-5.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-2.jpg"
+      ],
+      "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
+      "inStock": true,
+      "stock": {
+        "30": 4,
+        "32": 4,
+        "34": 4,
+        "36": 3
+      }
+    },
+    {
+      "id": 26,
+      "title": "Men's Storm Racer Jacket",
+      "price": 315,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#3E5441",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight stretch woven"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed woven shirt fit for casual outdoor use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-7.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-8.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-9.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-10.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-7.jpg"
+      ],
+      "description": "Lightweight woven shirt built for casual outdoor and trail use.",
+      "inStock": true,
+      "stock": {
+        "S": 7,
+        "M": 7,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 27,
+      "title": "Men's Houdini® Stash 1/2-Zip Pullover",
+      "price": 145,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#8B9A6E",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight stretch woven"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed woven shirt fit for casual outdoor use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-11.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-12.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-13.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-14.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-15.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-12.jpg"
+      ],
+      "description": "Lightweight woven shirt built for casual outdoor and trail use.",
+      "inStock": true,
+      "stock": {
+        "S": 7,
+        "M": 7,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 28,
+      "title": "Men's Nano-Air® Light Vest",
+      "price": 199,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#2C4C5E",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight stretch woven"
+        },
+        {
+          "label": "Sizes",
+          "value": "S–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed woven shirt fit for casual outdoor use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-16.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-17.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-18.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-19.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-20.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops_dop-17.jpg"
+      ],
+      "description": "Lightweight woven shirt built for casual outdoor and trail use.",
+      "inStock": true,
+      "stock": {
+        "S": 7,
+        "M": 7,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 29,
+      "title": "Men's Iron Forge® Double Knee Work Pants - Regular",
+      "price": 95,
+      "availableSizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#D4C4A8",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled nylon / spandex blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "30–36"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed short fit with freedom of movement."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-7.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-8.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-9.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-10.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants_dop-7.jpg"
+      ],
+      "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
+      "inStock": true,
+      "stock": {
+        "30": 3,
+        "32": 3,
+        "34": 3,
+        "36": 2
+      }
+    },
+    {
+      "id": 30,
+      "title": "Men's Baggies™ Shorts - 5",
+      "price": 75,
+      "availableSizes": ["30", "32", "34", "36"],
+      "category": "pants",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#3E5441",
+      "sizeGuide": {
+        "modelHeightCm": 177,
+        "modelHeightFeet": "5'9\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled nylon / spandex blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "30–36"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed short fit with freedom of movement."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-7.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-8.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-9.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-10.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_pants-.jpg"
       ],
       "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
       "inStock": true,

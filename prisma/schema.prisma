@@ -41,7 +41,7 @@ model DeliveryAddress {
   country String
   isDefault Boolean @default(false)
   createdAt DateTime @default(now())
-  orders Order[]
+  orders Order[] @relation("OrderDelivery")
 }
 
 model Cart {
@@ -100,6 +100,7 @@ model Product {
   productImages String[]
   description String
   inStock Boolean
+  stock Json
   cartItems CartItem[]
   wishlistItems WishlistItem[]
 } 
@@ -115,7 +116,7 @@ model Order {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deliveryAddressId Int?
-  deliveryAddress DeliveryAddress? @relation(fields: [deliveryAddressId], references: [id])
+  deliveryAddress DeliveryAddress? @relation("OrderDelivery", fields: [deliveryAddressId], references: [id])
 }
 
 model OrderItem {
