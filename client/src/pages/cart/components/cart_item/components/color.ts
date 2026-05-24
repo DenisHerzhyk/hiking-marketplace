@@ -16,4 +16,12 @@ export const colorNames: Record<string, string> = {
   "#A9A9A9": "Silver",
   "#6B6B6B": "Dark Gray",
   "#D3D3D3": "Light Gray",
+  "#1B4D4D": "Deep Teal",
+  "#5A7D7A": "Grayish Teal",
+  "#D4C4A8": "Sand",
+  "#E8DCC8": "Light Sand",
+  "#8B7355": "Clay",
+  "#7A6550": "Taupe Brown",
+  "#E8A2B0": "Pink",
+  "#8B0000": "Dark Red",
 };

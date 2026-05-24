@@ -36,7 +36,7 @@ const CartItem: React.FC<CartItemInterface> = ({
     <>
       <div className="CartItem flex flex-row gap-[30px] items -stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
         <div className="nav-menu flex flex-col gap-[10px]">
-          <Link to={`/product/${id}`}>
+          <Link to={`/product/${productId}`}>
             <img
               className="cartitem__image object-cover object-center w-[150px] flex-1 rounded-[2px]"
               src={product.productImages[0]}
@@ -67,11 +67,12 @@ const CartItem: React.FC<CartItemInterface> = ({
           </form>
         </div>
         <div className="flex flex-col w-full justify-between">
-          “
           <div className="cartitem__content flex flex-col w-full">
             <div className="flex flex-row flex-wrap w-full justify-between items-start">
               <h2 className="font-medium break-words text-base">
-                <Link to={`/product/${id}`}>{product.title.toUpperCase()}</Link>
+                <Link to={`/product/${productId}`}>
+                  {product.title.toUpperCase()}
+                </Link>
               </h2>
               <div className={`text-lg`}>
                 <p

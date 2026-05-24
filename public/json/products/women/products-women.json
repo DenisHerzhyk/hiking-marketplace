@@ -8,7 +8,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B9EB5",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -57,7 +57,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#D4C4A8",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -105,7 +105,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -154,7 +154,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#7BA8B5",
+      "color": "#E8A2B0",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -254,7 +254,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#000000",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -304,7 +304,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#8B9A6E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -355,7 +355,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#8B9A6E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -405,7 +405,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#E8DCC8",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -454,7 +454,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#5A7D7A",
+      "color": "#7BA8B5",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -503,7 +503,7 @@
       "category": "sweater",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#8B5E3C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -553,7 +553,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#267C7A",
+      "color": "#3E5441",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -602,7 +602,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -702,7 +702,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#000000",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -752,7 +752,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#D4C4A8",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -803,7 +803,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#D4C4A8",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -853,7 +853,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B9A6E",
+      "color": "#D4C4A8",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -903,7 +903,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#C4522C",
+      "color": "#E8DCC8",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -954,7 +954,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#4F5D3E",
+      "color": "#1B4D4D",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -983,7 +983,6 @@
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-46.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-47.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-48.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg"
       ],
       "description": "Waterproof rain jacket with H2No® shell built for stormy hiking conditions.",
@@ -1004,7 +1003,7 @@
       "category": "pants",
       "gender": "women",
       "fit": "Standard",
-      "color": "#000000",
+      "color": "#7BA8B5",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1055,7 +1054,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#F2F2F2",
+      "color": "#C4522C",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1105,7 +1104,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B5E3C",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1204,7 +1203,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#4F5D3E",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1254,7 +1253,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#C4522C",
+      "color": "#8B0000",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1303,7 +1302,7 @@
       "category": "sweater",
       "gender": "women",
       "fit": "Standard",
-      "color": "#8B9A6E",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1353,7 +1352,7 @@
       "category": "jacket",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B5344",
+      "color": "#000000",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1403,7 +1402,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#6B9EB5",
+      "color": "#267C7A",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
@@ -1451,7 +1450,7 @@
       "category": "hoodie",
       "gender": "women",
       "fit": "Standard",
-      "color": "#7BA8B5",
+      "color": "#2C4C5E",
       "sizeGuide": {
         "modelHeightCm": 168,
         "modelHeightFeet": "5'6\"",
