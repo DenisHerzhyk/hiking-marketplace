@@ -5,8 +5,8 @@ interface WishlistItemInterface {
   id: number;
   wishlistId: number;
   productId: number;
-  stock: Record<string, string>;
   product: ProductInterface;
+  availableQuantity: number;
   size: string;
   color: string;
   onDelete: (id: number) => void;

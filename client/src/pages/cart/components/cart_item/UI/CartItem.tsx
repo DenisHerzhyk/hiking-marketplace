@@ -6,6 +6,7 @@ import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
 import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
 import { colorNames } from "../components/color.ts";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const CartItem: React.FC<CartItemInterface> = ({
@@ -13,8 +14,8 @@ const CartItem: React.FC<CartItemInterface> = ({
   cartId,
   productId,
   product,
-  stock,
-  quantity,
+  orderQuantity,
+  availableQuantity,
   onQuantityChange,
   size,
   color,
@@ -22,15 +23,26 @@ const CartItem: React.FC<CartItemInterface> = ({
   onWishlistAdd,
 }) => {
   const handleCartItemUpdateReq = async (newQuantity: number) => {
-    await axios
-      .post(
+    if (newQuantity > availableQuantity) {
+      toast.error(
+        `Only ${availableQuantity} item${availableQuantity === 1 ? "" : "s"} left in size ${size}`,
+      );
+      return;
+    }
+    try {
+      await axios.post(
         `http://localhost:4996/api/cart/update/${id}`,
-        { quantity: newQuantity },
+        { availableQuantity, orderQuantity: newQuantity },
         {
           withCredentials: true,
         },
-      )
-      .catch((err) => console.error(err));
+      );
+      onQuantityChange(newQuantity);
+      toast.success("Quantity updated successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update cart");
+    }
   };
   return (
     <>
@@ -48,9 +60,8 @@ const CartItem: React.FC<CartItemInterface> = ({
               name="sizes"
               id="sizes"
               className="focus:outline-none pr-4 pl-2 py-2"
-              value={quantity}
+              value={orderQuantity}
               onChange={(e) => {
-                onQuantityChange(Number(e.target.value));
                 handleCartItemUpdateReq(Number(e.target.value));
               }}
             >
@@ -78,7 +89,7 @@ const CartItem: React.FC<CartItemInterface> = ({
                 <p
                   className={`${product?.discount && "line-through text-gray-600"}`}
                 >
-                  €{(product.price * quantity).toFixed(2)}
+                  €{(product.price * orderQuantity).toFixed(2)}
                 </p>
                 {product?.discount && (
                   <span className="text-red-700">
@@ -86,7 +97,7 @@ const CartItem: React.FC<CartItemInterface> = ({
                     {(
                       (product.price -
                         (product.price * product.discount) / 100) *
-                      quantity
+                      orderQuantity
                     ).toFixed(2)}
                   </span>
                 )}
@@ -97,17 +108,27 @@ const CartItem: React.FC<CartItemInterface> = ({
             >
               {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
             </p>
-            <p className="text-xs mobile:text-[13px]">
-              {product.category.toUpperCase()}/{size}/
-              {colorNames[color] ?? color}
-            </p>
+            <div className="text-xs mobile:text-[13px]">
+              <span>
+                {product.category.toUpperCase()}/{size}/
+                {colorNames[color] ?? color}
+              </span>
+              {availableQuantity <= 9 && (
+                <div>
+                  <br />
+                  <span className="text-[13px] text-red-700">
+                    {availableQuantity} left
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="flex flex-row items-end justify-start mt-[20px] laptop:justify-center gap-[8px] h-full">
+          <div className="flex flex-row items-center justify-start mt-[20px] laptop:justify-center gap-[15px] h-full">
             <button
               onClick={() =>
                 handleMoveToWishlist(productId, id, onDelete, onWishlistAdd)
               }
-              className="flex flex-row gap-[8px] focus:outline-none"
+              className="flex flex-row items-center gap-[8px] focus:outline-none"
             >
               <p className="text-sm leading-none">SAVE FOR LATER</p>
               <FaRegHeart className="w-[14px] h-[14px]" />

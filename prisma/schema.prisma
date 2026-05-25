@@ -59,7 +59,8 @@ model CartItem {
   cart Cart @relation(fields: [cartId], references: [id])
   productId Int
   product Product @relation(fields: [productId], references: [id])
-  quantity Int
+  availableQuantity Int
+  orderQuantity Int
   size String
   color String
 }
@@ -79,6 +80,7 @@ model WishlistItem {
   wishlist Wishlist @relation(fields: [wishlistId], references: [id])
   productId Int
   product Product @relation(fields: [productId], references: [id])
+  availableQuantity Int
   size String
   color String
 }
@@ -90,7 +92,6 @@ model Product {
   discount Int?
   price Float
   availableSizes String[]
-  availableStock Int @default(20)
   category String
   gender String
   fit String
@@ -125,7 +126,8 @@ model OrderItem {
   order Order @relation(fields: [orderId], references: [id])
   productId Int
   product Product @relation(fields: [productId], references: [id])
-  quantity Int
+  availableQuantity Int
+  orderQuantity Int
   size String
   color String
   price Float

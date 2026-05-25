@@ -57,7 +57,7 @@ const ProductPage = () => {
     }
     if (!product?.id) return;
 
-    handleCartItemAdd(product.id, selSize, selColor);
+    handleCartItemAdd(product.id, product.stock[selSize], selSize, selColor);
     toast.success("Item added to cart!");
   };
 
@@ -158,13 +158,24 @@ const ProductPage = () => {
                 <h2 className="text-sm mb-[11px] text-gray-500">SIZE</h2>
                 <div className="size-blocks grid grid-cols-4 gap-2 mb-[24px]">
                   {product?.availableSizes.map((item) => (
-                    <button
-                      key={item}
-                      onClick={() => setSelSize(item)}
-                      className={`font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center h-[44px] transition-colors duration-200 ${selSize === item ? "bg-black text-white" : "bg-gray-200 hover:bg-gray-300"}`}
-                    >
-                      {item}
-                    </button>
+                    <div key={item} className="flex flex-col items-center">
+                      <button
+                        onClick={() => setSelSize(item)}
+                        className={`font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center py-[10px] w-full transition-colors duration-200 ${
+                          selSize === item
+                            ? "bg-black text-white"
+                            : "bg-gray-200 hover:bg-gray-300"
+                        }`}
+                      >
+                        {item}
+                      </button>
+
+                      {product.stock[item] <= 5 && (
+                        <span className="text-[10px] text-red-700 mt-1">
+                          {product.stock[item]} left
+                        </span>
+                      )}
+                    </div>
                   ))}
                 </div>
                 <div className="colors mb-[50px]">

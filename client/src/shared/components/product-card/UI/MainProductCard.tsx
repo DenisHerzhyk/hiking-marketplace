@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductInterface from "../interface/ProductInterface.js";
 import { VscHeart } from "react-icons/vsc";
 import { VscHeartFilled } from "react-icons/vsc";
@@ -27,8 +27,21 @@ const MainProductCard = ({
   stock,
 }: ProductInterface) => {
   const [openSection, setOpenSection] = useState(false);
-  const [selColor, setSelColor] = useState<string | null>(null);
+  const [newAvailableSizes, setNewAvailableSizes] = useState<String[]>([]);
+  const [newStock, setNewStock] = useState<Record<string, number> | null>(null);
+  const [selColor, setSelColor] = useState<string>(color);
   const [selSize, setSelSize] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (inStock) {
+      setNewAvailableSizes(availableSizes);
+      setNewStock(stock);
+    }
+  }, [inStock]);
+
+  useEffect(() => {
+    setSelColor(color);
+  }, [color]);
 
   const handleAddToCart = () => {
     if (!selColor) {
@@ -39,7 +52,11 @@ const MainProductCard = ({
       toast.error("Please select a size");
       return;
     }
-    handleCartItemAdd(id, selSize, selColor);
+
+    console.log("Selected color:", selColor); // ← Add this
+    console.log("Selected size:", selSize); // ← Add this
+    console.log("Stock quantity:", stock[selSize]); // ← Add this
+    handleCartItemAdd(id, stock[selSize], selSize, selColor);
     toast.success("Item added to cart!");
   };
 

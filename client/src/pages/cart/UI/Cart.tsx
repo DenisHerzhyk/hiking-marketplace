@@ -19,8 +19,8 @@ const Cart = () => {
     cartItems
       .reduce((sum, a) => {
         const price = a.product.discount
-          ? a.product.price * (1 - a.product.discount / 100) * a.quantity
-          : a.product.price * a.quantity;
+          ? a.product.price * (1 - a.product.discount / 100) * a.orderQuantity
+          : a.product.price * a.orderQuantity;
         return sum + price;
       }, 0)
       .toFixed(2),
@@ -59,7 +59,7 @@ const Cart = () => {
   const handleQuantityChange = (id: number, quantity: number) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: quantity } : item,
+        item.id === id ? { ...item, orderQuantity: quantity } : item,
       ),
     );
   };
@@ -91,8 +91,9 @@ const Cart = () => {
                     cartId={item.cartId}
                     productId={item.productId}
                     product={item.product}
-                    stock={item.stock}
-                    quantity={item.quantity}
+                    stock={item.product.stock}
+                    orderQuantity={item.orderQuantity}
+                    availableQuantity={item.availableQuantity}
                     onQuantityChange={(val) =>
                       handleQuantityChange(item.id, val)
                     }
@@ -128,6 +129,8 @@ const Cart = () => {
                       wishlistId={item.wishlistId}
                       productId={item.productId}
                       product={item.product}
+                      orderQuantity={item.orderQuantity}
+                      availableQuantity={item.availableQuantity}
                       size={item.size}
                       color={item.color}
                       onDelete={handleWishlistItemDelete}
@@ -158,7 +161,7 @@ const Cart = () => {
                     className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full"
                   >
                     <p>
-                      {item.product.title} x{item.quantity}
+                      {item.product.title} x{item.orderQuantity}
                     </p>
                     <p>
                       €
@@ -166,9 +169,9 @@ const Cart = () => {
                         ? (
                             item.product.price *
                             (1 - item.product.discount / 100) *
-                            item.quantity
+                            item.orderQuantity
                           ).toFixed(2)
-                        : (item.product.price * item.quantity).toFixed(2)}
+                        : (item.product.price * item.orderQuantity).toFixed(2)}
                     </p>
                   </li>
                 ))}

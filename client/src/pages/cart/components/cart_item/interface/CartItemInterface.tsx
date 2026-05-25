@@ -7,7 +7,8 @@ interface CartItemInterface {
   productId: number;
   product: ProductInterface;
   stock: Record<string, number>;
-  quantity: number;
+  orderQuantity: number;
+  availableQuantity: number;
   onQuantityChange: (quantity: number) => void;
   size: string;
   color: string;
