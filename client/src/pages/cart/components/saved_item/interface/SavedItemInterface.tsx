@@ -6,6 +6,7 @@ interface WishlistItemInterface {
   wishlistId: number;
   productId: number;
   product: ProductInterface;
+  orderQuantity: number;
   availableQuantity: number;
   size: string;
   color: string;

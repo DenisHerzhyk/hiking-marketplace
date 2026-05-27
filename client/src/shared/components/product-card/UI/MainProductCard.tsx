@@ -53,9 +53,6 @@ const MainProductCard = ({
       return;
     }
 
-    console.log("Selected color:", selColor); // ← Add this
-    console.log("Selected size:", selSize); // ← Add this
-    console.log("Stock quantity:", stock[selSize]); // ← Add this
     handleCartItemAdd(id, stock[selSize], selSize, selColor);
     toast.success("Item added to cart!");
   };

@@ -6,14 +6,15 @@ export const handleMoveToCart = async (
   id: number,
   size: string,
   color: string,
+  orderQuantity: number,
   availableQuantity: number,
   onDelete: (id: number) => void,
   onCartAdd: (item: CartItemInterface) => void,
 ) => {
   await axios
     .post(
-      `http://localhost:4996/api/wishlist/movecart/${productId}`,
-      { size, color, availableQuantity },
+      `http://localhost:4996/api/wishlist/movecart/${id}`,
+      { productId, size, color, availableQuantity, orderQuantity },
       {
         withCredentials: true,
       },

@@ -6,14 +6,15 @@ export const handleMoveToWishlist = async (
   id: number,
   size: string,
   color: string,
+  orderQuantity: number,
   availableQuantity: number,
   onDelete: (id: number) => void,
   onWishlistAdd: (item: WishlistItemInterface) => void,
 ) => {
   await axios
     .post(
-      `http://localhost:4996/api/cart/movewishlist/${productId}`,
-      { size, color },
+      `http://localhost:4996/api/cart/movewishlist/${id}`,
+      { productId, size, color, availableQuantity, orderQuantity },
       {
         withCredentials: true,
       },

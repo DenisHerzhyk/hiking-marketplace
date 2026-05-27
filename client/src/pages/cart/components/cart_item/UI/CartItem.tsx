@@ -161,6 +161,7 @@ const CartItem: React.FC<CartItemInterface> = ({
                     size,
                     color,
                     availableQuantity,
+                    orderQuantity,
                     onDelete,
                     onWishlistAdd,
                   )

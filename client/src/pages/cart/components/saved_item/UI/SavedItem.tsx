@@ -12,6 +12,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
   product,
   size,
   color,
+  orderQuantity,
   availableQuantity,
   onDelete,
   onCartAdd,
@@ -35,6 +36,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
                 size,
                 color,
                 availableQuantity,
+                orderQuantity,
                 onDelete,
                 onCartAdd,
               )
@@ -69,11 +71,13 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
                 )}
               </div>
             </div>
-            <p
-              className={`font-light ${product.inStock ? "text-green-800" : "text-red-800"} text-[10px] mobile:text-xs mb-[10px]`}
-            >
-              {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
-            </p>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              {availableQuantity <= 9 && (
+                <span className="text-[10px] sm:text-xs font-medium text-red-600">
+                  Only {availableQuantity} left
+                </span>
+              )}
+            </div>
             <p className="text-xs mobile:text-[13px]">
               {product.category.toUpperCase()}/{size}/
               {colorNames[color].toUpperCase()}
