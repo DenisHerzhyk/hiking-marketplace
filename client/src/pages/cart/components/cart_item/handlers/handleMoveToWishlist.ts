@@ -4,13 +4,16 @@ import WishlistItemInterface from "../../saved_item/interface/SavedItemInterface
 export const handleMoveToWishlist = async (
   productId: number,
   id: number,
+  size: string,
+  color: string,
+  availableQuantity: number,
   onDelete: (id: number) => void,
   onWishlistAdd: (item: WishlistItemInterface) => void,
 ) => {
   await axios
     .post(
       `http://localhost:4996/api/cart/movewishlist/${productId}`,
-      {},
+      { size, color },
       {
         withCredentials: true,
       },

@@ -6,11 +6,16 @@ import {
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckoutSteps } from "../../checkout_steps/CheckoutSteps";
+import { useCheckout } from "../context/CheckoutContext";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const { setCurrentStep } = useCheckout();
 
+  useEffect(() => {
+    setCurrentStep(1);
+  }, []);
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -29,7 +34,6 @@ const CheckoutForm = () => {
     <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
       <div className="flex flex-col laptop:flex-row gap-[40px] laptop:gap-[80px] max-w-[1100px]">
         <div className="flex-1">
-          <CheckoutSteps />
           <h1 className="font-semibold text-center text-xl mobile:text-2xl tracking-tight mb-[20px]">
             Card Information
           </h1>

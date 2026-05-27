@@ -7,7 +7,13 @@ import Cart from "./pages/cart/UI/Cart";
 import Category from "./pages/category/UI/Category";
 import Orders from "./pages/order/UI/Orders.tsx";
 import ShowOrder from "./pages/order/components/show_order/UI/ShowOrder.tsx";
-import { Routes, Route, useLocation, matchPath } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  matchPath,
+  Outlet,
+} from "react-router-dom";
 import ProductPage from "./pages/product_page/UI/ProductPage";
 import DeliveryInfo from "./pages/delivery_info/UI/DeliveryInfo.tsx";
 import Profile from "./pages/profile/UI/Profile.tsx";
@@ -16,6 +22,9 @@ import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 import { Toaster } from "react-hot-toast";
 import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
+import { CheckoutProvider } from "./shared/checkout/context/CheckoutContext.tsx";
+import { CheckoutSteps } from "./shared/checkout_steps/CheckoutSteps.tsx";
+import { CheckoutLayout } from "./shared/checkout/UI/CheckoutLayout.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -46,11 +55,14 @@ const AppLayout = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/deliveryInfo" element={<DeliveryInfo />} />
+          <Route element={<CheckoutLayout />}>
+            <Route path="/deliveryInfo" element={<DeliveryInfo />} />
+            <Route path="/checkout" element={<CheckoutWrapper />} />
+            <Route path="/order" element={<ShowOrder />} />
+          </Route>
+
           <Route path="/orders" element={<Orders />} />
-          <Route path="/order" element={<ShowOrder />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/checkout" element={<CheckoutWrapper />} />
         </Route>
       </Routes>
       <Footer />

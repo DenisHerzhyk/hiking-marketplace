@@ -6,6 +6,7 @@ import CartItemInterface from "../../cart/components/cart_item/interface/CartIte
 import axios from "axios";
 import { colorNames } from "../../cart/components/cart_item/components/color.ts";
 import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
+import { useCheckout } from "../../../shared/checkout/context/CheckoutContext.tsx";
 
 const COUNTRIES = [
   "Bulgaria",
@@ -46,13 +47,14 @@ const DeliveryInfo = () => {
     country: "",
     saveAddress: false,
   });
+  const { setCurrentStep } = useCheckout();
 
   const subtotal = Number(
     cartItems
       .reduce((sum, a) => {
         const price = a.product.discount
-          ? a.product.price * (1 - a.product.discount / 100) * a.quantity
-          : a.product.price * a.quantity;
+          ? a.product.price * (1 - a.product.discount / 100) * a.orderQuantity
+          : a.product.price * a.orderQuantity;
         return sum + price;
       }, 0)
       .toFixed(2),
@@ -70,6 +72,9 @@ const DeliveryInfo = () => {
         console.error(err);
       });
   }, []);
+  useEffect(() => {
+    setCurrentStep(0);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -84,7 +89,6 @@ const DeliveryInfo = () => {
 
   return (
     <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
-      <CheckoutSteps />
       <div className="flex flex-col laptop:flex-row gap-[40px] laptop:gap-[80px] max-w-[1100px]">
         <div className="flex-1">
           <h1 className="font-semibold text-xl mobile:text-2xl tracking-tight mb-[8px]">
@@ -272,11 +276,10 @@ const DeliveryInfo = () => {
                   <p className="text-[11px] text-gray-400">
                     Size {item.size} · {colorNames[item.product.color]}
                   </p>
-                  {item.quantity > 1 && (
-                    <p className="text-[11px] text-gray-400">
-                      Qty {item.quantity}
-                    </p>
-                  )}
+
+                  <p className="text-[11px] text-gray-400">
+                    Qty {item.orderQuantity}
+                  </p>
                 </div>
                 <p className="text-[13px] font-semibold">
                   €
@@ -284,9 +287,9 @@ const DeliveryInfo = () => {
                     ? (
                         item.product.price *
                         (1 - item.product.discount / 100) *
-                        item.quantity
+                        item.orderQuantity
                       ).toFixed(2)
-                    : (item.product.price * item.quantity).toFixed(2)}
+                    : (item.product.price * item.orderQuantity).toFixed(2)}
                 </p>
               </div>
             ))}

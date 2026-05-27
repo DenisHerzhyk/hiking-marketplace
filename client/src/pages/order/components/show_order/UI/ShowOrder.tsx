@@ -3,10 +3,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ShowOrderInterface from "../../interface/ShowOrderInterface";
 import { colorNames } from "../../../../cart/components/cart_item/components/color";
+import { useCheckout } from "../../../../../shared/checkout/context/CheckoutContext";
 
 const ShowOrder = () => {
   const [order, setOrder] = useState<ShowOrderInterface | null>(null);
-
+  const { setCurrentStep } = useCheckout();
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paymentIntentId = params.get("payment_intent");
@@ -22,11 +23,16 @@ const ShowOrder = () => {
         .then((res) => {
           setOrder(res.data.order);
         })
-        .catch((err) => console.error("Problem with payment confirmation"));
+        .catch((err) => {
+          console.log("MESSAGE:", err.message);
+        });
     }
   }, []);
 
-  if (!order) return <p>Loading</p>;
+  useEffect(() => {
+    setCurrentStep(2);
+  }, []);
+  if (!order) return <p className="text-center">Loading</p>;
   return (
     <>
       <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">
@@ -62,19 +68,18 @@ const ShowOrder = () => {
                   {item.product.title}
                 </p>
                 <p className="text-xs text-gray-400">
-                  Size {item.size} · {colorNames[item.color]} · Qty{" "}
-                  {item.quantity}
+                  Size {item.size} · {colorNames[item.color]}
                 </p>
               </div>
               <span className="font-mono text-sm font-medium">
-                $
+                €
                 {item.product.discount
                   ? (
                       item.product.price *
                       (1 - item.product.discount / 100) *
-                      item.quantity
+                      item.orderQuantity
                     ).toFixed(2)
-                  : (item.product.price * item.quantity).toFixed(2)}
+                  : (item.product.price * item.orderQuantity).toFixed(2)}
               </span>
             </div>
           ))}
@@ -82,11 +87,11 @@ const ShowOrder = () => {
           <div className="px-5 pb-4 pt-2 flex flex-col gap-1">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Subtotal</span>
-              <span className="font-mono">${order.total.toFixed(2)}</span>
+              <span className="font-mono">€{order.total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm font-semibold border-t border-gray-200 mt-2 pt-3">
               <span>Order total</span>
-              <span className="font-mono">${order.total.toFixed(2)}</span>
+              <span className="font-mono">€{order.total.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -114,13 +119,11 @@ const ShowOrder = () => {
               TOTAL CHARGED
             </p>
             <p className="text-sm font-mono font-medium">
-              ${order.total.toFixed(2)}
+              €{order.total.toFixed(2)}
             </p>
             <p className="text-xs text-gray-400 mt-1">via Stripe</p>
           </div>
         </div>
-
-        {/* Actions */}
         <div className="flex gap-3 mt-6">
           <Link
             to="/orders"

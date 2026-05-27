@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,122 +7,121 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-  createdAt DateTime @default(now())
-  cart Cart?
-  wishlist Wishlist?
-  order Order[]
-  country String?
-  gender String?
-  language String?
+  email            String            @unique
+  password         String
+  createdAt        DateTime          @default(now())
+  id               Int               @id @default(autoincrement())
   additionalEmails String[]
-  addresses DeliveryAddress[]
+  country          String?
+  gender           String?
+  language         String?
+  cart             Cart?
+  addresses        DeliveryAddress[]
+  order            Order[]
+  wishlist         Wishlist?
 }
 
 model DeliveryAddress {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  firstName String
-  lastName String
-  phone String
-  address1 String
-  address2 String
-  city String
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  firstName  String
+  lastName   String
+  phone      String
+  address1   String
+  address2   String?
+  city       String
   postalCode String
-  country String
-  isDefault Boolean @default(false)
-  createdAt DateTime @default(now())
-  orders Order[] @relation("OrderDelivery")
+  country    String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  orders     Order[]  @relation("OrderDelivery")
 }
 
 model Cart {
-  id Int @id @default(autoincrement())
-  userId Int @unique
-  user User @relation(fields: [userId], references: [id])
-  items CartItem[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
 }
 
 model CartItem {
-  id Int @id @default(autoincrement())
-  cartId Int
-  cart Cart @relation(fields: [cartId], references: [id])
-  productId Int
-  product Product @relation(fields: [productId], references: [id])
+  id                Int     @id @default(autoincrement())
+  cartId            Int
+  productId         Int
+  size              String
+  color             String
   availableQuantity Int
-  orderQuantity Int
-  size String
-  color String
+  orderQuantity     Int
+  cart              Cart    @relation(fields: [cartId], references: [id])
+  product           Product @relation(fields: [productId], references: [id])
 }
 
 model Wishlist {
-  id Int @id @default(autoincrement())
-  userId Int @unique
-  user User @relation(fields: [userId], references: [id])
-  items WishlistItem[]
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  id       Int            @id @default(autoincrement())
+  userId   Int            @unique
+  createAt DateTime       @default(now())
+  updateAt DateTime       @updatedAt
+  user     User           @relation(fields: [userId], references: [id])
+  items    WishlistItem[]
 }
 
 model WishlistItem {
-  id Int @id @default(autoincrement())
-  wishlistId Int
-  wishlist Wishlist @relation(fields: [wishlistId], references: [id])
-  productId Int
-  product Product @relation(fields: [productId], references: [id])
+  id                Int      @id @default(autoincrement())
+  wishlistId        Int
+  productId         Int
+  size              String
+  color             String
   availableQuantity Int
-  size String
-  color String
+  product           Product  @relation(fields: [productId], references: [id])
+  wishlist          Wishlist @relation(fields: [wishlistId], references: [id])
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  orderItems OrderItem[]
-  title String
-  discount Int?
-  price Float
+  id             Int            @id @default(autoincrement())
+  title          String
+  price          Float
   availableSizes String[]
-  category String
-  gender String
-  fit String
-  color String
-  sizeGuide Json
-  details Json
-  productImages String[]
-  description String
-  inStock Boolean
-  stock Json
-  cartItems CartItem[]
-  wishlistItems WishlistItem[]
-} 
+  category       String
+  gender         String
+  productImages  String[]
+  description    String
+  inStock        Boolean
+  details        Json
+  fit            String
+  sizeGuide      Json
+  color          String
+  discount       Int?
+  stock          Json
+  cartItems      CartItem[]
+  orderItems     OrderItem[]
+  wishlistItems  WishlistItem[]
+}
 
 model Order {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  items OrderItem[]
-  total Float
-  status String @default("paid")
-  paymentId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                Int              @id @default(autoincrement())
+  userId            Int
+  total             Float
+  status            String           @default("paid")
+  paymentId         String
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
   deliveryAddressId Int?
-  deliveryAddress DeliveryAddress? @relation("OrderDelivery", fields: [deliveryAddressId], references: [id])
+  deliveryAddress   DeliveryAddress? @relation("OrderDelivery", fields: [deliveryAddressId], references: [id])
+  user              User             @relation(fields: [userId], references: [id])
+  items             OrderItem[]
 }
 
 model OrderItem {
-  id Int @id @default(autoincrement())
-  orderId Int
-  order Order @relation(fields: [orderId], references: [id])
-  productId Int
-  product Product @relation(fields: [productId], references: [id])
-  availableQuantity Int
-  orderQuantity Int
-  size String
-  color String
-  price Float
+  id            Int     @id @default(autoincrement())
+  orderId       Int
+  productId     Int
+  size          String
+  color         String
+  price         Float
+  orderQuantity Int 
+  order         Order   @relation(fields: [orderId], references: [id])
+  product       Product @relation(fields: [productId], references: [id])
 }

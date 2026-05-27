@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { colorNames } from "../../../../cart/components/cart_item/components/color.ts";
 import ShowOrderInterface from "../../interface/ShowOrderInterface.ts";
 import { GrStatusCriticalSmall } from "react-icons/gr";
+import OrderItemInterface from "../../interface/OrderItemInterace.ts";
 
 const statusStyles: Record<string, string> = {
   Processing: "text-orange-800",
@@ -14,15 +15,14 @@ const statusStyles: Record<string, string> = {
 
 const OrderItem = ({
   id,
-  userId,
-  total,
-  status,
-  paymentId,
-  createdAt,
-  items,
-  deliveryAddress,
-  deliveryAddressId,
-}: ShowOrderInterface) => {
+  orderId,
+  productId,
+  orderQuantity,
+  size,
+  color,
+  price,
+  product,
+}: OrderItemInterface) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -76,7 +76,9 @@ const OrderItem = ({
                   <p className="text-xs text-gray-400">
                     {item.size} / {colorNames[item.color] ?? item.color}
                   </p>
-                  <p className="text-xs text-gray-400">Qty {item.quantity}</p>
+                  <p className="text-xs text-gray-400">
+                    Qty {item.orderQuantity}
+                  </p>
                 </div>
                 <p className="text-sm">
                   $
@@ -84,9 +86,9 @@ const OrderItem = ({
                     ? (
                         item.product.price *
                         (1 - item.product.discount / 100) *
-                        item.quantity
+                        item.orderQuantity
                       ).toFixed(2)
-                    : (item.product.price * item.quantity).toFixed(2)}
+                    : (item.product.price * item.orderQuantity).toFixed(2)}
                 </p>
               </div>
             ))}

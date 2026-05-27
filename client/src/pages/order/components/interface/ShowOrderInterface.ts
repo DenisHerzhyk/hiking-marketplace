@@ -1,4 +1,4 @@
-import CartItemInterface from "../../../cart/components/cart_item/interface/CartItemInterface";
+import OrderItemInterface from "./OrderItemInterace";
 
 interface ShowOrderInterface {
   id: number;
@@ -20,7 +20,7 @@ interface ShowOrderInterface {
     country: string;
     isDefault: boolean;
   } | null;
-  items: CartItemInterface[];
+  items: OrderItemInterface[];
 }
 
 export default ShowOrderInterface;

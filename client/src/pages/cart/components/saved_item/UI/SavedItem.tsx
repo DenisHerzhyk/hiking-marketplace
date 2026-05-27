@@ -12,6 +12,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
   product,
   size,
   color,
+  availableQuantity,
   onDelete,
   onCartAdd,
 }) => {
@@ -27,7 +28,17 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
             />
           </Link>
           <button
-            onClick={() => handleMoveToCart(productId, id, onDelete, onCartAdd)}
+            onClick={() =>
+              handleMoveToCart(
+                productId,
+                id,
+                size,
+                color,
+                availableQuantity,
+                onDelete,
+                onCartAdd,
+              )
+            }
             className="w-full min-w-[90px] border border-black hover:text-white hover:bg-black transition-all duration-300 ease-in-out rounded-full py-4 text-sm tablet:text-[15px] whitespace-nowrap"
           >
             Add to Cart
