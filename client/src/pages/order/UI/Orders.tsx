@@ -41,16 +41,16 @@ const Orders = () => {
                     id={order.id}
                     userId={order.userId}
                     total={order.total}
-                    status={order.status}
                     paymentId={order.paymentId}
+                    status={order.status}
+                    deliveryAddress={order.deliveryAddress}
+                    deliveryAddressId={order.deliveryAddressId}
                     createdAt={
                       order.createdAt.split("T")[0] +
                       " " +
                       order.createdAt.split("T")[1].split(".")[0]
                     }
                     items={order.items}
-                    deliveryAddress={order.deliveryAddress}
-                    deliveryAddressId={order.deliveryAddressId}
                   />
                 ))}
             </div>

@@ -1,3 +1,5 @@
+import ShowOrderInterface from "./ShowOrderInterface";
+
 interface OrderItemInterface {
   id: number;
   orderId: number;
@@ -5,7 +7,7 @@ interface OrderItemInterface {
   size: string;
   color: string;
   orderQuantity: number;
-  total: number;
+  price: number;
   product: {
     id: number;
     title: string;

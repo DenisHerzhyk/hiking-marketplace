@@ -4,112 +4,106 @@ import ShowOrderInterface from "../../interface/ShowOrderInterface.ts";
 import { GrStatusCriticalSmall } from "react-icons/gr";
 import OrderItemInterface from "../../interface/OrderItemInterace.ts";
 
-const statusStyles: Record<string, string> = {
-  Processing: "text-orange-800",
-  Packing: "text-brown-800",
-  "In Transit": "text-blue-800",
-  Delivering: "text-pink-800",
-  Delivered: "text-green-800",
-  Cancelled: "text-red-800",
+const statusStyles: Record<string, { bg: string; text: string }> = {
+  Processing: { bg: "#FEF3C7", text: "#92400E" },
+  Packing: { bg: "#FEF9C3", text: "#713F12" },
+  "In Transit": { bg: "#DBEAFE", text: "#1E3A5F" },
+  Delivering: { bg: "#FCE7F3", text: "#831843" },
+  Delivered: { bg: "#DCFCE7", text: "#14532D" },
+  Cancelled: { bg: "#FEE2E2", text: "#7F1D1D" },
 };
-
 const OrderItem = ({
   id,
-  orderId,
-  productId,
-  orderQuantity,
-  size,
-  color,
-  price,
-  product,
-}: OrderItemInterface) => {
+  total,
+  status,
+  items,
+  deliveryAddress,
+  createdAt,
+}: ShowOrderInterface) => {
   const [expanded, setExpanded] = useState(false);
+  const style = statusStyles[status] ?? { bg: "#F3F4F6", text: "#374151" };
 
   return (
-    <div className="flex flex-row gap-[30px] items-stretch min-h-[150px] max-w-full tablet:max-w-[800px]">
-      <div className="w-[4px] rounded-full bg-black self-stretch" />
-
-      <div className="flex flex-col w-full gap-[10px]">
-        <div className="flex flex-row flex-wrap w-full justify-between items-start">
-          <div>
-            <h2 className="font-medium text-base">Order #{id}</h2>
-            <div
-              className={`text-base ${statusStyles[status]} w-fit font-light mt-[2px] pl-[2px] py-[2px] rounded-full flex flex-row items-center gap-1`}
+    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden max-w-full tablet:max-w-[800px]">
+      <div className="flex flex-wrap justify-between items-start gap-2 px-5 py-4 border-b border-gray-100">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[15px] font-medium">Order #{id}</span>
+            <span
+              className="text-[12px] font-medium px-2.5 py-0.5 rounded-full"
+              style={{ background: style.bg, color: style.text }}
             >
-              <GrStatusCriticalSmall></GrStatusCriticalSmall>
-              <p>{status}</p>
-            </div>
+              {status}
+            </span>
           </div>
-          <p className="text-lg">${total.toFixed(2)}</p>
+          <span className="text-xs text-gray-400">{createdAt}</span>
         </div>
-
-        <p className="text-xs mobile:text-[13px] text-gray-500">{createdAt}</p>
-
-        <p className="text-xs text-gray-400">
-          {items.map((i) => i.product.title).join(", ")}
+        <span className="text-[17px] font-medium">${total.toFixed(2)}</span>
+      </div>
+      <div className="px-5 py-3 border-b border-gray-100">
+        <p className="text-[13px] text-gray-500">
+          {items.map((item) => item.product.title).join(", ")}
         </p>
-        <p className="text-sm text-black">
-          <span className="font-bold">Contact Details</span>
-          <br />
-          {deliveryAddress?.firstName} {deliveryAddress?.lastName} (
-          {deliveryAddress?.phone})
-        </p>
-        <p className="text-sm text-black">
-          <span className="font-bold">Delivery Address</span>
-          <br />
-          {deliveryAddress?.address1}{" "}
-          <span className="ml-2">
-            {deliveryAddress?.address2} - {deliveryAddress?.city},{" "}
-            {deliveryAddress?.country}, {deliveryAddress?.postalCode}
-          </span>
-        </p>
-
-        {expanded && (
-          <div className="flex flex-col gap-[10px] mt-[5px] border-t border-gray-200 pt-[10px]">
-            {items.map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-row justify-between items-center"
-              >
-                <div className="flex flex-col">
-                  <p className="text-sm font-medium">{item.product.title}</p>
-                  <p className="text-xs text-gray-400">
-                    {item.size} / {colorNames[item.color] ?? item.color}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    Qty {item.orderQuantity}
-                  </p>
-                </div>
-                <p className="text-sm">
-                  $
-                  {item.product.discount
-                    ? (
-                        item.product.price *
-                        (1 - item.product.discount / 100) *
-                        item.orderQuantity
-                      ).toFixed(2)
-                    : (item.product.price * item.orderQuantity).toFixed(2)}
+      </div>
+      <div className="grid grid-cols-2 gap-3 px-5 py-4 border-b border-gray-100">
+        <div>
+          <p className="text-[11px] text-gray-400 uppercase tracking-wider mb-1">
+            Contact
+          </p>
+          <p className="text-[13px]">
+            {deliveryAddress?.firstName} {deliveryAddress?.lastName}
+          </p>
+          <p className="text-[13px] text-gray-500">{deliveryAddress?.phone}</p>
+        </div>
+        <div>
+          <p className="text-[11px] text-gray-400 uppercase tracking-wider mb-1">
+            Delivery
+          </p>
+          <p className="text-[13px]">
+            {deliveryAddress?.address1} {deliveryAddress?.address2}
+          </p>
+          <p className="text-[13px] text-gray-500">
+            {deliveryAddress?.city}, {deliveryAddress?.country},{" "}
+            {deliveryAddress?.postalCode}
+          </p>
+        </div>
+      </div>
+      {expanded && (
+        <div className="flex flex-col gap-3 px-5 py-4 border-b border-gray-100">
+          {items.map((item, i) => (
+            <div key={i} className="flex justify-between items-start">
+              <div>
+                <p className="text-sm font-medium">{item.product.title}</p>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  {item.size} · {colorNames[item.color] ?? item.color} · Qty{" "}
+                  {item.orderQuantity}
                 </p>
               </div>
-            ))}
-            <div className="border-t border-gray-100 pt-[8px]">
-              <div className="flex justify-between text-sm font-semibold mt-1">
-                <span>Total</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
+              <span className="text-sm">
+                $
+                {item.product.discount
+                  ? (
+                      item.product.price *
+                      (1 - item.product.discount / 100) *
+                      item.orderQuantity
+                    ).toFixed(2)
+                  : (item.product.price * item.orderQuantity).toFixed(2)}
+              </span>
             </div>
+          ))}
+          <div className="flex justify-between text-sm font-medium border-t border-gray-100 pt-3 mt-1">
+            <span>Total</span>
+            <span>${total.toFixed(2)}</span>
           </div>
-        )}
-
-        {/* actions */}
-        <div className="flex flex-row items-end justify-start mt-[10px] gap-[8px]">
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="flex flex-row gap-[8px] focus:outline-none text-sm leading-none underline text-gray-500 hover:text-black transition-colors"
-          >
-            {expanded ? "Hide details" : "View details"}
-          </button>
         </div>
+      )}
+      <div className="px-5 py-3">
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="text-[13px] text-gray-400 underline hover:text-black transition-colors"
+        >
+          {expanded ? "Hide details" : "View details"}
+        </button>
       </div>
     </div>
   );
