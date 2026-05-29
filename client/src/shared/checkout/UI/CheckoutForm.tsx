@@ -4,8 +4,6 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { CheckoutSteps } from "../../checkout_steps/CheckoutSteps";
 import { useCheckout } from "../context/CheckoutContext";
 
 const CheckoutForm = () => {

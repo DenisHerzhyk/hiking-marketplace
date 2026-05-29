@@ -6,6 +6,7 @@ import CartItemInterface from "../components/cart_item/interface/CartItemInterfa
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
@@ -53,6 +54,13 @@ const Cart = () => {
       });
   }, []);
 
+  const handleCheckoutProcess = () => {
+    if (cartItems.length === 0) {
+      toast.error("The cart is empty. Please add items first!");
+      return;
+    }
+    navigate("/deliveryInfo");
+  };
   const handleItemDelete = (id: number) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
@@ -198,7 +206,7 @@ const Cart = () => {
               </p>
             </div>
             <button
-              onClick={() => navigate("/deliveryInfo")}
+              onClick={() => handleCheckoutProcess()}
               className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
             >
               CHECKOUT

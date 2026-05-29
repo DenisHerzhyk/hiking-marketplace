@@ -22,8 +22,6 @@ import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 import { Toaster } from "react-hot-toast";
 import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
-import { CheckoutProvider } from "./shared/checkout/context/CheckoutContext.tsx";
-import { CheckoutSteps } from "./shared/checkout_steps/CheckoutSteps.tsx";
 import { CheckoutLayout } from "./shared/checkout/UI/CheckoutLayout.tsx";
 
 const AppLayout = () => {
@@ -35,7 +33,7 @@ const AppLayout = () => {
 
   return (
     <>
-      <Toaster position="bottom-right" />
+      <Toaster position="top-right" />
       <Header />
       {isLoginOrRegister || isProduct ? (
         <div className="mt-[0px]" />

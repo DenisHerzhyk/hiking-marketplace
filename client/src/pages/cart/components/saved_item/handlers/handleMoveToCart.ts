@@ -6,8 +6,8 @@ export const handleMoveToCart = async (
   id: number,
   size: string,
   color: string,
-  orderQuantity: number,
   availableQuantity: number,
+  orderQuantity: number,
   onDelete: (id: number) => void,
   onCartAdd: (item: CartItemInterface) => void,
 ) => {

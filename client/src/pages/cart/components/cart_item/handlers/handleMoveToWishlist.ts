@@ -6,8 +6,8 @@ export const handleMoveToWishlist = async (
   id: number,
   size: string,
   color: string,
-  orderQuantity: number,
   availableQuantity: number,
+  orderQuantity: number,
   onDelete: (id: number) => void,
   onWishlistAdd: (item: WishlistItemInterface) => void,
 ) => {

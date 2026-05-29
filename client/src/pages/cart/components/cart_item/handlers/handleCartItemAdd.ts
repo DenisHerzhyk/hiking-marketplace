@@ -6,16 +6,14 @@ export const handleCartItemAdd = async (
   size: string,
   color: string,
 ) => {
-  console.log("Sending to cart:", { id, availableQuantity, size, color }); // ← Add this
-
   await axios
     .post(
       `http://localhost:4996/api/cart/add/${id}`,
       {
-        availableQuantity,
-        orderQuantity: 1,
         size,
         color,
+        availableQuantity,
+        orderQuantity: 1,
       },
       { withCredentials: true },
     )

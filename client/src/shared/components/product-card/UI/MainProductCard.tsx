@@ -27,17 +27,8 @@ const MainProductCard = ({
   stock,
 }: ProductInterface) => {
   const [openSection, setOpenSection] = useState(false);
-  const [newAvailableSizes, setNewAvailableSizes] = useState<String[]>([]);
-  const [newStock, setNewStock] = useState<Record<string, number> | null>(null);
   const [selColor, setSelColor] = useState<string>(color);
   const [selSize, setSelSize] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (inStock) {
-      setNewAvailableSizes(availableSizes);
-      setNewStock(stock);
-    }
-  }, [inStock]);
 
   useEffect(() => {
     setSelColor(color);
@@ -66,7 +57,7 @@ const MainProductCard = ({
       toast.error("Please select a size");
       return;
     }
-    handleWishlistAdd(id, selSize, selColor);
+    handleWishlistAdd(id, stock[selSize], selSize, selColor);
     toast.success("Item added to wishlist");
   };
 

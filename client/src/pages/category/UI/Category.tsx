@@ -209,7 +209,7 @@ const Category = () => {
             </div>
           </div>
         ) : (
-          <div className="main-category relative w-full flex flex-col gap-2 items-center h-[100dvh]">
+          <div className="main-category relative w-full flex flex-col gap-2 items-center">
             <div className="flex flex-col w-full gap-10 items-center h-full justify-center">
               <h1 className="text-start w-full font-medium text-3xl">
                 Special Prices
@@ -491,26 +491,29 @@ const Category = () => {
           <div className="products flex-1 w-full">
             {filteredProducts.length > 0 ? (
               <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fill,minmax(270px,1fr))]">
-                {filteredProducts.map((item) => (
-                  <MainProductCard
-                    key={item.id}
-                    id={item.id}
-                    title={item.title.toUpperCase()}
-                    discount={item.discount}
-                    price={item.price}
-                    availableSizes={item.availableSizes}
-                    category={item.category}
-                    gender={item.gender}
-                    fit={item.fit}
-                    color={item.color}
-                    sizeGuide={item.sizeGuide}
-                    details={item.details}
-                    productImages={item.productImages}
-                    description={item.description}
-                    inStock={item.inStock}
-                    stock={item.stock}
-                  />
-                ))}
+                {filteredProducts.map(
+                  (item) =>
+                    item.availableSizes.length >= 1 && (
+                      <MainProductCard
+                        key={item.id}
+                        id={item.id}
+                        title={item.title.toUpperCase()}
+                        discount={item.discount}
+                        price={item.price}
+                        availableSizes={item.availableSizes}
+                        category={item.category}
+                        gender={item.gender}
+                        fit={item.fit}
+                        color={item.color}
+                        sizeGuide={item.sizeGuide}
+                        details={item.details}
+                        productImages={item.productImages}
+                        description={item.description}
+                        inStock={item.inStock}
+                        stock={item.stock}
+                      />
+                    ),
+                )}
               </div>
             ) : (
               <h1 className="text-center">

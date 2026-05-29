@@ -33,8 +33,8 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-3.webp",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-4.webp",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-5.webp",
@@ -627,7 +627,6 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-43.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-44.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-45.jpg",
         "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-46.jpg",
@@ -1179,12 +1178,12 @@
         }
       ],
       "productImages": [
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-1.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-2.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-3.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-4.jpg",
-        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-5.jpg"
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes-4.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes-5.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_shoes-3.jpg"
       ],
       "description": "Rugged full-grain leather work boots built for demanding terrain and durability.",
       "inStock": true,

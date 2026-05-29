@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const handleWishlistAdd = async (
   id: number,
+  availableQuantity: number,
   size: string,
   color: string,
 ) => {
@@ -11,6 +12,8 @@ export const handleWishlistAdd = async (
       {
         size: size,
         color: color,
+        availableQuantity,
+        orderQuantity: 1,
       },
       { withCredentials: true },
     )

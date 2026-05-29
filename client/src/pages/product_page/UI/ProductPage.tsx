@@ -73,7 +73,7 @@ const ProductPage = () => {
     }
     if (!product?.id) return;
 
-    handleWishlistAdd(product.id, selSize, selColor);
+    handleWishlistAdd(product.id, product.stock[selSize], selSize, selColor);
     toast.success("Item added to wishlist");
   };
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { handleWishlistRemove } from "../handlers/handleWishlistRemove.ts";
 import { handleMoveToCart } from "../handlers/handleMoveToCart.ts";
 import { colorNames } from "../../cart_item/components/color.ts";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const WishlistItem: React.FC<WishlistItemInterface> = ({
   id,
@@ -17,16 +18,22 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
   onDelete,
   onCartAdd,
 }) => {
+  const finalPrice = product?.discount
+    ? product.price - (product.price * product.discount) / 100
+    : product.price;
+
   return (
-    <>
-      <div className="SavedItem flex flex-row gap-[30px] items-stretch min-h-[150px] max-w-full  tablet:max-w-[800px]">
-        <div className="nav-menu flex flex-col gap-[20px] min-w-[100px] w-[150px] relative">
+    <div className="bg-white border-b border-gray-200 py-5 last:border-b-0">
+      <div className="flex gap-4">
+        <div className="flex-shrink-0 w-[100px] flex flex-col gap-2.5">
           <Link to={`/product/${productId}`}>
-            <img
-              className="cartitem__image object-cover object-center w-full flex-1 rounded-[2px]"
-              src={product.productImages[0]}
-              alt="img"
-            />
+            <div className="w-[100px] h-[130px] rounded-md overflow-hidden bg-gray-50">
+              <img
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                src={product.productImages[0]}
+                alt={product.title}
+              />
+            </div>
           </Link>
           <button
             onClick={() =>
@@ -41,57 +48,58 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
                 onCartAdd,
               )
             }
-            className="w-full min-w-[90px] border border-black hover:text-white hover:bg-black transition-all duration-300 ease-in-out rounded-full py-4 text-sm tablet:text-[15px] whitespace-nowrap"
+            className="w-full text-xs py-2 border border-gray-900 rounded-full hover:bg-black hover:text-white transition-all duration-200"
           >
-            Add to Cart
+            Add to cart
           </button>
         </div>
-        <div className="flex flex-col w-full justify-between">
-          <div className="cartitem__content flex flex-col w-full">
-            <div className="flex flex-row flex-wrap w-full justify-between items-start">
-              <h2 className="font-medium break-words text-base">
-                <Link to={`/product/${productId}`}>
-                  {product.title.toUpperCase()}
-                </Link>
-              </h2>
-              <div className={`text-lg`}>
-                <p
-                  className={`${product?.discount && "line-through text-gray-600"}`}
-                >
+
+        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+          <div className="flex justify-between items-start gap-3">
+            <Link
+              to={`/product/${productId}`}
+              className="hover:underline flex-1 min-w-0"
+            >
+              <p className="text-sm font-medium text-gray-900 leading-snug">
+                {product.title}
+              </p>
+            </Link>
+            <div className="text-right flex-shrink-0">
+              {product?.discount && (
+                <p className="text-xs text-gray-400 line-through">
                   €{product.price.toFixed(2)}
                 </p>
-                {product?.discount && (
-                  <span className="text-red-700">
-                    €
-                    {(
-                      product.price -
-                      (product.price * product.discount) / 100
-                    ).toFixed(2)}
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              {availableQuantity <= 9 && (
-                <span className="text-[10px] sm:text-xs font-medium text-red-600">
-                  Only {availableQuantity} left
-                </span>
               )}
+              <p
+                className={`text-sm font-medium ${product?.discount ? "text-red-600" : "text-gray-900"}`}
+              >
+                €{finalPrice.toFixed(2)}
+              </p>
             </div>
-            <p className="text-xs mobile:text-[13px]">
-              {product.category.toUpperCase()}/{size}/
-              {colorNames[color].toUpperCase()}
-            </p>
           </div>
-          <button
-            className="flex flex-row text-gray-400 items-end justify-end text-base mt-[20px] gap-[8px] h-full focus:outline-none underline"
-            onClick={() => handleWishlistRemove(productId, id, onDelete)}
-          >
-            <p>Remove</p>
-          </button>
+
+          <p className="text-xs text-gray-400">
+            {product.category} · {size} · {colorNames[color] ?? color}
+          </p>
+
+          {availableQuantity <= 9 && (
+            <span className="text-[11px] font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full w-fit">
+              Only {availableQuantity} left
+            </span>
+          )}
+
+          <div className="mt-auto pt-3">
+            <button
+              onClick={() => handleWishlistRemove(productId, id, onDelete)}
+              className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-600 transition-colors"
+            >
+              <FaRegTrashAlt className="w-3 h-3" />
+              Remove
+            </button>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

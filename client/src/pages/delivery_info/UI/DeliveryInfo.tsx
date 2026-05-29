@@ -23,20 +23,22 @@ const COUNTRIES = [
   "Other",
 ];
 
+interface DeliveryInfoInterface {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address1: string;
+  address2: string;
+  city: string;
+  postalCode: string;
+  country: string;
+  saveAddress: boolean;
+}
+
 const DeliveryInfo = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
-  const [form, setForm] = useState<{
-    firstName: string;
-    lastName: string;
-    phone: string;
-    address1: string;
-    address2: string;
-    city: string;
-    postalCode: string;
-    country: string;
-    saveAddress: boolean;
-  }>({
+  const [form, setForm] = useState<DeliveryInfoInterface>({
     firstName: "",
     lastName: "",
     phone: "",
@@ -62,6 +64,29 @@ const DeliveryInfo = () => {
   const shipping = subtotal < 99 ? 9 : 0;
   const orderTotal = (subtotal + shipping).toFixed(2);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:4996/api/delivery/get_default_address", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.info) {
+          const a = res.data.info;
+          setForm((prev) => ({
+            ...prev,
+            firstName: a.firstName,
+            lastName: a.lastName,
+            phone: a.phone,
+            address1: a.address1,
+            address2: a.address2 ?? "",
+            city: a.city,
+            postalCode: a.postalCode,
+            country: a.country,
+            saveAddress: a.isDefault,
+          }));
+        }
+      });
+  }, []);
   useEffect(() => {
     axios
       .get("http://localhost:4996/api/cart", { withCredentials: true })
@@ -97,7 +122,6 @@ const DeliveryInfo = () => {
           <p className="text-sm text-gray-400 mb-[32px]">
             Enter the address where you'd like your order delivered.
           </p>
-
           <form
             onSubmit={(e) => {
               e.preventDefault();
