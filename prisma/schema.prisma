@@ -7,14 +7,12 @@ datasource db {
 }
 
 model User {
+  fullName         String           @default("")
   email            String            @unique
   password         String
   createdAt        DateTime          @default(now())
   id               Int               @id @default(autoincrement())
   additionalEmails String[]
-  country          String?
-  gender           String?
-  language         String?
   cart             Cart?
   addresses        DeliveryAddress[]
   order            Order[]

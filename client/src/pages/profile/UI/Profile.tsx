@@ -1,22 +1,87 @@
 import avatar from "/images/avatar.webp";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
+import toast from "react-hot-toast";
 
 const FORM_FIELDS = [
-  { label: "Full Name", name: "fullName", placeholder: "Your full name" },
-  { label: "Country", name: "country", placeholder: "Your country" },
-  { label: "Gender", name: "gender", placeholder: "Your gender" },
-  { label: "Language", name: "language", placeholder: "Preferred language" },
+  {
+    label: "Full Name",
+    name: "fullName",
+    placeholder: "Your full name",
+    type: "text",
+  },
+  { label: "Email", name: "email", placeholder: "Your email", type: "email" },
+  {
+    label: "Password",
+    name: "password",
+    placeholder: "Your password",
+    type: "password",
+  },
+  {
+    label: "Confirm Password",
+    name: "confirmPassword",
+    placeholder: "Confirm Password",
+    type: "password",
+  },
 ];
 
 const Profile = () => {
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
-
   const { setAuthLogin, setEmail, email } = ctxt;
   const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4996/api/user/get_user", { withCredentials: true })
+      .then((res) => {
+        const user = res.data;
+        setForm((prev) => ({
+          ...prev,
+          fullName: user.fullName ?? "",
+          email: user.email ?? "",
+        }));
+      })
+      .catch(() => toast.error("Failed to load profile"));
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = async () => {
+    await axios
+      .put(
+        "http://localhost:4996/api/user/change",
+        {
+          fullName: form.fullName,
+          email: form.email,
+          password: form.password,
+          confirmPassword: form.confirmPassword,
+        },
+        { withCredentials: true },
+      )
+      .then(() => {
+        setIsEditing(true);
+        toast.success("Profile updated");
+      })
+      .catch((error) => {
+        toast.error(
+          error?.response?.data?.message ?? "Failed to update profile",
+        );
+      });
+  };
 
   const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -45,7 +110,7 @@ const Profile = () => {
     <div className="Profile flex flex-col mx-auto max-w-[900px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] pb-[80px]">
       <div className="mb-[32px]">
         <h1 className="font-semibold text-2xl mobile:text-3xl tracking-tight">
-          Welcome back, {email?.split("@")[0] ?? "there"}
+          Welcome back, there
         </h1>
         <p className="text-sm text-gray-400 mt-[6px] tracking-wide">{today}</p>
       </div>
@@ -62,7 +127,7 @@ const Profile = () => {
               />
               <div className="flex flex-col gap-[4px]">
                 <h2 className="font-semibold text-[18px] mobile:text-[20px] tracking-tight">
-                  Alexa Rawler
+                  there
                 </h2>
                 <p className="text-gray-400 text-sm">{email}</p>
               </div>
@@ -75,8 +140,11 @@ const Profile = () => {
               >
                 Log out
               </button>
-              <button className="text-sm font-medium bg-black text-white px-[14px] py-[7px] hover:opacity-70 transition-opacity duration-200">
-                Edit profile
+              <button
+                onClick={isEditing ? handleSave : () => setIsEditing(true)}
+                className="text-sm font-medium bg-black text-white px-[14px] py-[7px] hover:opacity-70 transition-opacity duration-200"
+              >
+                {isEditing ? "Save" : "Edit Profile"}
               </button>
             </div>
           </div>
@@ -89,7 +157,7 @@ const Profile = () => {
             className="grid grid-cols-1 tablet:grid-cols-2 gap-[20px] mobile:gap-[24px]"
             onSubmit={(e) => e.preventDefault()}
           >
-            {FORM_FIELDS.map(({ label, name, placeholder }) => (
+            {FORM_FIELDS.map(({ label, name, placeholder, type }) => (
               <div key={name} className="flex flex-col gap-[8px]">
                 <label
                   htmlFor={name}
@@ -98,9 +166,12 @@ const Profile = () => {
                   {label}
                 </label>
                 <input
-                  type="text"
+                  type={type}
                   id={name}
+                  value={form[name as keyof typeof form]}
                   name={name}
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                   placeholder={placeholder}
                   className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
                 />
