@@ -117,7 +117,7 @@ const Profile = () => {
 
       <div className="border border-gray-200 rounded-[4px] overflow-hidden">
         <div className="h-[56px] bg-gradient-to-r from-gray-100 to-gray-200" />
-        <div className="py-[28px] px-[20px] mobile:px-[32px]">
+        <div className="py-[60px] px-[20px] mobile:px-[32px]">
           <div className="flex flex-wrap justify-between items-start gap-[20px] mb-[36px]">
             <div className="flex flex-row flex-wrap gap-[20px] items-center">
               <img
@@ -178,24 +178,6 @@ const Profile = () => {
               </div>
             ))}
           </form>
-
-          <div className="border-t border-gray-100 mt-[36px] mb-[28px]" />
-
-          <h3 className="text-[11px] font-medium tracking-[0.15em] text-gray-400 uppercase mb-[20px]">
-            Email addresses
-          </h3>
-          <div className="flex flex-row flex-wrap items-center gap-[16px]">
-            <div className="w-[38px] h-[38px] rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-base">
-              @
-            </div>
-            <div className="flex flex-col gap-[3px]">
-              <p className="text-sm font-medium">{email}</p>
-              <p className="text-xs text-gray-400">Added 1 month ago</p>
-            </div>
-          </div>
-          <button className="mt-[24px] text-sm font-medium border border-gray-300 px-[16px] py-[8px] hover:border-black transition-colors duration-200">
-            + Add email address
-          </button>
         </div>
       </div>
     </div>

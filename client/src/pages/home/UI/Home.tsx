@@ -8,11 +8,12 @@ import MainProductCard from "../../../shared/components/product-card/UI/MainProd
 import { IoIosArrowForward } from "react-icons/io";
 import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface.js";
 import { IoArrowForwardOutline } from "react-icons/io5";
-import HikingCard from "../components/card/UI/HikingCard";
 import CardInterface from "../components/card/interface/CardInterface";
-import { Cloudinary } from "@cloudinary/url-gen";
+import { Trail } from "../../Trails/interfaces/TrailInterface.js";
 import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 import axios from "axios";
+import TrailCard from "../../Trails/components/TrailCard.js";
+import toast from "react-hot-toast";
 
 const trail_v =
   "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
@@ -22,26 +23,55 @@ const hiking_signup_v =
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
-
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: "dlrft9pjb",
-    },
-  });
+  const [trails, setTrails] = useState<Trail[]>([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:4996/api/products")
       .then((res) => setProducts(res.data.data))
       .catch((err) => {
-        console.error(err);
+        toast.error(err);
       });
 
     fetch("/json/main-categories.json")
       .then((res) => res.json())
       .then((data) => setMainCategories(data.mainCategories));
+  }, []);
+
+  const geocode = async (place: string) => {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(place)}&format=json&limit=1`,
+    );
+    const data = await res.json();
+    if (!data.length) throw new Error("Location not found");
+    return { lat: data[0].lat, lon: data[0].lon };
+  };
+
+  const overpassRequest = async (place: string) => {
+    const { lat, lon } = await geocode(place);
+
+    const query = `
+    [out:json][timeout:25];
+    relation["route"="hiking"](around:50000, ${lat}, ${lon});
+    out body;
+  `;
+
+    const res = await axios.post(
+      "https://overpass-api.de/api/interpreter",
+      query,
+      {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      },
+    );
+    const data = res.data;
+    return data.elements;
+  };
+
+  useEffect(() => {
+    overpassRequest("Zurich, Switzerland").then((el) => {
+      const filtered = el.filter((t: Trail) => t.tags?.name).slice(0, 4);
+      setTrails(filtered);
+    });
   }, []);
 
   return (
@@ -279,41 +309,23 @@ const Home = () => {
         </section>
         <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[20px]">
           <h2 className="text-[30px] mobile:text-[32px] font-semibold text-center">
-            Local favorites near Berlin
+            Local favorites near Zurich
           </h2>
           <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px]">
-            <HikingCard
-              img={temp_hike_card}
-              title="Snow lake trail"
-              level="moderate"
-              length={5.4}
-              rate={4.5}
-            />
-            <HikingCard
-              img={temp_hike_card}
-              title="Snow lake trail"
-              level="moderate"
-              length={5.4}
-              rate={4.5}
-            />
-            <HikingCard
-              img={temp_hike_card}
-              title="Snow lake trail"
-              level="moderate"
-              length={5.4}
-              rate={4.5}
-            />
-            <HikingCard
-              img={temp_hike_card}
-              title="Snow lake trail"
-              level="moderate"
-              length={5.4}
-              rate={4.5}
-            />
-            <div className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center">
-              <h2 className="xt-[22px]">Show more</h2>
+            {trails.map((trail) => (
+              <TrailCard
+                trail={trail}
+                key={trail.id}
+                fallbackImg={temp_hike_card}
+              />
+            ))}
+            <Link
+              to="/trails"
+              className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center"
+            >
+              <p>Show more</p>
               <IoArrowForwardOutline className="text-[22px]" />
-            </div>
+            </Link>
           </div>
         </section>
         <Benefits />

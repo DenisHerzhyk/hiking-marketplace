@@ -23,6 +23,7 @@ import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 import { Toaster } from "react-hot-toast";
 import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
 import { CheckoutLayout } from "./shared/checkout/UI/CheckoutLayout.tsx";
+import Trails from "./pages/Trails/UI/Trails.tsx";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -52,13 +53,13 @@ const AppLayout = () => {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
+        <Route path="/trails" element={<Trails />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<CheckoutLayout />}>
             <Route path="/deliveryInfo" element={<DeliveryInfo />} />
             <Route path="/checkout" element={<CheckoutWrapper />} />
             <Route path="/order" element={<ShowOrder />} />
           </Route>
-
           <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
