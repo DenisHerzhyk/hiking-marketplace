@@ -32,7 +32,7 @@ const Trails = () => {
   const getTrailPhotos = async (trailName: string) => {
     const res = await axios.get(`https://api.pexels.com/v1/search`, {
       params: {
-        query: `${trailName} hike`,
+        query: `${trailName} mountain`,
         per_page: 5,
       },
       headers: {

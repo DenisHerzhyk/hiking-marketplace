@@ -1,6 +1,12 @@
+import { useMemo } from "react";
 import { Trail } from "../interfaces/TrailInterface";
 
-const difficultyLabel = ["Easy", "Moderate", "Hard", "Alpine"];
+const difficultyLabel = {
+  hiking: "Easy",
+  mountain_hiking: "Moderate",
+  demanding_mountain_hiking: "Hard",
+  alpine_hiking: "Alpine",
+};
 
 const difficultyColor: Record<string, string> = {
   Easy: "text-green-700 bg-green-50",
@@ -18,17 +24,22 @@ const TrailCard = ({
 }) => {
   const t = trail.tags;
   const name = t.name ?? "Unnamed trail";
+  const difficulties = ["Easy", "Moderate", "Hard", "Alpine"];
+
   const difficulty =
-    difficultyLabel[Math.floor(Math.random() * difficultyLabel.length)];
+    difficultyLabel[t.sac_scale as keyof typeof difficultyLabel] ??
+    difficultyLabel[t.difficulty as keyof typeof difficultyLabel] ??
+    difficulties[trail.id % difficulties.length];
+  console.log(t.difficulty);
   const distance = t.distance ? `${parseFloat(t.distance).toFixed(1)} km` : "—";
   const network = t.network?.toUpperCase() ?? "—";
   const colorClass = difficultyColor[difficulty] ?? "text-gray-600 bg-gray-100";
 
   return (
-    <div className="flex flex-col w-[280px] rounded-[10px] shadow-lg overflow-hidden bg-white flex-shrink-0">
+    <div className="Trail flex flex-col w-[280px] rounded-[10px] shadow-lg overflow-hidden bg-white flex-shrink-0">
       <div className="w-full h-[160px] bg-gray-200 relative flex items-center justify-center">
         <img
-          src={`https://source.unsplash.com/400x200/?hiking,trail,${encodeURIComponent(name)}`}
+          src={fallbackImg}
           className="w-full h-full object-cover"
           alt={name}
           onError={(e) => {
