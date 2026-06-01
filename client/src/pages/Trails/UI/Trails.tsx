@@ -19,6 +19,8 @@ const Trails = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [valLat, setLat] = useState<number | null>(null);
+  const [valLon, setLon] = useState<number | null>(null);
 
   const geocode = async (place: string) => {
     const res = await axios(
@@ -51,6 +53,8 @@ const Trails = () => {
 
     try {
       const { lat, lon } = await geocode(place);
+      setLat(lat);
+      setLon(lon);
       const overpassQuery = `[out:json][timeout:25];relation["route"="hiking"](around:30000,${lat},${lon});out body;`;
       const res = await axios.post(
         "https://overpass-api.de/api/interpreter",
@@ -133,7 +137,9 @@ const Trails = () => {
           <TrailCard
             key={trail.id}
             trail={trail}
-            fallbackImg={trail.tags.photos?.[0] ?? temp_hike_card}
+            fallbackImg={trail.tags.photos ?? [temp_hike_card]}
+            lat={valLat}
+            lon={valLon}
           />
         ))}
       </div>

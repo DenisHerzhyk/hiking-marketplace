@@ -20,6 +20,7 @@ import Profile from "./pages/profile/UI/Profile.tsx";
 import ProtectedRoute from "./shared/protectedRoute/UI/ProtectedRoute.tsx";
 import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
+import TrailDetails from "./pages/Trails/components/Trail.tsx";
 import { Toaster } from "react-hot-toast";
 import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
 import { CheckoutLayout } from "./shared/checkout/UI/CheckoutLayout.tsx";
@@ -54,6 +55,7 @@ const AppLayout = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:type" element={<Category />} />
         <Route path="/trails" element={<Trails />} />
+        <Route path="/trails/:id" element={<TrailDetails />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<CheckoutLayout />}>
             <Route path="/deliveryInfo" element={<DeliveryInfo />} />

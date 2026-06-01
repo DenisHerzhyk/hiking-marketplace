@@ -1,0 +1,197 @@
+import { useEffect, useState } from "react";
+import { useParams, Link, useLocation } from "react-router-dom";
+import axios from "axios";
+import { Trail } from "../interfaces/TrailInterface";
+import TrailMap from "../map/TrailMap";
+
+const difficultyLabel: Record<string, string> = {
+  hiking: "Easy",
+  mountain_hiking: "Moderate",
+  demanding_mountain_hiking: "Hard",
+  alpine_hiking: "Alpine",
+};
+
+const networkLabel: Record<string, string> = {
+  iwn: "International",
+  nwn: "National",
+  rwn: "Regional",
+  lwn: "Local",
+};
+
+const TrailDetails = () => {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const trail = state?.trail as Trail;
+  const fallbackImg = state?.fallbackImg as string[];
+  const searchLat = state?.searchLat as number;
+  const searchLon = state?.searchLon as number;
+
+  const [date, setDate] = useState("");
+  const [weather, setWeather] = useState<any>(null);
+  const [suggestion, setSuggestion] = useState("");
+  const [loadingAI, setLoadingAI] = useState(false);
+
+  const fetchWeather = async () => {
+    if (!date || !trail) return null;
+    const res = await axios.get("https://api.open-meteo.com/v1/forecast", {
+      params: {
+        latitude: 47.37,
+        longitude: 8.54,
+        daily:
+          "weathercode,temperature_2m_max,precipitation_sum,windspeed_10m_max",
+        timezone: "auto",
+        start_date: date,
+        end_date: date,
+      },
+    });
+    return res.data.daily;
+  };
+
+  const handleGetSuggestion = async () => {
+    if (!date || !trail) return;
+    setLoadingAI(true);
+    setSuggestion("");
+
+    try {
+      const w = await fetchWeather();
+      setWeather(w);
+
+      const weatherDesc = {
+        temp: w.temperature_2m_max[0],
+        precipitation: w.precipitation_sum[0],
+        wind: w.windspeed_10m_max[0],
+        code: w.weathercode[0],
+      };
+
+      const res = await axios.post(
+        "http://localhost:4996/api/ai/suggest",
+        {
+          trailName: trail.tags.name,
+          difficulty: difficultyLabel[trail.tags.sac_scale ?? ""] ?? "Unknown",
+          date,
+          weather: weatherDesc,
+        },
+        { withCredentials: true },
+      );
+      setSuggestion(res.data.suggestion);
+    } catch (e) {
+      setSuggestion("Failed to get suggestion.");
+    } finally {
+      setLoadingAI(false);
+    }
+  };
+
+  if (!trail) return <p className="text-center mt-[150px]">Loading...</p>;
+
+  const t = trail.tags;
+  const difficulty = difficultyLabel[t.sac_scale ?? t.difficulty ?? ""] ?? "—";
+  const distance = t.distance ? `${parseFloat(t.distance).toFixed(1)} km` : "—";
+
+  return (
+    <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] pb-[80px] max-w-[800px] mx-auto">
+      <Link
+        to="/trails"
+        className="text-sm text-gray-400 flex items-center gap-1 mb-6 hover:text-black transition-colors"
+      >
+        ← Back to trails
+      </Link>
+      <div className="flex justify-between items-start flex-wrap gap-3 mb-6">
+        <div>
+          <h1 className="text-2xl font-medium mb-1">
+            {t.name ?? "Unnamed trail"}
+          </h1>
+          <p className="text-sm text-gray-400">
+            {networkLabel[t.network ?? ""] ?? t.network ?? "—"} route
+          </p>
+        </div>
+        <span className="text-xs bg-yellow-50 text-yellow-800 px-3 py-1.5 rounded-full">
+          {difficulty}
+        </span>
+      </div>
+      {fallbackImg && fallbackImg.length > 0 && (
+        <div className="flex flex-col gap-2 mb-5">
+          <img
+            src={fallbackImg[0]}
+            alt={`${t.name} 1`}
+            className="w-full h-[250px] rounded-xl object-cover"
+          />
+          <div className="w-full grid grid-cols-2 gap-2">
+            {fallbackImg.slice(1, 5).map((photo, i) => (
+              <img
+                key={i}
+                src={photo}
+                alt={`${t.name} ${i + 2}`}
+                className="w-full h-[200px] rounded-xl object-cover"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+      <TrailMap name={t.name ?? ""} lat={searchLat} lon={searchLon} />
+      <div className="grid grid-cols-2 mobile:grid-cols-4 gap-3 mb-5">
+        {[
+          { label: "Distance", value: distance },
+          { label: "Ascent", value: t.ascent ? `${t.ascent} m` : "—" },
+          { label: "Difficulty", value: difficulty },
+          { label: "Network", value: networkLabel[t.network ?? ""] ?? "—" },
+        ].map(({ label, value }) => (
+          <div key={label} className="bg-gray-50 rounded-lg p-3">
+            <p className="text-[11px] text-gray-400 uppercase tracking-wider mb-1">
+              {label}
+            </p>
+            <p className="text-lg font-medium">{value}</p>
+          </div>
+        ))}
+      </div>
+      <div className="border border-gray-200 rounded-xl p-5 mb-4">
+        <p className="text-[11px] font-medium tracking-widest text-gray-400 uppercase mb-3">
+          Plan your hike
+        </p>
+        <div className="flex gap-3 items-end flex-wrap">
+          <div className="flex flex-col gap-1.5 flex-1 min-w-[160px]">
+            <label className="text-xs text-gray-500">Select date</label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black"
+            />
+          </div>
+          <button
+            onClick={handleGetSuggestion}
+            disabled={!date || loadingAI}
+            className="px-5 py-2 text-sm bg-black text-white rounded-lg hover:opacity-75 transition-opacity disabled:opacity-40"
+          >
+            {loadingAI ? "Thinking..." : "Get AI suggestion"}
+          </button>
+        </div>
+      </div>
+      {suggestion && (
+        <div className="border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-sm">
+              🤖
+            </div>
+            <p className="text-sm font-medium">AI gear suggestion</p>
+            {weather && (
+              <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">
+                {weather.temperature_2m_max[0]}°C ·{" "}
+                {weather.precipitation_sum[0]}mm rain
+              </span>
+            )}
+          </div>
+          <p className="text-sm text-gray-700 leading-relaxed">{suggestion}</p>
+        </div>
+      )}
+      <Link
+        to={`https://www.openstreetmap.org/relation/${trail.id}`}
+        target="_blank"
+        className="text-xs text-gray-400 hover:text-black transition-colors flex items-center gap-1 mt-5"
+      >
+        View on OpenStreetMap →
+      </Link>
+    </div>
+  );
+};
+
+export default TrailDetails;

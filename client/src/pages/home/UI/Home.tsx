@@ -24,6 +24,8 @@ const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
   const [trails, setTrails] = useState<Trail[]>([]);
+  const [valLat, setLat] = useState<number | null>(null);
+  const [valLon, setLon] = useState<number | null>(null);
 
   useEffect(() => {
     axios
@@ -49,7 +51,8 @@ const Home = () => {
 
   const overpassRequest = async (place: string) => {
     const { lat, lon } = await geocode(place);
-
+    setLat(lat);
+    setLon(lon);
     const query = `
     [out:json][timeout:25];
     relation["route"="hiking"](around:50000, ${lat}, ${lon});
@@ -316,7 +319,9 @@ const Home = () => {
               <TrailCard
                 trail={trail}
                 key={trail.id}
-                fallbackImg={temp_hike_card}
+                fallbackImg={[temp_hike_card]}
+                lat={valLat}
+                lon={valLon}
               />
             ))}
             <Link
