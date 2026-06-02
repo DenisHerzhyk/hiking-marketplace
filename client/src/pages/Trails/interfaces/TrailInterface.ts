@@ -11,10 +11,16 @@ export interface TrailTag {
   description?: string;
 }
 
+export interface RoutePoint {
+  lat: number;
+  lon: number;
+}
+
 export interface Trail {
   id: number;
   type: string;
   tags: TrailTag;
+  geometry: RoutePoint[];
 }
 
 export interface TrailCardProps {

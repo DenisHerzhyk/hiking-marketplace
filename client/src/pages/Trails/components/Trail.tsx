@@ -127,7 +127,7 @@ const TrailDetails = () => {
           </div>
         </div>
       )}
-      <TrailMap name={t.name ?? ""} lat={searchLat} lon={searchLon} />
+      <TrailMap geometry={trail.geometry} />
       <div className="grid grid-cols-2 mobile:grid-cols-4 gap-3 mb-5">
         {[
           { label: "Distance", value: distance },

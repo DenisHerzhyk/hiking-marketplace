@@ -1,5 +1,6 @@
 import { Trail } from "../interfaces/TrailInterface";
 import { Link } from "react-router-dom";
+import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 
 const difficultyLabel = {
   hiking: "Easy",
@@ -15,21 +16,10 @@ const difficultyColor: Record<string, string> = {
   Alpine: "text-purple-700 bg-purple-50",
 };
 
-const TrailCard = ({
-  trail,
-  fallbackImg,
-  lat,
-  lon,
-}: {
-  trail: Trail;
-  fallbackImg: string[];
-  lat: number | null;
-  lon: number | null;
-}) => {
+const TrailCard = ({ trail }: { trail: Trail }) => {
   const t = trail.tags;
   const name = t.name ?? "Unnamed trail";
   const difficulties = ["Easy", "Moderate", "Hard", "Alpine"];
-  console.log("LAT", lat);
   const difficulty =
     difficultyLabel[t.sac_scale as keyof typeof difficultyLabel] ??
     difficultyLabel[t.difficulty as keyof typeof difficultyLabel] ??
@@ -41,16 +31,13 @@ const TrailCard = ({
   return (
     <div className="Trail flex flex-col w-[280px] rounded-[10px] shadow-lg overflow-hidden bg-white flex-shrink-0">
       <div className="w-full h-[160px] bg-gray-200 relative flex items-center justify-center">
-        <Link
-          to={`/trails/${trail.id}`}
-          state={{ trail, fallbackImg, searchLat: lat, searchLon: lon }}
-        >
+        <Link to={`/trails/${trail.id}`} state={{ trail }}>
           <img
-            src={fallbackImg[0]}
+            src={trail?.tags?.photos?.[0] || temp_hike_card}
             className="w-full h-full object-cover"
             alt={name}
             onError={(e) => {
-              (e.target as HTMLImageElement).src = fallbackImg[0];
+              (e.target as HTMLImageElement).src = temp_hike_card;
             }}
           />
         </Link>
