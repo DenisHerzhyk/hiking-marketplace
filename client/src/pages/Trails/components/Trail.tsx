@@ -3,6 +3,7 @@ import { useParams, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Trail } from "../interfaces/TrailInterface";
 import TrailMap from "../map/TrailMap";
+import { LatLngTuple } from "leaflet";
 
 const difficultyLabel: Record<string, string> = {
   hiking: "Easy",
@@ -19,17 +20,36 @@ const networkLabel: Record<string, string> = {
 };
 
 const TrailDetails = () => {
-  const { id } = useParams();
   const { state } = useLocation();
   const trail = state?.trail as Trail;
-  const fallbackImg = state?.fallbackImg as string[];
-  const searchLat = state?.searchLat as number;
-  const searchLon = state?.searchLon as number;
-
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState<any>(null);
   const [suggestion, setSuggestion] = useState("");
   const [loadingAI, setLoadingAI] = useState(false);
+  const [geometry, setGeometry] = useState<LatLngTuple[]>([]);
+
+  useEffect(() => {
+    const { startLat, startLon, endLat, endLon } = trail?.tags ?? {};
+    console.log(startLat, startLon, endLat, endLon);
+
+    if (!startLat || !startLon || !endLat || !endLon) return;
+
+    const fetchRoute = async () => {
+      try {
+        const data = await orsHikingRoute(startLat, startLon, endLat, endLon);
+        const coords = data.features[0].geometry.coordinates.map(
+          ([lon, lat]: number[]) => [lat, lon] as LatLngTuple,
+        );
+        console.log("first coord:", coords[0]); // should be [42.55, 0.05]
+
+        setGeometry(coords);
+      } catch (e) {
+        console.error("Failed to fetch route", e);
+      }
+    };
+
+    fetchRoute();
+  }, [trail?.tags?.startLat, trail?.tags?.startLon]);
 
   const fetchWeather = async () => {
     if (!date || !trail) return null;
@@ -81,6 +101,33 @@ const TrailDetails = () => {
     }
   };
 
+  const orsHikingRoute = async (
+    lat: number,
+    lon: number,
+    endLat: number,
+    endLon: number,
+  ) => {
+    const res = await axios.post(
+      "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
+
+      {
+        coordinates: [
+          [lon, lat],
+          [endLon, endLat],
+        ],
+      },
+      {
+        headers: {
+          Authorization: import.meta.env.VITE_ORS_API_KEY,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    console.log("ORS response:", JSON.stringify(res.data, null, 2));
+
+    return res.data;
+  };
+
   if (!trail) return <p className="text-center mt-[150px]">Loading...</p>;
 
   const t = trail.tags;
@@ -108,26 +155,26 @@ const TrailDetails = () => {
           {difficulty}
         </span>
       </div>
-      {fallbackImg && fallbackImg.length > 0 && (
-        <div className="flex flex-col gap-2 mb-5">
-          <img
-            src={fallbackImg[0]}
-            alt={`${t.name} 1`}
-            className="w-full h-[250px] rounded-xl object-cover"
-          />
-          <div className="w-full grid grid-cols-2 gap-2">
-            {fallbackImg.slice(1, 5).map((photo, i) => (
-              <img
-                key={i}
-                src={photo}
-                alt={`${t.name} ${i + 2}`}
-                className="w-full h-[200px] rounded-xl object-cover"
-              />
-            ))}
-          </div>
+
+      <div className="flex flex-col gap-2 mb-5">
+        <img
+          src={trail?.tags?.photos?.[0]}
+          alt={`${t.name} 1`}
+          className="w-full h-[250px] rounded-xl object-cover"
+        />
+        <div className="w-full grid grid-cols-2 gap-2">
+          {(trail?.tags?.photos ?? []).slice(1, 5).map((photo, i) => (
+            <img
+              key={i}
+              src={photo}
+              alt={`${t.name} ${i + 2}`}
+              className="w-full h-[200px] rounded-xl object-cover"
+            />
+          ))}
         </div>
-      )}
-      <TrailMap geometry={trail.geometry} />
+      </div>
+
+      <TrailMap geometry={geometry} />
       <div className="grid grid-cols-2 mobile:grid-cols-4 gap-3 mb-5">
         {[
           { label: "Distance", value: distance },

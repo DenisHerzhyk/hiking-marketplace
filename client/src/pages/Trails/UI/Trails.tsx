@@ -7,13 +7,18 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const QUICK_SEARCHES = ["Swiss Alps", "Black Forest", "Dolomites", "Pyrenees"];
-
-const difficultyLabel: Record<string, string> = {
-  hiking: "Easy",
-  mountain_hiking: "Moderate",
-  demanding_mountain_hiking: "Hard",
-  alpine_hiking: "Alpine",
-};
+const OFFSETS = [
+  [0.1, 0.1],
+  [-0.1, 0.1],
+  [0.1, -0.1],
+  [-0.1, -0.1],
+  [0.15, 0.0],
+  [-0.15, 0.0],
+  [0.0, 0.15],
+  [0.0, -0.15],
+  [0.2, 0.05],
+  [-0.2, 0.05],
+];
 
 const Trails = () => {
   const [query, setQuery] = useState("");
@@ -26,40 +31,63 @@ const Trails = () => {
       params: {
         q: place,
         format: "json",
-        limit: 5,
+        limit: 10,
+        featuretype: "natural",
       },
     });
     const data = await res.data;
     if (!data.length) throw new Error("Location not found");
 
+    const best =
+      data.find(
+        (r: any) =>
+          [
+            "natural",
+            "peak",
+            "mountain_range",
+            "protected_area",
+            "leisure",
+          ].includes(r.type) ||
+          ["natural", "leisure", "boundary"].includes(r.class),
+      ) ?? data[0];
     return {
-      lat: parseFloat(res.data[0].lat),
-      lon: parseFloat(res.data[0].lon),
+      lat: parseFloat(best.lat),
+      lon: parseFloat(best.lon),
+      osm_id: best.osm_id,
+      osm_type: best.osm_type,
     };
   };
 
-  const getHikingRoute = async (lat: number, lon: number) => {
-    const res = await axios.post(
-      "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
-      {
-        coordinates: [
-          [lon, lat],
-          [lon + 0.05, lat + 0.05],
-        ],
-      },
-      {
-        headers: {
-          Authorization: import.meta.env.VITE_ORS_API_KEY,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    return res.data;
+  const getHikingRoutes = async (
+    lat: number,
+    lon: number,
+    retries = 2,
+  ): Promise<any[]> => {
+    try {
+      const query = `
+  [out:json][timeout:30];
+  relation["type"="route"]["route"="hiking"](around:50000,${lat},${lon});
+  out geom 20;
+`;
+      const res = await axios.post(
+        "https://overpass-api.de/api/interpreter",
+        `data=${encodeURIComponent(query)}`,
+      );
+
+      const elements = res.data?.elements;
+      if (!Array.isArray(elements))
+        throw new Error("Unexpected response from Overpass");
+      return elements.slice(0, 20);
+    } catch (e) {
+      if (retries > 0) return getHikingRoutes(lat, lon, retries - 1);
+      throw new Error("Trail search timed out, please try again.");
+    }
   };
+
   const getTrailPhotos = async (trailName: string) => {
     const res = await axios.get(`https://api.pexels.com/v1/search`, {
       params: {
-        query: `${trailName} mountain`,
+        query: `${trailName} hiking`,
         per_page: 5,
       },
       headers: {
@@ -75,26 +103,57 @@ const Trails = () => {
     setLoading(true);
     setTrails([]);
     setStatus("Searching...");
-
     try {
       const { lat, lon } = await geocode(place);
-      const routeData = await getHikingRoute(lat, lon);
+      const routes = await getHikingRoutes(lat, lon);
 
-      const coords = routeData.features[0].geometry.coordinates.map(
-        ([lon, lat]: number[]) => [lat, lon] as [number, number],
+      const trails: Trail[] = await Promise.all(
+        routes
+          .filter((route: any) => route.tags?.name)
+          .map(async (route: any) => {
+            const trailName = route.tags?.name ?? `${place} Trail`;
+            const photos = await getTrailPhotos(trailName);
+
+            const members =
+              route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
+            const firstMember = members[0];
+            const lastMember = members[members.length - 1];
+
+            const startCoord = firstMember?.geometry?.[0];
+            const endCoord =
+              lastMember?.geometry?.[lastMember.geometry.length - 1];
+
+            return {
+              id: route.id,
+              type: "relation",
+              tags: {
+                name: trailName,
+                photos,
+                distance: route.tags?.distance,
+                network: route.tags?.network,
+                sac_scale: route.tags?.sac_scale,
+                startLat: startCoord?.lat,
+                startLon: startCoord?.lon,
+                endLat: endCoord?.lat,
+                endLon: endCoord?.lon,
+              },
+              geometry: [],
+            };
+          }),
       );
 
-      const trail: Trail = {
-        id: Date.now(),
-        type: "route",
-        tags: {
-          name: place + " Hiking Route",
-          photos: [],
-        },
-        geometry: coords,
-      };
+      console.log(
+        "trails before set:",
+        trails.map((t) => ({
+          name: t.tags.name,
+          lat: t.tags.startLat,
+          lon: t.tags.startLon,
+          endLat: t.tags.endLat,
+          endLon: t.tags.endLon,
+        })),
+      );
 
-      setTrails([trail]);
+      setTrails(trails);
       setStatus("");
     } catch (e: any) {
       toast.error(e.message);
@@ -145,9 +204,7 @@ const Trails = () => {
           </button>
         ))}
       </div>
-
       {status && <p className="text-sm text-gray-400 mb-4">{status}</p>}
-
       <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-y-9 gap-4">
         {trails.map((trail) => (
           <TrailCard key={trail.id} trail={trail} />

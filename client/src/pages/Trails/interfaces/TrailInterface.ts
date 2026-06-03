@@ -1,3 +1,5 @@
+import { LatLngTuple } from "leaflet";
+
 export interface TrailTag {
   name?: string;
   photos?: string[];
@@ -9,18 +11,17 @@ export interface TrailTag {
   operator?: string;
   ascent?: string;
   description?: string;
-}
-
-export interface RoutePoint {
-  lat: number;
-  lon: number;
+  startLat?: number;
+  startLon?: number;
+  endLat?: number;
+  endLon?: number;
 }
 
 export interface Trail {
   id: number;
   type: string;
   tags: TrailTag;
-  geometry: RoutePoint[];
+  geometry: LatLngTuple[];
 }
 
 export interface TrailCardProps {
