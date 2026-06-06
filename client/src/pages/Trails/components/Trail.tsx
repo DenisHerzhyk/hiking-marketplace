@@ -7,13 +7,6 @@ import { LatLngTuple } from "leaflet";
 
 const difficulties = ["Easy", "Moderate", "Hard", "Alpine"];
 
-const difficult: Record<string, string> = {
-  hiking: "Easy",
-  mountain_hiking: "Moderate",
-  demanding_mountain_hiking: "Hard",
-  alpine_hiking: "Alpine",
-};
-
 const networkLabel: Record<string, string> = {
   iwn: "International",
   nwn: "National",
@@ -29,15 +22,8 @@ const TrailDetails = () => {
   const [suggestion, setSuggestion] = useState("");
   const [loadingAI, setLoadingAI] = useState(false);
   const [geometry, setGeometry] = useState<LatLngTuple[]>([]);
+  const [distance, setDistance] = useState<string | null>(null);
 
-  const difficulty = (() => {
-    const key = trail.tags.sac_scale ?? trail.tags.name ?? "";
-    let hash = 0;
-    for (let i = 0; i < key.length; i++) {
-      hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
-    }
-    return difficulties[hash % difficulties.length];
-  })();
   useEffect(() => {
     const { startLat, startLon, endLat, endLon } = trail?.tags ?? {};
     if (!startLat || !startLon || !endLat || !endLon) return;
@@ -48,8 +34,11 @@ const TrailDetails = () => {
         const coords = data.features[0].geometry.coordinates.map(
           ([lon, lat]: number[]) => [lat, lon] as LatLngTuple,
         );
-        console.log("first coord:", coords[0]);
+        const distanceKM = (
+          data.features[0].properties.summary.distance / 1000
+        ).toFixed(1);
 
+        setDistance(distanceKM);
         setGeometry(coords);
       } catch (e) {
         console.error("Failed to fetch route", e);
@@ -58,6 +47,15 @@ const TrailDetails = () => {
 
     fetchRoute();
   }, [trail?.tags?.startLat, trail?.tags?.startLon]);
+
+  const difficulty = (() => {
+    const key = trail.tags.sac_scale ?? trail.tags.name ?? "";
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+    }
+    return difficulties[hash % difficulties.length];
+  })();
 
   const fetchWeather = async () => {
     if (!date || !trail) return null;
@@ -138,7 +136,6 @@ const TrailDetails = () => {
   if (!trail) return <p className="text-center mt-[150px]">Loading...</p>;
 
   const t = trail.tags;
-  const distance = t.distance ? `${parseFloat(t.distance).toFixed(1)} km` : "—";
 
   return (
     <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] pb-[80px] max-w-[800px] mx-auto">

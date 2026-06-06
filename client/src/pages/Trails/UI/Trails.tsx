@@ -1,24 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Trail } from "../interfaces/TrailInterface";
 import TrailCard from "../components/TrailCard";
-import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const QUICK_SEARCHES = ["Swiss Alps", "Black Forest", "Dolomites", "Pyrenees"];
-const OFFSETS = [
-  [0.1, 0.1],
-  [-0.1, 0.1],
-  [0.1, -0.1],
-  [-0.1, -0.1],
-  [0.15, 0.0],
-  [-0.15, 0.0],
-  [0.0, 0.15],
-  [0.0, -0.15],
-  [0.2, 0.05],
-  [-0.2, 0.05],
-];
 
 const Trails = () => {
   const [query, setQuery] = useState("");
@@ -56,6 +43,36 @@ const Trails = () => {
       osm_id: best.osm_id,
       osm_type: best.osm_type,
     };
+  };
+
+  const getORSDistance = async (
+    startLat: number,
+    endLat: number,
+    startLon: number,
+    endLon: number,
+  ) => {
+    try {
+      const res = await axios.post(
+        "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
+        {
+          coordinates: [
+            [startLon, startLat],
+            [endLon, endLat],
+          ],
+        },
+        {
+          headers: {
+            Authorization: import.meta.env.VITE_ORS_API_KEY,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      const meters = res.data.features[0].properties.summary.distance;
+      return (meters / 1000).toFixed(1);
+    } catch (err: any) {
+      return "—";
+    }
   };
 
   const getHikingRoutes = async (
@@ -112,16 +129,29 @@ const Trails = () => {
           .filter((route: any) => route.tags?.name)
           .map(async (route: any) => {
             const trailName = route.tags?.name ?? `${place} Trail`;
-            const photos = await getTrailPhotos(trailName);
 
             const members =
               route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
+
             const firstMember = members[0];
             const lastMember = members[members.length - 1];
 
-            const startCoord = firstMember?.geometry?.[0];
+            const startCoord = members[0]?.geometry?.[0];
             const endCoord =
-              lastMember?.geometry?.[lastMember.geometry.length - 1];
+              members[members.length - 1]?.geometry?.[
+                members[members.length - 1].geometry.length - 1
+              ];
+            const [photos, distance] = await Promise.all([
+              getTrailPhotos(trailName),
+              startCoord && endCoord
+                ? getORSDistance(
+                    startCoord.lat,
+                    endCoord.lat,
+                    startCoord.lon,
+                    endCoord.lon,
+                  )
+                : Promise.resolve("—"),
+            ]);
 
             return {
               id: route.id,
@@ -129,7 +159,7 @@ const Trails = () => {
               tags: {
                 name: trailName,
                 photos,
-                distance: route.tags?.distance,
+                distance,
                 network: route.tags?.network,
                 sac_scale: route.tags?.sac_scale,
                 startLat: startCoord?.lat,
