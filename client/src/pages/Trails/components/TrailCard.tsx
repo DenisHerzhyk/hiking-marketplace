@@ -21,7 +21,8 @@ const TrailCard = ({ trail }: { trail: Trail }) => {
     }
     return difficulties[hash % difficulties.length];
   })();
-  const distance = t.distance ? `${parseFloat(t.distance).toFixed(1)} km` : "—";
+  const distanceNum = parseFloat(t.distance ?? "");
+  const distance = !isNaN(distanceNum) ? `${distanceNum.toFixed(1)} km` : "—";
   const network = t.network?.toUpperCase() ?? "—";
   const colorClass = difficultyColor[difficulty] ?? "text-gray-600 bg-gray-100";
 

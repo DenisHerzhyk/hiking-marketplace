@@ -22,7 +22,8 @@ const TrailDetails = () => {
   const [suggestion, setSuggestion] = useState("");
   const [loadingAI, setLoadingAI] = useState(false);
   const [geometry, setGeometry] = useState<LatLngTuple[]>([]);
-  const [distance, setDistance] = useState<string | null>(null);
+  const [distance, setDistance] = useState<string>("-");
+  const [ascent, setAscent] = useState<string>("-");
 
   useEffect(() => {
     const { startLat, startLon, endLat, endLon } = trail?.tags ?? {};
@@ -32,14 +33,20 @@ const TrailDetails = () => {
       try {
         const data = await orsHikingRoute(startLat, startLon, endLat, endLon);
         const coords = data.features[0].geometry.coordinates.map(
-          ([lon, lat]: number[]) => [lat, lon] as LatLngTuple,
+          ([lon, lat]: [number, number]) => ({ lat, lon }),
         );
         const distanceKM = (
           data.features[0].properties.summary.distance / 1000
         ).toFixed(1);
 
+        const ascent = await fetchAscent(coords);
+        setAscent(`${ascent} m`);
         setDistance(distanceKM);
-        setGeometry(coords);
+
+        const latLngCoords: LatLngTuple[] = coords.map(
+          ({ lat, lon }: { lat: number; lon: number }) => [lat, lon],
+        );
+        setGeometry(latLngCoords);
       } catch (e) {
         console.error("Failed to fetch route", e);
       }
@@ -57,6 +64,26 @@ const TrailDetails = () => {
     return difficulties[hash % difficulties.length];
   })();
 
+  const fetchAscent = async (coords: { lat: number; lon: number }[]) => {
+    const sample = coords.filter((_, i) => i % 10 === 0);
+
+    const res = await axios.get("https://api.open-meteo.com/v1/elevation", {
+      params: {
+        latitude: sample.map((c) => c.lat).join(","),
+        longitude: sample.map((c) => c.lon).join(","),
+      },
+    });
+
+    const elevations: number[] = res.data.elevation;
+
+    let ascent = 0;
+    for (let i = 1; i < elevations.length; i++) {
+      const diff = elevations[i] - elevations[i - 1];
+      if (diff > 0) ascent += diff;
+    }
+
+    return Math.round(ascent);
+  };
   const fetchWeather = async () => {
     if (!date || !trail) return null;
     const res = await axios.get("https://api.open-meteo.com/v1/forecast", {
@@ -151,7 +178,8 @@ const TrailDetails = () => {
             {t.name ?? "Unnamed trail"}
           </h1>
           <p className="text-sm text-gray-400">
-            {networkLabel[t.network ?? ""] ?? t.network ?? "—"} route
+            {networkLabel[t.network ?? ""] ?? t.network ?? "No Network - fix"}{" "}
+            route
           </p>
         </div>
         <span className="text-xs bg-yellow-50 text-yellow-800 px-3 py-1.5 rounded-full">
@@ -181,7 +209,7 @@ const TrailDetails = () => {
       <div className="grid grid-cols-2 mobile:grid-cols-4 gap-3 mb-5">
         {[
           { label: "Distance", value: distance },
-          { label: "Ascent", value: t.ascent ? `${t.ascent} m` : "—" },
+          { label: "Ascent", value: ascent },
           { label: "Difficulty", value: difficulty },
           { label: "Network", value: networkLabel[t.network ?? ""] ?? "—" },
         ].map(({ label, value }) => (
