@@ -136,6 +136,8 @@ const TrailDetails = () => {
     }
   };
 
+  const suggestGear = () => {};
+
   const orsHikingRoute = async (
     lat: number,
     lon: number,
