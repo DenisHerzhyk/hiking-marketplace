@@ -65,7 +65,9 @@ const TrailDetails = () => {
   })();
 
   const fetchAscent = async (coords: { lat: number; lon: number }[]) => {
-    const sample = coords.filter((_, i) => i % 10 === 0);
+    const maxPoints = 100;
+    const step = Math.max(1, Math.floor(coords.length / maxPoints));
+    const sample = coords.filter((_, i) => i % step === 0).slice(0, maxPoints);
 
     const res = await axios.get("https://api.open-meteo.com/v1/elevation", {
       params: {

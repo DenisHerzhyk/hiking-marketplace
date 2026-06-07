@@ -23,7 +23,7 @@ const TrailCard = ({ trail }: { trail: Trail }) => {
   })();
   const distanceNum = parseFloat(t.distance ?? "");
   const distance = !isNaN(distanceNum) ? `${distanceNum.toFixed(1)} km` : "—";
-  const network = t.network?.toUpperCase() ?? "—";
+  const network = t.network?.toUpperCase() ?? "NWN";
   const colorClass = difficultyColor[difficulty] ?? "text-gray-600 bg-gray-100";
 
   return (
