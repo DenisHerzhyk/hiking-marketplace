@@ -316,13 +316,7 @@ const Home = () => {
           </h2>
           <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px]">
             {trails.map((trail) => (
-              <TrailCard
-                trail={trail}
-                key={trail.id}
-                fallbackImg={[temp_hike_card]}
-                lat={valLat}
-                lon={valLon}
-              />
+              <TrailCard trail={trail} key={trail.id} />
             ))}
             <Link
               to="/trails"
