@@ -5,8 +5,23 @@ import axios from "axios";
 import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
+import { FiShoppingCart, FiLock } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+
+const EmptyState = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
+  <div className="flex flex-col items-center justify-center py-20 text-center gap-4 w-full">
+    <Icon className="text-gray-300 text-6xl" />
+    <h2 className="font-semibold text-2xl mobile:text-3xl">{title}</h2>
+    <p className="text-gray-500 max-w-md mx-auto">{description}</p>
+    <Link
+      to="/"
+      className="home__button text-white font-bold px-8 py-3 bg-black rounded-sm shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
+    >
+      Continue Shopping
+    </Link>
+  </div>
+);
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItemInterface[]>([]);
@@ -16,18 +31,20 @@ const Cart = () => {
   const [userId, setUserId] = useState(Number);
   const navigate = useNavigate();
 
-  const subtotal = Number(
-    cartItems
-      .reduce((sum, a) => {
-        const price = a.product.discount
-          ? a.product.price * (1 - a.product.discount / 100) * a.orderQuantity
-          : a.product.price * a.orderQuantity;
-        return sum + price;
-      }, 0)
-      .toFixed(2),
-  );
+  const subtotal = cartItems.reduce((sum, a) => {
+    const price = a.product.discount
+      ? a.product.price * (1 - a.product.discount / 100) * a.orderQuantity
+      : a.product.price * a.orderQuantity;
+    return sum + price;
+  }, 0);
+
   const shipping = subtotal < 99 ? 9 : 0;
-  const orderTotal = (subtotal + shipping).toFixed(2);
+  const orderTotal = subtotal + shipping;
+
+  const freeShippingThreshold = 99;
+  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
   const { authLogin } = ctxt;
@@ -91,7 +108,7 @@ const Cart = () => {
         <section className="content flex flex-col mt-[40px] tablet:flex-row gap-[40px] w-full tablet:w-auto justify-normal tablet:justify-between">
           <div className="w-full flex flex-col gap-[50px]">
             {authLogin && cartItems.length > 0 ? (
-              <div className="cart-items flex flex-col gap-[50px] w-full">
+              <div className="cart-items flex flex-col gap-8 w-full">
                 {cartItems.map((item) => (
                   <CartItem
                     key={item.id}
@@ -113,23 +130,28 @@ const Cart = () => {
                 ))}
               </div>
             ) : !authLogin ? (
-              <p>
-                You are not authorized. Please login first and apply products to
-                the cart
-              </p>
+              <EmptyState
+                icon={FiLock}
+                title="Login Required"
+                description="Please login to manage your shopping cart and proceed to checkout."
+              />
             ) : (
-              <p>Your cart is empty. Please add the products to the cart</p>
+              <EmptyState
+                icon={FiShoppingCart}
+                title="Your cart is empty"
+                description="Looks like you haven't added anything to your cart yet. Start exploring our collection!"
+              />
             )}
             {authLogin && wishListItems.length > 0 && (
-              <div className="wishlist-content">
+              <div className="wishlist-content bg-gray-50 rounded-lg p-6 mt-10">
                 <h2
-                  className="border-b border-[var(--normal-gray)] mb-[40px] leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[15px]"
+                  className="border-b border-gray-200 mb-6 leading-none font-semibold text-xl mobile:text-2xl laptop:text-3xl pb-4"
                   id="favorite"
                 >
-                  Wishlist{" "}
+                  Saved for Later
                 </h2>
 
-                <div className="saved-items flex flex-col gap-[50px] w-full">
+                <div className="saved-items flex flex-col gap-6 w-full">
                   {wishListItems.map((item) => (
                     <WishlistItem
                       key={item.id}
@@ -149,60 +171,73 @@ const Cart = () => {
               </div>
             )}
           </div>
-          <section className="checkout flex flex-col self-start py-[36px] px-[22px] mobile:px-[30px] bg-gray-100 w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
+          <section className="checkout flex flex-col sticky top-[160px] py-[36px] px-[22px] mobile:px-[30px] bg-white shadow-sm border border-gray-200 w-full max-w-full tablet:max-w-[413px] laptop:max-w-[450px] rounded-[8px]">
             <h3 className="font-semibold text-sm mobile:text-lg mb-[17px]">
               ORDER SUMMARY
             </h3>
-            <div className="flex flex-col gap-[8px] w-full mb-[26px]">
-              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
-                <p className="font-semibold text-sm tablet:text-base break-words">
-                  SUBTOTAL({cartItems.length} ITEM)
-                </p>
-                <p className="text-sm tablet:text-base">
-                  €{subtotal.toFixed(2)}
-                </p>
+            <div className="flex flex-col gap-4 w-full mb-[26px]">
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center text-sm tablet:text-base">
+                  <p className="font-semibold break-words">
+                    SUBTOTAL ({cartItems.length} ITEM)
+                  </p>
+                  <p>€{subtotal.toFixed(2)}</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <div className="flex justify-between text-[12px] text-gray-500 font-medium">
+                    <span>{subtotal >= freeShippingThreshold
+                      ? "Free shipping unlocked! 🎉"
+                      : `Add €${remainingForFreeShipping.toFixed(2)} more for free shipping`}
+                    </span>
+                    <span>{Math.round(shippingProgress)}%</span>
+                  </div>
+                  <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-black transition-all duration-500"
+                      style={{ width: `${shippingProgress}%` }}
+                    />
+                  </div>
+                </div>
               </div>
-              <ul className="flex flex-col gap-[5px]">
-                {cartItems.map((item) => (
-                  <li
-                    key={item.id}
-                    className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between gap-[20px] tablet:gap-[10px] w-full"
-                  >
-                    <p>
-                      {item.product.title} x{item.orderQuantity}
-                    </p>
-                    <p>
-                      €
-                      {item.product.discount
-                        ? (
-                            item.product.price *
-                            (1 - item.product.discount / 100) *
-                            item.orderQuantity
-                          ).toFixed(2)
-                        : (item.product.price * item.orderQuantity).toFixed(2)}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full"></div>
-              <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full">
+
+              <div className="flex flex-col gap-2">
+                {cartItems.length <= 3 ? (
+                  <ul className="flex flex-col gap-1">
+                    {cartItems.map((item) => (
+                      <li
+                        key={item.id}
+                        className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between w-full"
+                      >
+                        <p>{item.product.title} x{item.orderQuantity}</p>
+                        <p>
+                          €{item.product.discount
+                            ? (item.product.price * (1 - item.product.discount / 100) * item.orderQuantity).toFixed(2)
+                            : (item.product.price * item.orderQuantity).toFixed(2)}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-gray-500 font-light">
+                    {cartItems.length} items in your cart
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-row justify-between items-center w-full">
                 <p className="font-semibold text-sm tablet:text-base break-words">
-                  SHIPPING{" "}
-                  <span className="font-light text-gray-600">
-                    (FREE OVER 99€)
-                  </span>
+                  SHIPPING
                 </p>
                 <p className="text-sm tablet:text-base">
                   €{shipping.toFixed(2)}
                 </p>
               </div>
             </div>
-            <div className="flex flex-row justify-between items-center gap-[20px] tablet:gap-[10px] w-full mb-[36px]">
-              <p className="font-semibold text-sm tablet:text-base mb-[17px]">
+            <div className="flex flex-row justify-between items-center w-full mb-8">
+              <p className="font-semibold text-sm tablet:text-base">
                 ORDER TOTAL
               </p>
-              <p className="font-medium text-sm tablet:text-base">
-                €{orderTotal}
+              <p className="font-bold text-lg tablet:text-xl">
+                €{orderTotal.toFixed(2)}
               </p>
             </div>
             <button
