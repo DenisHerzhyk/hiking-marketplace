@@ -7,9 +7,19 @@ import WishlistItemInterface from "../components/saved_item/interface/SavedItemI
 import { AuthContext } from "../../login/context/authContext.tsx";
 import { FiShoppingCart, FiLock } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+import CartItemSkeleton from "../../../shared/loading/CartItemSkeleton.tsx";
+import WishlistItemSkeleton from "../../../shared/loading/SavedItemSkeleton.tsx";
 import toast from "react-hot-toast";
 
-const EmptyState = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
+const EmptyState = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: any;
+  title: string;
+  description: string;
+}) => (
   <div className="flex flex-col items-center justify-center py-20 text-center gap-4 w-full">
     <Icon className="text-gray-300 text-6xl" />
     <h2 className="font-semibold text-2xl mobile:text-3xl">{title}</h2>
@@ -28,6 +38,9 @@ const Cart = () => {
   const [wishListItems, setWishListItems] = useState<WishlistItemInterface[]>(
     [],
   );
+  const [cartItemLoading, setCartItemLoading] = useState(true);
+  const [wishlistItemLoading, setWishlistItemLoading] = useState(true);
+
   const [userId, setUserId] = useState(Number);
   const navigate = useNavigate();
 
@@ -42,8 +55,14 @@ const Cart = () => {
   const orderTotal = subtotal + shipping;
 
   const freeShippingThreshold = 99;
-  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
-  const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+  const remainingForFreeShipping = Math.max(
+    0,
+    freeShippingThreshold - subtotal,
+  );
+  const shippingProgress = Math.min(
+    100,
+    (subtotal / freeShippingThreshold) * 100,
+  );
 
   const ctxt = useContext(AuthContext);
   if (!ctxt) throw new Error("AuthProvider missing");
@@ -58,7 +77,8 @@ const Cart = () => {
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => setCartItemLoading(false));
 
     axios
       .get("http://localhost:4996/api/wishlist", { withCredentials: true })
@@ -68,7 +88,8 @@ const Cart = () => {
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => setWishlistItemLoading(false));
   }, []);
 
   const handleCheckoutProcess = () => {
@@ -107,7 +128,19 @@ const Cart = () => {
         </section>
         <section className="content flex flex-col mt-[40px] tablet:flex-row gap-[40px] w-full tablet:w-auto justify-normal tablet:justify-between">
           <div className="w-full flex flex-col gap-[50px]">
-            {authLogin && cartItems.length > 0 ? (
+            {!authLogin ? (
+              <EmptyState
+                icon={FiLock}
+                title="Login Required"
+                description="Please login to manage your shopping cart and proceed to checkout."
+              />
+            ) : cartItemLoading ? (
+              <div className="cart-items flex flex-col gap-8 w-full">
+                {Array.from({ length: 2 }).map((_, i) => (
+                  <CartItemSkeleton key={i} />
+                ))}
+              </div>
+            ) : cartItems.length > 0 ? (
               <div className="cart-items flex flex-col gap-8 w-full">
                 {cartItems.map((item) => (
                   <CartItem
@@ -129,17 +162,11 @@ const Cart = () => {
                   />
                 ))}
               </div>
-            ) : !authLogin ? (
-              <EmptyState
-                icon={FiLock}
-                title="Login Required"
-                description="Please login to manage your shopping cart and proceed to checkout."
-              />
             ) : (
               <EmptyState
                 icon={FiShoppingCart}
                 title="Your cart is empty"
-                description="Looks like you haven't added anything to your cart yet. Start exploring our collection!"
+                description="Looks like you haven't added anything to your cart yet."
               />
             )}
             {authLogin && wishListItems.length > 0 && (
@@ -152,21 +179,31 @@ const Cart = () => {
                 </h2>
 
                 <div className="saved-items flex flex-col gap-6 w-full">
-                  {wishListItems.map((item) => (
-                    <WishlistItem
-                      key={item.id}
-                      id={item.id}
-                      wishlistId={item.wishlistId}
-                      productId={item.productId}
-                      product={item.product}
-                      orderQuantity={item.orderQuantity}
-                      availableQuantity={item.availableQuantity}
-                      size={item.size}
-                      color={item.color}
-                      onDelete={handleWishlistItemDelete}
-                      onCartAdd={handleCartAdd}
-                    />
-                  ))}
+                  {authLogin && (
+                    <div className="wishlist-content">
+                      {wishlistItemLoading
+                        ? Array.from({ length: 2 }).map((_, i) => (
+                            <WishlistItemSkeleton key={i} />
+                          ))
+                        : wishListItems.length > 0
+                          ? wishListItems.map((item) => (
+                              <WishlistItem
+                                key={item.id}
+                                id={item.id}
+                                wishlistId={item.wishlistId}
+                                productId={item.productId}
+                                product={item.product}
+                                orderQuantity={item.orderQuantity}
+                                availableQuantity={item.availableQuantity}
+                                size={item.size}
+                                color={item.color}
+                                onDelete={handleWishlistItemDelete}
+                                onCartAdd={handleCartAdd}
+                              />
+                            ))
+                          : null}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -185,9 +222,10 @@ const Cart = () => {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex justify-between text-[12px] text-gray-500 font-medium">
-                    <span>{subtotal >= freeShippingThreshold
-                      ? "Free shipping unlocked! 🎉"
-                      : `Add €${remainingForFreeShipping.toFixed(2)} more for free shipping`}
+                    <span>
+                      {subtotal >= freeShippingThreshold
+                        ? "Free shipping unlocked! 🎉"
+                        : `Add €${remainingForFreeShipping.toFixed(2)} more for free shipping`}
                     </span>
                     <span>{Math.round(shippingProgress)}%</span>
                   </div>
@@ -208,11 +246,20 @@ const Cart = () => {
                         key={item.id}
                         className="text-sm tablet:text-base flex flex-row text-gray-500 font-light justify-between w-full"
                       >
-                        <p>{item.product.title} x{item.orderQuantity}</p>
                         <p>
-                          €{item.product.discount
-                            ? (item.product.price * (1 - item.product.discount / 100) * item.orderQuantity).toFixed(2)
-                            : (item.product.price * item.orderQuantity).toFixed(2)}
+                          {item.product.title} x{item.orderQuantity}
+                        </p>
+                        <p>
+                          €
+                          {item.product.discount
+                            ? (
+                                item.product.price *
+                                (1 - item.product.discount / 100) *
+                                item.orderQuantity
+                              ).toFixed(2)
+                            : (item.product.price * item.orderQuantity).toFixed(
+                                2,
+                              )}
                         </p>
                       </li>
                     ))}

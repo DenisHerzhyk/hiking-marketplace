@@ -5,6 +5,7 @@ import { Trail } from "../interfaces/TrailInterface";
 import TrailMap from "../map/TrailMap";
 import { LatLngTuple } from "leaflet";
 import toast from "react-hot-toast";
+import TrailDetailsSkeleton from "../../../shared/loading/TrailDetailsSkeleton";
 
 const difficulties = ["Easy", "Moderate", "Hard", "Alpine"];
 
@@ -18,6 +19,7 @@ const networkLabel: Record<string, string> = {
 const TrailDetails = () => {
   const { state } = useLocation();
   const trail = state?.trail as Trail;
+  const [trailLoading, setTrailLoading] = useState(true);
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState<any>(null);
   const [suggestion, setSuggestion] = useState<any>(null);
@@ -50,6 +52,8 @@ const TrailDetails = () => {
         setGeometry(latLngCoords);
       } catch (e) {
         console.error("Failed to fetch route", e);
+      } finally {
+        setTrailLoading(false);
       }
     };
 
@@ -178,9 +182,9 @@ const TrailDetails = () => {
     return res.data;
   };
 
-  if (!trail) return <p className="text-center mt-[150px]">Loading...</p>;
-
   const t = trail.tags;
+
+  if (trailLoading) return <TrailDetailsSkeleton />;
 
   return (
     <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] pb-[80px] max-w-[800px] mx-auto">
@@ -196,7 +200,7 @@ const TrailDetails = () => {
             {t.name ?? "Unnamed trail"}
           </h1>
           <p className="text-sm text-gray-400">
-            {networkLabel[t.network ?? ""] ?? t.network ?? "No Network - fix"}{" "}
+            {(networkLabel[t.network ?? ""] ?? t.network ?? "NWN") + " "}
             route
           </p>
         </div>
@@ -229,7 +233,10 @@ const TrailDetails = () => {
           { label: "Distance", value: distance },
           { label: "Ascent", value: ascent },
           { label: "Difficulty", value: difficulty },
-          { label: "Network", value: networkLabel[t.network ?? ""] ?? "—" },
+          {
+            label: "Network",
+            value: networkLabel[t.network ?? "NWN"] ?? "NWN",
+          },
         ].map(({ label, value }) => (
           <div key={label} className="bg-gray-50 rounded-lg p-3">
             <p className="text-[11px] text-gray-400 uppercase tracking-wider mb-1">

@@ -1,4 +1,3 @@
-import React from "react";
 import CardInterface from "../interface/CardInterface";
 import { Link } from "react-router-dom";
 

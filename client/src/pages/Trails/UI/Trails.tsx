@@ -4,12 +4,14 @@ import TrailCard from "../components/TrailCard";
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
+import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton";
 
 const QUICK_SEARCHES = ["Swiss Alps", "Black Forest", "Dolomites", "Pyrenees"];
 
 const Trails = () => {
   const [query, setQuery] = useState("");
   const [trails, setTrails] = useState<Trail[]>([]);
+  const [trailsLoading, setTrailsLoading] = useState(true);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -98,6 +100,8 @@ const Trails = () => {
     } catch (e) {
       if (retries > 0) return getHikingRoutes(lat, lon, retries - 1);
       throw new Error("Trail search timed out, please try again.");
+    } finally {
+      setTrailsLoading(false);
     }
   };
 
@@ -231,9 +235,9 @@ const Trails = () => {
       </div>
       {status && <p className="text-sm text-gray-400 mb-4">{status}</p>}
       <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-y-9 gap-4">
-        {trails.map((trail) => (
-          <TrailCard key={trail.id} trail={trail} />
-        ))}
+        {trailsLoading
+          ? Array.from({ length: 5 }).map((_, i) => <TrailCardSkeleton />)
+          : trails.map((trail) => <TrailCard key={trail.id} trail={trail} />)}
       </div>
     </div>
   );

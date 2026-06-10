@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "../components/card/UI/Card";
 import Benefits from "../../../shared/benefits/UI/Benefits";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
@@ -10,10 +10,12 @@ import ProductInterface from "../../../shared/components/product-card/interface/
 import { IoArrowForwardOutline } from "react-icons/io5";
 import CardInterface from "../components/card/interface/CardInterface";
 import { Trail } from "../../Trails/interfaces/TrailInterface.js";
-import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 import axios from "axios";
 import TrailCard from "../../Trails/components/TrailCard.js";
+import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton.js";
+import CardSkeleton from "../../../shared/loading/CardSkeleton.js";
 import toast from "react-hot-toast";
+import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkeleton.js";
 
 const trail_v =
   "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
@@ -24,6 +26,10 @@ const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
   const [trails, setTrails] = useState<Trail[]>([]);
+  const [trailsLoading, setTrailsLoading] = useState(true);
+  const [productLoading, setProductLoading] = useState(true);
+  const [cardLoading, setCardLoading] = useState(true);
+
   const [valLat, setLat] = useState<number | null>(null);
   const [valLon, setLon] = useState<number | null>(null);
 
@@ -33,11 +39,28 @@ const Home = () => {
       .then((res) => setProducts(res.data.data))
       .catch((err) => {
         toast.error(err);
-      });
+      })
+      .finally(() => setProductLoading(false));
 
     fetch("/json/main-categories.json")
       .then((res) => res.json())
-      .then((data) => setMainCategories(data.mainCategories));
+      .then((data) => setMainCategories(data.mainCategories))
+      .catch((err) => toast.error(err))
+      .finally(() => setCardLoading(false));
+  }, []);
+
+  useEffect(() => {
+    setTrailsLoading(true);
+    overpassRequest("Zurich, Switzerland")
+      .then((el) => {
+        const filtered = el.filter((t: Trail) => t.tags?.name).slice(0, 4);
+        setTrails(filtered);
+        setTrailsLoading(false);
+      })
+      .catch((err) => {
+        toast.error(`Error during location searching: ${err}`);
+        setTrailsLoading(true);
+      });
   }, []);
 
   const geocode = async (place: string) => {
@@ -69,13 +92,6 @@ const Home = () => {
     const data = res.data;
     return data.elements;
   };
-
-  useEffect(() => {
-    overpassRequest("Zurich, Switzerland").then((el) => {
-      const filtered = el.filter((t: Trail) => t.tags?.name).slice(0, 4);
-      setTrails(filtered);
-    });
-  }, []);
 
   return (
     <>
@@ -133,14 +149,16 @@ const Home = () => {
           id="showmore"
           className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px]"
         >
-          {mainCategories.map((item) => (
-            <Card
-              key={item.image}
-              title={item.title}
-              image={item.image}
-              link={item.link}
-            />
-          ))}
+          {cardLoading
+            ? Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)
+            : mainCategories.map((item) => (
+                <Card
+                  key={item.image}
+                  title={item.title}
+                  image={item.image}
+                  link={item.link}
+                />
+              ))}
         </section>
         <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
           <div className="catalog flex flex-col justify-center">
@@ -164,31 +182,35 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
-              {products
-                .filter((item) =>
-                  ["jacket", "sweater", "hoodie"].includes(item.category),
-                )
-                .slice(0, 5)
-                .map((item) => (
-                  <MainProductCard
-                    key={item.id}
-                    id={item.id}
-                    title={item.title.toUpperCase()}
-                    discount={item.discount}
-                    price={item.price}
-                    availableSizes={item.availableSizes}
-                    category={item.category}
-                    gender={item.gender}
-                    fit={item.fit}
-                    color={item.color}
-                    sizeGuide={item.sizeGuide}
-                    details={item.details}
-                    productImages={item.productImages}
-                    description={item.description}
-                    inStock={item.inStock}
-                    stock={item.stock}
-                  />
-                ))}
+              {productLoading
+                ? Array.from({ length: 5 }).map((_, i) => (
+                    <MainProductCardSkeleton key={i} />
+                  ))
+                : products
+                    .filter((item) =>
+                      ["jacket", "sweater", "hoodie"].includes(item.category),
+                    )
+                    .slice(0, 5)
+                    .map((item) => (
+                      <MainProductCard
+                        key={item.id}
+                        id={item.id}
+                        title={item.title.toUpperCase()}
+                        discount={item.discount}
+                        price={item.price}
+                        availableSizes={item.availableSizes}
+                        category={item.category}
+                        gender={item.gender}
+                        fit={item.fit}
+                        color={item.color}
+                        sizeGuide={item.sizeGuide}
+                        details={item.details}
+                        productImages={item.productImages}
+                        description={item.description}
+                        inStock={item.inStock}
+                        stock={item.stock}
+                      />
+                    ))}
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
@@ -212,29 +234,33 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
-              {products
-                .filter((item) => item.category === "pants")
-                .slice(0, 5)
-                .map((item) => (
-                  <MainProductCard
-                    key={item.id}
-                    id={item.id}
-                    title={item.title.toUpperCase()}
-                    discount={item.discount}
-                    price={item.price}
-                    availableSizes={item.availableSizes}
-                    category={item.category}
-                    gender={item.gender}
-                    fit={item.fit}
-                    color={item.color}
-                    sizeGuide={item.sizeGuide}
-                    details={item.details}
-                    productImages={item.productImages}
-                    description={item.description}
-                    inStock={item.inStock}
-                    stock={item.stock}
-                  />
-                ))}
+              {productLoading
+                ? Array.from({ length: 5 }).map((_, i) => (
+                    <MainProductCardSkeleton key={i} />
+                  ))
+                : products
+                    .filter((item) => ["pants"].includes(item.category))
+                    .slice(0, 5)
+                    .map((item) => (
+                      <MainProductCard
+                        key={item.id}
+                        id={item.id}
+                        title={item.title.toUpperCase()}
+                        discount={item.discount}
+                        price={item.price}
+                        availableSizes={item.availableSizes}
+                        category={item.category}
+                        gender={item.gender}
+                        fit={item.fit}
+                        color={item.color}
+                        sizeGuide={item.sizeGuide}
+                        details={item.details}
+                        productImages={item.productImages}
+                        description={item.description}
+                        inStock={item.inStock}
+                        stock={item.stock}
+                      />
+                    ))}
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
@@ -258,29 +284,33 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
-              {products
-                .filter((item) => item.category === "shoes")
-                .slice(0, 5)
-                .map((item) => (
-                  <MainProductCard
-                    key={item.id}
-                    id={item.id}
-                    title={item.title.toUpperCase()}
-                    discount={item.discount}
-                    price={item.price}
-                    availableSizes={item.availableSizes}
-                    category={item.category}
-                    gender={item.gender}
-                    fit={item.fit}
-                    color={item.color}
-                    sizeGuide={item.sizeGuide}
-                    details={item.details}
-                    productImages={item.productImages}
-                    description={item.description}
-                    inStock={item.inStock}
-                    stock={item.stock}
-                  />
-                ))}
+              {productLoading
+                ? Array.from({ length: 5 }).map((_, i) => (
+                    <MainProductCardSkeleton key={i} />
+                  ))
+                : products
+                    .filter((item) => ["shoes"].includes(item.category))
+                    .slice(0, 5)
+                    .map((item) => (
+                      <MainProductCard
+                        key={item.id}
+                        id={item.id}
+                        title={item.title.toUpperCase()}
+                        discount={item.discount}
+                        price={item.price}
+                        availableSizes={item.availableSizes}
+                        category={item.category}
+                        gender={item.gender}
+                        fit={item.fit}
+                        color={item.color}
+                        sizeGuide={item.sizeGuide}
+                        details={item.details}
+                        productImages={item.productImages}
+                        description={item.description}
+                        inStock={item.inStock}
+                        stock={item.stock}
+                      />
+                    ))}
             </div>
           </div>
         </section>
@@ -315,9 +345,13 @@ const Home = () => {
             Local favorites near Zurich
           </h2>
           <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px]">
-            {trails.map((trail) => (
-              <TrailCard trail={trail} key={trail.id} />
-            ))}
+            {trailsLoading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <TrailCardSkeleton key={i} />
+                ))
+              : trails.map((trail) => (
+                  <TrailCard trail={trail} key={trail.id} />
+                ))}
             <Link
               to="/trails"
               className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center"

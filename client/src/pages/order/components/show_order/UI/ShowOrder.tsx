@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ShowOrderInterface from "../../interface/ShowOrderInterface";
 import { colorNames } from "../../../../cart/components/cart_item/components/color";
 import { useCheckout } from "../../../../../shared/checkout/context/CheckoutContext";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const ShowOrder = () => {
   const [order, setOrder] = useState<ShowOrderInterface | null>(null);
@@ -32,7 +33,49 @@ const ShowOrder = () => {
   useEffect(() => {
     setCurrentStep(2);
   }, []);
-  if (!order) return <p className="text-center">Loading</p>;
+  if (!order)
+    return (
+      <SkeletonTheme baseColor="#f3f4f6" highlightColor="#e5e7eb">
+        <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">
+          <Skeleton
+            width={120}
+            height={24}
+            borderRadius={999}
+            className="mb-6"
+          />
+          <Skeleton width={80} height={12} className="mb-1" />
+          <Skeleton width={280} height={32} className="mb-8" />
+
+          <div className="border border-gray-200 rounded-xl overflow-hidden mb-4">
+            <div className="px-5 py-3 border-b border-gray-200">
+              <Skeleton width={80} height={12} />
+            </div>
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 px-5 py-4 border-b border-gray-100"
+              >
+                <Skeleton width={52} height={52} borderRadius={8} />
+                <div className="flex-1">
+                  <Skeleton width={180} height={14} className="mb-1" />
+                  <Skeleton width={100} height={12} />
+                </div>
+                <Skeleton width={50} height={14} />
+              </div>
+            ))}
+            <div className="px-5 py-4">
+              <Skeleton width={200} height={12} className="mb-2" />
+              <Skeleton width={200} height={16} />
+            </div>
+          </div>
+
+          <div className="flex gap-3 mb-4">
+            <Skeleton height={120} borderRadius={12} className="flex-1" />
+            <Skeleton height={120} borderRadius={12} className="flex-1" />
+          </div>
+        </div>
+      </SkeletonTheme>
+    );
   return (
     <>
       <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">

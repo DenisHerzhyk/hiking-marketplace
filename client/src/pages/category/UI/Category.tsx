@@ -4,14 +4,17 @@ import { IoIosArrowDown } from "react-icons/io";
 import MainProductCard from "../../../shared/components/product-card/UI/MainProductCard";
 import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface";
 import { IoMdArrowDown } from "react-icons/io";
+import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkeleton";
 type Section = "product" | "sizes" | "price" | "shoes";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 type CategoryType = "all" | "men" | "women" | "shoes" | "deals";
 
 const Category = () => {
   const { type } = useParams<{ type: string }>();
+  const [productLoading, setProductLoading] = useState(true);
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [openSections, setOpenSections] = useState<Record<Section, boolean>>({
     product: true,
@@ -52,9 +55,15 @@ const Category = () => {
   }, [type]);
 
   useEffect(() => {
-    axios.get("http://localhost:4996/api/products").then((res) => {
-      setProducts(res.data.data);
-    });
+    axios
+      .get("http://localhost:4996/api/products")
+      .then((res) => {
+        setProducts(res.data.data);
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => setProductLoading(false));
   }, []);
 
   const toggleSection = (section: Section) => {
@@ -489,37 +498,35 @@ const Category = () => {
             </div>
           </div>
           <div className="products flex-1 w-full">
-            {filteredProducts.length > 0 ? (
-              <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fill,minmax(270px,1fr))]">
-                {filteredProducts.map(
-                  (item) =>
-                    item.availableSizes.length >= 1 && (
-                      <MainProductCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title.toUpperCase()}
-                        discount={item.discount}
-                        price={item.price}
-                        availableSizes={item.availableSizes}
-                        category={item.category}
-                        gender={item.gender}
-                        fit={item.fit}
-                        color={item.color}
-                        sizeGuide={item.sizeGuide}
-                        details={item.details}
-                        productImages={item.productImages}
-                        description={item.description}
-                        inStock={item.inStock}
-                        stock={item.stock}
-                      />
-                    ),
-                )}
-              </div>
-            ) : (
-              <h1 className="text-center">
-                No items available for this category
-              </h1>
-            )}
+            <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fill,minmax(270px,1fr))]">
+              {productLoading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <MainProductCardSkeleton key={i} />
+                  ))
+                : filteredProducts.map(
+                    (item) =>
+                      item.availableSizes.length >= 1 && (
+                        <MainProductCard
+                          key={item.id}
+                          id={item.id}
+                          title={item.title.toUpperCase()}
+                          discount={item.discount}
+                          price={item.price}
+                          availableSizes={item.availableSizes}
+                          category={item.category}
+                          gender={item.gender}
+                          fit={item.fit}
+                          color={item.color}
+                          sizeGuide={item.sizeGuide}
+                          details={item.details}
+                          productImages={item.productImages}
+                          description={item.description}
+                          inStock={item.inStock}
+                          stock={item.stock}
+                        />
+                      ),
+                  )}
+            </div>
             <p></p>
           </div>
         </div>

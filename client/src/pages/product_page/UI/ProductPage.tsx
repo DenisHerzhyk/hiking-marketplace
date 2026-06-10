@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { handleWishlistAdd } from "../../cart/components/saved_item/handlers/handleWishlistAdd";
 import { handleCartItemAdd } from "../../cart/components/cart_item/handlers/handleCartItemAdd";
 import { colorNames } from "../../cart/components/cart_item/components/color.ts";
+import ProductPageSkeleton from "../../../shared/loading/ProductPageSkeleton.tsx";
 import toast from "react-hot-toast";
 
 type Section = "description" | "details" | "sizeGuide" | "delivery_return";
@@ -16,6 +17,7 @@ type Section = "description" | "details" | "sizeGuide" | "delivery_return";
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<ProductInterface>();
+  const [productLoading, setProductLoading] = useState(true);
   const [selSize, setSelSize] = useState<string | null>(null);
   const [selColor, setSelColor] = useState<string | null>(null);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
@@ -42,7 +44,8 @@ const ProductPage = () => {
               : data.sizeGuide,
         });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setProductLoading(false));
   }, [id]);
 
   const handleAddToCart = () => {
@@ -80,6 +83,14 @@ const ProductPage = () => {
   const toggleSection = (section: Section) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
+  if (productLoading) {
+    return (
+      <>
+        <ProductPageSkeleton />
+        <Benefits />
+      </>
+    );
+  }
   return (
     <>
       <div

@@ -1,7 +1,7 @@
 import { Trail } from "../interfaces/TrailInterface";
 import { Link } from "react-router-dom";
 import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 const difficultyColor: Record<string, string> = {
   Easy: "text-green-700 bg-green-50",
   Moderate: "text-yellow-700 bg-yellow-50",
