@@ -4,6 +4,7 @@ import axios from "axios";
 import { Trail } from "../interfaces/TrailInterface";
 import TrailMap from "../map/TrailMap";
 import { LatLngTuple } from "leaflet";
+import toast from "react-hot-toast";
 
 const difficulties = ["Easy", "Moderate", "Hard", "Alpine"];
 
@@ -19,7 +20,7 @@ const TrailDetails = () => {
   const trail = state?.trail as Trail;
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState<any>(null);
-  const [suggestion, setSuggestion] = useState("");
+  const [suggestion, setSuggestion] = useState<any>(null);
   const [loadingAI, setLoadingAI] = useState(false);
   const [geometry, setGeometry] = useState<LatLngTuple[]>([]);
   const [distance, setDistance] = useState<string>("-");
@@ -88,18 +89,33 @@ const TrailDetails = () => {
   };
   const fetchWeather = async () => {
     if (!date || !trail) return null;
-    const res = await axios.get("https://api.open-meteo.com/v1/forecast", {
-      params: {
-        latitude: 47.37,
-        longitude: 8.54,
-        daily:
-          "weathercode,temperature_2m_max,precipitation_sum,windspeed_10m_max",
-        timezone: "auto",
-        start_date: date,
-        end_date: date,
-      },
-    });
-    return res.data.daily;
+    try {
+      const res = await axios.get("https://api.open-meteo.com/v1/forecast", {
+        params: {
+          latitude: 47.37,
+          longitude: 8.54,
+          daily:
+            "weathercode,temperature_2m_max,precipitation_sum,windspeed_10m_max",
+          timezone: "auto",
+          start_date: date,
+          end_date: date,
+        },
+      });
+      return res.data.daily;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        toast.error(
+          err.response?.data?.reason ??
+            err.message ??
+            "Problem with fetching the weather.",
+        );
+      } else {
+        toast.error("Problem with fetching the weather.");
+      }
+
+      console.error(err);
+      return null;
+    }
   };
 
   const handleGetSuggestion = async () => {
@@ -135,8 +151,6 @@ const TrailDetails = () => {
       setLoadingAI(false);
     }
   };
-
-  const suggestGear = () => {};
 
   const orsHikingRoute = async (
     lat: number,
@@ -255,14 +269,51 @@ const TrailDetails = () => {
               🤖
             </div>
             <p className="text-sm font-medium">AI gear suggestion</p>
-            {weather && (
-              <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">
-                {weather.temperature_2m_max[0]}°C ·{" "}
-                {weather.precipitation_sum[0]}mm rain
-              </span>
-            )}
           </div>
-          <p className="text-sm text-gray-700 leading-relaxed">{suggestion}</p>
+
+          <div className="grid grid-cols-2 gap-4 mb-3">
+            <div>
+              <p className="text-xs font-medium text-gray-500 mb-2">
+                🧔 Male combo
+              </p>
+              <div className="flex flex-col gap-1">
+                <Link
+                  to={`/product/${suggestion.male.top.id}`}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  Top: {suggestion.male.top.title}
+                </Link>
+                <Link
+                  to={`/product/${suggestion.male.bottom.id}`}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  Bottom: {suggestion.male.bottom.title}
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium text-gray-500 mb-2">
+                👩 Female combo
+              </p>
+              <div className="flex flex-col gap-1">
+                <Link
+                  to={`/product/${suggestion.female.top.id}`}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  Top: {suggestion.female.top.title}
+                </Link>
+                <Link
+                  to={`/product/${suggestion.female.bottom.id}`}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  Bottom: {suggestion.female.bottom.title}
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-xs text-gray-500">💡 {suggestion.reason}</p>
         </div>
       )}
       <Link
