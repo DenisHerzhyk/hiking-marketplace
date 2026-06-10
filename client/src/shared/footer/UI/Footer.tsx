@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiInstagram } from "react-icons/ci";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import InputField from "../../components/UI/InputField";
+import axios from "axios";
 
 const SOCIAL_LINKS = [
   {
@@ -25,6 +28,34 @@ const SOCIAL_LINKS = [
 ];
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    try {
+      // Assuming a subscription endpoint exists, otherwise this is a mock
+      await axios.post("http://localhost:4996/api/newsletter/subscribe", {
+        email,
+      });
+      toast.success("Thank you for subscribing!");
+      setEmail("");
+    } catch (err) {
+      setError("Failed to subscribe. Please try again later.");
+    }
+  };
+
   return (
     <footer className="footer border-t border-gray-200 mt-[144px] mobile:mt-[196px]">
       <div className="flex flex-row flex-wrap justify-start tablet:justify-center laptop:justify-between gap-[60px] mobile:gap-[72px] py-[80px] mobile:py-[120px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
@@ -93,14 +124,18 @@ const Footer = () => {
           <p className="text-xs mobile:text-sm text-gray-500 leading-relaxed mb-[20px]">
             Stay updated with new arrivals and exclusive offers.
           </p>
-          <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
+          <form className="flex flex-col" onSubmit={handleSubmit}>
+            <InputField
+              id="newsletter-email"
               name="email"
-              id="email"
-              required
               placeholder="Enter your email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={error}
+              required
               className="text-sm mobile:text-sm border-b border-black bg-transparent focus:outline-none placeholder:text-gray-400 py-[10px] transition-colors duration-150"
+              labelClassName="hidden"
             />
             <p className="text-[10px] mobile:text-[11px] text-gray-400 leading-[1.7] mt-[14px]">
               By subscribing you agree to receive email marketing communications

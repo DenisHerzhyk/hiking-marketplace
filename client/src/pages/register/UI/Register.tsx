@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import IUser from "../interface/RegisterInterface.ts";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import InputField from "../../../shared/components/UI/InputField";
 
 const Register = () => {
   const card = "https://res.cloudinary.com/dlrft9pjb/image/upload/auth-2.jpg";
@@ -15,18 +17,49 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!user.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    if (!user.password) {
+      newErrors.password = "Password is required";
+    } else if (user.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+    if (!user.confirmPassword) {
+      newErrors.confirmPassword = "Please confirm your password";
+    } else if (user.confirmPassword !== user.password) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrors({});
+
+    if (!validate()) return;
 
     const response = await axios
       .post("http://localhost:4996/api/user/register", {
@@ -35,11 +68,17 @@ const Register = () => {
         confirmPassword: user.confirmPassword,
       })
       .then((res) => {
-        alert(`User ${user.email} was successfully registered`);
+        toast.success(`Account created successfully for ${user.email}!`);
         navigate("/login");
       })
       .catch((err) => {
-        setError(err.response?.data?.message || "Registration failed");
+        if (err.response && err.response.data?.errors) {
+          setErrors(err.response.data.errors);
+        } else {
+          setErrors({
+            general: err.response?.data?.message || "Registration failed",
+          });
+        }
       });
   };
 
@@ -52,53 +91,48 @@ const Register = () => {
         </h1>
         <form onSubmit={handleSubmit} action="/login" className="flex flex-col">
           <div className="input-email mt-[8px] mobile:mt-[42px]">
-            <label htmlFor="email" className="uppercase" hidden>
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
+            <InputField
               id="email"
-              required
+              name="email"
+              label="Email"
               placeholder="EMAIL"
+              type="email"
               value={user.email}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
+              error={errors.email}
+              labelClassName="hidden"
             />
           </div>
           <div className="input-password mt-[16px] mobile:mt-[32px]">
-            <label htmlFor="password" className="uppercase" hidden>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
+            <InputField
               id="password"
-              required
+              name="password"
+              label="Password"
               placeholder="PASSWORD"
+              type="password"
               value={user.password}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
+              error={errors.password}
+              labelClassName="hidden"
             />
           </div>
           <div className="input-confirm-password mt-[16px] mobile:mt-[32px]">
-            <label htmlFor="confirmPassword" className="uppercase" hidden>
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirmPassword"
+            <InputField
               id="confirmPassword"
-              required
+              name="confirmPassword"
+              label="Confirm Password"
               placeholder="CONFIRM PASSWORD"
+              type="password"
               value={user.confirmPassword}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
+              error={errors.confirmPassword}
+              labelClassName="hidden"
             />
           </div>
-          {error && (
+          {errors.general && (
             <p className="flex flex-row bg-[#fdf3f2] text-red-500 text-sm p-3 mt-5 gap-2 rounded-md">
-              <IoIosCloseCircle className="text-red-500 text-base" /> {error}
+              <IoIosCloseCircle className="text-red-500 text-base" />{" "}
+              {errors.general}
             </p>
           )}
           <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] border border-black shadow-[4px_4px_0_#fff,5px_5px_0_#000]">

@@ -6,6 +6,8 @@ import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext.tsx";
+import toast from "react-hot-toast";
+import InputField from "../../../shared/components/UI/InputField";
 
 const Login = () => {
   const card = "https://res.cloudinary.com/dlrft9pjb/image/upload/auth.jpg";
@@ -18,18 +20,43 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    // Clear error for this field as user types
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!user.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    if (!user.password) {
+      newErrors.password = "Password is required";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrors({});
+
+    if (!validate()) return;
 
     await axios
       .post(
@@ -41,18 +68,21 @@ const Login = () => {
         { withCredentials: true },
       )
       .then((res) => {
-        alert(`User ${user.email} was successfully logged in`);
+        toast.success(`Welcome back, ${user.email}!`);
         setAuthLogin(true);
         navigate("/");
       })
       .catch((err) => {
         setAuthLogin(false);
-        if (err.response) {
-          setError(err.response.data.message);
+        if (err.response && err.response.data?.errors) {
+          setErrors(err.response.data.errors);
+        } else if (err.response?.data?.message) {
+          // General error message, map to a a general field or just toast it
+          setErrors({ general: err.response.data.message });
         } else if (err.request) {
-          setError("Server not responsing");
+          setErrors({ general: "Server not responding" });
         } else {
-          setError(err.message);
+          setErrors({ general: err.message });
         }
       });
   };
@@ -66,38 +96,35 @@ const Login = () => {
         </h1>
         <form onSubmit={handleSubmit} action="/" className="flex flex-col">
           <div className="input-email mt-[8px] mobile:mt-[42px]">
-            <label htmlFor="email" className="uppercase" hidden>
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
+            <InputField
               id="email"
-              required
+              name="email"
+              label="Email"
               placeholder="EMAIL"
+              type="email"
               value={user.email}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
+              error={errors.email}
+              labelClassName="hidden"
             />
           </div>
           <div className="input-password mt-[16px] mobile:mt-[32px]">
-            <label htmlFor="password" className="uppercase" hidden>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
+            <InputField
               id="password"
-              required
+              name="password"
+              label="Password"
               placeholder="PASSWORD"
+              type="password"
               value={user.password}
               onChange={handleChange}
-              className="border-b text-sm tablet:text-base font-light border-[var(--light-gray)] py-[8px] w-full focus:outline-none"
+              error={errors.password}
+              labelClassName="hidden"
             />
           </div>
-          {error && (
+          {errors.general && (
             <p className="flex flex-row bg-[#fdf3f2] text-red-500 text-sm p-3 mt-5 gap-2 rounded-md">
-              <IoIosCloseCircle className="text-red-500 text-base" /> {error}
+              <IoIosCloseCircle className="text-red-500 text-base" />{" "}
+              {errors.general}
             </p>
           )}
           <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] border border-black shadow-[4px_4px_0_#fff,5px_5px_0_#000]">

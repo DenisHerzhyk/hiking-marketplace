@@ -7,6 +7,7 @@ import axios from "axios";
 import { colorNames } from "../../cart/components/cart_item/components/color.ts";
 import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
 import { useCheckout } from "../../../shared/checkout/context/CheckoutContext.tsx";
+import InputField from "../../../shared/components/UI/InputField";
 
 const COUNTRIES = [
   "Bulgaria",
@@ -49,6 +50,7 @@ const DeliveryInfo = () => {
     country: "",
     saveAddress: false,
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { setCurrentStep } = useCheckout();
 
   const subtotal = Number(
@@ -110,6 +112,26 @@ const DeliveryInfo = () => {
       [name]:
         type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!form.firstName) newErrors.firstName = "First name is required";
+    if (!form.lastName) newErrors.lastName = "Last name is required";
+    if (!form.phone) newErrors.phone = "Phone number is required";
+    if (!form.address1) newErrors.address1 = "Address is required";
+    if (!form.city) newErrors.city = "City is required";
+    if (!form.postalCode) newErrors.postalCode = "Postal code is required";
+    if (!form.country) newErrors.country = "Please select a country";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   return (
@@ -125,6 +147,7 @@ const DeliveryInfo = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              if (!validate()) return;
               handleCheckoutRequest(
                 navigate,
                 Number(orderTotal),
@@ -140,66 +163,57 @@ const DeliveryInfo = () => {
                 { label: "Last Name", name: "lastName", placeholder: "Doe" },
               ].map(({ label, name, placeholder }) => (
                 <div key={name} className="flex flex-col gap-[8px]">
-                  <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                    {label} <span className="text-black">*</span>
-                  </label>
-                  <input
-                    type="text"
+                  <InputField
+                    id={name}
                     name={name}
-                    required
+                    label={label}
                     placeholder={placeholder}
                     value={form[name as keyof typeof form] as string}
                     onChange={handleChange}
-                    className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                    error={errors[name]}
+                    labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
                   />
                 </div>
               ))}
             </div>
 
             <div className="flex flex-col gap-[8px]">
-              <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                Phone <span className="text-black">*</span>
-              </label>
-              <input
-                type="tel"
+              <InputField
+                id="phone"
                 name="phone"
-                required
+                label="Phone"
                 placeholder="+1 234 567 8900"
+                type="tel"
                 value={form.phone}
                 onChange={handleChange}
-                className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                error={errors.phone}
+                labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
               />
             </div>
 
             <div className="flex flex-col gap-[8px]">
-              <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                Address <span className="text-black">*</span>
-              </label>
-              <input
-                type="text"
+              <InputField
+                id="address1"
                 name="address1"
-                required
+                label="Address"
                 placeholder="Street name and number"
                 value={form.address1}
                 onChange={handleChange}
-                className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                error={errors.address1}
+                labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
               />
             </div>
 
             <div className="flex flex-col gap-[8px]">
-              <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                Apartment, floor{" "}
-                <span className="text-gray-300 normal-case tracking-normal font-normal">
-                  (optional)
-                </span>
-              </label>
-              <input
-                type="text"
+              <InputField
+                id="address2"
                 name="address2"
+                label="Apartment, floor"
                 placeholder="Apt 4B, Floor 2..."
                 value={form.address2}
                 onChange={handleChange}
-                className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                error={errors.address2}
+                labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
               />
             </div>
 
@@ -213,17 +227,15 @@ const DeliveryInfo = () => {
                 },
               ].map(({ label, name, placeholder }) => (
                 <div key={name} className="flex flex-col gap-[8px]">
-                  <label className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                    {label} <span className="text-black">*</span>
-                  </label>
-                  <input
-                    type="text"
+                  <InputField
+                    id={name}
                     name={name}
-                    required
+                    label={label}
                     placeholder={placeholder}
                     value={form[name as keyof typeof form] as string}
                     onChange={handleChange}
-                    className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                    error={errors[name]}
+                    labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
                   />
                 </div>
               ))}
@@ -234,10 +246,11 @@ const DeliveryInfo = () => {
               </label>
               <select
                 name="country"
-                required
                 value={form.country}
                 onChange={handleChange}
-                className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none text-gray-800 transition-colors duration-150 cursor-pointer"
+                className={`border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none text-gray-800 transition-colors duration-150 cursor-pointer ${
+                  errors.country ? "border-red-500" : ""
+                }`}
               >
                 <option value="" disabled>
                   Select your country
@@ -248,6 +261,11 @@ const DeliveryInfo = () => {
                   </option>
                 ))}
               </select>
+              {errors.country && (
+                <span className="text-red-500 text-[10px] mt-1 font-medium">
+                  {errors.country}
+                </span>
+              )}
             </div>
             <label className="flex items-center gap-[10px] cursor-pointer mt-[4px]">
               <input

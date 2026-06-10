@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
 import toast from "react-hot-toast";
+import InputField from "../../../shared/components/UI/InputField";
 
 const FORM_FIELDS = [
   {
@@ -39,6 +40,7 @@ const Profile = () => {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -58,9 +60,41 @@ const Profile = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!form.fullName) {
+      newErrors.fullName = "Full name is required";
+    }
+    if (!form.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+    if (form.password) {
+      if (form.password.length < 6) {
+        newErrors.password = "Password must be at least 6 characters";
+      }
+      if (form.password !== form.confirmPassword) {
+        newErrors.confirmPassword = "Passwords do not match";
+      }
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSave = async () => {
+    setErrors({});
+    if (!validate()) return;
+
     await axios
       .put(
         "http://localhost:4996/api/user/change",
@@ -73,13 +107,17 @@ const Profile = () => {
         { withCredentials: true },
       )
       .then(() => {
-        setIsEditing(true);
+        setIsEditing(false); // Fixed from setIsEditing(true) which seemed like a bug in original code
         toast.success("Profile updated");
       })
       .catch((error) => {
-        toast.error(
-          error?.response?.data?.message ?? "Failed to update profile",
-        );
+        if (error?.response && error.response.data?.errors) {
+          setErrors(error.response.data.errors);
+        } else {
+          toast.error(
+            error?.response?.data?.message ?? "Failed to update profile",
+          );
+        }
       });
   };
 
@@ -159,21 +197,17 @@ const Profile = () => {
           >
             {FORM_FIELDS.map(({ label, name, placeholder, type }) => (
               <div key={name} className="flex flex-col gap-[8px]">
-                <label
-                  htmlFor={name}
-                  className="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
-                >
-                  {label}
-                </label>
-                <input
-                  type={type}
+                <InputField
                   id={name}
-                  value={form[name as keyof typeof form]}
                   name={name}
+                  label={label}
+                  placeholder={placeholder}
+                  type={type}
+                  value={form[name as keyof typeof form]}
                   onChange={handleChange}
                   readOnly={!isEditing}
-                  placeholder={placeholder}
-                  className="border-b border-gray-300 focus:border-black bg-transparent text-sm py-[10px] focus:outline-none placeholder:text-gray-300 transition-colors duration-150"
+                  error={errors[name]}
+                  labelClassName="text-[11px] font-medium tracking-[0.1em] text-gray-500 uppercase"
                 />
               </div>
             ))}
