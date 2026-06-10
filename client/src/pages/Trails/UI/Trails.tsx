@@ -5,9 +5,11 @@ import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
 import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton";
-
+import { getTrailPhotos } from "../../../shared/services/pexelRequest";
 const QUICK_SEARCHES = ["Swiss Alps", "Black Forest", "Dolomites", "Pyrenees"];
-
+import { geocode } from "../../../shared/services/geocodeRequest";
+import { getHikingRoutes } from "../../../shared/services/overpassHikingRoutes";
+import { getORSDistance } from "../../../shared/services/orsDistanceCalculation";
 const Trails = () => {
   const [query, setQuery] = useState("");
   const [trails, setTrails] = useState<Trail[]>([]);
@@ -15,118 +17,15 @@ const Trails = () => {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const geocode = async (place: string) => {
-    const res = await axios.get(`https://nominatim.openstreetmap.org/search`, {
-      params: {
-        q: place,
-        format: "json",
-        limit: 10,
-        featuretype: "natural",
-      },
-    });
-    const data = await res.data;
-    if (!data.length) throw new Error("Location not found");
-
-    const best =
-      data.find(
-        (r: any) =>
-          [
-            "natural",
-            "peak",
-            "mountain_range",
-            "protected_area",
-            "leisure",
-          ].includes(r.type) ||
-          ["natural", "leisure", "boundary"].includes(r.class),
-      ) ?? data[0];
-    return {
-      lat: parseFloat(best.lat),
-      lon: parseFloat(best.lon),
-      osm_id: best.osm_id,
-      osm_type: best.osm_type,
-    };
-  };
-
-  const getORSDistance = async (
-    startLat: number,
-    startLon: number,
-    endLat: number,
-    endLon: number,
-  ) => {
-    try {
-      const res = await axios.post(
-        "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
-        {
-          coordinates: [
-            [startLon, startLat],
-            [endLon, endLat],
-          ],
-        },
-        {
-          headers: {
-            Authorization: import.meta.env.VITE_ORS_API_KEY,
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      const meters = res.data.features[0].properties.summary.distance;
-      return (meters / 1000).toFixed(1);
-    } catch (err: any) {
-      return "—";
-    }
-  };
-
-  const getHikingRoutes = async (
-    lat: number,
-    lon: number,
-    retries = 2,
-  ): Promise<any[]> => {
-    try {
-      const query = `
-  [out:json][timeout:30];
-  relation["type"="route"]["route"="hiking"](around:50000,${lat},${lon});
-  out geom 20;
-`;
-      const res = await axios.post(
-        "https://overpass-api.de/api/interpreter",
-        `data=${encodeURIComponent(query)}`,
-      );
-
-      const elements = res.data?.elements;
-      if (!Array.isArray(elements))
-        throw new Error("Unexpected response from Overpass");
-      return elements.slice(0, 20);
-    } catch (e) {
-      if (retries > 0) return getHikingRoutes(lat, lon, retries - 1);
-      throw new Error("Trail search timed out, please try again.");
-    } finally {
-      setTrailsLoading(false);
-    }
-  };
-
-  const getTrailPhotos = async (trailName: string) => {
-    const res = await axios.get(`https://api.pexels.com/v1/search`, {
-      params: {
-        query: `${trailName} hiking`,
-        per_page: 5,
-      },
-      headers: {
-        Authorization: import.meta.env.VITE_PEXELS_API_KEY,
-      },
-    });
-
-    return res.data.photos.map((photo: any) => photo.src.large);
-  };
-
   const search = async (place: string) => {
     if (!place.trim()) return;
     setLoading(true);
+    setTrailsLoading(true);
     setTrails([]);
     setStatus("Searching...");
     try {
       const { lat, lon } = await geocode(place);
-      const routes = await getHikingRoutes(lat, lon);
+      const routes = await getHikingRoutes(lat, lon, 20);
 
       const sleep = (ms: number) =>
         new Promise((resolve) => setTimeout(resolve, ms));
@@ -142,9 +41,6 @@ const Trails = () => {
 
         const members =
           route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
-
-        const firstMember = members[0];
-        const lastMember = members[members.length - 1];
 
         const startCoord = members[0]?.geometry?.[0];
         const endCoord =
@@ -188,6 +84,7 @@ const Trails = () => {
       toast.error(e.message);
     } finally {
       setLoading(false);
+      setTrailsLoading(false);
     }
   };
 

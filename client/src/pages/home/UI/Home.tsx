@@ -16,7 +16,9 @@ import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton.js";
 import CardSkeleton from "../../../shared/loading/CardSkeleton.js";
 import toast from "react-hot-toast";
 import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkeleton.js";
-
+import { getTrailPhotos } from "../../../shared/services/pexelRequest.js";
+import { geocode } from "../../../shared/services/geocodeRequest.js";
+import { getHikingRoutes } from "../../../shared/services/overpassHikingRoutes.js";
 const trail_v =
   "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
 const hiking_signup_v =
@@ -29,9 +31,6 @@ const Home = () => {
   const [trailsLoading, setTrailsLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(true);
-
-  const [valLat, setLat] = useState<number | null>(null);
-  const [valLon, setLon] = useState<number | null>(null);
 
   useEffect(() => {
     axios
@@ -51,47 +50,37 @@ const Home = () => {
 
   useEffect(() => {
     setTrailsLoading(true);
-    overpassRequest("Zurich, Switzerland")
-      .then((el) => {
-        const filtered = el.filter((t: Trail) => t.tags?.name).slice(0, 4);
-        setTrails(filtered);
-        setTrailsLoading(false);
-      })
-      .catch((err) => {
+
+    const fetchTrails = async () => {
+      try {
+        const { lat, lon } = await geocode("Zurich, Switzerland");
+        const routes = await getHikingRoutes(lat, lon, 10);
+
+        const filtered = routes.filter((r: any) => r.tags?.name).slice(0, 4);
+
+        const trailsWithPhotos: Trail[] = await Promise.all(
+          filtered.map(async (route: any) => ({
+            id: route.id,
+            type: "relation",
+            tags: {
+              name: route.tags.name,
+              photos: await getTrailPhotos(route.tags.name),
+              network: route.tags?.network,
+              sac_scale: route.tags?.sac_scale,
+            },
+            geometry: [],
+          })),
+        );
+
+        setTrails(trailsWithPhotos);
+      } catch (err) {
         toast.error(`Error during location searching: ${err}`);
-        setTrailsLoading(true);
-      });
+      } finally {
+        setTrailsLoading(false);
+      }
+    };
+    fetchTrails();
   }, []);
-
-  const geocode = async (place: string) => {
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(place)}&format=json&limit=1`,
-    );
-    const data = await res.json();
-    if (!data.length) throw new Error("Location not found");
-    return { lat: data[0].lat, lon: data[0].lon };
-  };
-
-  const overpassRequest = async (place: string) => {
-    const { lat, lon } = await geocode(place);
-    setLat(lat);
-    setLon(lon);
-    const query = `
-    [out:json][timeout:25];
-    relation["route"="hiking"](around:50000, ${lat}, ${lon});
-    out body;
-  `;
-
-    const res = await axios.post(
-      "https://overpass-api.de/api/interpreter",
-      query,
-      {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      },
-    );
-    const data = res.data;
-    return data.elements;
-  };
 
   return (
     <>
