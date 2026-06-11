@@ -16,10 +16,9 @@ import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton.js";
 import CardSkeleton from "../../../shared/loading/CardSkeleton.js";
 import toast from "react-hot-toast";
 import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkeleton.js";
-import { getTrailPhotos } from "../../../shared/services/pexelRequest.js";
-import { getORSDistance } from "../../../shared/services/orsDistanceCalculation.js";
 import { geocode } from "../../../shared/services/geocodeRequest.js";
 import { getHikingRoutes } from "../../../shared/services/overpassHikingRoutes.js";
+import { trailsSearch } from "../../../shared/services/trailsSearch.js";
 const trail_v =
   "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
 const hiking_signup_v =
@@ -56,54 +55,10 @@ const Home = () => {
       try {
         const { lat, lon } = await geocode("Zurich, Switzerland");
         const routes = await getHikingRoutes(lat, lon, 10);
-        const sleep = (ms: number) => {
-          new Promise((resolve) => setTimeout(resolve, ms));
-        };
-        const trails: Trail[] = [];
-        const filtered = routes.filter((r: any) => r.tags?.name).slice(0, 4);
-
-        for (let i = 0; i < filtered.length; i++) {
-          const route = filtered[i];
-          const trailName = route.tags?.name ?? `Zurich, Switzerland Trail`;
-
-          const members =
-            route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
-          const startCoord = members[0]?.geometry?.[0];
-          const endCoord =
-            members[members.length - 1]?.geometry?.[
-              members[members.length - 1].geometry.length - 1
-            ];
-
-          const [photos, distance] = await Promise.all([
-            getTrailPhotos(trailName),
-            startCoord && endCoord
-              ? getORSDistance(
-                  startCoord.lat,
-                  startCoord.lon,
-                  endCoord.lat,
-                  endCoord.lon,
-                )
-              : Promise.resolve("—"),
-          ]);
-
-          trails.push({
-            id: route.id,
-            type: "relation",
-            tags: {
-              name: trailName,
-              photos,
-              distance,
-              network: route.tags?.network,
-              sac_scale: route.tags?.sac_scale,
-              startLat: startCoord?.lat,
-              startLon: startCoord?.lon,
-              endLat: endCoord?.lat,
-              endLon: endCoord?.lon,
-            },
-            geometry: [],
-          });
-          if (i < filtered.length - 1) await sleep(300);
-        }
+        const trails = await trailsSearch({
+          routes,
+          place: "Zurich, Switzerland",
+        });
         setTrails(trails);
       } catch (err) {
         toast.error(`Error during location searching: ${err}`);
