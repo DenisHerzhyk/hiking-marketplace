@@ -28,6 +28,9 @@ const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [mainCategories, setMainCategories] = useState<CardInterface[]>([]);
   const [trails, setTrails] = useState<Trail[]>([]);
+  const [searchTrails, setSearchTrails] = useState<Trail[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [trailsLoading, setTrailsLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(true);
@@ -54,7 +57,7 @@ const Home = () => {
     const fetchTrails = async () => {
       try {
         const { lat, lon } = await geocode("Zurich, Switzerland");
-        const routes = await getHikingRoutes(lat, lon, 10);
+        const routes = await getHikingRoutes(lat, lon, 7);
         const trails = await trailsSearch({
           routes,
           place: "Zurich, Switzerland",
@@ -68,6 +71,27 @@ const Home = () => {
     };
     fetchTrails();
   }, []);
+
+  useEffect(() => {
+    if (!searchQuery.trim() || searchQuery.length < 3) {
+      setSearchTrails([]);
+      return;
+    }
+    const timeout = setTimeout(async () => {
+      try {
+        const { lat, lon } = await geocode(searchQuery);
+        const routes = await getHikingRoutes(lat, lon, 10);
+        const trails = await trailsSearch({
+          routes,
+          place: searchQuery,
+        });
+        setSearchTrails(trails);
+      } catch (err) {
+        console.log(`Error during search: ${err}`);
+      }
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [searchQuery]);
 
   return (
     <>
@@ -296,13 +320,20 @@ const Home = () => {
           </h2>
           <div className="flex flex-row rounded-full relative overflow-hidden w-full max-w-[500px]">
             <input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               type="text"
               className="border border-transparent focus:border-transparent focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px]"
               placeholder="Search by city, park or trail name"
             />
+            <div className="bg-white text-black">
+              {searchTrails.map((trail) => (
+                <p>{trail.tags.name}</p>
+              ))}
+            </div>
             <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
           </div>
-          <Link to="/" className="text-white text-lg underline mt-5">
+          <Link to="/trails" className="text-white text-lg underline mt-5">
             Explore nearby trails
           </Link>
           <video

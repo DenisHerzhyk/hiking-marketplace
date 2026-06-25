@@ -285,12 +285,14 @@ const TrailDetails = () => {
               </p>
               <div className="flex flex-col gap-1">
                 <Link
+                  target="_blank"
                   to={`/product/${suggestion.male.top.id}`}
                   className="text-sm text-blue-500 hover:underline"
                 >
                   Top: {suggestion.male.top.title}
                 </Link>
                 <Link
+                  target="_blank"
                   to={`/product/${suggestion.male.bottom.id}`}
                   className="text-sm text-blue-500 hover:underline"
                 >
@@ -305,12 +307,14 @@ const TrailDetails = () => {
               </p>
               <div className="flex flex-col gap-1">
                 <Link
+                  target="_blank"
                   to={`/product/${suggestion.female.top.id}`}
                   className="text-sm text-blue-500 hover:underline"
                 >
                   Top: {suggestion.female.top.title}
                 </Link>
                 <Link
+                  target="_blank"
                   to={`/product/${suggestion.female.bottom.id}`}
                   className="text-sm text-blue-500 hover:underline"
                 >

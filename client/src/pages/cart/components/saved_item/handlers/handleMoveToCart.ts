@@ -1,6 +1,6 @@
 import axios from "axios";
 import CartItemInterface from "../../cart_item/interface/CartItemInterface";
-
+import toast from "react-hot-toast";
 export const handleMoveToCart = async (
   productId: number,
   id: number,
@@ -23,5 +23,8 @@ export const handleMoveToCart = async (
       onDelete(id);
       onCartAdd(res.data.cartItem);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      toast.error(err?.response?.data?.message);
+      return;
+    });
 };

@@ -11,10 +11,10 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
   wishlistId,
   productId,
   product,
+  stock,
   size,
   color,
   orderQuantity,
-  availableQuantity,
   onDelete,
   onCartAdd,
 }) => {
@@ -23,7 +23,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
     : product.price;
 
   return (
-    <div className="bg-white border-b border-gray-200 py-5 last:border-b-0">
+    <div className="bg-white border-b border-gray-200 py-5 px-4 last:border-b-0">
       <div className="flex gap-4">
         <div className="flex-shrink-0 w-[100px] flex flex-col gap-2.5">
           <Link to={`/product/${productId}`}>
@@ -42,13 +42,14 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
                 id,
                 size,
                 color,
-                availableQuantity,
+                stock[size],
                 orderQuantity,
                 onDelete,
                 onCartAdd,
               )
             }
-            className="w-full text-xs py-2 border border-gray-900 rounded-full hover:bg-black hover:text-white transition-all duration-200"
+            className="w-full text-xs py-2 border border-gray-900 rounded-full hover:bg-black hover:text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!stock[size]}
           >
             Add to cart
           </button>
@@ -82,13 +83,19 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
             {product.category} · {size} · {colorNames[color] ?? color}
           </p>
 
-          {availableQuantity <= 9 && (
+          {stock[size] === 0 ? (
             <span className="text-[11px] font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full w-fit">
-              Only {availableQuantity} left
+              Out of stock
             </span>
+          ) : (
+            stock[size] <= 9 && (
+              <span className="text-[11px] font-medium text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full w-fit">
+                Only {stock[size]} left
+              </span>
+            )
           )}
 
-          <div className="mt-auto pt-3">
+          <div className="mt-auto flex justify-end pt-3">
             <button
               onClick={() => handleWishlistRemove(productId, id, onDelete)}
               className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-600 transition-colors"

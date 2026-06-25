@@ -1,6 +1,7 @@
 import axios from "axios";
 import WishlistItemInterface from "../../saved_item/interface/SavedItemInterface";
 
+import toast from "react-hot-toast";
 export const handleMoveToWishlist = async (
   productId: number,
   id: number,
@@ -23,5 +24,5 @@ export const handleMoveToWishlist = async (
       onDelete(id);
       onWishlistAdd(res.data.wishlistItem);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => toast.error(err?.response?.data?.message));
 };

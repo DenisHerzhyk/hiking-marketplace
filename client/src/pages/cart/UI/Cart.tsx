@@ -186,21 +186,29 @@ const Cart = () => {
                             <WishlistItemSkeleton key={i} />
                           ))
                         : wishListItems.length > 0
-                          ? wishListItems.map((item) => (
-                              <WishlistItem
-                                key={item.id}
-                                id={item.id}
-                                wishlistId={item.wishlistId}
-                                productId={item.productId}
-                                product={item.product}
-                                orderQuantity={item.orderQuantity}
-                                availableQuantity={item.availableQuantity}
-                                size={item.size}
-                                color={item.color}
-                                onDelete={handleWishlistItemDelete}
-                                onCartAdd={handleCartAdd}
-                              />
-                            ))
+                          ? wishListItems
+                              .slice()
+                              .sort((a, b) => {
+                                const aInStock = a.product.stock[a.size] > 0;
+                                const bInStock = b.product.stock[b.size] > 0;
+
+                                return Number(bInStock) - Number(aInStock);
+                              })
+                              .map((item) => (
+                                <WishlistItem
+                                  key={item.id}
+                                  id={item.id}
+                                  wishlistId={item.wishlistId}
+                                  productId={item.productId}
+                                  product={item.product}
+                                  stock={item.product.stock}
+                                  orderQuantity={item.orderQuantity}
+                                  size={item.size}
+                                  color={item.color}
+                                  onDelete={handleWishlistItemDelete}
+                                  onCartAdd={handleCartAdd}
+                                />
+                              ))
                           : null}
                     </div>
                   )}
