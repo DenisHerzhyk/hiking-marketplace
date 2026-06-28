@@ -1,0 +1,1495 @@
+{
+  "products": [
+    {
+      "id": 31,
+      "title": "Womens Torrentshell 3L Rain Jacket",
+      "price": 189,
+      "availableSizes": ["XS", "S", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B9EB5",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester / 3-layer waterproof shell"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Tailored slim fit for a feminine silhouette."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/v1779290908/women_hiking_tops-2.webp"
+      ],
+      "description": "Waterproof and breathable 3-layer H2No® Performance Standard shell designed for all-day rain protection.",
+      "inStock": true,
+      "stock": {
+        "XS": 10,
+        "S": 10,
+        "XL": 10
+      }
+    },
+    {
+      "id": 32,
+      "title": "Women's Classic Retro-X® Fleece Jacket",
+      "discount": 15,
+      "price": 259,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#C4522C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Classic slim fit with a retro aesthetic."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-6.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-7.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-8.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-9.jpg"
+      ],
+      "description": "Warm and stylish fleece jacket with a retro design and slim feminine fit.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "M": 4,
+        "L": 4,
+        "XL": 4
+      }
+    },
+    {
+      "id": 33,
+      "title": "Women's Daily Jacket",
+      "price": 135,
+      "availableSizes": ["XS", "S", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#A2A79E",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled polyester / DWR finish"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed everyday fit suitable for layering."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-10.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-11.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-12.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-13.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-14.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-11.jpg"
+      ],
+      "description": "Versatile everyday jacket with a DWR finish for light weather protection.",
+      "inStock": true,
+      "stock": {
+        "XS": 7,
+        "S": 6,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 34,
+      "title": "Women's Long-Sleeved Capilene® Cool Daily Shirt",
+      "price": 59,
+      "availableSizes": ["S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#F2F2F2",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight moisture-wicking polyester"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Lightweight fit for warm weather hiking."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-15.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-16.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-17.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-18.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-16.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_tops-17.jpg"
+      ],
+      "description": "Moisture-wicking long-sleeve shirt designed for warm weather comfort on the trail.",
+      "inStock": true,
+      "stock": {
+        "S": 10,
+        "M": 10,
+        "L": 10,
+        "XL": 10
+      }
+    },
+    {
+      "id": 35,
+      "title": "Women's Terrebonne Joggers",
+      "discount": 10,
+      "price": 99,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#3E5441",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Stretch nylon / spandex blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Tapered jogger cut for active movement."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-1.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-2.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-3.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-4.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/women_hiking_pants-5.jpg"
+      ],
+      "description": "Stretch jogger pants built for active hiking with a tapered, comfortable fit.",
+      "inStock": true,
+      "stock": {
+        "XS": 7,
+        "S": 7,
+        "M": 7,
+        "L": 7,
+        "XL": 7
+      }
+    },
+    {
+      "id": 36,
+      "title": "Women's Daily Pants",
+      "price": 99,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#000000",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled polyester blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed everyday fit for casual and trail use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Comfortable everyday pants made from recycled materials for trail and casual use.",
+      "inStock": true,
+      "stock": {
+        "XS": 6,
+        "S": 6,
+        "M": 6,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 37,
+      "title": "Women's Capilene® Cool Sun Hoody",
+      "price": 89,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B9EB5",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight UPF 50+ polyester"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Lightweight slim fit with sun protection."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-7.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-8.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-9.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-10.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-6.webp"
+      ],
+      "description": "UPF 50+ sun hoody with moisture-wicking fabric for hot weather hiking.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "M": 4,
+        "L": 4,
+        "XL": 4
+      }
+    },
+    {
+      "id": 38,
+      "title": "Women's Terravia Trail Pants - Regular",
+      "discount": 5,
+      "price": 135,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B5344",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Stretch nylon blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Slim trail pants built for long hiking days."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Lightweight stretch trail pants designed for long active days in the mountains.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "M": 4,
+        "L": 3,
+        "XL": 3
+      }
+    },
+    {
+      "id": 39,
+      "title": "Women's Nano Puff® Vest",
+      "price": 199,
+      "availableSizes": ["XS", "S", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#C4522C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled polyester with PrimaLoft® insulation"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Packable slim vest for core warmth."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Packable insulated vest with PrimaLoft® fill for lightweight core warmth.",
+      "inStock": true,
+      "stock": {
+        "XS": 3,
+        "S": 3,
+        "L": 3,
+        "XL": 3
+      }
+    },
+    {
+      "id": 40,
+      "title": "Women's Textured Fleece Hoody",
+      "price": 165,
+      "availableSizes": ["XS", "S", "M"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#5A7D7A",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Textured polyester fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Cozy textured fleece with a relaxed fit."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Warm textured fleece hoody ideal for layering on cool hiking days.",
+      "inStock": true,
+      "stock": {
+        "XS": 8,
+        "S": 7,
+        "M": 7
+      }
+    },
+    {
+      "id": 41,
+      "title": "Women's Textured Fleece Crewneck",
+      "discount": 10,
+      "price": 135,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "sweater",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#8B5E3C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Textured polyester fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed crewneck for warmth and comfort."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Textured fleece crewneck sweater for cozy warmth on and off the trail.",
+      "inStock": true,
+      "stock": {
+        "XS": 6,
+        "S": 6,
+        "M": 6,
+        "L": 5,
+        "XL": 5
+      }
+    },
+    {
+      "id": 42,
+      "title": "Women's Mas Maipo Tights",
+      "price": 135,
+      "availableSizes": ["XS", "S", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#267C7A",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Stretch nylon / elastane blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Form-fitting tights for active trail use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Form-fitting trail tights with stretch fabric for active hiking and trail running.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "L": 4,
+        "XL": 3
+      }
+    },
+    {
+      "id": 43,
+      "title": "Women's Capilene® Cool Daily Shirt - Fitz Roy Nimbus",
+      "price": 59,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#F2F2F2",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight moisture-wicking polyester"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Breathable slim fit for hot weather hiking."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Graphic moisture-wicking shirt with Fitz Roy Nimbus print for trail and everyday wear.",
+      "inStock": true,
+      "stock": {
+        "XS": 6,
+        "S": 6,
+        "M": 6,
+        "L": 6,
+        "XL": 6
+      }
+    },
+    {
+      "id": 44,
+      "title": "Women's Terravia Peak Tights",
+      "discount": 20,
+      "price": 145,
+      "availableSizes": ["XS", "S", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#000000",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Stretch nylon / elastane blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "High-performance tights for peak trail activity."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "High-performance trail tights designed for peak hiking and technical terrain.",
+      "inStock": true,
+      "stock": {
+        "XS": 3,
+        "S": 3,
+        "L": 2,
+        "XL": 2
+      }
+    },
+    {
+      "id": 45,
+      "title": "Women's R1® Ultralight Hoody",
+      "price": 199,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#A2A79E",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Ultralight technical fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Featherweight slim fit for active warmth."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Ultralight fleece hoody with technical warmth for active hiking and climbing.",
+      "inStock": true,
+      "stock": {
+        "XS": 3,
+        "S": 3,
+        "M": 3,
+        "L": 3,
+        "XL": 2
+      }
+    },
+    {
+      "id": 46,
+      "title": "Women's Durable Down Parka",
+      "price": 575,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#000000",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled polyester shell / 700-fill down"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed parka fit for maximum cold-weather warmth."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Warm and durable down parka built for serious cold-weather hiking and outdoor use.",
+      "inStock": true,
+      "stock": {
+        "XS": 2,
+        "S": 2,
+        "M": 2,
+        "L": 1,
+        "XL": 1
+      }
+    },
+    {
+      "id": 47,
+      "title": "Women's Micro D® Fleece Shirt Jacket",
+      "discount": 10,
+      "price": 125,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B5344",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester Micro D fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Soft fleece in a shirt-style slim fit."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Soft Micro D fleece shirt jacket for warmth and style on the trail.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "M": 4,
+        "L": 4,
+        "XL": 4
+      }
+    },
+    {
+      "id": 48,
+      "title": "Women's Outdoor Everyday Pants",
+      "price": 99,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#5A7D7A",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Stretch recycled polyester"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed everyday pants for outdoor adventures."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Versatile everyday outdoor pants made from stretch recycled polyester.",
+      "inStock": true,
+      "stock": {
+        "XS": 5,
+        "S": 5,
+        "M": 5,
+        "L": 5,
+        "XL": 5
+      }
+    },
+    {
+      "id": 49,
+      "title": "Women's Light & Variable® Jacket",
+      "price": 125,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#267C7A",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Lightweight stretch woven"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Lightweight slim fit for variable mountain weather."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Versatile lightweight jacket built for changing mountain weather conditions.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 3,
+        "M": 3,
+        "L": 3,
+        "XL": 3
+      }
+    },
+    {
+      "id": 50,
+      "title": "Women's Mesa Lane Rain Jacket",
+      "discount": 5,
+      "price": 249,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#4F5D3E",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "3-layer waterproof H2No® shell"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Waterproof slim fit for stormy trail days."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Waterproof rain jacket with H2No® shell built for stormy hiking conditions.",
+      "inStock": true,
+      "stock": {
+        "XS": 5,
+        "S": 5,
+        "M": 4,
+        "L": 4,
+        "XL": 4
+      }
+    },
+    {
+      "id": 51,
+      "title": "Women's Baggies™ Shorts - 5",
+      "price": 75,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "pants",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#C4522C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled nylon / spandex blend"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed short fit with freedom of movement."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Quick-drying recycled nylon shorts with a relaxed fit for warm trail days.",
+      "inStock": true,
+      "stock": {
+        "XS": 7,
+        "S": 7,
+        "M": 7,
+        "L": 7,
+        "XL": 7
+      }
+    },
+    {
+      "id": 52,
+      "title": "Women's Nano Puff® Jacket",
+      "discount": 15,
+      "price": 229,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#2C4C5E",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "Recycled polyester with PrimaLoft® Gold insulation"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Slim insulated fit for cold weather hiking."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Highly packable insulated jacket with PrimaLoft® Gold fill for cold weather hiking.",
+      "inStock": true,
+      "stock": {
+        "XS": 4,
+        "S": 4,
+        "M": 4,
+        "L": 3,
+        "XL": 3
+      }
+    },
+    {
+      "id": 53,
+      "title": "Women's Better Sweater® Fleece Jacket",
+      "price": 169,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B5344",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Fabric",
+          "value": "100% Polyester sweater-knit fleece"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Comfortable mid-layer sweater fit for everyday warmth."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-2.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-3.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-4.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops-5.webp",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_tops.webp"
+      ],
+      "description": "Classic mid-layer fleece jacket with sweater-knit face and warm fleece interior.",
+      "inStock": true,
+      "stock": {
+        "XS": 3,
+        "S": 3,
+        "M": 2,
+        "L": 2,
+        "XL": 2
+      }
+    },
+    {
+      "id": 54,
+      "title": "Women's Wild Idea Work Boots",
+      "price": 369,
+      "availableSizes": ["6", "9", "10"],
+      "category": "shoes",
+      "gender": "men",
+      "fit": "Standard",
+      "color": "#7A6550",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "8"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "6–10"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Rugged fit built for durability in the field."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "Rugged full-grain leather work boots built for demanding terrain and durability.",
+      "inStock": true,
+      "stock": {
+        "6": 5,
+        "9": 5,
+        "10": 5
+      }
+    },
+    {
+      "id": 55,
+      "title": "Women's Tres 3-in-1 Parka",
+      "discount": 20,
+      "price": 699,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#3E5441",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Versatile layered fit for cold and wet conditions."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "3-in-1 parka combining a waterproof shell and removable insulated liner for cold wet conditions.",
+      "inStock": true,
+      "stock": {
+        "XS": 2,
+        "S": 2,
+        "M": 2,
+        "L": 2,
+        "XL": 2
+      }
+    },
+    {
+      "id": 56,
+      "title": "Women's Nano Puff® Fitz Roy Trout Hoody",
+      "price": 299,
+      "availableSizes": ["XS", "S", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#C4522C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Slim insulated hoody fit for active use."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "Lightweight insulated hoody with PrimaLoft® fill for packable warmth on the trail.",
+      "inStock": true,
+      "stock": {
+        "XS": 7,
+        "S": 7,
+        "XL": 6
+      }
+    },
+    {
+      "id": 57,
+      "title": "Women's Better Sweater® Fleece Vest",
+      "discount": 10,
+      "price": 129,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "sweater",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#8B5E3C",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed vest fit for core warmth layering."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "Packable sweater-knit fleece vest for core warmth without bulk.",
+      "inStock": true,
+      "stock": {
+        "XS": 5,
+        "S": 5,
+        "M": 5,
+        "L": 5,
+        "XL": 5
+      }
+    },
+    {
+      "id": 58,
+      "title": "Women's Cord Fjord Jacket",
+      "price": 329,
+      "availableSizes": ["XS", "S", "M", "L", "XL"],
+      "category": "jacket",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#2C4C5E",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Relaxed heritage fit with a cozy wool feel."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "Heritage wool-blend jacket with a relaxed fit and natural warmth.",
+      "inStock": true,
+      "stock": {
+        "XS": 2,
+        "S": 2,
+        "M": 2,
+        "L": 1,
+        "XL": 1
+      }
+    },
+    {
+      "id": 59,
+      "title": "Women's Long-Sleeved Capilene® Cool Sun Shirt",
+      "price": 79,
+      "availableSizes": ["XS", "S", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#6B9EB5",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Lightweight UPF fit for sunny trail days."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "UPF 50+ lightweight sun shirt designed for long hot days on the trail.",
+      "inStock": true,
+      "stock": {
+        "XS": 10,
+        "S": 10,
+        "XL": 10
+      }
+    },
+    {
+      "id": 60,
+      "title": "Women's Capilene® Cool Daily Shirt",
+      "price": 49,
+      "availableSizes": ["XS", "L", "XL"],
+      "category": "hoodie",
+      "gender": "women",
+      "fit": "Standard",
+      "color": "#F2F2F2",
+      "sizeGuide": {
+        "modelHeightCm": 168,
+        "modelHeightFeet": "5'6\"",
+        "modelWears": "S"
+      },
+      "details": [
+        {
+          "label": "Upper",
+          "value": "Synthetic with Vibram rubber sole"
+        },
+        {
+          "label": "Sizes",
+          "value": "XS–XL"
+        },
+        {
+          "label": "Fit",
+          "value": "Standard fit"
+        },
+        {
+          "label": "Fit Description",
+          "value": "Breathable everyday fit for warm trail conditions."
+        }
+      ],
+      "productImages": [
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-22.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-23.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-24.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-25.jpg",
+        "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_shoes-21.jpg"
+      ],
+      "description": "Everyday moisture-wicking shirt built for warm weather hiking and outdoor activity.",
+      "inStock": true,
+      "stock": {
+        "XS": 14,
+        "L": 13,
+        "XL": 13
+      }
+    }
+  ]
+}

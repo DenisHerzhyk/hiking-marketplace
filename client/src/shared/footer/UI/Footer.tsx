@@ -6,7 +6,6 @@ import { IoLogoAppleAr } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import InputField from "../../components/UI/InputField";
 import axios from "axios";
 
 const SOCIAL_LINKS = [
@@ -45,7 +44,6 @@ const Footer = () => {
     }
 
     try {
-      // Assuming a subscription endpoint exists, otherwise this is a mock
       await axios.post("http://localhost:4996/api/newsletter/subscribe", {
         email,
       });
@@ -72,7 +70,7 @@ const Footer = () => {
             href="tel:+380930819527"
             className="font-semibold text-sm mobile:text-base hover:opacity-60 transition-opacity duration-150 mb-[6px]"
           >
-            +380 93 081 9527
+            +359506203109
           </a>
           <a
             href="mailto:denis.herzhyk@gmail.com"
@@ -125,18 +123,23 @@ const Footer = () => {
             Stay updated with new arrivals and exclusive offers.
           </p>
           <form className="flex flex-col" onSubmit={handleSubmit}>
-            <InputField
-              id="newsletter-email"
-              name="email"
-              placeholder="Enter your email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={error}
-              required
-              className="text-sm mobile:text-sm border-b border-black bg-transparent focus:outline-none placeholder:text-gray-400 py-[10px] transition-colors duration-150"
-              labelClassName="hidden"
-            />
+            <div className="relative">
+              <input
+                id="newsletter-email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="text-sm mobile:text-sm border-b border-black bg-transparent focus:outline-none placeholder:text-gray-400 py-[10px] w-full transition-colors duration-150"
+              />
+              {error && (
+                <span className="text-red-500 text-[10px] mt-1 font-medium absolute -bottom-[18px] left-0">
+                  {error}
+                </span>
+              )}
+            </div>
             <p className="text-[10px] mobile:text-[11px] text-gray-400 leading-[1.7] mt-[14px]">
               By subscribing you agree to receive email marketing communications
               from time to time.
