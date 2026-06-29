@@ -14,6 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@better-auth/prisma-adapter": "^1.6.22",
     "@cloudinary/react": "^1.14.4",
     "@cloudinary/url-gen": "^1.22.0",
     "@prisma/adapter-neon": "^7.3.0",
@@ -23,6 +24,7 @@
     "@stripe/stripe-js": "^9.3.1",
     "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
+    "better-auth": "^1.6.22",
     "concurrently": "^9.2.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
@@ -40,7 +42,8 @@
     "react-leaflet": "^5.0.0",
     "react-loading-skeleton": "^3.5.0",
     "resend": "^6.16.0",
-    "stripe": "^22.1.0"
+    "stripe": "^22.1.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.100.1",

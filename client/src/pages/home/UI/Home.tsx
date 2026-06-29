@@ -30,7 +30,6 @@ const Home = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [searchTrails, setSearchTrails] = useState<Trail[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-
   const [trailsLoading, setTrailsLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(true);
