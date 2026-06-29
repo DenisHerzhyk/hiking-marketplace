@@ -16,6 +16,7 @@ model User {
   addresses        DeliveryAddress[]
   order            Order[]
   wishlist         Wishlist?
+  emailVerified    Boolean @default(false)
 }
 
 model DeliveryAddress {
