@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IoLogoAppleAr } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ILoginUser } from "../interface/LoginInterface.ts";
 import { IoIosCloseCircle } from "react-icons/io";
 import axios from "axios";
@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import InputField from "../../../shared/components/UI/InputField";
 
 const Login = () => {
+  const [searchParams] = useSearchParams();
   const card = "https://res.cloudinary.com/dlrft9pjb/image/upload/auth.jpg";
   const navigate = useNavigate();
   const ctxt = useContext(AuthContext);
@@ -22,6 +23,11 @@ const Login = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  useEffect(() => {
+    if (searchParams.get("verify") === "true") {
+      toast.success("Your email has been verified! You can now log in.");
+    }
+  }, []);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
@@ -56,6 +62,13 @@ const Login = () => {
     e.preventDefault();
     setErrors({});
 
+    await axios
+      .get("http://localhost:4996/api/user/verify-email", {
+        withCredentials: true,
+      })
+      .then((res) => {})
+      .catch((err) => {});
+
     if (!validate()) return;
 
     await axios
@@ -74,6 +87,7 @@ const Login = () => {
       })
       .catch((err) => {
         setAuthLogin(false);
+
         if (err.response && err.response.data?.errors) {
           setErrors(err.response.data.errors);
         } else if (err.response?.data?.message) {

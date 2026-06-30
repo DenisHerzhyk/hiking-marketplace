@@ -68,7 +68,13 @@ const Register = () => {
         confirmPassword: user.confirmPassword,
       })
       .then((res) => {
-        toast.success(`Account created successfully for ${user.email}!`);
+        toast.success(
+          <div>
+            <p className="font-semibold">Welcome, {user.email}!</p>
+            <p>Check your inbox to verify your account.</p>
+          </div>,
+          { duration: 6000 },
+        );
         navigate("/login");
       })
       .catch((err) => {
