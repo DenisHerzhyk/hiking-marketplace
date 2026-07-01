@@ -81,7 +81,7 @@ const Trails = () => {
       {status && <p className="text-sm text-gray-400 mb-4">{status}</p>}
       <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-y-9 gap-4">
         {trailsLoading
-          ? Array.from({ length: 5 }).map((_, i) => <TrailCardSkeleton />)
+          ? Array.from({ length: 5 }).map((_, i) => <TrailCardSkeleton key={i} />)
           : trails.map((trail) => <TrailCard key={trail.id} trail={trail} />)}
       </div>
     </div>

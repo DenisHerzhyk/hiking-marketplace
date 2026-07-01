@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -30,9 +30,33 @@ const Home = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [searchTrails, setSearchTrails] = useState<Trail[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchLoading, setSearchLoading] = useState(false);
   const [trailsLoading, setTrailsLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(true);
+  const lastOverpassRequest = useRef(0);
+  const searchCache = useRef<Map<string, Trail[]>>(new Map());
+  const OVERPASS_COOLDOWN = 3000;
+
+  const getCachedOrFetch = async (query: string) => {
+    const cached = searchCache.current.get(query.toLowerCase());
+    if (cached) return cached;
+
+    const now = Date.now();
+    const elapsed = now - lastOverpassRequest.current;
+    if (elapsed < OVERPASS_COOLDOWN) {
+      await new Promise((resolve) =>
+        setTimeout(resolve, OVERPASS_COOLDOWN - elapsed),
+      );
+    }
+
+    lastOverpassRequest.current = Date.now();
+    const { lat, lon } = await geocode(query);
+    const routes = await getHikingRoutes(lat, lon, 10);
+    const trails = await trailsSearch({ routes, place: query });
+    searchCache.current.set(query.toLowerCase(), trails);
+    return trails;
+  };
 
   useEffect(() => {
     axios
@@ -74,22 +98,24 @@ const Home = () => {
   useEffect(() => {
     if (!searchQuery.trim() || searchQuery.length < 3) {
       setSearchTrails([]);
+      setSearchLoading(false);
       return;
     }
+    setSearchLoading(true);
     const timeout = setTimeout(async () => {
       try {
-        const { lat, lon } = await geocode(searchQuery);
-        const routes = await getHikingRoutes(lat, lon, 10);
-        const trails = await trailsSearch({
-          routes,
-          place: searchQuery,
-        });
+        const trails = await getCachedOrFetch(searchQuery);
         setSearchTrails(trails);
       } catch (err) {
         console.log(`Error during search: ${err}`);
+      } finally {
+        setSearchLoading(false);
       }
     }, 500);
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      setSearchLoading(false);
+    };
   }, [searchQuery]);
 
   return (
@@ -317,20 +343,44 @@ const Home = () => {
           <h2 className="font-semibold text-center text-white text-[36px] mobile:text-[60px] mb-[16px]">
             Find your outside
           </h2>
-          <div className="flex flex-row rounded-full relative overflow-hidden w-full max-w-[500px]">
-            <input
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              type="text"
-              className="border border-transparent focus:border-transparent focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px]"
-              placeholder="Search by city, park or trail name"
-            />
-            <div className="bg-white text-black">
-              {searchTrails.map((trail) => (
-                <p>{trail.tags.name}</p>
-              ))}
+          <div className="flex flex-col items-center w-full max-w-[500px] relative">
+            <div className="flex flex-row rounded-full relative overflow-hidden w-full">
+              <input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                type="text"
+                className="border border-transparent focus:border-transparent focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px]"
+                placeholder="Search by city, park or trail name"
+              />
+
+              <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
             </div>
-            <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
+            {searchTrails.length > 0 && (
+              <ul className="absolute top-full left-0 right-0 bg-white rounded-b-xl shadow-lg border border-gray-200 mt-1 max-h-[280px] overflow-y-auto z-10">
+                {searchTrails.map((trail) => (
+                  <li key={trail.id}>
+                    <Link
+                      to={`/trails/${trail.id}`}
+                      state={{ trail }}
+                      className="block px-5 py-3 text-sm mobile:text-base text-gray-700 hover:bg-gray-100 hover:text-black transition-colors duration-150"
+                    >
+                      {trail.tags.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {searchLoading && (
+              <ul className="absolute top-full left-0 right-0 bg-white rounded-b-xl shadow-lg border border-gray-200 mt-1 z-10">
+                {[1, 2, 3].map((i) => (
+                  <li key={i}>
+                    <div className="px-5 py-3 animate-pulse">
+                      <div className="h-4 bg-gray-200 rounded w-3/4" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <Link to="/trails" className="text-white text-lg underline mt-5">
             Explore nearby trails

@@ -2,6 +2,23 @@ import { getTrailPhotos } from "./pexelRequest";
 import { getORSDistance } from "./orsDistanceCalculation";
 import { Trail } from "../../pages/Trails/interfaces/TrailInterface";
 
+const orsCache = new Map<string, string>();
+
+const getCachedDistance = async (
+  startLat: number,
+  startLon: number,
+  endLat: number,
+  endLon: number,
+): Promise<string> => {
+  const key = `${startLat.toFixed(4)},${startLon.toFixed(4)}-${endLat.toFixed(4)},${endLon.toFixed(4)}`;
+  const cached = orsCache.get(key);
+  if (cached) return cached;
+
+  const distance = await getORSDistance(startLat, startLon, endLat, endLon);
+  if (distance !== "—") orsCache.set(key, distance);
+  return distance;
+};
+
 export const trailsSearch = async ({
   routes,
   place,
@@ -9,55 +26,54 @@ export const trailsSearch = async ({
   routes: any[];
   place: string;
 }) => {
-  const trails: Trail[] = [];
-  const sleep = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  const filtered = routes.filter((route: any) => route.tags?.name);
 
-  const filtered = await Promise.all(
-    routes.filter((route: any) => route.tags?.name),
+  const results = await Promise.allSettled(
+    filtered.map(async (route) => {
+      const trailName = route.tags?.name ?? `${place} Trail`;
+
+      const members =
+        route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
+
+      const startCoord = members[0]?.geometry?.[0];
+      const endCoord =
+        members[members.length - 1]?.geometry?.[
+          members[members.length - 1].geometry.length - 1
+        ];
+      const [photos, distance] = await Promise.all([
+        getTrailPhotos(trailName),
+        startCoord && endCoord
+          ? getCachedDistance(
+              startCoord.lat,
+              startCoord.lon,
+              endCoord.lat,
+              endCoord.lon,
+            )
+          : Promise.resolve("—"),
+      ]);
+
+      return {
+        id: route.id,
+        type: "relation",
+        tags: {
+          name: trailName,
+          photos,
+          distance,
+          ascent: route.tags?.ascent ?? "",
+          difficulty: route.tags?.difficulty ?? route.tags?.sac_scale ?? "",
+          network: route.tags?.network,
+          sac_scale: route.tags?.sac_scale,
+          startLat: startCoord?.lat,
+          startLon: startCoord?.lon,
+          endLat: endCoord?.lat,
+          endLon: endCoord?.lon,
+        },
+        geometry: [],
+      } as Trail;
+    }),
   );
 
-  for (let i = 0; i < filtered.length; i++) {
-    const route = filtered[i];
-    const trailName = route.tags?.name ?? `${place} Trail`;
-
-    const members =
-      route.members?.filter((m: any) => m.geometry?.length > 0) ?? [];
-
-    const startCoord = members[0]?.geometry?.[0];
-    const endCoord =
-      members[members.length - 1]?.geometry?.[
-        members[members.length - 1].geometry.length - 1
-      ];
-    const [photos, distance] = await Promise.all([
-      getTrailPhotos(trailName),
-      startCoord && endCoord
-        ? getORSDistance(
-            startCoord.lat,
-            startCoord.lon,
-            endCoord.lat,
-            endCoord.lon,
-          )
-        : Promise.resolve("—"),
-    ]);
-
-    trails.push({
-      id: route.id,
-      type: "relation",
-      tags: {
-        name: trailName,
-        photos,
-        distance,
-        network: route.tags?.network,
-        sac_scale: route.tags?.sac_scale,
-        startLat: startCoord?.lat,
-        startLon: startCoord?.lon,
-        endLat: endCoord?.lat,
-        endLon: endCoord?.lon,
-      },
-      geometry: [],
-    });
-    if (i < filtered.length - 1) await sleep(300);
-  }
-  return trails;
+  return results
+    .filter((r) => r.status === "fulfilled")
+    .map((r) => (r as PromiseFulfilledResult<Trail>).value);
 };
