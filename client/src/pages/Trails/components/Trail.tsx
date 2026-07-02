@@ -187,48 +187,51 @@ const TrailDetails = () => {
   if (trailLoading) return <TrailDetailsSkeleton />;
 
   return (
-    <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] pb-[80px] max-w-[800px] mx-auto">
+    <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[140px] pb-[80px] w-full max-w-[840px] mx-auto overflow-hidden">
       <Link
         to="/trails"
-        className="text-sm text-gray-400 flex items-center gap-1 mb-6 hover:text-black transition-colors"
+        className="inline-flex items-center gap-1 text-sm text-stone-400 mb-6 hover:text-stone-700 transition-colors"
       >
         ← Back to trails
       </Link>
       <div className="flex justify-between items-start flex-wrap gap-3 mb-6">
         <div>
-          <h1 className="text-2xl font-medium mb-1">
+          <h1 className="text-2xl font-semibold text-stone-800 mb-1">
             {t.name ?? "Unnamed trail"}
           </h1>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-stone-400">
             {(networkLabel[t.network ?? ""] ?? t.network ?? "NWN") + " "}
             route
           </p>
         </div>
-        <span className="text-xs bg-yellow-50 text-yellow-800 px-3 py-1.5 rounded-full">
+        <span className="text-xs font-medium bg-stone-100 text-stone-600 px-3 py-1.5 rounded-full border border-stone-200">
           {difficulty}
         </span>
       </div>
 
       <div className="flex flex-col gap-2 mb-5">
-        <img
-          src={trail?.tags?.photos?.[0]}
-          alt={`${t.name} 1`}
-          className="w-full h-[250px] rounded-xl object-cover"
-        />
+        <div className="overflow-hidden rounded-xl">
+          <img
+            src={trail?.tags?.photos?.[0]}
+            alt={`${t.name} 1`}
+            className="w-full h-[220px] mobile:h-[280px] object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         <div className="w-full grid grid-cols-2 gap-2">
           {(trail?.tags?.photos ?? []).slice(1, 5).map((photo, i) => (
-            <img
-              key={i}
-              src={photo}
-              alt={`${t.name} ${i + 2}`}
-              className="w-full h-[200px] rounded-xl object-cover"
-            />
+            <div key={i} className="overflow-hidden rounded-xl">
+              <img
+                src={photo}
+                alt={`${t.name} ${i + 2}`}
+                className="w-full h-[140px] mobile:h-[200px] object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
           ))}
         </div>
       </div>
 
       <TrailMap geometry={geometry} />
-      <div className="grid grid-cols-2 mobile:grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 gap-3 mb-5">
         {[
           { label: "Distance", value: distance },
           { label: "Ascent", value: ascent },
@@ -238,85 +241,92 @@ const TrailDetails = () => {
             value: networkLabel[t.network ?? "NWN"] ?? "NWN",
           },
         ].map(({ label, value }) => (
-          <div key={label} className="bg-gray-50 rounded-lg p-3">
-            <p className="text-[11px] text-gray-400 uppercase tracking-wider mb-1">
+          <div
+            key={label}
+            className="bg-stone-50 rounded-xl p-4 border border-stone-100"
+          >
+            <p className="text-[11px] text-stone-400 uppercase tracking-wider mb-1 font-medium">
               {label}
             </p>
-            <p className="text-lg font-medium">{value}</p>
+            <p className="text-lg font-semibold text-stone-800">{value}</p>
           </div>
         ))}
       </div>
-      <div className="border border-gray-200 rounded-xl p-5 mb-4">
-        <p className="text-[11px] font-medium tracking-widest text-gray-400 uppercase mb-3">
+      <div className="border border-stone-200 rounded-xl p-5 mb-4">
+        <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-3">
           Plan your hike
         </p>
-        <div className="flex gap-3 items-end flex-wrap">
-          <div className="flex flex-col gap-1.5 flex-1 min-w-[160px]">
-            <label className="text-xs text-gray-500">Select date</label>
+        <div className="flex flex-col mobile:flex-row gap-3 items-stretch mobile:items-end">
+          <div className="flex flex-col gap-1.5 flex-1 min-w-0">
+            <label className="text-xs text-stone-500 font-medium">
+              Select date
+            </label>
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-black"
+              className="border border-stone-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-stone-500 transition-colors w-full"
             />
           </div>
           <button
             onClick={handleGetSuggestion}
             disabled={!date || loadingAI}
-            className="px-5 py-2 text-sm bg-white border border-stone-300 text-stone-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40"
+            className="px-5 py-2.5 text-sm font-medium bg-white border border-stone-300 text-stone-700 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40 disabled:hover:translate-y-0"
           >
             {loadingAI ? "Thinking..." : "Get AI suggestion"}
           </button>
         </div>
       </div>
       {suggestion && (
-        <div className="border border-gray-200 rounded-xl p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-sm">
+        <div className="border border-stone-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-sm border border-stone-200">
               🤖
             </div>
-            <p className="text-sm font-medium">AI gear suggestion</p>
+            <p className="text-sm font-semibold text-stone-700">
+              AI gear suggestion
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-3">
-            <div>
-              <p className="text-xs font-medium text-gray-500 mb-2">
-                🧔 Male combo
+          <div className="grid grid-cols-1 mobile:grid-cols-2 gap-4 mb-4">
+            <div className="bg-stone-50 rounded-lg p-4 border border-stone-100">
+              <p className="text-xs font-semibold text-stone-500 mb-3 uppercase tracking-wider">
+                👤 Male combo
               </p>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <Link
                   target="_blank"
                   to={`/product/${suggestion.male.top.id}`}
-                  className="text-sm text-blue-500 hover:underline"
+                  className="text-sm text-stone-700 hover:text-stone-900 font-medium bg-white border border-stone-200 px-3 py-2 rounded-lg hover:border-stone-400 transition-colors"
                 >
                   Top: {suggestion.male.top.title}
                 </Link>
                 <Link
                   target="_blank"
                   to={`/product/${suggestion.male.bottom.id}`}
-                  className="text-sm text-blue-500 hover:underline"
+                  className="text-sm text-stone-700 hover:text-stone-900 font-medium bg-white border border-stone-200 px-3 py-2 rounded-lg hover:border-stone-400 transition-colors"
                 >
                   Bottom: {suggestion.male.bottom.title}
                 </Link>
               </div>
             </div>
 
-            <div>
-              <p className="text-xs font-medium text-gray-500 mb-2">
-                👩 Female combo
+            <div className="bg-stone-50 rounded-lg p-4 border border-stone-100">
+              <p className="text-xs font-semibold text-stone-500 mb-3 uppercase tracking-wider">
+                👤 Female combo
               </p>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <Link
                   target="_blank"
                   to={`/product/${suggestion.female.top.id}`}
-                  className="text-sm text-blue-500 hover:underline"
+                  className="text-sm text-stone-700 hover:text-stone-900 font-medium bg-white border border-stone-200 px-3 py-2 rounded-lg hover:border-stone-400 transition-colors"
                 >
                   Top: {suggestion.female.top.title}
                 </Link>
                 <Link
                   target="_blank"
                   to={`/product/${suggestion.female.bottom.id}`}
-                  className="text-sm text-blue-500 hover:underline"
+                  className="text-sm text-stone-700 hover:text-stone-900 font-medium bg-white border border-stone-200 px-3 py-2 rounded-lg hover:border-stone-400 transition-colors"
                 >
                   Bottom: {suggestion.female.bottom.title}
                 </Link>
@@ -324,13 +334,15 @@ const TrailDetails = () => {
             </div>
           </div>
 
-          <p className="text-xs text-gray-500">💡 {suggestion.reason}</p>
+          <p className="text-xs text-stone-500 bg-stone-50 rounded-lg p-3 border border-stone-100">
+            💡 {suggestion.reason}
+          </p>
         </div>
       )}
       <Link
         to={`https://www.openstreetmap.org/relation/${trail.id}`}
         target="_blank"
-        className="text-xs text-gray-400 hover:text-black transition-colors flex items-center gap-1 mt-5"
+        className="inline-flex items-center gap-1 text-xs text-stone-400 hover:text-stone-700 transition-colors mt-5"
       >
         View on OpenStreetMap →
       </Link>

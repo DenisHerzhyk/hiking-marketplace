@@ -145,7 +145,7 @@ const Profile = () => {
   });
 
   return (
-    <div className="Profile flex flex-col mx-auto max-w-[900px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] pb-[80px]">
+    <div className="Profile flex flex-col mt-[120px] mx-auto max-w-[900px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] pb-[80px]">
       <div className="mb-[32px]">
         <h1 className="font-semibold text-2xl mobile:text-3xl tracking-tight">
           Welcome back, there

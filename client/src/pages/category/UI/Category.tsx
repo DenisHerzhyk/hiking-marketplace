@@ -595,8 +595,8 @@ const Category = () => {
               </div>
             </>
           )}
-          <div className="products flex-1 w-full">
-            <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fill,minmax(270px,1fr))]">
+          <div className="products flex-1 w-full overflow-x-hidden">
+            <div className="grid justify-center gap-[30px]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 320px))" }}>
               {productLoading
                 ? Array.from({ length: 4 }).map((_, i) => (
                     <MainProductCardSkeleton key={i} />

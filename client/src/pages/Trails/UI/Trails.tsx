@@ -37,28 +37,30 @@ const Trails = () => {
   };
 
   return (
-    <div className="Trails px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] pb-[80px]">
+    <div className="Trails px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:mt-[120px] pb-[80px]">
       <div className="mb-8">
-        <h1 className="text-2xl font-medium mb-1">Find a trail</h1>
-        <p className="text-sm text-gray-400">Search by city, park or region</p>
+        <h1 className="text-2xl font-semibold text-stone-800 mb-1">
+          Find a trail
+        </h1>
+        <p className="text-sm text-stone-400">Search by city, park or region</p>
       </div>
 
       <div className="flex gap-2 mb-4 max-w-[600px]">
-        <div className="flex-1 flex items-center gap-2 border border-gray-200 rounded-xl px-4 bg-white">
-          <IoIosSearch className="text-gray-400 flex-shrink-0" />
+        <div className="flex-1 flex items-center gap-2 border border-stone-200 rounded-xl px-4 bg-white focus-within:border-stone-400 transition-colors">
+          <IoIosSearch className="text-stone-400 flex-shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && search(query)}
             placeholder="e.g. Zurich, Alps, Black Forest..."
-            className="flex-1 py-2.5 text-sm bg-transparent focus:outline-none"
+            className="flex-1 py-2.5 text-sm bg-transparent focus:outline-none text-stone-700"
           />
         </div>
         <button
           onClick={() => search(query)}
           disabled={loading}
-          className="px-5 text-sm bg-white border border-stone-300 text-stone-700 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40"
+          className="px-5 py-2.5 text-sm font-medium bg-white border border-stone-300 text-stone-700 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40"
         >
           {loading ? "..." : "Search"}
         </button>
@@ -72,16 +74,18 @@ const Trails = () => {
               setQuery(place);
               search(place);
             }}
-            className="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-500 hover:border-stone-400 transition-colors"
+            className="text-xs px-3 py-1.5 rounded-full border border-stone-200 text-stone-500 hover:border-stone-400 hover:text-stone-700 transition-colors bg-white"
           >
             {place}
           </button>
         ))}
       </div>
-      {status && <p className="text-sm text-gray-400 mb-4">{status}</p>}
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-y-9 gap-4">
+      {status && <p className="text-sm text-stone-400 mb-4">{status}</p>}
+      <div className="grid justify-center gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 320px))" }}>
         {trailsLoading
-          ? Array.from({ length: 5 }).map((_, i) => <TrailCardSkeleton key={i} />)
+          ? Array.from({ length: 5 }).map((_, i) => (
+              <TrailCardSkeleton key={i} />
+            ))
           : trails.map((trail) => <TrailCard key={trail.id} trail={trail} />)}
       </div>
     </div>

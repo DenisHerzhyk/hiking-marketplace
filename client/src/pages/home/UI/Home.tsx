@@ -343,7 +343,7 @@ const Home = () => {
           </div>
         </section>
         <section className="signup-hike relative h-[600px] flex flex-col items-center justify-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[76px] mobile:mt-[100px]">
-          <h2 className="font-semibold text-center text-white text-[36px] mobile:text-[60px] mb-[16px] animate-fade-in-up">
+          <h2 className="font-semibold text-center text-white text-[26px] mobile:text-[36px] tablet:text-[60px] mb-[12px] mobile:mb-[16px] animate-fade-in-up">
             Find your outside
           </h2>
           <div className="flex flex-col items-center w-full max-w-[500px] relative">
@@ -352,11 +352,11 @@ const Home = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 type="text"
-                className="border-2 border-white/40 focus:border-white focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px] bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 rounded-full focus:bg-white/15 transition-all duration-300"
+                className="border-2 border-white/40 focus:border-white focus:outline-none focus:ring-0 text-[14px] w-full mobile:text-[16px] tablet:text-[20px] pl-[36px] mobile:pl-[42px] tablet:pl-[47px] py-[10px] mobile:py-[12px] tablet:py-[17px] bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 rounded-full focus:bg-white/15 transition-all duration-300"
                 placeholder="Search by city, park or trail name"
               />
 
-              <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-white/60 absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
+              <IoIosSearch className="search-section__icon text-[12px] mobile:text-[16px] tablet:text-[20px] text-white/60 absolute top-1/2 left-3 mobile:left-4 w-[16px] h-[16px] tablet:w-auto transform -translate-y-1/2" />
             </div>
             {searchTrails.length > 0 && (
               <ul className="absolute top-full left-0 right-0 bg-white rounded-b-xl shadow-lg border border-gray-200 mt-1 max-h-[280px] overflow-y-auto z-10">
@@ -403,11 +403,11 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-black opacity-20 -z-10"></div>
         </section>
-        <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[20px] animate-fade-in-up">
+        <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] animate-fade-in-up">
           <h2 className="text-[30px] mobile:text-[32px] font-semibold text-center">
             Local favorites near Zurich
           </h2>
-          <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
+          <div className="hiking-selection flex flex-row overflow-x-auto justify-start gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
             {trailsLoading
               ? Array.from({ length: 4 }).map((_, i) => (
                   <TrailCardSkeleton key={i} />
