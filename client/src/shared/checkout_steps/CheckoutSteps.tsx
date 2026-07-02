@@ -11,7 +11,7 @@ export const CheckoutSteps = () => {
           <div key={step} className="flex items-center">
             <div className="flex flex-col items-center gap-[6px]">
               <div
-                className={`w-[28px] h-[28px] rounded-full flex items-center justify-center text-[11px] font-semibold border ${isActive || isCompleted ? "bg-black text-white border-black" : "text-gray-300 border-gray-200"}`}
+                className={`w-[28px] h-[28px] rounded-full flex items-center justify-center text-[11px] font-semibold border ${isActive || isCompleted ? "bg-white border border-stone-500 text-stone-700 shadow-sm" : "text-gray-300 border-gray-200"}`}
               >
                 {i + 1}
               </div>

@@ -5,6 +5,7 @@ import MainProductCard from "../../../shared/components/product-card/UI/MainProd
 import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface";
 import { IoMdArrowDown } from "react-icons/io";
 import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkeleton";
+import { IoOptionsOutline } from "react-icons/io5";
 type Section = "product" | "sizes" | "price" | "shoes";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -22,6 +23,7 @@ const Category = () => {
     price: true,
     shoes: true,
   });
+  const [showFilters, setShowFilters] = useState(false);
   const [dealGender, setDealGender] = useState<"men" | "women" | null>(null);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -173,9 +175,9 @@ const Category = () => {
   };
   return (
     <>
-      <div className="Category justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] ">
+      <div className="Category">
         {category !== "deals" ? (
-          <div className="main-category flex justify-center relative">
+          <div className="main-category relative w-full h-[100dvh] overflow-hidden">
             {category !== "all" ? (
               <img
                 src={
@@ -188,7 +190,7 @@ const Category = () => {
                         : ""
                 }
                 alt="img"
-                className="rounded-sm max-h-[700px] h-full py-[70px] tablet:py-[0px] w-full object-cover object-center"
+                className="w-full h-full object-cover object-center"
               />
             ) : (
               <video
@@ -198,18 +200,18 @@ const Category = () => {
                 loop
                 muted
                 playsInline
-                className="rounded-sm max-h-[700px] h-full py-[70px] tablet:py-[0px] w-full object-cover object-top brightness-90"
+                className="w-full h-full object-cover object-top brightness-90"
               />
             )}
 
-            <div className="absolute top-1/2 -translate-y-1/2 left-10">
+            <div className="absolute top-1/2 -translate-y-1/2 left-[var(--mobile-x-padding)] laptop:left-[var(--desktop-x-padding)] tablet:left-[var(--laptop-x-padding)]">
               <h2 className="text-wrap font-semibold text-2xl tablet:text-4xl laptop:text-6xl text-white mb-[40px]">
                 Hiking gear made
                 <br />
                 to match your pace
               </h2>
               <Link
-                className="home__button flex gap-2 items-center text-black font-bold text-base tablet:text-xl bg-white py-3 px-12 w-fit border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                className="home__button flex gap-2 items-center text-stone-700 font-bold text-base tablet:text-xl bg-white border border-stone-300 py-3 px-12 w-fit rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 to={`/category/${category}#shop`}
               >
                 <span>SHOP NOW</span>
@@ -218,42 +220,51 @@ const Category = () => {
             </div>
           </div>
         ) : (
-          <div className="main-category relative w-full flex flex-col gap-2 items-center">
-            <div className="flex flex-col w-full gap-10 items-center h-full justify-center">
-              <h1 className="text-start w-full font-medium text-3xl">
-                Special Prices
-              </h1>
+          <div className="deals-hero relative w-full min-h-[100dvh] h-auto flex items-center justify-center px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] pt-[70px] tablet:pt-[85px] pb-[40px]">
+            <div className="flex flex-col w-full gap-10 items-center">
+              <div className="text-center">
+                <h1 className="font-bold text-3xl tablet:text-5xl text-stone-800">
+                  Special Prices
+                </h1>
+                <p className="text-stone-400 text-sm mt-2 tracking-wide uppercase">
+                  Limited time offers
+                </p>
+              </div>
 
-              <div className="flex flex-row overflow-x-auto laptop:overflow-x-visible gap-3 items-center">
+              <div className="flex flex-row justify-center gap-6 flex-wrap">
                 <button
                   onClick={handleMenDealsFiltering}
-                  className="relative cursor-pointer w-full min-w-[300px]"
+                  className="group relative cursor-pointer w-full mobile:w-[280px] h-[260px] mobile:h-[360px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 >
                   <img
                     src={sales_img}
-                    alt="img"
-                    className="w-full flex-1 min-w-0 h-[200px] laptop:h-[300px] object-cover object-center"
+                    alt="Men"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                    <h2 className="text-wrap font-semibold text-xl tablet:text-2xl text-white">
-                      Men
-                    </h2>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <div className="absolute bottom-6 left-6 flex flex-col items-start gap-2">
+                    <h2 className="font-bold text-3xl text-white">Men</h2>
+                    <span className="text-xs text-white/80 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      Shop deals →
+                    </span>
                   </div>
                 </button>
 
                 <button
                   onClick={handleWomenDealsFiltering}
-                  className="relative cursor-pointer w-full min-w-[300px]"
+                  className="group relative cursor-pointer w-[280px] h-[360px] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 >
                   <img
                     src={sales_img}
-                    alt="img"
-                    className="w-full flex-1 min-w-0 h-[200px] laptop:h-[300px] object-cover object-center"
+                    alt="Women"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                    <h2 className="text-wrap font-semibold text-xl tablet:text-2xl text-white">
-                      Women
-                    </h2>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <div className="absolute bottom-6 left-6 flex flex-col items-start gap-2">
+                    <h2 className="font-bold text-3xl text-white">Women</h2>
+                    <span className="text-xs text-white/80 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      Shop deals →
+                    </span>
                   </div>
                 </button>
               </div>
@@ -263,7 +274,7 @@ const Category = () => {
 
         <div
           id="shop"
-          className="categories mt-[50px] tablet:mt-[100px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)]"
+          className="categories mt-[30px] tablet:mt-[40px] flex flex-row flex-wrap gap-[7px] justify-between items-center w-full pb-[15px] laptop:pb-[20px] border-b border-[var(--normal-gray)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]"
         >
           <div className="flex flex-row flex-wrap items-center gap-[10px]">
             <h1 className="leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] ">
@@ -278,6 +289,13 @@ const Category = () => {
             <p className="font-light mobile:text-base text-[var(--light-gray)]">
               ({filteredProducts.length} results)
             </p>
+            <button
+              onClick={() => setShowFilters(true)}
+              className="laptop:hidden flex items-center gap-1.5 text-xs font-medium border border-stone-300 px-3 py-1.5 rounded-lg text-stone-600 hover:bg-stone-50 transition-colors"
+            >
+              <IoOptionsOutline className="text-base" />
+              Filters
+            </button>
           </div>
           <nav className="category-nav flex items-center">
             <ul className="flex flex-row gap-[5px] font-light text-xs">
@@ -318,7 +336,7 @@ const Category = () => {
             </ul>
           </nav>
         </div>
-        <div className="content mt-[45px] flex flex-row justify-center laptop:justify-between gap-[10px] laptop:gap-[40px]">
+        <div className="content mt-[25px] tablet:mt-[30px] flex flex-row justify-center laptop:justify-between gap-[10px] laptop:gap-[40px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)]">
           <div className="sidebar hidden laptop:flex flex-col flex-grow min-w-[160px] max-w-[160px] w-full">
             <div className="w-full flex flex-col gap-[25px]">
               {category === "shoes" ? (
@@ -332,14 +350,14 @@ const Category = () => {
                       className="cursor-pointer text-black"
                     >
                       {openSections.shoes ? (
-                        <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                        <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-transform duration-300 ease-out" />
                       ) : (
                         <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                       )}
                     </div>
                   </div>
                   <div
-                    className={`${openSections.shoes ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
+                    className={`overflow-hidden transition-all duration-300 ease-out ${openSections.shoes ? "max-h-[200px] opacity-100 mt-[10px]" : "max-h-0 opacity-0 mt-0"} gap-[5px] laptop:gap-[1px]`}
                   >
                     <div className="flex flex-row items-center gap-[10px]">
                       <label className="flex items-center gap-[10px] cursor-pointer text-xs laptop:text-sm">
@@ -350,7 +368,7 @@ const Category = () => {
                           className="peer hidden"
                           onChange={() => setSelectedGender("men")}
                         />
-                        <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                        <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                         For Men
                       </label>
                     </div>
@@ -363,7 +381,7 @@ const Category = () => {
                           className="peer hidden"
                           onChange={() => setSelectedGender("women")}
                         />
-                        <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                        <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                         For Women
                       </label>
                     </div>
@@ -385,14 +403,14 @@ const Category = () => {
                     className="cursor-pointer text-black"
                   >
                     {openSections.product ? (
-                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-transform duration-300 ease-out" />
                     ) : (
                       <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     )}
                   </div>
                 </div>
                 <div
-                  className={`${openSections.product ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
+                  className={`overflow-hidden transition-all duration-300 ease-out ${openSections.product ? "max-h-[300px] opacity-100 mt-[10px]" : "max-h-0 opacity-0 mt-0"} gap-[5px] laptop:gap-[1px]`}
                 >
                   {clothesTypeByCategory.map((cat) => (
                     <div
@@ -408,7 +426,7 @@ const Category = () => {
                           className="peer hidden"
                           onChange={() => handleTypeChange(cat)}
                         />
-                        <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                        <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                         {cat}
                       </label>
                     </div>
@@ -423,14 +441,14 @@ const Category = () => {
                     className="cursor-pointer text-black"
                   >
                     {openSections.sizes ? (
-                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-transform duration-300 ease-out" />
                     ) : (
                       <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     )}
                   </div>
                 </div>
                 <div
-                  className={`${openSections.sizes ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
+                  className={`overflow-hidden transition-all duration-300 ease-out ${openSections.sizes ? "max-h-[300px] opacity-100 mt-[10px]" : "max-h-0 opacity-0 mt-0"} gap-[5px] laptop:gap-[1px]`}
                 >
                   {visibleSizes.map((value) => (
                     <div key={value}>
@@ -443,7 +461,7 @@ const Category = () => {
                           onChange={() => handleSizeChange(value)}
                           className="peer hidden"
                         />
-                        <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                        <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                         {value}
                       </label>
                     </div>
@@ -458,14 +476,14 @@ const Category = () => {
                     onClick={() => toggleSection("price")}
                   >
                     {openSections.price ? (
-                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
+                      <IoIosArrowDown className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-transform duration-300 ease-out" />
                     ) : (
                       <IoIosArrowUp className="hover:bg-gray-200 rounded-full w-[22px] h-[22px] p-1 transition-all ease-out" />
                     )}
                   </div>
                 </div>
                 <div
-                  className={`${openSections.price ? "flex flex-col" : "hidden"} gap-[5px] laptop:gap-[1px] mt-[10px]`}
+                  className={`overflow-hidden transition-all duration-300 ease-out ${openSections.price ? "max-h-[300px] opacity-100 mt-[10px]" : "max-h-0 opacity-0 mt-0"} gap-[5px] laptop:gap-[1px]`}
                 >
                   {priceByCategory.map((price) => (
                     <div
@@ -480,7 +498,7 @@ const Category = () => {
                           onChange={() => setSelectedPrice(price)}
                           className="peer hidden"
                         />
-                        <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black" />
+                        <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                         {price === "under50"
                           ? "under 50€"
                           : price === "50to100"
@@ -497,6 +515,87 @@ const Category = () => {
               </div>
             </div>
           </div>
+          {/* Mobile filter drawer */}
+          {showFilters && (
+            <>
+              <div
+                className="fixed inset-0 bg-black/30 z-40 laptop:hidden"
+                onClick={() => setShowFilters(false)}
+              />
+              <div className="fixed top-0 left-0 bottom-0 w-[300px] max-w-[85vw] bg-white z-50 laptop:hidden shadow-2xl overflow-y-auto animate-slide-in-left px-6 py-8">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="font-semibold text-base">Filters</h3>
+                  <button
+                    onClick={() => setShowFilters(false)}
+                    className="text-gray-400 hover:text-black text-xl leading-none"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="sidebar-content w-full flex flex-col gap-[25px]">
+                  {category === "shoes" && (
+                    <div className="w-full">
+                      <div className="flex flex-row w-full justify-between">
+                        <p className="font-medium text-sm text-nowrap">SHOES</p>
+                      </div>
+                      <div className="flex flex-col gap-[5px] mt-[10px]">
+                        <div className="flex flex-row items-center gap-[10px]">
+                          <label className="flex items-center gap-[10px] cursor-pointer text-xs">
+                            <input type="radio" name="mobileProductGender" value="men" className="peer hidden" onChange={() => setSelectedGender("men")} />
+                            <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
+                            For Men
+                          </label>
+                        </div>
+                        <div className="flex flex-row items-center gap-[10px]">
+                          <label className="flex items-center gap-[10px] cursor-pointer text-xs">
+                            <input type="radio" name="mobileProductGender" value="women" className="peer hidden" onChange={() => setSelectedGender("women")} />
+                            <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
+                            For Women
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">PRODUCT TYPE</p>
+                    {clothesTypeByCategory.map((cat) => (
+                      <div className="flex flex-row items-center gap-[10px]" key={cat}>
+                        <label className="flex items-center gap-[10px] cursor-pointer text-xs">
+                          <input type="checkbox" name="mobileProductType" value={cat} checked={selectedTypes.includes(cat)} className="peer hidden" onChange={() => handleTypeChange(cat)} />
+                          <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
+                          {cat}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">SIZES</p>
+                    {visibleSizes.map((value) => (
+                      <div key={value}>
+                        <label className="flex items-center gap-[10px] cursor-pointer text-xs">
+                          <input type="checkbox" name="mobileSize" value={value} checked={selectedSizes.includes(value)} onChange={() => handleSizeChange(value)} className="peer hidden" />
+                          <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
+                          {value}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">PRICE</p>
+                    {priceByCategory.map((priceOpt) => (
+                      <div className="flex flex-row items-center gap-[10px]" key={priceOpt}>
+                        <label className="flex items-center gap-[10px] cursor-pointer text-xs">
+                          <input type="radio" name="mobilePrice" value={priceOpt} onChange={() => setSelectedPrice(priceOpt)} className="peer hidden" />
+                          <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
+                          {priceOpt === "under50" ? "under 50€" : priceOpt === "50to100" ? "50€ - 100€" : priceOpt === "100to200" ? "100€ - 200€" : priceOpt === "over200" ? "over 200€" : "all"}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
           <div className="products flex-1 w-full">
             <div className="grid auto-cols-auto gap-[30px] [grid-template-columns:repeat(auto-fill,minmax(270px,1fr))]">
               {productLoading

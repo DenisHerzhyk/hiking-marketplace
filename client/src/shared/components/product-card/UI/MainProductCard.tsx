@@ -71,21 +71,21 @@ const MainProductCard = ({
   };
   return (
     <div
-      className="MainProductCard relative flex-shrink-0 min-w-[270px] laptop:flex-shrink laptop:flex-1 laptop:w-auto"
+      className="MainProductCard relative flex-shrink-0 min-w-[260px] max-w-[320px] laptop:flex-shrink laptop:flex-1 laptop:w-auto bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 pb-3"
       key={id}
       onMouseLeave={() => setOpenSection(false)}
     >
-      <div className="productcard__image group relative w-full h-[280px] tablet:h-[350px]">
+      <div className="productcard__image group relative w-full h-[280px] tablet:h-[350px] overflow-hidden rounded-t-xl">
         <Link to={`/product/${id}`}>
-          <div className="overflow-hidden rounded-md h-full">
+          <div className="overflow-hidden h-full">
             <img
-              className="w-full h-full object-center object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-full object-center object-cover transition-transform duration-500 group-hover:scale-105"
               src={productImages[0]}
-              alt="img"
+              alt={title}
             />
           </div>
         </Link>
-        <p className="font-medium text-white bg-black text-xs px-[21.5px] py-[5.5px] rounded-[8px] absolute top-2 left-2">
+        <p className="font-medium text-stone-700 bg-white border border-stone-300 shadow-sm text-xs px-[21.5px] py-[5.5px] rounded-[8px] absolute top-2 left-2">
           NEW
         </p>
         <ul
@@ -95,7 +95,7 @@ const MainProductCard = ({
             <li
               key={size}
               className={`py-3 flex-1 text-center px-auto rounded-lg cursor-pointer transition-all duration-200 ease-in
-    ${selSize === size ? "bg-black text-white" : "bg-gray-100 hover:bg-gray-300"}`}
+    ${selSize === size ? "bg-white border border-stone-300 shadow-md text-stone-700" : "bg-gray-100 hover:bg-gray-300"}`}
               onClick={() => handleSizeSelect(size)}
             >
               {size}
@@ -116,17 +116,17 @@ const MainProductCard = ({
           <VscHeartFilled className="absolute top-0 right-0 transition-opacity duration-300 ease-in opacity-0 group-hover:opacity-100" />
         </button>
       </div>
-      <div className="content flex flex-col mt-[15px]">
+      <div className="content flex flex-col mt-[15px] px-4">
         <div className="flex flex-row flex-wrap gap-2">
           <button
             title={colorNames[color] ?? color}
             key={color}
             style={{ backgroundColor: color }}
-            className="w-[25px] h-[25px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+            className="w-[25px] h-[25px] rounded-full border-2 border-transparent hover:border-stone-500 transition-all duration-200 cursor-pointer"
             onClick={() => handleColorSelect(color)}
           />
         </div>
-        <h1 className="productcard__title font-medium text-base inline-block max-w-[250px] overflow-hidden truncate mt-[20px]">
+        <h1 className="productcard__title font-medium text-base inline-block overflow-hidden truncate mt-[20px]">
           {title}
         </h1>
         <div
@@ -143,7 +143,7 @@ const MainProductCard = ({
           )}
         </div>
         <button
-          className="mt-[10px] flex flex-row w-fit gap-[3px] items-center py-[6px] px-[18px] border border-black bg-white hover:bg-black text-black hover:text-white transition-all duration-300 ease-out rounded-full"
+          className="mt-[10px] flex flex-row w-fit gap-[3px] items-center py-[6px] px-[18px] border border-stone-300 bg-white hover:bg-stone-100 text-stone-700 transition-all duration-300 ease-out rounded-full hover:border-stone-400"
           onClick={() => handleAddToCart()}
         >
           <FaPlus className="text-sm" />

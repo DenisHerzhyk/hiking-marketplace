@@ -268,7 +268,7 @@ const Header = () => {
                 <CgProfile className="text-2xl" />
               ) : (
                 <div>
-                  <p className="hidden laptop:flex text-sm font-medium border border-current rounded-full px-4 py-1 hover:bg-black hover:text-white transition-colors duration-200">
+                  <p className="hidden laptop:flex text-sm font-medium border border-current rounded-full px-4 py-1 hover:bg-stone-100 hover:border-stone-400 transition-all duration-200">
                     Log in
                   </p>
                   <CiLogin className="flex laptop:hidden text-2xl" />

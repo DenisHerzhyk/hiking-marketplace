@@ -37,7 +37,7 @@ const Trails = () => {
   };
 
   return (
-    <div className="Trails px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] pb-[80px]">
+    <div className="Trails px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] pb-[80px]">
       <div className="mb-8">
         <h1 className="text-2xl font-medium mb-1">Find a trail</h1>
         <p className="text-sm text-gray-400">Search by city, park or region</p>
@@ -58,7 +58,7 @@ const Trails = () => {
         <button
           onClick={() => search(query)}
           disabled={loading}
-          className="px-5 text-sm bg-black text-white rounded-xl hover:opacity-75 transition-opacity disabled:opacity-40"
+          className="px-5 text-sm bg-white border border-stone-300 text-stone-700 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40"
         >
           {loading ? "..." : "Search"}
         </button>
@@ -72,7 +72,7 @@ const Trails = () => {
               setQuery(place);
               search(place);
             }}
-            className="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-500 hover:border-black transition-colors"
+            className="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-500 hover:border-stone-400 transition-colors"
           >
             {place}
           </button>

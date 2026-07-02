@@ -187,7 +187,7 @@ const TrailDetails = () => {
   if (trailLoading) return <TrailDetailsSkeleton />;
 
   return (
-    <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] pb-[80px] max-w-[800px] mx-auto">
+    <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] pb-[80px] max-w-[800px] mx-auto">
       <Link
         to="/trails"
         className="text-sm text-gray-400 flex items-center gap-1 mb-6 hover:text-black transition-colors"
@@ -263,7 +263,7 @@ const TrailDetails = () => {
           <button
             onClick={handleGetSuggestion}
             disabled={!date || loadingAI}
-            className="px-5 py-2 text-sm bg-black text-white rounded-lg hover:opacity-75 transition-opacity disabled:opacity-40"
+            className="px-5 py-2 text-sm bg-white border border-stone-300 text-stone-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-40"
           >
             {loadingAI ? "Thinking..." : "Get AI suggestion"}
           </button>

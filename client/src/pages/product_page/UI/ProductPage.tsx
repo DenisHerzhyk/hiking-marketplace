@@ -101,7 +101,7 @@ const ProductPage = () => {
   laptop:px-[200px]"
       >
         {" "}
-        <section className="product-main relative w-full mt-[100px] tablet:mt-[150px]">
+        <section className="product-main relative w-full mt-[0px]">
           <div className="flex flex-col tablet:flex-row gap-[40px] w-full">
             <div className="grid grid-cols-1 laptop:grid-cols-2 gap-[10px] tablet:w-[60%]">
               {product?.productImages.map((img, i) => (
@@ -172,10 +172,10 @@ const ProductPage = () => {
                     <div key={item} className="flex flex-col items-center">
                       <button
                         onClick={() => setSelSize(item)}
-                        className={`font-medium text-sm border border-gray-300 hover:border-black flex items-center justify-center py-[10px] w-full transition-colors duration-200 ${
+                        className={`font-medium text-sm border flex items-center justify-center py-[10px] w-full transition-all duration-200 ${
                           selSize === item
-                            ? "bg-black text-white"
-                            : "bg-gray-200 hover:bg-gray-300"
+                            ? "bg-stone-100 border-stone-400 text-stone-800 shadow-sm"
+                            : "bg-gray-200 hover:bg-gray-300 border-gray-300 hover:border-stone-400"
                         }`}
                       >
                         {item}
@@ -201,7 +201,7 @@ const ProductPage = () => {
                     <button
                       key={product?.color}
                       style={{ backgroundColor: product?.color }}
-                      className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-black transition-all duration-200 cursor-pointer"
+                      className="w-[36px] h-[36px] rounded-full border-2 border-transparent hover:border-stone-500 transition-all duration-200 cursor-pointer"
                       onClick={() =>
                         product?.color && setSelColor(product?.color)
                       }
@@ -211,19 +211,19 @@ const ProductPage = () => {
 
                 <button
                   onClick={() => handleAddToCart()}
-                  className="text-white uppercase bg-black w-full text-sm mobile:text-[18px] font-semibold px-[20px] py-[8px] mobile:px-[30px] mobile:py-[17px] mb-[10px] hover:bg-gray-800 transition-colors duration-200"
+                  className="text-stone-800 uppercase bg-stone-50 border border-stone-400 w-full text-sm mobile:text-[18px] font-semibold px-[20px] py-[8px] mobile:px-[30px] mobile:py-[17px] mb-[10px] rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
                   Add to cart
                 </button>
                 <button
                   onClick={() => handleAddToWishlist()}
-                  className="text-sm border uppercase border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200"
+                  className="text-sm border uppercase border-stone-300 w-full h-[44px] mb-[9px] hover:bg-stone-50 hover:border-stone-400 transition-all duration-200 rounded-lg"
                 >
                   Save to favorite{" "}
                 </button>
                 <button
                   onClick={() => setShowSizeGuide(true)}
-                  className="text-sm border border-black w-full h-[44px] mb-[9px] hover:bg-gray-50 transition-colors duration-200"
+                  className="text-sm border border-stone-300 w-full h-[44px] mb-[9px] hover:bg-stone-50 hover:border-stone-400 transition-all duration-200 rounded-lg"
                 >
                   SIZE GUIDE
                 </button>
@@ -395,7 +395,7 @@ const ProductPage = () => {
                 </p>
               </div>
               <div className="w-full max-w-full mt-[100px] tablet:max-w-[440px]">
-                <div className="description flex flex-col py-[9px] border-b border-black">
+                <div className="description flex flex-col py-[9px] border-b border-stone-200">
                   <div className="flex flex-row justify-between mb-[7px] items-center pr-[14px]">
                     <h3 className="text-xs mobile:text-sm">DESCRIPTION</h3>
                     <div
@@ -415,7 +415,7 @@ const ProductPage = () => {
                     {product?.description}
                   </p>
                 </div>
-                <div className="details flex flex-col py-[9px] border-b border-black">
+                <div className="details flex flex-col py-[9px] border-b border-stone-200">
                   <div className="flex flex-row justify-between items-center pr-[14px]">
                     <h3 className="text-xs mobile:text-sm">DETAILS</h3>
                     <div
@@ -445,7 +445,7 @@ const ProductPage = () => {
                     ))}
                   </ul>
                 </div>
-                <div className="size_fit flex flex-col py-[9px] border-b border-black">
+                <div className="size_fit flex flex-col py-[9px] border-b border-stone-200">
                   <div className="flex flex-row justify-between items-center pr-[14px]">
                     <h3 className="text-xs mobile:text-sm">SIZE & FIT</h3>
                     <div
@@ -479,7 +479,7 @@ const ProductPage = () => {
                     </div>
                   </ul>
                 </div>
-                <div className="delivery_return flex flex-col py-[9px] border-b border-black">
+                <div className="delivery_return flex flex-col py-[9px] border-b border-stone-200">
                   <div className="flex flex-row justify-between items-center pr-[14px]">
                     <button
                       onClick={() => toggleSection("delivery_return")}

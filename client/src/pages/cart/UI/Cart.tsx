@@ -26,7 +26,7 @@ const EmptyState = ({
     <p className="text-gray-500 max-w-md mx-auto">{description}</p>
     <Link
       to="/"
-      className="home__button text-white font-bold px-8 py-3 bg-black rounded-sm shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
+      className="home__button text-stone-700 font-bold px-8 py-3 bg-white border border-stone-300 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
     >
       Continue Shopping
     </Link>
@@ -120,7 +120,7 @@ const Cart = () => {
   };
   return (
     <>
-      <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[150px]">
+      <div className="Cart px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] mt-[30px] tablet:mt-[40px]">
         <section className="upper-shopping w-full">
           <h1 className="border-b border-[var(--normal-gray)] leading-none font-semibold text-[22px] mobile:text-[28px] laptop:text-[32px] pb-[15px]">
             Shopping Cart{" "}
@@ -239,7 +239,7 @@ const Cart = () => {
                   </div>
                   <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-black transition-all duration-500"
+                      className="h-full bg-stone-400 transition-all duration-500"
                       style={{ width: `${shippingProgress}%` }}
                     />
                   </div>
@@ -297,7 +297,7 @@ const Cart = () => {
             </div>
             <button
               onClick={() => handleCheckoutProcess()}
-              className="home__button text-white font-bold w-full text-base tablet:text-xl bg-black py-3 px-12 border border-white shadow-[4px_4px_0_#fff,5px_5px_0_#000]"
+              className="home__button text-stone-700 font-bold w-full text-base tablet:text-xl bg-white border border-stone-300 py-3 px-12 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
             >
               CHECKOUT
             </button>

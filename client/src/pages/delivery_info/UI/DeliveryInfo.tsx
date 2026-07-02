@@ -135,7 +135,7 @@ const DeliveryInfo = () => {
   };
 
   return (
-    <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
+    <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[30px] tablet:mt-[40px] pb-[80px]">
       <div className="flex flex-col laptop:flex-row gap-[40px] laptop:gap-[80px] max-w-[1100px]">
         <div className="flex-1">
           <h1 className="font-semibold text-xl mobile:text-2xl tracking-tight mb-[8px]">
@@ -275,7 +275,7 @@ const DeliveryInfo = () => {
                 onChange={handleChange}
                 className="peer hidden"
               />
-              <span className="w-[15px] h-[15px] border border-black rounded-sm flex-shrink-0 peer-checked:bg-black transition-colors" />
+              <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600 transition-colors" />
               <span className="text-sm text-gray-600">
                 Save this address for future orders
               </span>
@@ -289,7 +289,7 @@ const DeliveryInfo = () => {
               </Link>
               <button
                 type="submit"
-                className="group flex items-center gap-[8px] bg-black text-white text-sm font-semibold tracking-widest uppercase px-[28px] py-[12px] hover:opacity-75 transition-opacity duration-200"
+                className="group flex items-center gap-[8px] bg-white border border-stone-300 text-stone-700 text-sm font-semibold tracking-widest uppercase px-[28px] py-[12px] rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 Continue to Payment
                 <IoIosArrowForward className="transition-transform duration-200 group-hover:translate-x-1" />

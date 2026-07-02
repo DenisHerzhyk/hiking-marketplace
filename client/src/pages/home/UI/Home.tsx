@@ -122,7 +122,7 @@ const Home = () => {
     <>
       <div className="home">
         <main
-          className={`main h-[100dvh] overflow-hidden relative flex items-center`}
+          className={`main h-[100dvh] overflow-hidden relative flex items-center animate-fade-in`}
         >
           <div className="content relative text-white w-full h-full flex items-center">
             <video
@@ -151,28 +151,28 @@ const Home = () => {
                 <br />& EVERYTHING IN BETWEEN
               </p>
               <Link
-                className="home__button text-black font-bold text-base mobile:text-xl bg-white py-3 px-12 w-fit border shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                className="home__button text-stone-800 font-bold text-base mobile:text-xl bg-white border-2 border-stone-300 py-3.5 px-12 w-fit rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
                 to="/category/men"
               >
                 SHOP NOW
               </Link>
             </div>
-            <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-black p-2 rounded-tl-[8px] rounded-tr-[8px]">
+            <div className="main-section__shop-stick absolute bottom-0 left-[calc(100vw/2-34px)] mobile:left-[calc(100vw/2-42.5px)] flex flex-col items-center justify-center gap-2 bg-white border border-stone-300 p-2.5 rounded-tl-[10px] rounded-tr-[10px] shadow-sm hover:shadow-md transition-shadow duration-300">
               <Link
                 to="#showmore"
-                className="flex flex-col items-center justify-center gap-2 text-white"
+                className="flex flex-col items-center justify-center gap-2 text-stone-700"
               >
-                <p className="main-section__shop-stick__content text-[9px] mobile:text-xs rounded-t-[8px] rounded-r-[8px]">
+                <p className="main-section__shop-stick__content text-[9px] mobile:text-xs font-semibold tracking-wider">
                   SHOW MORE
                 </p>
-                <IoIosArrowDown />
+                <IoIosArrowDown className="animate-bounce" />
               </Link>
             </div>
           </div>
         </main>
         <section
           id="showmore"
-          className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px]"
+          className="categories justify-start laptop:justify-center flex flex-col laptop:flex-row flex-wrap laptop:flex-nowrap gap-[10px] items-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[70px] animate-fade-in-up"
         >
           {cardLoading
             ? Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)
@@ -185,28 +185,28 @@ const Home = () => {
                 />
               ))}
         </section>
-        <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px]">
+        <section className="catalogs flex flex-col justify-center gap-[53px] mobile:gap-[95px] px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[118px] animate-fade-in-up">
           <div className="catalog flex flex-col justify-center">
             <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
-                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
+                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px] text-stone-800">
                   HIKING TOPS
                 </h1>
-                <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
+                <p className="text-sm mobile:text-lg text-[var(--purple-color)] font-medium tracking-wide">
                   BUILT TO HANDLE EVERYTHING
                 </p>
               </div>
               <div>
                 <Link
                   to="/category/men"
-                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  className="group text-stone-700 w-fit flex flex-row items-center px-5 py-2.5 gap-2 text-sm mobile:text-base font-semibold bg-white border border-stone-300 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Find more tops
-                  <IoIosArrowForward className="text-xl" />
+                  <IoIosArrowForward className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
+            <div className="carousel carousel-box flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px] scroll-smooth snap-x snap-mandatory">
               {productLoading
                 ? Array.from({ length: 5 }).map((_, i) => (
                     <MainProductCardSkeleton key={i} />
@@ -217,48 +217,49 @@ const Home = () => {
                     )
                     .slice(0, 5)
                     .map((item) => (
-                      <MainProductCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title.toUpperCase()}
-                        discount={item.discount}
-                        price={item.price}
-                        availableSizes={item.availableSizes}
-                        category={item.category}
-                        gender={item.gender}
-                        fit={item.fit}
-                        color={item.color}
-                        sizeGuide={item.sizeGuide}
-                        details={item.details}
-                        productImages={item.productImages}
-                        description={item.description}
-                        inStock={item.inStock}
-                        stock={item.stock}
-                      />
+                      <div className="carousel-item snap-start" key={item.id}>
+                        <MainProductCard
+                          id={item.id}
+                          title={item.title.toUpperCase()}
+                          discount={item.discount}
+                          price={item.price}
+                          availableSizes={item.availableSizes}
+                          category={item.category}
+                          gender={item.gender}
+                          fit={item.fit}
+                          color={item.color}
+                          sizeGuide={item.sizeGuide}
+                          details={item.details}
+                          productImages={item.productImages}
+                          description={item.description}
+                          inStock={item.inStock}
+                          stock={item.stock}
+                        />
+                      </div>
                     ))}
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
             <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
-                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
+                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px] text-stone-800">
                   HIKING PANTS
                 </h1>
-                <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
+                <p className="text-sm mobile:text-lg text-[var(--purple-color)] font-medium tracking-wide">
                   BUILT TO HANDLE EVERYTHING
                 </p>
               </div>
               <div>
                 <Link
                   to="/category/men"
-                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  className="group text-stone-700 w-fit flex flex-row items-center px-5 py-2.5 gap-2 text-sm mobile:text-base font-semibold bg-white border border-stone-300 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Find more pants
-                  <IoIosArrowForward className="text-xl" />
+                  <IoIosArrowForward className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
+            <div className="carousel carousel-box flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px] scroll-smooth snap-x snap-mandatory">
               {productLoading
                 ? Array.from({ length: 5 }).map((_, i) => (
                     <MainProductCardSkeleton key={i} />
@@ -267,48 +268,49 @@ const Home = () => {
                     .filter((item) => ["pants"].includes(item.category))
                     .slice(0, 5)
                     .map((item) => (
-                      <MainProductCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title.toUpperCase()}
-                        discount={item.discount}
-                        price={item.price}
-                        availableSizes={item.availableSizes}
-                        category={item.category}
-                        gender={item.gender}
-                        fit={item.fit}
-                        color={item.color}
-                        sizeGuide={item.sizeGuide}
-                        details={item.details}
-                        productImages={item.productImages}
-                        description={item.description}
-                        inStock={item.inStock}
-                        stock={item.stock}
-                      />
+                      <div className="carousel-item snap-start" key={item.id}>
+                        <MainProductCard
+                          id={item.id}
+                          title={item.title.toUpperCase()}
+                          discount={item.discount}
+                          price={item.price}
+                          availableSizes={item.availableSizes}
+                          category={item.category}
+                          gender={item.gender}
+                          fit={item.fit}
+                          color={item.color}
+                          sizeGuide={item.sizeGuide}
+                          details={item.details}
+                          productImages={item.productImages}
+                          description={item.description}
+                          inStock={item.inStock}
+                          stock={item.stock}
+                        />
+                      </div>
                     ))}
             </div>
           </div>
           <div className="catalog flex flex-col justify-center">
             <div className="flex flex-row items-start flex-wrap gap-6">
               <div className="flex flex-col text-left">
-                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px]">
+                <h1 className="font-extrabold leading-none text-[24px] mobile:text-[30px] laptop:text-[36px] mb-[1px] text-stone-800">
                   HIKING BOOTS
                 </h1>
-                <p className="text-sm mobile:text-lg text-[var(--purple-color)]">
+                <p className="text-sm mobile:text-lg text-[var(--purple-color)] font-medium tracking-wide">
                   BUILT TO HANDLE EVERYTHING
                 </p>
               </div>
               <div>
                 <Link
                   to="/category/shoes"
-                  className="text-black w-fit flex flex-row items-center px-3 py-2 gap-2 text-base bg-white border border-black shadow-[4px_4px_0_#000,5px_5px_0_#fff]"
+                  className="group text-stone-700 w-fit flex flex-row items-center px-5 py-2.5 gap-2 text-sm mobile:text-base font-semibold bg-white border border-stone-300 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Find more boots
-                  <IoIosArrowForward className="text-xl" />
+                  <IoIosArrowForward className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
-            <div className="flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px]">
+            <div className="carousel carousel-box flex flex-row overflow-x-auto desktop:overflow-x-visible flex-nowrap justify-between items-start mt-[21px] gap-[30px] scroll-smooth snap-x snap-mandatory">
               {productLoading
                 ? Array.from({ length: 5 }).map((_, i) => (
                     <MainProductCardSkeleton key={i} />
@@ -317,30 +319,31 @@ const Home = () => {
                     .filter((item) => ["shoes"].includes(item.category))
                     .slice(0, 5)
                     .map((item) => (
-                      <MainProductCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title.toUpperCase()}
-                        discount={item.discount}
-                        price={item.price}
-                        availableSizes={item.availableSizes}
-                        category={item.category}
-                        gender={item.gender}
-                        fit={item.fit}
-                        color={item.color}
-                        sizeGuide={item.sizeGuide}
-                        details={item.details}
-                        productImages={item.productImages}
-                        description={item.description}
-                        inStock={item.inStock}
-                        stock={item.stock}
-                      />
+                      <div className="carousel-item snap-start" key={item.id}>
+                        <MainProductCard
+                          id={item.id}
+                          title={item.title.toUpperCase()}
+                          discount={item.discount}
+                          price={item.price}
+                          availableSizes={item.availableSizes}
+                          category={item.category}
+                          gender={item.gender}
+                          fit={item.fit}
+                          color={item.color}
+                          sizeGuide={item.sizeGuide}
+                          details={item.details}
+                          productImages={item.productImages}
+                          description={item.description}
+                          inStock={item.inStock}
+                          stock={item.stock}
+                        />
+                      </div>
                     ))}
             </div>
           </div>
         </section>
         <section className="signup-hike relative h-[600px] flex flex-col items-center justify-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[76px] mobile:mt-[100px]">
-          <h2 className="font-semibold text-center text-white text-[36px] mobile:text-[60px] mb-[16px]">
+          <h2 className="font-semibold text-center text-white text-[36px] mobile:text-[60px] mb-[16px] animate-fade-in-up">
             Find your outside
           </h2>
           <div className="flex flex-col items-center w-full max-w-[500px] relative">
@@ -349,20 +352,20 @@ const Home = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 type="text"
-                className="border border-transparent focus:border-transparent focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px]"
+                className="border-2 border-white/40 focus:border-white focus:outline-none focus:ring-0 text-[16px] w-full mobile:text-[20px] pl-[40px] mobile:pl-[47px] py-[13.3px] mobile:py-[17px] bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 rounded-full focus:bg-white/15 transition-all duration-300"
                 placeholder="Search by city, park or trail name"
               />
 
-              <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-[var(--light-gray)] absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
+              <IoIosSearch className="search-section__icon text-[14px] mobile:text-[20px] text-white/60 absolute top-1/2 left-3 mobile:left-4 w-[20px] h-[20px] tablet:w-auto transform -translate-y-1/2" />
             </div>
             {searchTrails.length > 0 && (
               <ul className="absolute top-full left-0 right-0 bg-white rounded-b-xl shadow-lg border border-gray-200 mt-1 max-h-[280px] overflow-y-auto z-10">
-                {searchTrails.map((trail) => (
-                  <li key={trail.id}>
+                {searchTrails.map((trail, i) => (
+                  <li key={trail.id} style={{ animationDelay: `${i * 50}ms` }} className="animate-slide-in-right">
                     <Link
                       to={`/trails/${trail.id}`}
                       state={{ trail }}
-                      className="block px-5 py-3 text-sm mobile:text-base text-gray-700 hover:bg-gray-100 hover:text-black transition-colors duration-150"
+                      className="block px-5 py-3 text-sm mobile:text-base text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-150 hover:pl-7"
                     >
                       {trail.tags.name}
                     </Link>
@@ -382,8 +385,12 @@ const Home = () => {
               </ul>
             )}
           </div>
-          <Link to="/trails" className="text-white text-lg underline mt-5">
+          <Link
+            to="/trails"
+            className="group text-stone-700 text-lg mt-6 inline-flex items-center gap-2 font-semibold bg-white border border-stone-300 px-6 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+          >
             Explore nearby trails
+            <IoIosArrowForward className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <video
             src={hiking_signup_v}
@@ -396,11 +403,11 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-black opacity-20 -z-10"></div>
         </section>
-        <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[20px]">
+        <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[20px] animate-fade-in-up">
           <h2 className="text-[30px] mobile:text-[32px] font-semibold text-center">
             Local favorites near Zurich
           </h2>
-          <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px]">
+          <div className="hiking-selection flex flex-row overflow-x-auto laptop:overflow-x-visible justify-start laptop:justify-center gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
             {trailsLoading
               ? Array.from({ length: 4 }).map((_, i) => (
                   <TrailCardSkeleton key={i} />
@@ -410,10 +417,10 @@ const Home = () => {
                 ))}
             <Link
               to="/trails"
-              className="flex flex-row min-w-[250px] max-w-[300px] shadow-lg overflow-hidden items-center rounded-[10px] gap-[10px] bg-[var(--normal-gray)] justify-center"
+              className="group flex flex-row min-w-[250px] max-w-[300px] overflow-hidden items-center rounded-[10px] gap-[10px] bg-white border border-stone-300 text-stone-700 justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
             >
-              <p>Show more</p>
-              <IoArrowForwardOutline className="text-[22px]" />
+              <p className="font-semibold tracking-wide">Show more</p>
+              <IoArrowForwardOutline className="text-[22px] transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </section>

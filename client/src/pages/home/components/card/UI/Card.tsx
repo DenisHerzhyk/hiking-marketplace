@@ -4,22 +4,22 @@ import { Link } from "react-router-dom";
 const Card = ({ title, image, link }: CardInterface) => {
   return (
     <>
-      <div className="card relative flex-shrink-0 w-full tablet:w-full laptop:w-[300px] tablet:flex-shrink tablet:flex-1">
-        <div className="overflow absolute top-0 right-0 bottom-0 left-0 bg-black bg-opacity-25 -z-8 rounded-[8px]"></div>
+      <div className="card relative flex-shrink-0 w-full tablet:flex-1 tablet:min-w-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group">
+        <div className="overflow absolute inset-0 bg-black/30 -z-8 rounded-[10px] transition-opacity duration-300 group-hover:opacity-20"></div>
         <div className="image">
           <img
             src={image}
-            alt="image"
-            className="block w-full h-[200px] laptop:h-[500px] object-cover object-center rounded-[8px] -z-9"
+            alt={title}
+            className="block w-full h-[220px] tablet:h-[380px] laptop:h-[450px] object-cover object-center rounded-[10px] -z-9"
           />
         </div>
         <div className="content flex flex-col items-start z-10">
-          <h1 className="card__title text-[24px] text-white font-semibold absolute top-1/2 left-5">
+          <h1 className="card__title text-[22px] tablet:text-[26px] text-white font-bold absolute top-1/2 -translate-y-1/2 left-6 leading-tight max-w-[200px]">
             {title}
           </h1>
           <Link
             to={link}
-            className="card__button absolute bottom-4 laptop:bottom-10 left-5 text-base w-fit text-white hover:text-black transition-all duration-300 ease-out bg-opacity-0 border-2 hover:bg-white border-white py-1 px-6 rounded-full font-medium"
+            className="card__button absolute bottom-5 laptop:bottom-8 left-6 text-sm w-fit text-stone-700 bg-white border border-stone-300 px-5 py-2 rounded-full font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
           >
             SHOP
           </Link>

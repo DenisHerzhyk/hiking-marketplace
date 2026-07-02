@@ -36,7 +36,7 @@ const ShowOrder = () => {
   if (!order)
     return (
       <SkeletonTheme baseColor="#f3f4f6" highlightColor="#e5e7eb">
-        <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">
+        <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] max-w-[640px] mx-auto">
           <Skeleton
             width={120}
             height={24}
@@ -78,7 +78,7 @@ const ShowOrder = () => {
     );
   return (
     <>
-      <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[150px] max-w-[640px] mx-auto">
+      <div className="px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] mt-[30px] tablet:mt-[40px] max-w-[640px] mx-auto">
         <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-green-600" />
           Payment confirmed
@@ -176,7 +176,7 @@ const ShowOrder = () => {
           </Link>
           <Link
             to="/"
-            className="flex-1 text-center text-sm font-medium py-3 bg-black text-white rounded-lg hover:opacity-80 transition-opacity"
+            className="flex-1 text-center text-sm font-medium py-3 bg-white border border-stone-300 text-stone-700 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             Continue shopping
           </Link>

@@ -48,7 +48,7 @@ const WishlistItem: React.FC<WishlistItemInterface> = ({
                 onCartAdd,
               )
             }
-            className="w-full text-xs py-2 border border-gray-900 rounded-full hover:bg-black hover:text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full text-xs py-2 border border-gray-900 rounded-full hover:bg-stone-100 hover:border-stone-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!stock[size]}
           >
             Add to cart

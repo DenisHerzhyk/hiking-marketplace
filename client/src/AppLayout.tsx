@@ -27,18 +27,38 @@ const AppLayout = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  const isLoginOrRegister = ["/login", "/register"].includes(location.pathname);
-  const isProduct = !!matchPath("/product/:id", location.pathname);
+  const isCategory = !!matchPath("/category/:type", location.pathname);
 
   return (
     <>
-      <Toaster position="top-right" />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "#fff",
+            color: "#44403c",
+            border: "1px solid #d6d3d1",
+            borderRadius: "10px",
+            padding: "14px 20px",
+            fontSize: "14px",
+            fontFamily: "Poppins, sans-serif",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+          },
+          success: {
+            iconTheme: { primary: "#78716c", secondary: "#fff" },
+          },
+          error: {
+            iconTheme: { primary: "#dc2626", secondary: "#fff" },
+          },
+        }}
+      />
 
       <Header />
-      {isLoginOrRegister || isProduct ? (
+      {isHome || isCategory ? (
         <div className="mt-[0px]" />
       ) : (
-        !isHome && <div className="mt-[100px] tablet:mt-[200px]" />
+        <div className="mt-[70px] tablet:mt-[85px]" />
       )}
       {}
       <ScrollHash />

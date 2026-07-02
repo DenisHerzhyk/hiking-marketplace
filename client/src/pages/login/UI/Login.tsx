@@ -102,7 +102,7 @@ const Login = () => {
   };
 
   return (
-    <div className="Login flex flex-row flex-wrap justify-center gap-[100px] laptop:gap-[300px] mt-[100px] items-center overflow-hidden relative py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)]">
+    <div className="Login flex flex-row flex-wrap justify-center gap-[100px] laptop:gap-[300px] mt-[70px] items-center overflow-hidden relative py-[36px] mobile:py-[37px] tablet:py-[68px] px-0 laptop:px-[var(--desktop-x-padding)]">
       <div className="content z-20 w-[250px] tablet:w-[400px]">
         <IoLogoAppleAr className="w-[30px] h-[30px] mobile:w-[50px] mobile:h-[50px]" />
         <h1 className="text-[26px] mobile:text-[36px] font-semibold mt-[17px]">
@@ -141,7 +141,7 @@ const Login = () => {
               {errors.general}
             </p>
           )}
-          <button className="text-white uppercase font-bold text-base mobile:text-xl bg-black py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] border border-black shadow-[4px_4px_0_#fff,5px_5px_0_#000]">
+          <button className="text-stone-700 uppercase font-bold text-base mobile:text-xl bg-white border border-stone-300 py-2 mobile:py-3 px-11 mt-[30px] mobile:mt-[60px] rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
             Sign in
           </button>
         </form>

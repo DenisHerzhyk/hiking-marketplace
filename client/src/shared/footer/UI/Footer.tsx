@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CiInstagram } from "react-icons/ci";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../pages/login/context/authContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -29,6 +30,9 @@ const SOCIAL_LINKS = [
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+
+  const ctxt = useContext(AuthContext);
+  const { authLogin } = ctxt || { authLogin: false };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,8 +59,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer border-t border-gray-200 mt-[144px] mobile:mt-[196px]">
-      <div className="flex flex-row flex-wrap justify-start tablet:justify-center laptop:justify-between gap-[60px] mobile:gap-[72px] py-[80px] mobile:py-[120px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
+    <footer className="footer w-full border-t border-stone-200 mt-[80px] mobile:mt-[100px]">
+      <div className="flex flex-row flex-wrap justify-between items-start gap-[60px] mobile:gap-[72px] w-full py-[80px] mobile:py-[120px] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
         <div className="contact flex flex-col">
           <h2 className="font-semibold text-[11px] tracking-[0.15em] text-gray-400 uppercase mb-[18px]">
             Contact
@@ -81,6 +85,12 @@ const Footer = () => {
           <p className="text-[10px] mobile:text-xs text-gray-400 mt-[20px] transition-colors duration-150 tracking-wider uppercase">
             Privacy Policy
           </p>
+          <Link
+            to={authLogin ? "/profile" : "/register"}
+            className="text-sm font-medium mt-4 bg-white border border-stone-300 text-stone-700 w-fit px-5 py-2 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+          >
+            {authLogin ? "My Account" : "Create Account"}
+          </Link>
         </div>
         <div className="flex flex-col gap-[40px]">
           <div>
@@ -146,7 +156,7 @@ const Footer = () => {
             </p>
             <button
               type="submit"
-              className="group flex flex-row items-center gap-[8px] mt-[24px] w-fit hover:opacity-60 transition-opacity duration-150"
+              className="group flex flex-row items-center gap-[8px] mt-[24px] w-fit text-stone-700 font-semibold bg-white border border-stone-300 px-6 py-2.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
             >
               <span className="text-sm mobile:text-base font-semibold tracking-widest uppercase">
                 Submit

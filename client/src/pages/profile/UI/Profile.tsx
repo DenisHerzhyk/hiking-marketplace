@@ -154,18 +154,13 @@ const Profile = () => {
       </div>
 
       <div className="border border-gray-200 rounded-[4px] overflow-hidden">
-        <div className="h-[56px] bg-gradient-to-r from-gray-100 to-gray-200" />
+        <div className="h-[56px] bg-gradient-to-r from-amber-50 to-stone-200" />
         <div className="py-[60px] px-[20px] mobile:px-[32px]">
           <div className="flex flex-wrap justify-between items-start gap-[20px] mb-[36px]">
             <div className="flex flex-row flex-wrap gap-[20px] items-center">
-              <img
-                src={avatar}
-                alt="avatar"
-                className="w-[70px] h-[70px] mobile:w-[90px] mobile:h-[90px] rounded-full object-cover border border-gray-200"
-              />
               <div className="flex flex-col gap-[4px]">
                 <h2 className="font-semibold text-[18px] mobile:text-[20px] tracking-tight">
-                  there
+                  {form.fullName ? form.fullName : "-"}
                 </h2>
                 <p className="text-gray-400 text-sm">{email}</p>
               </div>
@@ -174,13 +169,13 @@ const Profile = () => {
             <div className="flex flex-row items-center gap-[10px]">
               <button
                 onClick={handleLogout}
-                className="text-sm font-medium border border-black px-[14px] py-[7px] hover:bg-black hover:text-white transition-colors duration-200"
+                className="text-sm font-medium border border-stone-500 px-[14px] py-[7px] hover:bg-stone-100 hover:border-stone-400 transition-all duration-200 rounded-lg"
               >
                 Log out
               </button>
               <button
                 onClick={isEditing ? handleSave : () => setIsEditing(true)}
-                className="text-sm font-medium bg-black text-white px-[14px] py-[7px] hover:opacity-70 transition-opacity duration-200"
+                className="text-sm font-medium bg-white border border-stone-300 text-stone-700 px-[14px] py-[7px] rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 {isEditing ? "Save" : "Edit Profile"}
               </button>
