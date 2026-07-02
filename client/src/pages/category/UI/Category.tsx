@@ -515,7 +515,6 @@ const Category = () => {
               </div>
             </div>
           </div>
-          {/* Mobile filter drawer */}
           {showFilters && (
             <>
               <div
