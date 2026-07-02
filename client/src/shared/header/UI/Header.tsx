@@ -22,6 +22,7 @@ const NAV_LINKS = [
 
 const Header = () => {
   const searchRef = useRef<HTMLDivElement>(null);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [searchbarValue, setSearchbarValue] = useState<string | null>(null);
   const [products, setProducts] = useState<ProductInterface[]>([]);
@@ -66,6 +67,28 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutsideMenu = (e: MouseEvent) => {
+      if (
+        isOpenMenu &&
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(e.target as Node)
+      ) {
+        setIsOpenMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutsideMenu);
+    return () => document.removeEventListener("mousedown", handleClickOutsideMenu);
+  }, [isOpenMenu]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpenMenu(false);
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
+
   const clearSearch = () => {
     setSearchbarValue(null);
     setProducts([]);
@@ -94,16 +117,20 @@ const Header = () => {
           `}
         >
           <section className="logo flex flex-1 flex-row items-center gap-[15px]">
-            <div className="block laptop:hidden focus:outline-none">
+            <div ref={menuContainerRef} className="block laptop:hidden focus:outline-none">
               <IoMenuOutline
-                className="text-2xl cursor-pointer"
+                className="text-2xl cursor-pointer relative z-[11]"
                 onClick={() => setIsOpenMenu((prev) => !prev)}
+              />
+              <div
+                className={`fixed inset-0 bg-black/20 z-[9] transition-opacity duration-200 ${isOpenMenu ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                onClick={() => setIsOpenMenu(false)}
               />
               <nav
                 className={`
-                  navigation z-10 menu fixed top-[55px] laptop:top-[71.5px] w-full left-0 bg-white
+                  navigation z-10 menu fixed top-[55px] laptop:top-[71.5px] left-0 right-0 bg-white shadow-lg border-b border-stone-200
                   transition-all duration-200 ease-out
-                  ${isOpenMenu ? "flex flex-1 opacity-100 translate-y-0" : "hidden opacity-0 -translate-y-1"}
+                  ${isOpenMenu ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible pointer-events-none"}
                 `}
                 id="menu"
               >
@@ -113,10 +140,10 @@ const Header = () => {
                       key={to}
                       to={to}
                       onClick={() => setIsOpenMenu(false)}
-                      className="center__nav-item flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-gray-100"
+                      className="flex flex-row items-center justify-between gap-2 py-[var(--y-padding)] px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)] w-full border-b border-stone-100 hover:bg-stone-50 transition-all duration-150"
                     >
-                      {label}
-                      <IoIosArrowForward />
+                      <span className="text-sm tracking-wider">{label}</span>
+                      <IoIosArrowForward className="text-stone-400 text-sm" />
                     </Link>
                   ))}
                 </ul>
