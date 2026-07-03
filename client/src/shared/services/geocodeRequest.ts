@@ -1,7 +1,6 @@
-import axios from "axios";
-
+import api from "../../axios";
 export const geocode = async (place: string) => {
-  const res = await axios.get(`https://nominatim.openstreetmap.org/search`, {
+  const res = await api.get(`/api/osm/search`, {
     params: {
       q: place,
       format: "json",

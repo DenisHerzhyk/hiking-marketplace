@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../../../axios.ts";
 import WishlistItemInterface from "../../saved_item/interface/SavedItemInterface";
 
 import toast from "react-hot-toast";
@@ -12,9 +12,9 @@ export const handleMoveToWishlist = async (
   onDelete: (id: number) => void,
   onWishlistAdd: (item: WishlistItemInterface) => void,
 ) => {
-  await axios
+  await api
     .post(
-      `http://localhost:4996/api/cart/movewishlist/${id}`,
+      `/api/cart/movewishlist/${id}`,
       { productId, size, color, availableQuantity, orderQuantity },
       {
         withCredentials: true,

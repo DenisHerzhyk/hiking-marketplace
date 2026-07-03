@@ -10,7 +10,7 @@ import ProductInterface from "../../../shared/components/product-card/interface/
 import { IoArrowForwardOutline } from "react-icons/io5";
 import CardInterface from "../components/card/interface/CardInterface";
 import { Trail } from "../../Trails/interfaces/TrailInterface.js";
-import axios from "axios";
+import api from "../../../axios.ts";
 import TrailCard from "../../Trails/components/TrailCard.js";
 import TrailCardSkeleton from "../../../shared/loading/TrailCardSkeleton.js";
 import CardSkeleton from "../../../shared/loading/CardSkeleton.js";
@@ -59,8 +59,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/products")
+    api
+      .get("/api/products")
       .then((res) => setProducts(res.data.data))
       .catch((err) => {
         toast.error(err);
@@ -415,12 +415,18 @@ const Home = () => {
             <div className="hiking-selection flex flex-row overflow-x-auto justify-start gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
               {trailsLoading
                 ? Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="min-w-[280px] w-[280px] flex-shrink-0">
+                    <div
+                      key={i}
+                      className="min-w-[280px] w-[280px] flex-shrink-0"
+                    >
                       <TrailCardSkeleton />
                     </div>
                   ))
                 : trails.map((trail) => (
-                    <div key={trail.id} className="min-w-[280px] w-[280px] flex-shrink-0">
+                    <div
+                      key={trail.id}
+                      className="min-w-[280px] w-[280px] flex-shrink-0"
+                    >
                       <TrailCard trail={trail} />
                     </div>
                   ))}

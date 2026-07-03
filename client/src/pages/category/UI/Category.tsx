@@ -8,7 +8,7 @@ import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkel
 import { IoOptionsOutline } from "react-icons/io5";
 type Section = "product" | "sizes" | "price" | "shoes";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../../axios.ts";
 import toast from "react-hot-toast";
 
 type CategoryType = "all" | "men" | "women" | "shoes" | "deals";
@@ -57,8 +57,8 @@ const Category = () => {
   }, [type]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/products")
+    api
+      .get("/api/products")
       .then((res) => {
         setProducts(res.data.data);
       })
@@ -540,14 +540,26 @@ const Category = () => {
                       <div className="flex flex-col gap-[5px] mt-[10px]">
                         <div className="flex flex-row items-center gap-[10px]">
                           <label className="flex items-center gap-[10px] cursor-pointer text-xs">
-                            <input type="radio" name="mobileProductGender" value="men" className="peer hidden" onChange={() => setSelectedGender("men")} />
+                            <input
+                              type="radio"
+                              name="mobileProductGender"
+                              value="men"
+                              className="peer hidden"
+                              onChange={() => setSelectedGender("men")}
+                            />
                             <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                             For Men
                           </label>
                         </div>
                         <div className="flex flex-row items-center gap-[10px]">
                           <label className="flex items-center gap-[10px] cursor-pointer text-xs">
-                            <input type="radio" name="mobileProductGender" value="women" className="peer hidden" onChange={() => setSelectedGender("women")} />
+                            <input
+                              type="radio"
+                              name="mobileProductGender"
+                              value="women"
+                              className="peer hidden"
+                              onChange={() => setSelectedGender("women")}
+                            />
                             <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                             For Women
                           </label>
@@ -556,11 +568,23 @@ const Category = () => {
                     </div>
                   )}
                   <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
-                    <p className="font-medium text-sm text-nowrap mb-[10px]">PRODUCT TYPE</p>
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">
+                      PRODUCT TYPE
+                    </p>
                     {clothesTypeByCategory.map((cat) => (
-                      <div className="flex flex-row items-center gap-[10px]" key={cat}>
+                      <div
+                        className="flex flex-row items-center gap-[10px]"
+                        key={cat}
+                      >
                         <label className="flex items-center gap-[10px] cursor-pointer text-xs">
-                          <input type="checkbox" name="mobileProductType" value={cat} checked={selectedTypes.includes(cat)} className="peer hidden" onChange={() => handleTypeChange(cat)} />
+                          <input
+                            type="checkbox"
+                            name="mobileProductType"
+                            value={cat}
+                            checked={selectedTypes.includes(cat)}
+                            className="peer hidden"
+                            onChange={() => handleTypeChange(cat)}
+                          />
                           <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                           {cat}
                         </label>
@@ -568,11 +592,20 @@ const Category = () => {
                     ))}
                   </div>
                   <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
-                    <p className="font-medium text-sm text-nowrap mb-[10px]">SIZES</p>
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">
+                      SIZES
+                    </p>
                     {visibleSizes.map((value) => (
                       <div key={value}>
                         <label className="flex items-center gap-[10px] cursor-pointer text-xs">
-                          <input type="checkbox" name="mobileSize" value={value} checked={selectedSizes.includes(value)} onChange={() => handleSizeChange(value)} className="peer hidden" />
+                          <input
+                            type="checkbox"
+                            name="mobileSize"
+                            value={value}
+                            checked={selectedSizes.includes(value)}
+                            onChange={() => handleSizeChange(value)}
+                            className="peer hidden"
+                          />
                           <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
                           {value}
                         </label>
@@ -580,13 +613,32 @@ const Category = () => {
                     ))}
                   </div>
                   <div className="w-full border-t border-[var(--primary-border-color)] pt-[10px]">
-                    <p className="font-medium text-sm text-nowrap mb-[10px]">PRICE</p>
+                    <p className="font-medium text-sm text-nowrap mb-[10px]">
+                      PRICE
+                    </p>
                     {priceByCategory.map((priceOpt) => (
-                      <div className="flex flex-row items-center gap-[10px]" key={priceOpt}>
+                      <div
+                        className="flex flex-row items-center gap-[10px]"
+                        key={priceOpt}
+                      >
                         <label className="flex items-center gap-[10px] cursor-pointer text-xs">
-                          <input type="radio" name="mobilePrice" value={priceOpt} onChange={() => setSelectedPrice(priceOpt)} className="peer hidden" />
+                          <input
+                            type="radio"
+                            name="mobilePrice"
+                            value={priceOpt}
+                            onChange={() => setSelectedPrice(priceOpt)}
+                            className="peer hidden"
+                          />
                           <span className="w-[15px] h-[15px] border border-stone-500 rounded-sm flex-shrink-0 peer-checked:bg-stone-600" />
-                          {priceOpt === "under50" ? "under 50€" : priceOpt === "50to100" ? "50€ - 100€" : priceOpt === "100to200" ? "100€ - 200€" : priceOpt === "over200" ? "over 200€" : "all"}
+                          {priceOpt === "under50"
+                            ? "under 50€"
+                            : priceOpt === "50to100"
+                              ? "50€ - 100€"
+                              : priceOpt === "100to200"
+                                ? "100€ - 200€"
+                                : priceOpt === "over200"
+                                  ? "over 200€"
+                                  : "all"}
                         </label>
                       </div>
                     ))}
@@ -596,7 +648,12 @@ const Category = () => {
             </>
           )}
           <div className="products flex-1 w-full overflow-x-hidden">
-            <div className="grid justify-center gap-[30px]" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 320px))" }}>
+            <div
+              className="grid justify-center gap-[30px]"
+              style={{
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 320px))",
+              }}
+            >
               {productLoading
                 ? Array.from({ length: 4 }).map((_, i) => (
                     <MainProductCardSkeleton key={i} />

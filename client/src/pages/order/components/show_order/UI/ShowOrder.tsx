@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../../../axios.ts";
 import { Link } from "react-router-dom";
 import ShowOrderInterface from "../../interface/ShowOrderInterface";
 import { colorNames } from "../../../../cart/components/cart_item/components/color";
@@ -15,9 +15,9 @@ const ShowOrder = () => {
 
     console.log(paymentIntentId);
     if (paymentIntentId) {
-      axios
+      api
         .post(
-          "http://localhost:4996/api/orders/confirm",
+          "/api/orders/confirm",
           { paymentIntentId },
           { withCredentials: true },
         )

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { Trail } from "../interfaces/TrailInterface";
 import TrailMap from "../map/TrailMap";
 import { LatLngTuple } from "leaflet";
@@ -74,7 +74,7 @@ const TrailDetails = () => {
     const step = Math.max(1, Math.floor(coords.length / maxPoints));
     const sample = coords.filter((_, i) => i % step === 0).slice(0, maxPoints);
 
-    const res = await axios.get("https://api.open-meteo.com/v1/elevation", {
+    const res = await api.get("/api/open-meteo/elevation", {
       params: {
         latitude: sample.map((c) => c.lat).join(","),
         longitude: sample.map((c) => c.lon).join(","),
@@ -94,7 +94,7 @@ const TrailDetails = () => {
   const fetchWeather = async () => {
     if (!date || !trail) return null;
     try {
-      const res = await axios.get("https://api.open-meteo.com/v1/forecast", {
+      const res = await api.get("/api/open-meteo/forecast", {
         params: {
           latitude: 47.37,
           longitude: 8.54,
@@ -107,16 +107,7 @@ const TrailDetails = () => {
       });
       return res.data.daily;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        toast.error(
-          err.response?.data?.reason ??
-            err.message ??
-            "Problem with fetching the weather.",
-        );
-      } else {
-        toast.error("Problem with fetching the weather.");
-      }
-
+      toast.error("Problem with fetching the weather.");
       console.error(err);
       return null;
     }
@@ -138,8 +129,8 @@ const TrailDetails = () => {
         code: w.weathercode[0],
       };
 
-      const res = await axios.post(
-        "http://localhost:4996/api/ai/suggest",
+      const res = await api.post(
+        "/api/ai/suggest",
         {
           trailName: trail.tags.name,
           difficulty,
@@ -162,23 +153,12 @@ const TrailDetails = () => {
     endLat: number,
     endLon: number,
   ) => {
-    const res = await axios.post(
-      "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
-
-      {
-        coordinates: [
-          [lon, lat],
-          [endLon, endLat],
-        ],
-      },
-      {
-        headers: {
-          Authorization: import.meta.env.VITE_ORS_API_KEY,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
+    const res = await api.post("/api/ors/hiking-route", {
+      coordinates: [
+        [lon, lat],
+        [endLon, endLat],
+      ],
+    });
     return res.data;
   };
 

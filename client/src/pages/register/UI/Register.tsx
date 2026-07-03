@@ -3,7 +3,7 @@ import { IoLogoAppleAr } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import IUser from "../interface/RegisterInterface.ts";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import InputField from "../../../shared/components/UI/InputField";
@@ -61,8 +61,8 @@ const Register = () => {
 
     if (!validate()) return;
 
-    const response = await axios
-      .post("http://localhost:4996/api/user/register", {
+    const response = await api
+      .post("/api/user/register", {
         email: user.email,
         password: user.password,
         confirmPassword: user.confirmPassword,

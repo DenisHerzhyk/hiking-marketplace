@@ -1,5 +1,4 @@
-import avatar from "/images/avatar.webp";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
@@ -44,8 +43,8 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/user/get_user", { withCredentials: true })
+    api
+      .get("/api/user/get_user", { withCredentials: true })
       .then((res) => {
         const user = res.data;
         setForm((prev) => ({
@@ -95,9 +94,9 @@ const Profile = () => {
     setErrors({});
     if (!validate()) return;
 
-    await axios
+    await api
       .put(
-        "http://localhost:4996/api/user/change",
+        "/api/user/change",
         {
           fullName: form.fullName,
           email: form.email,
@@ -123,12 +122,8 @@ const Profile = () => {
 
   const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    await axios
-      .post(
-        "http://localhost:4996/api/user/logout",
-        {},
-        { withCredentials: true },
-      )
+    await api
+      .post("/api/user/logout", {}, { withCredentials: true })
       .then(() => {
         setAuthLogin(false);
         setEmail("");

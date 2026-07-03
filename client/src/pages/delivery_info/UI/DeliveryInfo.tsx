@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { CheckoutSteps } from "../../../shared/checkout_steps/CheckoutSteps.tsx";
 import CartItemInterface from "../../cart/components/cart_item/interface/CartItemInterface.tsx";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { colorNames } from "../../cart/components/cart_item/components/color.ts";
 import { handleCheckoutRequest } from "../../../shared/checkout/handlers/handleCheckout.ts";
 import { useCheckout } from "../../../shared/checkout/context/CheckoutContext.tsx";
@@ -67,8 +67,8 @@ const DeliveryInfo = () => {
   const orderTotal = (subtotal + shipping).toFixed(2);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/delivery/get_default_address", {
+    api
+      .get("/api/delivery/get_default_address", {
         withCredentials: true,
       })
       .then((res) => {
@@ -90,8 +90,8 @@ const DeliveryInfo = () => {
       });
   }, []);
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/cart", { withCredentials: true })
+    api
+      .get("/api/cart", { withCredentials: true })
       .then((res) => {
         setCartItems(res.data.data);
       })

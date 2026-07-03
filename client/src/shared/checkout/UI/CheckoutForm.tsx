@@ -3,7 +3,7 @@ import {
   useStripe,
   PaymentElement,
 } from "@stripe/react-stripe-js";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { useCheckout } from "../context/CheckoutContext";
 
 const CheckoutForm = () => {
@@ -24,7 +24,7 @@ const CheckoutForm = () => {
     await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5173/order",
+        return_url: `${import.meta.env.VITE_APP_URL}/order`,
       },
     });
   };

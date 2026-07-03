@@ -3,7 +3,7 @@ import { IoLogoAppleAr } from "react-icons/io5";
 import { Link, useSearchParams } from "react-router-dom";
 import { ILoginUser } from "../interface/LoginInterface.ts";
 import { IoIosCloseCircle } from "react-icons/io";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext.tsx";
 import toast from "react-hot-toast";
@@ -34,7 +34,6 @@ const Login = () => {
       ...user,
       [name]: value,
     });
-    // Clear error for this field as user types
     if (errors[name]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -62,8 +61,8 @@ const Login = () => {
     e.preventDefault();
     setErrors({});
 
-    await axios
-      .get("http://localhost:4996/api/user/verify-email", {
+    await api
+      .get("/api/user/verify-email", {
         withCredentials: true,
       })
       .then((res) => {})
@@ -71,9 +70,9 @@ const Login = () => {
 
     if (!validate()) return;
 
-    await axios
+    await api
       .post(
-        "http://localhost:4996/api/user/login",
+        "/api/user/login",
         {
           email: user.email,
           password: user.password,
@@ -91,7 +90,6 @@ const Login = () => {
         if (err.response && err.response.data?.errors) {
           setErrors(err.response.data.errors);
         } else if (err.response?.data?.message) {
-          // General error message, map to a a general field or just toast it
           setErrors({ general: err.response.data.message });
         } else if (err.request) {
           setErrors({ general: "Server not responding" });

@@ -1,7 +1,7 @@
-import axios from "axios";
+import api from "../../axios";
 
 export const getTrailPhotos = async (trailName: string) => {
-  const res = await axios.get(`https://api.pexels.com/v1/search`, {
+  const res = await api.get(`/api/pexels/search`, {
     params: {
       query: `${trailName} hiking`,
       per_page: 5,

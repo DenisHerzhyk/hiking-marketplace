@@ -4,10 +4,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { IoLogoAppleAr } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
+import api from "../../../axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 const SOCIAL_LINKS = [
   {
@@ -48,7 +48,7 @@ const Footer = () => {
     }
 
     try {
-      await axios.post("http://localhost:4996/api/newsletter/subscribe", {
+      await api.post("/api/newsletter/subscribe", {
         email,
       });
       toast.success("Thank you for subscribing!");

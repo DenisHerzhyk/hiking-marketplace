@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../axios";
 
 let orsQueue = Promise.resolve();
 
@@ -22,8 +22,8 @@ export const getORSDistance = async (
 ): Promise<string> => {
   return orsRateLimited(async () => {
     try {
-      const res = await axios.post(
-        "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
+      const res = await api.post(
+        "/api/ors/hiking-route",
         {
           coordinates: [
             [startLon, startLat],

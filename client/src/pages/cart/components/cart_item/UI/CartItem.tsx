@@ -5,7 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { handleCartItemDelete } from "../handlers/handleCartItemRemove.ts";
 import { handleMoveToWishlist } from "../handlers/handleMoveToWishlist.ts";
 import { colorNames } from "../components/color.ts";
-import axios from "axios";
+import api from "../../../../../axios.ts";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
@@ -30,8 +30,8 @@ const CartItem: React.FC<CartItemInterface> = ({
       return;
     }
     try {
-      await axios.post(
-        `http://localhost:4996/api/cart/update/${id}`,
+      await api.post(
+        `/api/cart/update/${id}`,
         { availableQuantity, orderQuantity: newQuantity },
         {
           withCredentials: true,

@@ -1,14 +1,13 @@
-import axios from "axios";
-
+import api from "../../../../../axios.ts";
 export const handleCartItemAdd = async (
   id: Number,
   availableQuantity: Number,
   size: string,
   color: string,
 ) => {
-  await axios
+  await api
     .post(
-      `http://localhost:4996/api/cart/add/${id}`,
+      `/api/cart/add/${id}`,
       {
         size,
         color,

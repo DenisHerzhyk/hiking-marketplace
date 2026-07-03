@@ -1,12 +1,12 @@
-import axios from "axios";
+import api from "../../../../../axios.ts";
 
 export const handleWishlistRemove = async (
   productId: number,
   id: number,
   onDelete: (id: number) => void,
 ) => {
-  await axios
-    .delete(`http://localhost:4996/api/wishlist/remove/${productId}`, {
+  await api
+    .delete(`/api/wishlist/remove/${productId}`, {
       withCredentials: true,
     })
     .then(() => {

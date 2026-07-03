@@ -5,7 +5,6 @@ import ProductCard from "../../../../../shared/components/product-card/UI/Produc
 const Catalog = ({ title, p, cards }: CatalogInterface) => {
   return (
     <>
-      {/* TODO: adapt for mobile and tablet using sliders */}
       <section className="catalog">
         <h1 className="catalog__title text-2xl mobile:text-[30px] tablet:text-3xl laptop:text-4xl font-extrabold">
           {title}

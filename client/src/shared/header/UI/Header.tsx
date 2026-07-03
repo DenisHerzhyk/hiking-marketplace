@@ -8,9 +8,9 @@ import { IoIosSearch } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import api from "../../../axios";
 import { AuthContext } from "../../../pages/login/context/authContext";
 import ProductInterface from "../../components/product-card/interface/ProductInterface";
-import axios from "axios";
 
 const NAV_LINKS = [
   { to: "/category/all", label: "NEW" },
@@ -48,7 +48,7 @@ const Header = () => {
       setProducts([]);
       return;
     }
-    axios.get("http://localhost:4996/api/products").then((res) => {
+    api.get("/api/products").then((res) => {
       setProducts(
         res.data.data.filter((item: ProductInterface) =>
           item.title.toLowerCase().includes(searchbarValue.toLowerCase()),
@@ -78,7 +78,8 @@ const Header = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutsideMenu);
-    return () => document.removeEventListener("mousedown", handleClickOutsideMenu);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutsideMenu);
   }, [isOpenMenu]);
 
   useEffect(() => {
@@ -117,7 +118,10 @@ const Header = () => {
           `}
         >
           <section className="logo flex flex-1 flex-row items-center gap-[15px]">
-            <div ref={menuContainerRef} className="block laptop:hidden focus:outline-none">
+            <div
+              ref={menuContainerRef}
+              className="block laptop:hidden focus:outline-none"
+            >
               <IoMenuOutline
                 className="text-2xl cursor-pointer relative z-[11]"
                 onClick={() => setIsOpenMenu((prev) => !prev)}

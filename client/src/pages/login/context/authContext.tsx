@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import axios from "axios";
+import api from "../../../axios.ts";
 import IauthContext from "../interface/authContextInterface.ts";
 import { Navigate } from "react-router-dom";
 
@@ -14,8 +14,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const ctrl = new AbortController();
 
   const profileReq = async () => {
-    const data = await axios
-      .get("http://localhost:4996/api/user/profile", {
+    const data = await api
+      .get("/api/user/profile", {
         withCredentials: true,
         signal: ctrl.signal,
       })

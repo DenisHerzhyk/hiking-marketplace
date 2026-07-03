@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../../../axios.ts";
 
 export const handleWishlistAdd = async (
   id: number,
@@ -6,9 +6,9 @@ export const handleWishlistAdd = async (
   size: string,
   color: string,
 ) => {
-  await axios
+  await api
     .post(
-      `http://localhost:4996/api/wishlist/add/${id}`,
+      `/api/wishlist/add/${id}`,
       {
         size: size,
         color: color,

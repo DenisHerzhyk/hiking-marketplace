@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import CartItem from "../components/cart_item/UI/CartItem.tsx";
 import WishlistItem from "../components/saved_item/UI/SavedItem.tsx";
-import axios from "axios";
+import api from "../../../axios.ts";
 import CartItemInterface from "../components/cart_item/interface/CartItemInterface.ts";
 import WishlistItemInterface from "../components/saved_item/interface/SavedItemInterface.tsx";
 import { AuthContext } from "../../login/context/authContext.tsx";
@@ -69,8 +69,8 @@ const Cart = () => {
   const { authLogin } = ctxt;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4996/api/cart", { withCredentials: true })
+    api
+      .get("/api/cart", { withCredentials: true })
       .then((res) => {
         setCartItems(res.data.data);
         setUserId(res.data.userId);
@@ -80,8 +80,8 @@ const Cart = () => {
       })
       .finally(() => setCartItemLoading(false));
 
-    axios
-      .get("http://localhost:4996/api/wishlist", { withCredentials: true })
+    api
+      .get("/api/wishlist", { withCredentials: true })
       .then((res) => {
         setWishListItems(res.data.data);
         setUserId(res.data.userId);

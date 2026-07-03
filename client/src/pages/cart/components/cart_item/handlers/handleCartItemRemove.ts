@@ -1,12 +1,12 @@
-import axios from "axios";
+import api from "../../../../../axios.ts";
 
 export const handleCartItemDelete = async (
   productId: number,
   id: number,
   onDelete: (id: number) => void,
 ) => {
-  await axios
-    .delete(`http://localhost:4996/api/cart/remove/${productId}`, {
+  await api
+    .delete(`/api/cart/remove/${productId}`, {
       withCredentials: true,
     })
     .then(() => {

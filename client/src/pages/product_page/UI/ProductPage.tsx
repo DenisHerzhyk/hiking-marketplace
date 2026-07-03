@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Benefits from "../../../shared/benefits/UI/Benefits";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
-import axios from "axios";
+import api from "../../../axios.ts";
 import { useParams } from "react-router-dom";
 import ProductInterface from "../../../shared/components/product-card/interface/ProductInterface.ts";
 import { Link } from "react-router-dom";
@@ -28,8 +28,8 @@ const ProductPage = () => {
     delivery_return: false,
   });
   useEffect(() => {
-    axios
-      .get(`http://localhost:4996/api/products/${id}`)
+    api
+      .get(`/api/products/${id}`)
       .then((res) => {
         const data = res.data.data;
         setProduct({

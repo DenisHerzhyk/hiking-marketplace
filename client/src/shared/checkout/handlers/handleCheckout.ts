@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../axios.ts";
 import { NavigateFunction } from "react-router-dom";
 import toast from "react-hot-toast";
 import CartItemInterface from "../../../pages/cart/components/cart_item/interface/CartItemInterface";
@@ -24,9 +24,9 @@ export const handleCheckoutRequest = async (
     return;
   }
 
-  await axios
+  await api
     .post(
-      `http://localhost:4996/api/checkout/add`,
+      `/api/checkout/add`,
       { total: orderTotal, items: cartItems, form: form },
       { withCredentials: true },
     )

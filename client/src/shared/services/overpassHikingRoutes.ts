@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../axios";
 
 const BACKOFF_DELAYS = [2000, 5000, 10000];
 
@@ -17,8 +17,8 @@ export const getHikingRoutes = async (
     relation["type"="route"]["route"="hiking"](around:50000,${lat},${lon});
     ${outMode} ${slice};
   `;
-    const res = await axios.post(
-      "https://overpass-api.de/api/interpreter",
+    const res = await api.post(
+      `/api/overpass/interpreter`,
       `data=${encodeURIComponent(query)}`,
     );
 
@@ -27,9 +27,10 @@ export const getHikingRoutes = async (
       throw new Error("Unexpected response from Overpass");
     return elements.slice(0, slice);
   } catch (e) {
-    const isRateLimited = axios.isAxiosError(e) && e.response?.status === 429;
+    const isRateLimited = (e as any)?.response?.status === 429;
     const attemptIndex = BACKOFF_DELAYS.length - retries;
-    const delay = BACKOFF_DELAYS[attemptIndex] ?? BACKOFF_DELAYS[BACKOFF_DELAYS.length - 1];
+    const delay =
+      BACKOFF_DELAYS[attemptIndex] ?? BACKOFF_DELAYS[BACKOFF_DELAYS.length - 1];
 
     if (retries > 0) {
       if (isRateLimited) {

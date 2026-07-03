@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../../../../axios.ts";
 import CartItemInterface from "../../cart_item/interface/CartItemInterface";
 import toast from "react-hot-toast";
 export const handleMoveToCart = async (
@@ -11,9 +11,9 @@ export const handleMoveToCart = async (
   onDelete: (id: number) => void,
   onCartAdd: (item: CartItemInterface) => void,
 ) => {
-  await axios
+  await api
     .post(
-      `http://localhost:4996/api/wishlist/movecart/${id}`,
+      `/api/wishlist/movecart/${id}`,
       { productId, size, color, availableQuantity, orderQuantity },
       {
         withCredentials: true,

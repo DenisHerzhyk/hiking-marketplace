@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import OrderItem from "../components/order_item/UI/OrderItem";
 import ShowOrderInterface from "../components/interface/ShowOrderInterface";
-import axios from "axios";
+import api from "../../../axios.ts";
 
 const Orders = () => {
   const [orders, setOrders] = useState<ShowOrderInterface[] | null>(null);
 
   useEffect(() => {
     const fetchOrders = () => {
-      axios
-        .get("http://localhost:4996/api/orders", { withCredentials: true })
+      api
+        .get("/api/orders", { withCredentials: true })
         .then((res) => {
           console.log(res.data.orders);
           setOrders(res.data.orders);

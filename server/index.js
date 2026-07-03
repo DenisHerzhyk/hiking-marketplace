@@ -12,6 +12,9 @@ import checkoutRouter from "./routes/checkoutRoutes.js";
 import ordersRouter from "./routes/ordersRoutes.js";
 import deliveryRouter from "./routes/deliveryRoutes.js";
 import aiRouter from "./routes/aiRouters.js";
+import openMeteoRouter from "./routes/openMeteoRoutes.js";
+import orsRouter from "./routes/orsRoutes.js";
+import openStreetMapRouter from "./routes/openStreetMapRoutes.js";
 import { connectDB, disconnectDB } from "./config/db.js";
 import cookieParser from "cookie-parser";
 config();
@@ -41,6 +44,9 @@ app.use("/api/wishlist", wishlistRouter);
 app.use("/api/checkout", checkoutRouter);
 app.use("/api/orders", ordersRouter);
 app.use("/api/delivery", deliveryRouter);
+app.use("/api/open-meteo", openMeteoRouter);
+app.use("/api/ors", orsRouter);
+app.use("/api/osm", openStreetMapRouter);
 //ai
 app.use("/api/ai", aiRouter);
 //server listening
