@@ -81,12 +81,14 @@ const Trails = () => {
         ))}
       </div>
       {status && <p className="text-sm text-stone-400 mb-4">{status}</p>}
-      <div className="grid justify-center gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 320px))" }}>
+      <div className="grid gap-[26px] grid-cols-1 mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-5">
         {trailsLoading
-          ? Array.from({ length: 5 }).map((_, i) => (
+          ? Array.from({ length: 10 }).map((_, i) => (
               <TrailCardSkeleton key={i} />
             ))
-          : trails.map((trail) => <TrailCard key={trail.id} trail={trail} />)}
+          : trails.map((trail) => (
+              <TrailCard key={trail.id} trail={trail} />
+            ))}
       </div>
     </div>
   );

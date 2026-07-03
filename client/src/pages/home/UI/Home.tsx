@@ -415,10 +415,14 @@ const Home = () => {
             <div className="hiking-selection flex flex-row overflow-x-auto justify-start gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
               {trailsLoading
                 ? Array.from({ length: 4 }).map((_, i) => (
-                    <TrailCardSkeleton key={i} />
+                    <div key={i} className="min-w-[280px] w-[280px] flex-shrink-0">
+                      <TrailCardSkeleton />
+                    </div>
                   ))
                 : trails.map((trail) => (
-                    <TrailCard trail={trail} key={trail.id} />
+                    <div key={trail.id} className="min-w-[280px] w-[280px] flex-shrink-0">
+                      <TrailCard trail={trail} />
+                    </div>
                   ))}
               <Link
                 to="/trails"

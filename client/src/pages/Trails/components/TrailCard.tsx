@@ -1,6 +1,5 @@
 import { Trail } from "../interfaces/TrailInterface";
 import { Link } from "react-router-dom";
-import temp_hike_card from "/images/temp-hike-suggestion/2.webp";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const difficultyColor: Record<string, string> = {
@@ -28,15 +27,15 @@ const TrailCard = ({ trail }: { trail: Trail }) => {
   const colorClass = difficultyColor[difficulty] ?? "text-gray-600 bg-gray-100";
 
   return (
-    <div className="Trail flex flex-col w-[280px] rounded-[10px] shadow-lg overflow-hidden bg-white flex-shrink-0">
+    <div className="Trail flex flex-col rounded-[10px] shadow-lg overflow-hidden bg-white">
       <div className="w-full h-[200px] bg-gray-200 relative flex items-center justify-center">
         <Link to={`/trails/${trail.id}`} className="w-full" state={{ trail }}>
           <img
-            src={trail?.tags?.photos?.[0] || temp_hike_card}
+            src={trail?.tags?.photos?.[0]}
             className="w-full h-[190px] object-cover"
             alt={name}
             onError={(e) => {
-              (e.target as HTMLImageElement).src = temp_hike_card;
+              console.log(e.target);
             }}
           />
         </Link>

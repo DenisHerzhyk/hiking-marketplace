@@ -2,7 +2,7 @@ import Skeleton from "react-loading-skeleton";
 
 const TrailCardSkeleton = () => {
   return (
-    <div className="flex flex-col w-[280px] rounded-[10px] shadow-lg overflow-hidden bg-white flex-shrink-0">
+    <div className="flex flex-col rounded-[10px] shadow-lg overflow-hidden bg-white">
       <Skeleton height={190} />
 
       <div className="p-3">
