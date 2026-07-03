@@ -17,8 +17,8 @@ import {
 import { barebonesBoxedTailwindConfig } from "./theme/theme";
 import { BarebonesFonts } from "./theme/theme-fonts";
 
-const baseUrl = import.meta.env.VERCEL_URL
-  ? `https://${import.meta.env.VERCEL_URL}`
+const baseUrl = import.meta.env.VITE_VERCEL_URL
+  ? `https://${import.meta.env.VITE_VERCEL_URL}`
   : "";
 
 interface ConfirmEmailProps {

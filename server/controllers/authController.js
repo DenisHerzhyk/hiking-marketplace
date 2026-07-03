@@ -60,7 +60,7 @@ export const register = async (req, res) => {
   <div style="font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 32px; border: 1px solid #eee; border-radius: 8px;">
     <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Verify your email</h2>
     <p style="color: #555; font-size: 15px; margin-bottom: 24px;">Thanks for signing up! Click the button below to verify your email address and activate your account.</p>
-    <a href="${process.env.RENDER_URL}/api/user/verify-email?userId=${createUser.id}" 
+    <a href="${process.env.VITE_RENDER_URL}/api/user/verify-email?userId=${createUser.id}" 
        style="display: inline-block; background: #000; color: #fff; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px 32px; border-radius: 4px;">
       Verify Email
     </a>
@@ -107,7 +107,7 @@ export const verifyEmail = async (req, res) => {
       },
     });
 
-    return res.redirect(`${process.env.VERCEL_URL}/login?verified=true`);
+    return res.redirect(`${process.env.VITE_VERCEL_URL}/login?verified=true`);
   } catch (err) {
     return res
       .status(500)
