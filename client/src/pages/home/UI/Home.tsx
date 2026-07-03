@@ -361,7 +361,11 @@ const Home = () => {
             {searchTrails.length > 0 && (
               <ul className="absolute top-full left-0 right-0 bg-white rounded-b-xl shadow-lg border border-gray-200 mt-1 max-h-[280px] overflow-y-auto z-10">
                 {searchTrails.map((trail, i) => (
-                  <li key={trail.id} style={{ animationDelay: `${i * 50}ms` }} className="animate-slide-in-right">
+                  <li
+                    key={trail.id}
+                    style={{ animationDelay: `${i * 50}ms` }}
+                    className="animate-slide-in-right"
+                  >
                     <Link
                       to={`/trails/${trail.id}`}
                       state={{ trail }}
@@ -407,21 +411,23 @@ const Home = () => {
           <h2 className="text-[30px] mobile:text-[32px] font-semibold text-center">
             Local favorites near Zurich
           </h2>
-          <div className="hiking-selection flex flex-row overflow-x-auto justify-start gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
-            {trailsLoading
-              ? Array.from({ length: 4 }).map((_, i) => (
-                  <TrailCardSkeleton key={i} />
-                ))
-              : trails.map((trail) => (
-                  <TrailCard trail={trail} key={trail.id} />
-                ))}
-            <Link
-              to="/trails"
-              className="group flex flex-row min-w-[250px] max-w-[300px] overflow-hidden items-center rounded-[10px] gap-[10px] bg-white border border-stone-300 text-stone-700 justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
-            >
-              <p className="font-semibold tracking-wide">Show more</p>
-              <IoArrowForwardOutline className="text-[22px] transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+          <div className="flex justify-center w-full">
+            <div className="hiking-selection flex flex-row overflow-x-auto justify-start gap-[23px] mt-[21px] scroll-smooth snap-x snap-mandatory">
+              {trailsLoading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <TrailCardSkeleton key={i} />
+                  ))
+                : trails.map((trail) => (
+                    <TrailCard trail={trail} key={trail.id} />
+                  ))}
+              <Link
+                to="/trails"
+                className="group flex flex-row min-w-[250px] max-w-[300px] overflow-hidden items-center rounded-[10px] gap-[10px] bg-white border border-stone-300 text-stone-700 justify-center transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
+              >
+                <p className="font-semibold tracking-wide">Show more</p>
+                <IoArrowForwardOutline className="text-[22px] transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </section>
         <Benefits />
