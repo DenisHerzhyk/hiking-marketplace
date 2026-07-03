@@ -15,6 +15,7 @@ import aiRouter from "./routes/aiRouters.js";
 import openMeteoRouter from "./routes/openMeteoRoutes.js";
 import orsRouter from "./routes/orsRoutes.js";
 import openStreetMapRouter from "./routes/openStreetMapRoutes.js";
+import overpassRouter from "./routes/overpassRouter.js";
 import pexelsRouter from "./routes/pexelsRoutes.js";
 import { connectDB, disconnectDB } from "./config/db.js";
 import cookieParser from "cookie-parser";
