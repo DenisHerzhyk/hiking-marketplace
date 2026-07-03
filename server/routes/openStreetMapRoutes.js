@@ -1,5 +1,6 @@
 import { Router } from "express";
-import search from "../controllers/openStreetMapController";
+import { search } from "../controllers/openStreetMapController.js";
+
 const router = Router();
 
 router.get("/search", search);

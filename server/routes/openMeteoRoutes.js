@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   elevationOpenMeteo,
   forecastOpenMeteo,
-} from "../controllers/openMeteoController";
+} from "../controllers/openMeteoController.js";
 
 const router = Router();
 

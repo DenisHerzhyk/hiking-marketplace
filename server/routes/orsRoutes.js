@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { orsHikingRoute } from "../controllers/orsController";
+import { orsHikingRoute } from "../controllers/orsController.js";
 
 const router = Router();
 
