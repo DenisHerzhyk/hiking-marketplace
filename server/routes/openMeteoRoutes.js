@@ -9,4 +9,4 @@ const router = Router();
 router.get("/elevation", elevationOpenMeteo);
 router.get("/forecast", forecastOpenMeteo);
 
-export const router;
+export default router;

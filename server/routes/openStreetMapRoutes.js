@@ -4,4 +4,4 @@ const router = Router();
 
 router.get("/search", search);
 
-export const router;
+export default router;

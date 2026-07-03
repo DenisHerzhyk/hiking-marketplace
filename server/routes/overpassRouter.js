@@ -4,4 +4,4 @@ const router = Router();
 
 router.post("/interpreter", overpassQuery);
 
-export const router;
+export default router;

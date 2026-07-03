@@ -5,4 +5,4 @@ const router = Router();
 
 router.post("/hiking-route", orsHikingRoute);
 
-export const router;
+export default router;

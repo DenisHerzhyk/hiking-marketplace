@@ -4,4 +4,4 @@ const router = Router();
 
 router.post("/search", pexelsQuery);
 
-export const router;
+export default router;
