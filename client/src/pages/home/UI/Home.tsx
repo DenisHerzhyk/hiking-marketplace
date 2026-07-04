@@ -80,14 +80,14 @@ const Home = () => {
     const fetchTrails = async () => {
       try {
         const { lat, lon } = await geocode("Zurich, Switzerland");
-        const routes = await getHikingRoutes(lat, lon, 7);
+        const routes = await getHikingRoutes(lat, lon, 4);
         const trails = await trailsSearch({
           routes,
           place: "Zurich, Switzerland",
         });
         setTrails(trails);
       } catch (err) {
-        toast.error(`${err}`);
+        toast.error(`Error during location searching: ${err}`);
       } finally {
         setTrailsLoading(false);
       }
