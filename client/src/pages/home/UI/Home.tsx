@@ -87,7 +87,7 @@ const Home = () => {
         });
         setTrails(trails);
       } catch (err) {
-        toast.error(`Error during location searching: ${err}`);
+        toast.error(`${err}`);
       } finally {
         setTrailsLoading(false);
       }
