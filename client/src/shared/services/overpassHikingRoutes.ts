@@ -14,7 +14,7 @@ export const getHikingRoutes = async (
 
     const query = `
     [out:json][timeout:25];
-    relation["type"="route"]["route"="hiking"](around:50000,${lat},${lon});
+    relation["type"="route"]["route"="hiking"](around:100000,${lat},${lon});
     ${outMode} ${slice};
   `;
     const res = await api.post(
