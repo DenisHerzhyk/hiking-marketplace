@@ -7,6 +7,9 @@ export const search = async (req, res) => {
       "https://nominatim.openstreetmap.org/search",
       {
         params: { q, format, limit, featuretype },
+        headers: {
+          "User-Agent": "hiking-ecommerce/1.0 (denis.herzhyk88@gmail.com)",
+        },
       },
     );
 
