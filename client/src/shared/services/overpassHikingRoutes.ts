@@ -27,15 +27,18 @@ export const getHikingRoutes = async (
       throw new Error("Unexpected response from Overpass");
     return elements.slice(0, slice);
   } catch (e) {
-    const isRateLimited = (e as any)?.response?.status === 429;
+    console.log(
+      "Overpass fetch error:",
+      (e as any)?.response?.status,
+      (e as any)?.message,
+    );
+
     const attemptIndex = BACKOFF_DELAYS.length - retries;
     const delay =
       BACKOFF_DELAYS[attemptIndex] ?? BACKOFF_DELAYS[BACKOFF_DELAYS.length - 1];
 
     if (retries > 0) {
-      if (isRateLimited) {
-        await new Promise((resolve) => setTimeout(resolve, delay));
-      }
+      await new Promise((resolve) => setTimeout(resolve, delay));
       return getHikingRoutes(lat, lon, slice, fullGeom, retries - 1);
     }
     throw new Error("Trail search timed out, please try again.");
