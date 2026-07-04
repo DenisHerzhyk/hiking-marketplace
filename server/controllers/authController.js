@@ -68,8 +68,6 @@ export const register = async (req, res) => {
 `,
     });
 
-    console.log("Resend result:", resendResult);
-
     const createCart = await prisma.cart.create({
       data: {
         userId: createUser.id,
@@ -96,6 +94,8 @@ export const register = async (req, res) => {
 
 export const verifyEmail = async (req, res) => {
   try {
+    console.log("Query params:", req.query);
+    console.log("userId:", req.query.userId);
     const { userId } = req.query;
     await prisma.user.update({
       where: {
