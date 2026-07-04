@@ -19,10 +19,6 @@ import MainProductCardSkeleton from "../../../shared/loading/MainProductCardSkel
 import { geocode } from "../../../shared/services/geocodeRequest.js";
 import { getHikingRoutes } from "../../../shared/services/overpassHikingRoutes.js";
 import { trailsSearch } from "../../../shared/services/trailsSearch.js";
-const trail_v =
-  "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video-2.mp4";
-const hiking_signup_v =
-  "https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video.mp4";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
@@ -126,14 +122,18 @@ const Home = () => {
         >
           <div className="content relative text-white w-full h-full flex items-center">
             <video
-              src={trail_v}
               preload="auto"
               autoPlay
               loop
               muted
               playsInline
               className="inset-0 relative h-full w-full object-cover -z-20"
-            />
+            >
+              <source
+                src="https://res.cloudinary.com/dlrft9pjb/video/upload/vc_h264/hiking_video-2.mp4"
+                type="video/mp4"
+              />
+            </video>
             <div className="absolute inset-0 bg-black opacity-30 -z-10"></div>
             <div className="main__content absolute top-1/2 -translate-y-1/2 z-10 flex flex-col px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mobile:px-[var(--tablet-x-padding)]">
               <h1 className="home__title font-extrabold text-2xl leading-tight text-left max-w-full break-words mobile:text-4xl tablet:text-6xl">
@@ -397,14 +397,18 @@ const Home = () => {
             <IoIosArrowForward className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <video
-            src={hiking_signup_v}
             preload="auto"
             autoPlay
             loop
             muted
             playsInline
             className="inset-0 absolute h-full w-screen object-cover -z-20"
-          />
+          >
+            <source
+              src="https://res.cloudinary.com/dlrft9pjb/video/upload/hiking_video.mp4"
+              type="video/mp4"
+            />
+          </video>
           <div className="absolute inset-0 bg-black opacity-20 -z-10"></div>
         </section>
         <section className="hiking-suggestions mt-[50px] flex flex-col justify-center px-[var(--mobile-x-padding)] tablet:px-[var(--laptop-x-padding)] laptop:px-[var(--desktop-x-padding)] animate-fade-in-up">

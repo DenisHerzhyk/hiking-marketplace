@@ -44,8 +44,7 @@ const Category = () => {
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-4.jpg";
   const s_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-2.jpg";
-  const all_video =
-    "https://res.cloudinary.com/dlrft9pjb/video/upload/category_all.mp4";
+
   const sales_img =
     "https://res.cloudinary.com/dlrft9pjb/image/upload/hiking_category-3.png";
 
@@ -194,14 +193,18 @@ const Category = () => {
               />
             ) : (
               <video
-                src={all_video}
-                preload="none"
+                preload="auto"
                 autoPlay
                 loop
                 muted
                 playsInline
                 className="w-full h-full object-cover object-top brightness-90"
-              />
+              >
+                <source
+                  src="https://res.cloudinary.com/dlrft9pjb/video/upload/category_all.mp4"
+                  type="video/mp4"
+                />
+              </video>
             )}
 
             <div className="absolute top-1/2 -translate-y-1/2 left-[var(--mobile-x-padding)] laptop:left-[var(--desktop-x-padding)] tablet:left-[var(--laptop-x-padding)]">
