@@ -127,7 +127,7 @@ const Home = () => {
           <div className="content relative text-white w-full h-full flex items-center">
             <video
               src={trail_v}
-              preload="none"
+              preload="auto"
               autoPlay
               loop
               muted
@@ -398,7 +398,7 @@ const Home = () => {
           </Link>
           <video
             src={hiking_signup_v}
-            preload="none"
+            preload="auto"
             autoPlay
             loop
             muted
