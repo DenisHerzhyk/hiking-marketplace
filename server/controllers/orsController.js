@@ -9,7 +9,7 @@ export const orsHikingRoute = async (req, res) => {
       { coordinates },
       {
         headers: {
-          Authorization: process.env.ORS_API_KEY,
+          Authorization: process.env.VITE_ORS_API_KEY,
           "Content-Type": "application/json",
         },
       },
