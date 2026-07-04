@@ -24,10 +24,11 @@ const CheckoutForm = () => {
     await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${import.meta.env.VITE_APP_URL}/order`,
+        return_url: `${import.meta.env.VITE_VERCEL_URL}/order`,
       },
     });
   };
+
   return (
     <div className="DeliveryInfo flex flex-col items-center min-h-screen px-[var(--mobile-x-padding)] laptop:px-[var(--desktop-x-padding)] tablet:px-[var(--laptop-x-padding)] mt-[63px] mobile:mt-[80px] pb-[80px]">
       <div className="flex flex-col laptop:flex-row gap-[40px] laptop:gap-[80px] max-w-[1100px]">
