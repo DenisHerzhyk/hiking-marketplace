@@ -6,7 +6,11 @@ export const overpassQuery = async (req, res) => {
       "https://overpass-api.de/api/interpreter",
       `data=${encodeURIComponent(req.body.data)}`,
       {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "*/*",
+        },
+        timeout: 30000,
       },
     );
     return res.send(response.data);
