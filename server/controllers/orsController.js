@@ -8,8 +8,8 @@ export const orsHikingRoute = async (req, res) => {
       "https://api.openrouteservice.org/v2/directions/foot-hiking/geojson",
       { coordinates },
       {
+        params: { api_key: process.env.ORS_API_KEY },
         headers: {
-          Authorization: process.env.ORS_API_KEY,
           "Content-Type": "application/json",
         },
       },
