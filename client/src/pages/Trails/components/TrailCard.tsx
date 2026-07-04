@@ -26,12 +26,16 @@ const TrailCard = ({ trail }: { trail: Trail }) => {
   const colorClass = difficultyColor[difficulty] ?? "text-gray-600 bg-gray-100";
 
   return (
-    <div className="Trail flex flex-col rounded-[10px] shadow-lg overflow-hidden bg-white">
-      <div className="w-full h-[200px] bg-gray-200 relative flex items-center justify-center">
-        <Link to={`/trails/${trail.id}`} className="w-full" state={{ trail }}>
+    <div className="Trail flex flex-col rounded-[10px] shadow-lg overflow-hidden bg-white h-full">
+      <div className="w-full h-[200px] bg-gray-200 relative flex-shrink-0">
+        <Link
+          to={`/trails/${trail.id}`}
+          className="w-full h-full block"
+          state={{ trail }}
+        >
           <img
             src={trail?.tags?.photos?.[0]}
-            className="w-full h-[190px] object-cover"
+            className="w-full h-full object-cover"
             alt={name}
             onError={(e) => {
               console.log(e.target);
