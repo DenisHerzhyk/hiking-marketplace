@@ -17,6 +17,8 @@ export const orsHikingRoute = async (req, res) => {
 
     return res.json(response.data);
   } catch (err) {
+    console.log("ORS error:", err.response?.status, err.response?.data);
+
     return res.status(500).json({ message: "Failed to fetch hiking route" });
   }
 };
