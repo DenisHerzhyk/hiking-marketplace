@@ -4,6 +4,7 @@ export const overpassQuery = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "hiking-ecommerce/1.0 (denis.herzhyk88@gmail.com)",
       },
       body: `data=${encodeURIComponent(req.body.data)}`,
     });
