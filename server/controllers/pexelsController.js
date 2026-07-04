@@ -6,7 +6,7 @@ export const pexelsQuery = async (req, res) => {
     const response = await axios.get("https://api.pexels.com/v1/search", {
       params: { query, per_page },
       headers: {
-        Authorization: process.env.VITE_PEXELS_API_KEY,
+        Authorization: process.env.PEXELS_API_KEY,
       },
     });
 

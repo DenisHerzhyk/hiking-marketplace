@@ -7,7 +7,7 @@ export const getTrailPhotos = async (trailName: string) => {
       per_page: 5,
     },
     headers: {
-      Authorization: import.meta.env.VITE_PEXELS_API_KEY,
+      Authorization: import.meta.env.PEXELS_API_KEY,
     },
   });
 
