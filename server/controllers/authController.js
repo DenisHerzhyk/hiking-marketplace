@@ -106,7 +106,7 @@ export const verifyEmail = async (req, res) => {
       },
     });
 
-    return res.redirect(`${process.env.VITE_VERCEL_URL}/login?verified=true`);
+    return res.redirect(`${process.env.VERCEL_URL}/login?verified=true`);
   } catch (err) {
     return res
       .status(500)
