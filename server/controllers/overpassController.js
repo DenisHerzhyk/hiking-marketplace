@@ -2,8 +2,6 @@ import axios from "axios";
 
 export const overpassQuery = async (req, res) => {
   try {
-    console.log("Body:", req.body);
-    console.log("Body data:", req.body.data);
     const response = await axios.post(
       "https://overpass-api.de/api/interpreter",
       `data=${encodeURIComponent(req.body.data)}`,
@@ -13,6 +11,8 @@ export const overpassQuery = async (req, res) => {
     );
     return res.send(response.data);
   } catch (err) {
+    console.log("Overpass error status:", err.response?.status);
+    console.log("Overpass error data:", err.response?.data);
     return res.status(500).json({ message: "Overpass query failed" });
   }
 };
