@@ -7,7 +7,8 @@ export const overpassQuery = async (req, res) => {
       },
       body: `data=${encodeURIComponent(req.body.data)}`,
     });
-    const data = response.text();
+
+    const text = await response.text();
     console.log("Raw Overpass response:", text.slice(0, 500));
 
     return res.send(data);
