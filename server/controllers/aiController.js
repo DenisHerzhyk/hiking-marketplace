@@ -27,7 +27,7 @@ export const suggestGear = async (req, res) => {
       model: "claude-haiku-4-5-20251001",
       max_tokens: 300,
       system: `You are a hiking gear advisor. You MUST only recommend products from the inventory list.
-Respond ONLY with valid JSON, no extra text, no markdown backticks.`,
+Respond ONLY with a raw JSON object. No markdown, no backticks, no explanation. Just the JSON.`,
       messages: [
         {
           role: "user",
