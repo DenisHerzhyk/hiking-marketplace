@@ -58,9 +58,23 @@ Respond ONLY with valid JSON, no extra text, no markdown backticks.`,
       ],
     });
 
+    console.log("AI response:", message.content[0].text);
+
     const suggestion = JSON.parse(
       message.content[0].text.replace(/```json\n?|```/g, "").trim(),
     );
+
+    if (
+      !suggestion.male?.top ||
+      !suggestion.male?.bottom ||
+      !suggestion.female?.top ||
+      !suggestion.female?.bottom
+    ) {
+      return res
+        .status(500)
+        .json({ error: "Invalid suggestion structure from AI" });
+    }
+
     return res.status(200).json({ suggestion });
   } catch (err) {
     return res
