@@ -93,6 +93,7 @@ const TrailDetails = () => {
   };
   const fetchWeather = async () => {
     if (!date || !trail) return null;
+    console.log("Date: ", date);
     try {
       const res = await api.get("/api/open-meteo/forecast", {
         params: {
@@ -105,7 +106,6 @@ const TrailDetails = () => {
           end_date: date,
         },
       });
-      console.log("Weather response:", res.data);
 
       return res.data.daily;
     } catch (err) {
