@@ -128,7 +128,7 @@ const TrailDetails = () => {
     );
 
     if (daysDiff >= 16) {
-      toast.error("The date should not exceed 16 days after the current date");
+      toast.error("The date should not exceed 15 days after the current date");
       return null;
     }
     setLoadingAI(true);
