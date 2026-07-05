@@ -96,16 +96,6 @@ const TrailDetails = () => {
   };
   const fetchWeather = async () => {
     if (!date || !trail) return null;
-    const dateNow = new Date();
-    const selectedDate = new Date(date);
-    const daysDiff = Math.ceil(
-      (selectedDate.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24),
-    );
-
-    if (daysDiff > 16) {
-      toast.error("The date should not exceed 16 days after the current date");
-      return null;
-    }
 
     try {
       const res = await api.get("/api/open-meteo/forecast", {
@@ -130,6 +120,17 @@ const TrailDetails = () => {
 
   const handleGetSuggestion = async () => {
     if (!date || !trail) return;
+
+    const dateNow = new Date();
+    const selectedDate = new Date(date);
+    const daysDiff = Math.ceil(
+      (selectedDate.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    if (daysDiff >= 16) {
+      toast.error("The date should not exceed 16 days after the current date");
+      return null;
+    }
     setLoadingAI(true);
     setSuggestion("");
 
