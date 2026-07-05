@@ -105,6 +105,8 @@ const TrailDetails = () => {
           end_date: date,
         },
       });
+      console.log("Weather response:", res.data);
+
       return res.data.daily;
     } catch (err) {
       toast.error("Problem with fetching the weather.");
@@ -126,6 +128,7 @@ const TrailDetails = () => {
         setLoadingAI(false);
         return;
       }
+
       setWeather(w);
 
       const weatherDesc = {
