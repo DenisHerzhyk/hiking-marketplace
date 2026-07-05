@@ -20,7 +20,10 @@ const TrailDetails = () => {
   const { state } = useLocation();
   const trail = state?.trail as Trail;
   const [trailLoading, setTrailLoading] = useState(true);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  });
   const [weather, setWeather] = useState<any>(null);
   const [suggestion, setSuggestion] = useState<any>(null);
   const [loadingAI, setLoadingAI] = useState(false);
@@ -93,7 +96,17 @@ const TrailDetails = () => {
   };
   const fetchWeather = async () => {
     if (!date || !trail) return null;
-    console.log("Date: ", date);
+    const dateNow = new Date();
+    const selectedDate = new Date(date);
+    const daysDiff = Math.ceil(
+      (selectedDate.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24),
+    );
+
+    if (daysDiff > 16) {
+      toast.error("The date should not exceed 16 days after the current date");
+      return null;
+    }
+
     try {
       const res = await api.get("/api/open-meteo/forecast", {
         params: {
