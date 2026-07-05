@@ -21,12 +21,9 @@ export const forecastOpenMeteo = async (req, res) => {
   try {
     const { latitude, longitude, daily, timezone, start_date, end_date } =
       req.query;
-    const response = await axios.get(
-      "https://api.open-meteo.com/v1/elevation",
-      {
-        params: { latitude, longitude, daily, timezone, start_date, end_date },
-      },
-    );
+    const response = await axios.get("https://api.open-meteo.com/v1/forecast", {
+      params: { latitude, longitude, daily, timezone, start_date, end_date },
+    });
 
     return res.json(response.data);
   } catch (err) {
