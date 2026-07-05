@@ -120,6 +120,12 @@ const TrailDetails = () => {
 
     try {
       const w = await fetchWeather();
+
+      if (!w || !w.temperature_2m_max) {
+        toast.error("Failed to fetch weather data.");
+        setLoadingAI(false);
+        return;
+      }
       setWeather(w);
 
       const weatherDesc = {
