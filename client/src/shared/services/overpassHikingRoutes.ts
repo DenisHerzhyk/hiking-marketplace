@@ -23,7 +23,6 @@ export const getHikingRoutes = async (
     );
 
     const elements = res.data?.elements;
-    console.log("Overpass response:", JSON.stringify(res.data).slice(0, 500));
 
     if (!Array.isArray(elements))
       throw new Error("Unexpected response from Overpass");

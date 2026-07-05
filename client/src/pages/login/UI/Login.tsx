@@ -61,13 +61,6 @@ const Login = () => {
     e.preventDefault();
     setErrors({});
 
-    await api
-      .get("/api/user/verify-email", {
-        withCredentials: true,
-      })
-      .then((res) => {})
-      .catch((err) => {});
-
     if (!validate()) return;
 
     await api
