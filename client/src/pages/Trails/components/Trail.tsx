@@ -141,7 +141,9 @@ const TrailDetails = () => {
       );
       setSuggestion(res.data.suggestion);
     } catch (e) {
-      setSuggestion("Failed to get suggestion.");
+      toast.error("Failed to get AI suggestion.");
+      console.log(e);
+      setSuggestion(null);
     } finally {
       setLoadingAI(false);
     }
@@ -257,7 +259,7 @@ const TrailDetails = () => {
           </button>
         </div>
       </div>
-      {suggestion && (
+      {suggestion && typeof suggestion === "object" && (
         <div className="border border-stone-200 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-sm border border-stone-200">
