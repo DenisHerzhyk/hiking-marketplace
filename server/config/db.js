@@ -1,8 +1,9 @@
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { PrismaClient } from "@prisma/client";
+import pkg from "@prisma/client";
 import dotenv from "dotenv";
 
 dotenv.config();
+const {PrismaClient} = pkg;
 const connectionString = `${process.env.DATABASE_URL}`;
 
 const adapter = new PrismaNeon({ connectionString });

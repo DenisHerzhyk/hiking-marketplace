@@ -1,7 +1,7 @@
 import axios from "axios";
-
+//import.meta.env.VITE_RENDER_URL
 const api = axios.create({
-  baseURL: import.meta.env.VITE_RENDER_URL || "http://localhost:4996",
+  baseURL: "http://localhost:4996" ,
   withCredentials: true,
 });
 
