@@ -59,14 +59,14 @@ const Home = () => {
       .get("/api/products")
       .then((res) => setProducts(res.data.data))
       .catch((err) => {
-        toast.error(err);
+        toast.error(err.message);
       })
       .finally(() => setProductLoading(false));
 
     fetch("/json/main-categories.json")
       .then((res) => res.json())
       .then((data) => setMainCategories(data.mainCategories))
-      .catch((err) => toast.error(err))
+      .catch((err) => toast.error(err.message))
       .finally(() => setCardLoading(false));
   }, []);
 

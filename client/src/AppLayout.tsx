@@ -16,9 +16,10 @@ import GuestRoute from "./shared/protectedRoute/UI/GuestRoute.tsx";
 import ScrollHash from "./pages/cart/components/scroll_item/ScrollHash.tsx";
 import TrailDetails from "./pages/Trails/components/Trail.tsx";
 import { Toaster } from "react-hot-toast";
+import AdminPage from "./pages/admin/UI/Admin.tsx"
 import CheckoutWrapper from "./shared/checkout/UI/CheckoutWrapper.tsx";
 import { CheckoutLayout } from "./shared/checkout/UI/CheckoutLayout.tsx";
-import Trails from "./pages/Trails/UI/Trails.tsx";
+import Trails from "./pages/Trails/UI/Trails.tsx"; 
 import { ErrorFallback } from "./shared/error/ErrorFallback.tsx";
 import { ErrorBoundary } from "react-error-boundary";
 import NotFound from "./shared/error/notFound.tsx";
@@ -86,6 +87,7 @@ const AppLayout = () => {
             </Route>
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<AdminPage/>} />
           </Route>
         </Routes>
       </ErrorBoundary>

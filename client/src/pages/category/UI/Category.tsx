@@ -62,7 +62,7 @@ const Category = () => {
         setProducts(res.data.data);
       })
       .catch((err) => {
-        toast.error(err);
+        toast.error(err.message);
       })
       .finally(() => setProductLoading(false));
   }, []);
