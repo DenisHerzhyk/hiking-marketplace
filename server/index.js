@@ -17,6 +17,7 @@ import orsRouter from "./routes/orsRoutes.js";
 import openStreetMapRouter from "./routes/openStreetMapRoutes.js";
 import overpassRouter from "./routes/overpassRouter.js";
 import pexelsRouter from "./routes/pexelsRoutes.js";
+import adminRouter from "./routes/manageSizeRoutes.js";
 import { connectDB, disconnectDB } from "./config/db.js";
 import cookieParser from "cookie-parser";
 config();
@@ -29,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5174"],
+    origin: ["http://localhost:5174", "https://hiking-ecommerce.vercel.app"],
     credentials: true,
   }),
 );
@@ -51,6 +52,7 @@ app.use("/api/ors", orsRouter);
 app.use("/api/osm", openStreetMapRouter);
 app.use("/api/overpass", overpassRouter);
 app.use("/api/pexels", pexelsRouter);
+app.use("/api/admin", adminRouter);
 //ai
 app.use("/api/ai", aiRouter);
 //server listening

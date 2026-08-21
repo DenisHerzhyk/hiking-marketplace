@@ -141,12 +141,9 @@ export const moveCartItemToWishlist = async (req, res) => {
     });
 
     if (existingWishlistItem) {
-      return res
-        .status(409)
-        .send({
-          message:
-            "This item is already in your wishlist for the selected size.",
-        });
+      return res.status(409).send({
+        message: "This item is already in your wishlist for the selected size.",
+      });
     }
 
     const stock = cartItem.product.stock;
