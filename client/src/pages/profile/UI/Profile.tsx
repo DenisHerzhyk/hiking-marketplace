@@ -1,6 +1,6 @@
 import api from "../../../axios.ts";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../pages/login/context/authContext.tsx";
 import toast from "react-hot-toast";
 import InputField from "../../../shared/components/UI/InputField";
@@ -162,6 +162,12 @@ const Profile = () => {
             </div>
 
             <div className="flex flex-row items-center gap-[10px]">
+              <Link
+                to="/admin"
+                className="text-sm font-medium border bg-blue-400 px-[14px] py-[7px] hover:bg-blue-600 hover:border-stone-400 transition-all duration-200 rounded-lg"
+              >
+                Admin
+              </Link>
               <button
                 onClick={handleLogout}
                 className="text-sm font-medium border border-stone-500 px-[14px] py-[7px] hover:bg-stone-100 hover:border-stone-400 transition-all duration-200 rounded-lg"

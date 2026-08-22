@@ -168,22 +168,22 @@ const ProductPage = () => {
               <div className="sizes">
                 <h2 className="text-sm mb-[11px] text-gray-500">SIZE</h2>
                 <div className="size-blocks grid grid-cols-4 gap-2 mb-[24px]">
-                  {product?.availableSizes.map((item) => (
-                    <div key={item} className="flex flex-col items-center">
+                  {Object.entries(product?.stock ?? {}).map(([size, count]) => (
+                    <div key={size} className="flex flex-col items-center">
                       <button
-                        onClick={() => setSelSize(item)}
+                        onClick={() => setSelSize(size)}
                         className={`font-medium text-sm border flex items-center justify-center py-[10px] w-full transition-all duration-200 ${
-                          selSize === item
+                          selSize === size
                             ? "bg-stone-100 border-stone-400 text-stone-800 shadow-sm"
                             : "bg-gray-200 hover:bg-gray-300 border-gray-300 hover:border-stone-400"
                         }`}
                       >
-                        {item}
+                        {size}
                       </button>
 
-                      {product.stock[item] <= 5 && (
+                      {count <= 5 && (
                         <span className="text-[10px] text-red-700 mt-1">
-                          {product.stock[item]} left
+                          {count} left
                         </span>
                       )}
                     </div>

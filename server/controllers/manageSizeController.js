@@ -58,10 +58,14 @@ export const decreaseSizeAmount = async (req, res) => {
       .status(400)
       .send("No more stock left for this size, please change the size");
 
-  const updatedStock = {
-    ...currentStock,
-    [size]: (currentStock[size] || 0) - 1,
-  };
+  const newStockSize = currentStock[size] - 1;
+  const updatedStock = { ...currentStock };
+
+  if (newStockSize <= 0) {
+    delete currentStock[size];
+  } else {
+    updatedStock[size] = newStockSize;
+  }
 
   await prisma.product.update({
     where: {
@@ -91,10 +95,9 @@ export const removeSize = async (req, res) => {
   }
 
   const currentStock = product.stock;
-
+  delete currentStock[size];
   const updatedStock = {
     ...currentStock,
-    [size]: 0,
   };
 
   await prisma.product.update({

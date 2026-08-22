@@ -91,7 +91,7 @@ const MainProductCard = ({
         <ul
           className={`w-full ${openSection ? "opacity-100" : "opacity-0"} absolute bottom-0 left-0 right-0 flex flex-row gap-2 px-3 py-6 bg-white bg-opacity-80 transition-opacity duration-200 ease-in-out`}
         >
-          {availableSizes.map((size) => (
+          {Object.entries(stock).map(([size, count]) => (
             <li
               key={size}
               className={`py-3 flex-1 text-center px-auto rounded-lg cursor-pointer transition-all duration-200 ease-in
@@ -100,10 +100,8 @@ const MainProductCard = ({
             >
               {size}
               <br />
-              {stock[size] <= 5 && (
-                <span className="text-[10px] text-red-700">
-                  {stock[size]} left
-                </span>
+              {count <= 5 && (
+                <span className="text-[10px] text-red-700">{count} left</span>
               )}
             </li>
           ))}
