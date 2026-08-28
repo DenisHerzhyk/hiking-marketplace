@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5174", "https://hiking-ecommerce.vercel.app"],
+    origin: ["http://localhost:5173", "https://hiking-ecommerce.vercel.app"],
     credentials: true,
   }),
 );
