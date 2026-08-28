@@ -16,11 +16,13 @@ export const addSizeAmount = async (req, res) => {
     });
   }
 
+  const amount = Number.isInteger(quantity) && quantity > 0 ? quantity : 1;
+
   const currentStock = product.stock;
 
   const updatedStock = {
     ...currentStock,
-    [size]: (currentStock[size] || 0) + 1,
+    [size]: (currentStock[size] || 0) + amount,
   };
 
   await prisma.product.update({
@@ -61,8 +63,11 @@ export const decreaseSizeAmount = async (req, res) => {
   const newStockSize = currentStock[size] - 1;
   const updatedStock = { ...currentStock };
 
+  // The size is dropped from the copy that gets persisted. Deleting from
+  // currentStock instead would leave the stale value in updatedStock, so the
+  // last unit of a size could never be sold out.
   if (newStockSize <= 0) {
-    delete currentStock[size];
+    delete updatedStock[size];
   } else {
     updatedStock[size] = newStockSize;
   }

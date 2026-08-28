@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/authMiddleware.js";
+import { verifyJWT, requireAdmin } from "../middlewares/authMiddleware.js";
 import {
   addSizeAmount,
   decreaseSizeAmount,
@@ -7,8 +7,13 @@ import {
 } from "../controllers/manageSizeController.js";
 const router = Router();
 
-router.put("/add/:productId", verifyJWT, addSizeAmount);
-router.put("/decrease/:productId", verifyJWT, decreaseSizeAmount);
-router.delete("/remove/:productId/:size", verifyJWT, removeSize);
+router.put("/add/:productId", verifyJWT, requireAdmin, addSizeAmount);
+router.put("/decrease/:productId", verifyJWT, requireAdmin, decreaseSizeAmount);
+router.delete(
+  "/remove/:productId/:size",
+  verifyJWT,
+  requireAdmin,
+  removeSize,
+);
 
 export default router;
